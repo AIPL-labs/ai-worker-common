@@ -1,0 +1,1 @@
+{"version":3,"file":"DataSearchRequest.d.ts","sourceRoot":"","sources":["../../../src/type/rest/DataSearchRequest.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,iBAAiB,GAAG;IAC9B,GAAG,EAAE,MAAM,EAAE,CAAC;CACf,CAAC;AAEF,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,EAAE,MAAM,CAAC,MAAM,EAAE,MAAM,CAAC,CAAC;CAClC,CAAC"}

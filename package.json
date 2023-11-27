@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "tsc -b",
+    "build": "tsc -b --clean",
     "watch": "tsc -b -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
