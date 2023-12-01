@@ -1,7 +1,7 @@
 import { ChatContent } from "../chat/ChatContent";
 import { DataObject } from "../data/DataObject";
 export type ChatMessage = DataObject & {
-    chatId: string;
+    chatId?: string;
     characterId?: string;
     disabled?: boolean;
     parent: string | undefined;

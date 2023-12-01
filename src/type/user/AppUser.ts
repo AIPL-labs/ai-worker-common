@@ -1,14 +1,26 @@
+import { AccessUser } from "../../access/AccessUser";
+
+export type ServiceProviders = {
+  textgen: ServiceProvider;
+  imagegen: ServiceProvider;
+};
+
+export type TtsConfig = {
+  selectedVoice: number;
+  pitch: number;
+  rate: number;
+  delay: number;
+};
+
 export type AppUserProfile = {
   id: string;
   name: string;
   userCharacterId?: string;
-  providers: Partial<Record<ServiceName, ServiceProvider>>;
+  providers: ServiceProviders;
   chatIds: string[];
   characterIds: string[];
+  ttsConfig?: TtsConfig;
 };
-
-export const SERVICE_PROVIDER_SERVICE_NAMES = ["textgen", "imagegen"] as const;
-export type ServiceName = (typeof SERVICE_PROVIDER_SERVICE_NAMES)[number];
 
 export const SERVICE_PROVIDER_API_SHAPES = [
   "OpenAi",
@@ -25,8 +37,7 @@ export type ServiceProvider = {
   authToken?: string;
 };
 
-export type AppUser = {
+export type AppUser = AccessUser & {
   id: string;
-  userName: string;
   profiles: Record<string, AppUserProfile>;
 };

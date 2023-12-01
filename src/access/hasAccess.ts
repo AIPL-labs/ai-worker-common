@@ -1,0 +1,23 @@
+import { AccessInfo, PermissionLevel } from "./AccessInfo";
+import { AccessUser } from "./AccessUser";
+import { getPermissionLevel } from "./checkAccessPermissions";
+
+const LEVEL_HIERARCHY: Record<PermissionLevel, PermissionLevel[]> = {
+  [PermissionLevel.NONE]: [],
+  [PermissionLevel.READ]: [PermissionLevel.READ],
+  [PermissionLevel.WRITE]: [PermissionLevel.READ, PermissionLevel.WRITE],
+  [PermissionLevel.EXECUTE]: [
+    PermissionLevel.READ,
+    PermissionLevel.WRITE,
+    PermissionLevel.EXECUTE,
+  ],
+};
+
+export const hasAccess = (
+  user: AccessUser,
+  accessInfo: AccessInfo,
+  desiredLevel = PermissionLevel.READ
+) => {
+  const level = getPermissionLevel(accessInfo, user);
+  return LEVEL_HIERARCHY[level].includes(desiredLevel);
+};

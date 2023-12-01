@@ -1,1 +1,1 @@
-{"version":3,"file":"DataObject.d.ts","sourceRoot":"","sources":["../../../src/type/data/DataObject.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,UAAU,GAAG;IACvB,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC"}
+{"version":3,"file":"DataObject.d.ts","sourceRoot":"","sources":["../../../src/type/data/DataObject.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,UAAU,GAAG;IACvB,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC;AAEF,eAAO,MAAM,YAAY,UAAW,OAAO,wBAG1C,CAAC"}
