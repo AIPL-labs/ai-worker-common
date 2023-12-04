@@ -15,5 +15,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@mjtdev/engine": "file:../../mjtdev-engine"
   }
 }

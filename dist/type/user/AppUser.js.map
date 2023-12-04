@@ -1,1 +1,1 @@
-{"version":3,"file":"AppUser.js","sourceRoot":"","sources":["../../../src/type/user/AppUser.ts"],"names":[],"mappings":"AAwBA,MAAM,CAAC,MAAM,2BAA2B,GAAG;IACzC,QAAQ;IACR,YAAY;IACZ,cAAc;CACN,CAAC"}
+{"version":3,"file":"AppUser.js","sourceRoot":"","sources":["../../../src/type/user/AppUser.ts"],"names":[],"mappings":"AA0BA,MAAM,CAAC,MAAM,2BAA2B,GAAG;IACzC,QAAQ;IACR,YAAY;IACZ,cAAc;CACN,CAAC"}

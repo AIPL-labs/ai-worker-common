@@ -1,13 +1,13 @@
 import {
   AppObjectType,
   AppObject,
-  AppObjectTypeMapping,
+  AppObjectTypeMap,
 } from "../type/app/AppObject";
 import { APP_OBJECT_CREATORS } from "./APP_OBJECT_CREATORS";
 
 export type AppObjectCreator<K extends AppObjectType> = (
   draft: Partial<AppObject<K>>
-) => AppObjectTypeMapping[K];
+) => AppObjectTypeMap[K];
 
 export const createAppObject = <T extends AppObjectType = AppObjectType>(
   type: T,

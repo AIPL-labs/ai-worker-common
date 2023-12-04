@@ -10,6 +10,8 @@ export type TtsConfig = {
   pitch: number;
   rate: number;
   delay: number;
+  selectedCustomVoice: string;
+  selectedCustomVoiceLanguage: string;
 };
 
 export type AppUserProfile = {

@@ -5,6 +5,9 @@ export const APP_OBJECT_TYPES = [
     "ai-agent",
     "user",
     "user-profile",
+    "corpus",
+    "corpus-document",
+    "data-index",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

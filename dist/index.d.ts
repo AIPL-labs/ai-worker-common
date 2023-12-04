@@ -18,5 +18,8 @@ export * from "./type/ai-character/TavernCardV1";
 export * from "./type/ai-character/TavernCardv2";
 export * from "./type/ai-agent/AiBot";
 export * from "./agent/AiAgents";
+export * from "./corpus/Corpora";
+export * from "./type/corpus/Corpus";
+export * from "./type/data-index/DataIndex";
 export * from "./id/uniqueId";
 //# sourceMappingURL=index.d.ts.map

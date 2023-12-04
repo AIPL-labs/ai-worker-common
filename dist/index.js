@@ -26,6 +26,11 @@ export * from "./type/ai-character/TavernCardv2";
 // ai-bot
 export * from "./type/ai-agent/AiBot";
 export * from "./agent/AiAgents";
+// corpus
+export * from "./corpus/Corpora";
+export * from "./type/corpus/Corpus";
+// data-index
+export * from "./type/data-index/DataIndex";
 // functions
 export * from "./id/uniqueId";
 //# sourceMappingURL=index.js.map

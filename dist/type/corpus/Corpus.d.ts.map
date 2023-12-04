@@ -1,0 +1,1 @@
+{"version":3,"file":"Corpus.d.ts","sourceRoot":"","sources":["../../../src/type/corpus/Corpus.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,MAAM,GAAG;IACnB,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IAEb,aAAa,EAAE,MAAM,CAAC;CACvB,CAAC;AAEF,MAAM,MAAM,cAAc,GAAG;IAC3B,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IACb,IAAI,EAAE,MAAM,CAAC;CACd,CAAC"}

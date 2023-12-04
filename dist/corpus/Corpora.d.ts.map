@@ -1,0 +1,1 @@
+{"version":3,"file":"Corpora.d.ts","sourceRoot":"","sources":["../../src/corpus/Corpora.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,EAAE,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAE/D,eAAO,MAAM,YAAY,UAAW,QAAQ,MAAM,CAAC,KAAG,MAYrD,CAAC;AAEF,eAAO,MAAM,oBAAoB,UACxB,QAAQ,cAAc,CAAC,KAC7B,cAYF,CAAC;AAEF,eAAO,MAAM,OAAO;kCAfX,QAAQ,cAAc,CAAC,KAC7B,cAAc;0BAhBmB,QAAQ,MAAM,CAAC,KAAG,MAAM;CA8BC,CAAC"}

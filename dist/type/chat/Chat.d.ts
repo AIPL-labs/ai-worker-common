@@ -4,6 +4,7 @@ export type Chat = DataObject & {
     tags: string[];
     currentMessageId: string | undefined;
     messageIds: string[];
+    messageIdx: string;
     creation: number;
     modification: number;
     userName: string;
