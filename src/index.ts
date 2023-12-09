@@ -42,5 +42,8 @@ export * from "./type/corpus/Corpus";
 // data-index
 export * from "./type/data-index/DataIndex";
 
+// voice
+export * from "./type/voice/AppVoice";
+
 // functions
 export * from "./id/uniqueId";

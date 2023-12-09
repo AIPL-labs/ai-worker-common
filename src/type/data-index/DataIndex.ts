@@ -1,6 +1,6 @@
 import { AppObject } from "../app/AppObject";
 
-export type DataIndex<T extends object = object> = {
+export type DataIndex<T extends AppObject = any> = {
   id: string;
   records: Record<string, T>;
 };

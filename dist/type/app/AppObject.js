@@ -8,6 +8,8 @@ export const APP_OBJECT_TYPES = [
     "corpus",
     "corpus-document",
     "data-index",
+    // "data",
+    "voice",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

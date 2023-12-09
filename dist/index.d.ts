@@ -21,5 +21,6 @@ export * from "./agent/AiAgents";
 export * from "./corpus/Corpora";
 export * from "./type/corpus/Corpus";
 export * from "./type/data-index/DataIndex";
+export * from "./type/voice/AppVoice";
 export * from "./id/uniqueId";
 //# sourceMappingURL=index.d.ts.map

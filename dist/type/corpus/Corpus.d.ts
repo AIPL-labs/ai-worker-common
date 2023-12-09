@@ -5,7 +5,11 @@ export type Corpus = {
 };
 export type CorpusDocument = {
     id: string;
-    text: string;
     name: string;
+    mediaType?: string;
+    dataId?: string;
+    size?: number;
+    lastModified?: number;
+    chunks?: string[];
 };
 //# sourceMappingURL=Corpus.d.ts.map

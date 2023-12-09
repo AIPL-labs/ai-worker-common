@@ -3,6 +3,7 @@ import { TavernCardV2 } from "./TavernCardv2";
 export type AiCharacter = {
     id: string;
     card: TavernCardV2<Partial<{
+        voiceId?: string;
         genInfo: {
             imagePrompt: string;
         };

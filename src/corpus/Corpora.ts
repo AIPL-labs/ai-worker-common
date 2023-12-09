@@ -21,13 +21,19 @@ export const createCorpusDocument = (
   const {
     id = uniqueId("corpus-document"),
     name = "Unamed",
-    text = "",
+    dataId,
+    mediaType,
+    lastModified,
+    size
   } = draft;
 
   return {
     id,
     name,
-    text,
+    dataId,
+    mediaType,
+    lastModified,
+    size
   };
 };
 

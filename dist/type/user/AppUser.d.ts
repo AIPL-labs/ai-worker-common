@@ -2,14 +2,7 @@ import { AccessUser } from "../../access/AccessUser";
 export type ServiceProviders = {
     textgen: ServiceProvider;
     imagegen: ServiceProvider;
-};
-export type TtsConfig = {
-    selectedVoice: number;
-    pitch: number;
-    rate: number;
-    delay: number;
-    selectedCustomVoice: string;
-    selectedCustomVoiceLanguage: string;
+    tts: ServiceProvider;
 };
 export type AppUserProfile = {
     id: string;
@@ -18,9 +11,9 @@ export type AppUserProfile = {
     providers: ServiceProviders;
     chatIds: string[];
     characterIds: string[];
-    ttsConfig?: TtsConfig;
+    voiceId?: string;
 };
-export declare const SERVICE_PROVIDER_API_SHAPES: readonly ["OpenAi", "Cloudflare", "CustomOpenAi"];
+export declare const SERVICE_PROVIDER_API_SHAPES: readonly ["OpenAi", "Cloudflare", "CustomOpenAi", "CustomTts", "BrowserTts"];
 export type ApiShape = (typeof SERVICE_PROVIDER_API_SHAPES)[number];
 export type ServiceProvider = {
     apiShape: ApiShape;

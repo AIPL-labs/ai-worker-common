@@ -5,6 +5,7 @@ export type AiCharacter = {
   id: string;
   card: TavernCardV2<
     Partial<{
+      voiceId?: string,
       genInfo: {
         imagePrompt: string;
       };

@@ -8,11 +8,14 @@ export const createCorpus = (draft) => {
     };
 };
 export const createCorpusDocument = (draft) => {
-    const { id = uniqueId("corpus-document"), name = "Unamed", text = "", } = draft;
+    const { id = uniqueId("corpus-document"), name = "Unamed", dataId, mediaType, lastModified, size } = draft;
     return {
         id,
         name,
-        text,
+        dataId,
+        mediaType,
+        lastModified,
+        size
     };
 };
 export const Corproa = { createCorpusDocument, createCorpus };
