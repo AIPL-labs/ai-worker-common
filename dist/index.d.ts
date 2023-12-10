@@ -6,6 +6,7 @@ export * from "./type/rest/UserCreateRequest";
 export * from "./type/rest/UserLoginRequest";
 export * from "./type/rest/DataSearchRequest";
 export * from "./type/rest/DataSearchResponse";
+export * from "./type/rest/IngestRequest";
 export * from "./type/data/DataObject";
 export * from "./type/app/AppObject";
 export * from "./type/chat/Chat";
@@ -23,4 +24,6 @@ export * from "./type/corpus/Corpus";
 export * from "./type/data-index/DataIndex";
 export * from "./type/voice/AppVoice";
 export * from "./id/uniqueId";
+export * from "./extract/Extracts";
+export * from "./type/vector-store/VectorStore";
 //# sourceMappingURL=index.d.ts.map

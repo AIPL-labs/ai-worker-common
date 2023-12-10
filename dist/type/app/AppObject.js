@@ -10,6 +10,7 @@ export const APP_OBJECT_TYPES = [
     "data-index",
     // "data",
     "voice",
+    "vector-store",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

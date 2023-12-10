@@ -7,6 +7,8 @@ import { Corpus, CorpusDocument } from "../corpus/Corpus";
 import { DataIndex } from "../data-index/DataIndex";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
+import { VectorStore } from "../vector-store/VectorStore";
+import { IngestResult } from "../rest/IngestRequest";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -20,6 +22,8 @@ export type AppObjectTypeMap = {
   "data-index": DataIndex;
   // data: ByteLike;
   voice: AppVoice;
+  "vector-store": VectorStore;
+  "ingest-result": IngestResult;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -39,6 +43,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "data-index",
   // "data",
   "voice",
+  "vector-store",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

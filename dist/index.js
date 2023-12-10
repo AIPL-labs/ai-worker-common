@@ -9,6 +9,7 @@ export * from "./type/rest/UserCreateRequest";
 export * from "./type/rest/UserLoginRequest";
 export * from "./type/rest/DataSearchRequest";
 export * from "./type/rest/DataSearchResponse";
+export * from "./type/rest/IngestRequest";
 // object
 export * from "./type/data/DataObject";
 export * from "./type/app/AppObject";
@@ -35,4 +36,8 @@ export * from "./type/data-index/DataIndex";
 export * from "./type/voice/AppVoice";
 // functions
 export * from "./id/uniqueId";
+// extracts
+export * from "./extract/Extracts";
+// vector-store
+export * from "./type/vector-store/VectorStore";
 //# sourceMappingURL=index.js.map
