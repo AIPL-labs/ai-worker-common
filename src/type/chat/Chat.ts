@@ -14,4 +14,7 @@ export type Chat = DataObject & {
   maxResponseTokens: number;
   aiCharacterId?: string;
   userCharacterId?: string;
+  vectorStoreIds?: string[];
+  stop: string[];
+  stopAfter: string[];
 };

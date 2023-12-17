@@ -4,16 +4,12 @@ export type ServiceProviders = {
   textgen: ServiceProvider;
   imagegen: ServiceProvider;
   tts: ServiceProvider;
+  proxy: ServiceProvider;
 };
 
-// export type TtsConfig = {
-//   selectedVoice: number;
-//   pitch: number;
-//   rate: number;
-//   delay: number;
-//   selectedCustomVoice: string;
-//   selectedCustomVoiceLanguage: string;
-// };
+export type AsrConfig = {
+  pauseToListenMs: number;
+};
 
 export type AppUserProfile = {
   id: string;
@@ -23,7 +19,7 @@ export type AppUserProfile = {
   chatIds: string[];
   characterIds: string[];
   voiceId?: string;
-  // ttsConfig?: TtsConfig;
+  asrConfig?: AsrConfig;
 };
 
 export const SERVICE_PROVIDER_API_SHAPES = [

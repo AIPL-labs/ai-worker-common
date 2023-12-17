@@ -7,6 +7,7 @@ export * from "./type/rest/UserLoginRequest";
 export * from "./type/rest/DataSearchRequest";
 export * from "./type/rest/DataSearchResponse";
 export * from "./type/rest/IngestRequest";
+export * from './type/rest/SearchVectorStoreRequest';
 export * from "./type/data/DataObject";
 export * from "./type/app/AppObject";
 export * from "./type/chat/Chat";
