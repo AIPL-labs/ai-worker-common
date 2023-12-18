@@ -1,6 +1,5 @@
-import { AppObject } from "../app/AppObject";
+import { DataObject } from "../data/DataObject";
 
-export type DataIndex<T extends AppObject = any> = {
-  id: string;
+export type DataIndex<T extends DataObject = DataObject> = DataObject & {
   records: Record<string, T>;
 };

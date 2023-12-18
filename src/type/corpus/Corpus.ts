@@ -1,7 +1,6 @@
 export type Corpus = {
   id: string;
   name: string;
-  // documentIds: string[];
   documentIdxId: string;
 };
 
@@ -10,7 +9,7 @@ export type CorpusDocument = {
   name: string;
   mediaType?: string;
   dataId?: string;
-  size?: number
-  lastModified?: number
-  chunks?: string[]
+  size?: number;
+  lastModified?: number;
+  chunks?: string[];
 };
