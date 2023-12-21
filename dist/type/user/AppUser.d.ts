@@ -4,6 +4,7 @@ export type ServiceProviders = {
     imagegen: ServiceProvider;
     tts: ServiceProvider;
     proxy: ServiceProvider;
+    crawl: ServiceProvider;
 };
 export type AsrConfig = {
     pauseToListenMs: number;
@@ -18,7 +19,7 @@ export type AppUserProfile = {
     voiceId?: string;
     asrConfig?: AsrConfig;
 };
-export declare const SERVICE_PROVIDER_API_SHAPES: readonly ["OpenAi", "Cloudflare", "CustomOpenAi", "CustomTts", "BrowserTts"];
+export declare const SERVICE_PROVIDER_API_SHAPES: readonly ["CustomWc", "OpenAi", "Cloudflare", "CustomOpenAi", "CustomTts", "BrowserTts"];
 export type ApiShape = (typeof SERVICE_PROVIDER_API_SHAPES)[number];
 export type ServiceProvider = {
     apiShape: ApiShape;

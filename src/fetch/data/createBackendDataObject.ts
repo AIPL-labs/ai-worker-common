@@ -1,5 +1,5 @@
 import { AppObject, AppObjectType } from "../../type/app/AppObject";
-import { getFetchState } from "fetch/FetchState";
+import { getFetchState } from "../FetchState";
 import { fetchWithJson } from "../fetchWithJson";
 
 export const createBackendDataObject = async <T extends AppObjectType>(

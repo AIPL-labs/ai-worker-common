@@ -8,6 +8,7 @@ export type CorpusDocument = {
     name: string;
     mediaType?: string;
     dataId?: string;
+    url?: string;
     size?: number;
     lastModified?: number;
     chunks?: string[];

@@ -8,11 +8,12 @@ export const putBackendData = async (
   data: BodyInit,
   options: Partial<{
     mediaType: string;
+    authToken: string;
   }> = {}
 ) => {
   assertValue(id);
   const { homeBaseUrl } = getFetchState();
-  const { mediaType } = options;
+  const { mediaType, authToken } = options;
   const headers: HttpHeaderMap | undefined = mediaType
     ? {
         "Content-Type": mediaType,
@@ -20,7 +21,7 @@ export const putBackendData = async (
     : {};
   return await fetchWithAuth(homeBaseUrl + `/data/${id}`, data, {
     method: "PUT",
-
+    authToken,
     headers,
   });
 };

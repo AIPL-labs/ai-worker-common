@@ -5,6 +5,7 @@ export type ServiceProviders = {
   imagegen: ServiceProvider;
   tts: ServiceProvider;
   proxy: ServiceProvider;
+  crawl: ServiceProvider;
 };
 
 export type AsrConfig = {
@@ -23,6 +24,7 @@ export type AppUserProfile = {
 };
 
 export const SERVICE_PROVIDER_API_SHAPES = [
+  "CustomWc",
   "OpenAi",
   "Cloudflare",
   "CustomOpenAi",

@@ -4,6 +4,7 @@ export declare const Datas: {
     deleteBackendData: (id: string) => Promise<Response>;
     putBackendData: (id: string, data: BodyInit, options?: Partial<{
         mediaType: string;
+        authToken: string;
     }>) => Promise<Response>;
     getBackendDataObject: <T_1 extends import("../..").DataObject = import("../..").DataObject>(id: string) => Promise<T_1 | undefined>;
     getBackendDataObjects: (ids: string[]) => Promise<Response>;

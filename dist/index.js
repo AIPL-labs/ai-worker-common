@@ -13,6 +13,7 @@ export * from "./type/rest/IngestRequest";
 export * from "./type/rest/SearchVectorStoreRequest";
 export * from "./type/rest/DataIndexRecordPushRequest";
 export * from "./type/rest/DataIndexRecordDeleteRequest";
+export * from "./type/rest/CrawlWebsiteRequest";
 // object
 export * from "./type/data/DataObject";
 export * from "./type/app/AppObject";
@@ -43,4 +44,12 @@ export * from "./id/uniqueId";
 export * from "./extract/Extracts";
 // vector-store
 export * from "./type/vector-store/VectorStore";
+// data
+export * from "./fetch/data/Datas";
+export * from "./fetch/index/DataIndexes";
+// crawl
+export * from "./crawl/CrawlDocument";
+export * from "./crawl/CrawlParams";
+// constant
+export * from "./constant/AppConstants";
 //# sourceMappingURL=index.js.map

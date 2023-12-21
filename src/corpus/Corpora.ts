@@ -24,7 +24,9 @@ export const createCorpusDocument = (
     dataId,
     mediaType,
     lastModified,
-    size
+    size,
+    chunks,
+    url,
   } = draft;
 
   return {
@@ -33,7 +35,9 @@ export const createCorpusDocument = (
     dataId,
     mediaType,
     lastModified,
-    size
+    size,
+    chunks,
+    url,
   };
 };
 

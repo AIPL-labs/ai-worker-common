@@ -4,7 +4,7 @@ import { getFetchState } from "../FetchState";
 export const putBackendData = async (id, data, options = {}) => {
     assertValue(id);
     const { homeBaseUrl } = getFetchState();
-    const { mediaType } = options;
+    const { mediaType, authToken } = options;
     const headers = mediaType
         ? {
             "Content-Type": mediaType,
@@ -12,6 +12,7 @@ export const putBackendData = async (id, data, options = {}) => {
         : {};
     return await fetchWithAuth(homeBaseUrl + `/data/${id}`, data, {
         method: "PUT",
+        authToken,
         headers,
     });
 };

@@ -5,5 +5,7 @@ export declare const DataIndexes: {
     pullUserDataIndex: <T_2 extends import("../..").DataObject>(objectType: keyof import("../..").AppObjectTypeMap, userId: string, options?: Partial<{
         createIfNotFound: boolean;
     }>) => Promise<import("../..").DataIndex<T_2> | undefined>;
+    pushDataIndexRecord: <T_3 extends import("../..").DataObject>(params: import("../..").DataIndexRecordPushRequest<T_3>) => Promise<import("../..").DataIndex<T_3> | undefined>;
+    deleteDataIndexRecord: <T_4 extends import("../..").DataObject>(params: import("../..").DataIndexRecordDeleteRequest) => Promise<import("../..").DataIndex<T_4> | undefined>;
 };
 //# sourceMappingURL=DataIndexes.d.ts.map
