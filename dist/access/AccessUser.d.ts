@@ -1,5 +1,5 @@
 export type AccessUser = {
-    userName: string;
-    groups?: string[];
+    id: string;
+    groups: string[];
 };
 //# sourceMappingURL=AccessUser.d.ts.map

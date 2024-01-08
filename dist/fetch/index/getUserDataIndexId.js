@@ -1,5 +1,9 @@
-export const getUserDataIndexId = (objectType, userId) => {
-    // const { id } = getUserState();
-    return `${objectType}-${userId}`;
-};
+"use strict";
+// import { AppObjectType } from "../../type/app/AppObject";
+// export const getUserDataIndexId = (
+//   userId: string,
+//   objectType: AppObjectType
+// ) => {
+//   return `${objectType}-${userId}`;
+// };
 //# sourceMappingURL=getUserDataIndexId.js.map

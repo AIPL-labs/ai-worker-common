@@ -1,19 +1,9 @@
-import { createBackendDataObject } from "./createBackendDataObject";
-import { deleteBackendData } from "./deleteBackendData";
-import { getBackendData } from "./getBackendData";
-import { getBackendDataObject } from "./getBackendDataObject";
-import { getBackendDataObjects } from "./getBackendDataObjects";
-import { putBackendData } from "./putBackendData";
-import { putBackendDataObject } from "./putBackendDataObject";
-import { putBackendDataObjects } from "./putBackendDataObjects";
+import { deleteRemoteData } from "./deleteRemoteData";
+import { getRemoteData } from "./getRemoteData";
+import { putRemoteData } from "./putRemoteData";
 export const Datas = {
-    createBackendDataObject,
-    getBackendData,
-    deleteBackendData,
-    putBackendData,
-    getBackendDataObject,
-    getBackendDataObjects,
-    putBackendDataObject,
-    putBackendDataObjects,
+    getRemoteData,
+    deleteRemoteData,
+    putRemoteData,
 };
 //# sourceMappingURL=Datas.js.map

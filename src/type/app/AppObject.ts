@@ -1,28 +1,27 @@
-import { ByteLike } from "@mjtdev/engine";
-import { AiAgent as AiAgent } from "../ai-agent/AiBot";
-import { AiCharacter } from "../ai-character/AiCharacter";
+import { TextExtraction } from "type/corpus/TextExtraction";
+import { AiAgent } from "../ai-agent/AiBot";
+import { AppCharacter } from "../app-character/AppCharacter";
 import { ChatMessage } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
 import { Corpus, CorpusDocument } from "../corpus/Corpus";
 import { DataIndex } from "../data-index/DataIndex";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
-import { VectorStore } from "../vector-store/VectorStore";
 import { IngestResult } from "../rest/IngestRequest";
 
 export type AppObjectTypeMap = {
   chat: Chat;
   "chat-message": ChatMessage;
-  "ai-character": AiCharacter;
+  "app-character": AppCharacter;
   "ai-agent": AiAgent;
-  user: AppUser;
+  "app-user": AppUser;
   "user-profile": AppUserProfile;
   corpus: Corpus;
   "corpus-document": CorpusDocument;
   "data-index": DataIndex;
   // data: ByteLike;
   voice: AppVoice;
-  "vector-store": VectorStore;
+  "text-extraction": TextExtraction;
   "ingest-result": IngestResult;
 };
 
@@ -34,16 +33,17 @@ export type AppObject<T extends AppObjectType = AppObjectType> =
 export const APP_OBJECT_TYPES: AppObjectType[] = [
   "chat",
   "chat-message",
-  "ai-character",
+  "app-character",
   "ai-agent",
-  "user",
+  "app-user",
   "user-profile",
   "corpus",
   "corpus-document",
   "data-index",
   // "data",
   "voice",
-  "vector-store",
+  "text-extraction",
+  "ingest-result",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

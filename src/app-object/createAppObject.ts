@@ -12,10 +12,10 @@ export type AppObjectCreator<K extends AppObjectType> = (
 export const createAppObject = <T extends AppObjectType = AppObjectType>(
   type: T,
   draft: Partial<AppObject<T>> = {}
-): AppObject<T> | undefined => {
+): AppObject<T> => {
   const creator = APP_OBJECT_CREATORS[type];
   if (!creator) {
-    return undefined;
+    throw new Error(`no AppObject creator: ${type}`);
   }
   return creator(draft);
 };

@@ -11,6 +11,9 @@ const LEVEL_HIERARCHY = {
     ],
 };
 export const hasAccess = (user, accessInfo, desiredLevel = PermissionLevel.READ) => {
+    if (user.id === "system") {
+        return true;
+    }
     const level = getPermissionLevel(accessInfo, user);
     return LEVEL_HIERARCHY[level].includes(desiredLevel);
 };

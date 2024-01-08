@@ -10,6 +10,5 @@ export type AppVoice = DataObject & {
     name: string;
     apiShape: ApiShape;
     browserVoiceConfig: Partial<BrowserVoiceConfig>;
-    corpusDocumentIdxId: string;
 };
 //# sourceMappingURL=AppVoice.d.ts.map

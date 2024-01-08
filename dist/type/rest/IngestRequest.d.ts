@@ -2,24 +2,19 @@ import { DataObject } from "../data/DataObject";
 export type IngestRequest = {
     enableOcr: boolean;
     dataIds: string[];
-    resultDataId: string;
+    namespaceId: string;
 };
-export type IngestDataResult = {
-    dataId: string;
+export type IngestResult = DataObject & {
+    dataId?: string;
     errors: string[];
     ingestStartTime?: number;
     ingestEndTime?: number;
     text?: string;
     chunks: string[];
-    embeds?: VectorizeVectorMutation;
+    vectors?: string[];
 };
 export type VectorizeVectorMutation = {
     ids: string[];
     count: number;
-};
-export type IngestResult = DataObject & {
-    request?: IngestRequest;
-    status: "STARTING" | "EXTRACTING-TEXT" | "EMBEDDING" | "COMPLETE";
-    results: Record<string, IngestDataResult>;
 };
 //# sourceMappingURL=IngestRequest.d.ts.map

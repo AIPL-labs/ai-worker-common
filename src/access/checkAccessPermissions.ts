@@ -6,7 +6,7 @@ export function getPermissionLevel(
   accessInfo: AccessInfo,
   user: AccessUser
 ): PermissionLevel {
-  const { userName, groups = [] } = user;
+  const { id: userName, groups = [] } = user;
   // Check if the user is the owner
   if (userName === accessInfo.owner) {
     return checkOctalPermissions(accessInfo.permissions >> 6);
@@ -19,7 +19,7 @@ export function getPermissionLevel(
 
   // Check ACL for specific user permissions
   const aclEntry = accessInfo.acl.find(
-    (entry) => entry.userName === user.userName
+    (entry) => entry.userName === user.id
   );
   if (aclEntry) {
     switch (aclEntry.permissions) {

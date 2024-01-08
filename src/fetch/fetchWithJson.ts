@@ -1,21 +1,33 @@
 import { FetchOptions } from "./FetchOptions";
+import { HomeAuth } from "./data/HomeAuth";
 import { fetchWithAuth } from "./fetchWithAuth";
 
-export const fetchWithJson = async <T extends object = object>(
-  url: string,
-  data?: T | string,
-  options: FetchOptions = {}
-) => {
+export const fetchWithJson = async <T extends object = object>({
+  authToken,
+  url,
+  data,
+  options = {},
+}: {
+  authToken?: string;
+  url: string;
+  data?: T | string;
+  options?: Partial<FetchOptions>;
+}) => {
   const { method = "POST", headers = {} } = options;
 
   const body: string = typeof data === "string" ? data : JSON.stringify(data);
 
-  return fetchWithAuth(url, body, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...headers,
+  return fetchWithAuth({
+    authToken,
+    url,
+    data: body,
+    options: {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...headers,
+      },
+      method,
     },
-    method,
   });
 };

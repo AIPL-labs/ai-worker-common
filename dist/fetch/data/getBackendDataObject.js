@@ -1,6 +1,6 @@
-import { getBackendData } from "./getBackendData";
+import { getRemoteData } from "./getBackendData";
 export const getBackendDataObject = async (id) => {
-    const resp = await getBackendData(id);
+    const resp = await getRemoteData(id);
     if (!resp.ok) {
         return undefined;
     }

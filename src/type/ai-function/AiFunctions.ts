@@ -1,17 +1,19 @@
-import { StateUpdater, createState } from "@mjtdev/engine";
-import { AiCharacter } from "../ai-character/AiCharacter";
-import { ChatMessage } from "../chat-message/ChatMessage";
+import { createState } from "@mjtdev/engine";
+import { Chats } from "../../chat/Chats";
 import { Chat } from "../chat/Chat";
 
 export type AiFunctionCtx = {
   arg?: string;
   env: {
-    getMessageById: (id: string) => ChatMessage | undefined;
-    getCharacterById: (id: string) => AiCharacter | undefined;
-    getChat: () => Chat;
-    updateChat: StateUpdater<Chat>;
-    updateMessages: StateUpdater<{ messages: Record<string, ChatMessage> }>;
-    updateCharacters: StateUpdater<{ characters: Record<string, AiCharacter> }>;
+    chats: typeof Chats;
+    chat: Chat;
+    userId: string;
+    // getMessageById: (id: string) => ChatMessage | undefined;
+    // getCharacterById: (id: string) => AiCharacter | undefined;
+    // getChat: () => Chat;
+    // updateChat: StateUpdater<Chat>;
+    // updateMessages: StateUpdater<{ messages: Record<string, ChatMessage> }>;
+    // updateCharacters: StateUpdater<{ characters: Record<string, AiCharacter> }>;
   } & Record<string, unknown>;
 };
 

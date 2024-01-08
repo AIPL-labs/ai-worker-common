@@ -1,14 +1,15 @@
 import { AiFunction } from "../ai-function/AiFunctions";
 import { TavernCardV2 } from "./TavernCardv2";
-export type AiCharacter = {
+export type AppTavernCard = TavernCardV2<Partial<{
+    direction: string;
+    voiceId: string;
+    genInfo: {
+        imagePrompt: string;
+    };
+}>>;
+export type AppCharacter = {
     id: string;
-    card: TavernCardV2<Partial<{
-        direction: string;
-        voiceId?: string;
-        genInfo: {
-            imagePrompt: string;
-        };
-    }>>;
+    card: AppTavernCard;
     image?: Blob;
     capabilities?: AiCapability[];
 };

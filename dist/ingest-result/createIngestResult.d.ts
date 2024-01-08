@@ -1,3 +1,3 @@
-import { IngestResult } from "../type/rest/IngestRequest";
-export declare const createIngestResult: (draft: Partial<IngestResult>) => IngestResult;
+import { TextExtraction } from "type/corpus/TextExtraction";
+export declare const createIngestResult: (draft: Partial<TextExtraction>) => TextExtraction;
 //# sourceMappingURL=createIngestResult.d.ts.map

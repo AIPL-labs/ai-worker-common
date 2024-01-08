@@ -1,9 +1,8 @@
-import { AppObjectType } from "../../type/app/AppObject";
+// import { AppObjectType } from "../../type/app/AppObject";
 
-export const getUserDataIndexId = (
-  objectType: AppObjectType,
-  userId: string
-) => {
-  // const { id } = getUserState();
-  return `${objectType}-${userId}`;
-};
+// export const getUserDataIndexId = (
+//   userId: string,
+//   objectType: AppObjectType
+// ) => {
+//   return `${objectType}-${userId}`;
+// };

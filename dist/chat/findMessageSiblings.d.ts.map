@@ -1,0 +1,1 @@
+{"version":3,"file":"findMessageSiblings.d.ts","sourceRoot":"","sources":["../../src/chat/findMessageSiblings.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAE,MAAM,kCAAkC,CAAC;AAC/D,OAAO,EAAE,IAAI,EAAE,MAAM,mBAAmB,CAAC;AAIzC,eAAO,MAAM,mBAAmB;UAGxB,IAAI;eACC,MAAM;MACf,WAAW,EAMd,CAAC"}

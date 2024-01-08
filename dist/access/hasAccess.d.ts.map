@@ -1,1 +1,1 @@
-{"version":3,"file":"hasAccess.d.ts","sourceRoot":"","sources":["../../src/access/hasAccess.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,eAAe,EAAE,MAAM,cAAc,CAAC;AAC3D,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAc1C,eAAO,MAAM,SAAS,SACd,UAAU,cACJ,UAAU,4CAKvB,CAAC"}
+{"version":3,"file":"hasAccess.d.ts","sourceRoot":"","sources":["../../src/access/hasAccess.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,eAAe,EAAE,MAAM,cAAc,CAAC;AAC3D,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAc1C,eAAO,MAAM,SAAS,SACd,UAAU,cACJ,UAAU,4CAQvB,CAAC"}

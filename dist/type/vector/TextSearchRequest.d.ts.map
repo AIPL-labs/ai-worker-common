@@ -1,0 +1,1 @@
+{"version":3,"file":"TextSearchRequest.d.ts","sourceRoot":"","sources":["../../../src/type/vector/TextSearchRequest.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,iBAAiB,GAAG;IAC9B,IAAI,EAAE,MAAM,CAAC;IACb,SAAS,EAAE,MAAM,CAAC;IAClB,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,CAAC"}

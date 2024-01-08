@@ -1,1 +1,1 @@
-{"version":3,"file":"FetchState.d.ts","sourceRoot":"","sources":["../../src/fetch/FetchState.ts"],"names":[],"mappings":"AAGA,eAAO,MAAO,aAAa;;IAAE,gBAAgB;;IAAE,aAAa;;EAE1D,CAAC"}
+{"version":3,"file":"FetchState.d.ts","sourceRoot":"","sources":["../../src/fetch/FetchState.ts"],"names":[],"mappings":"AAEA,eAAO,MAAO,aAAa;;;IAAE,gBAAgB;;;IAAE,aAAa;;;EAG1D,CAAC"}

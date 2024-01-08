@@ -1,16 +1,17 @@
 export const APP_OBJECT_TYPES = [
     "chat",
     "chat-message",
-    "ai-character",
+    "app-character",
     "ai-agent",
-    "user",
+    "app-user",
     "user-profile",
     "corpus",
     "corpus-document",
     "data-index",
     // "data",
     "voice",
-    "vector-store",
+    "text-extraction",
+    "ingest-result",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

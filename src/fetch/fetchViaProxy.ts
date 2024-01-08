@@ -1,12 +1,19 @@
 import { fetchWithAuth } from "./fetchWithAuth";
-import { getFetchState } from "./FetchState";
+import { HomeAuth } from "./data/HomeAuth";
 
-export const fetchViaProxy = async (url: string) => {
-  const { homeBaseUrl } = getFetchState();
-  return fetchWithAuth(`${homeBaseUrl}/proxy`, undefined, {
-    headers: {
-      "X-SERVICE": "proxy",
-      "X-PROXY": url,
+export const fetchViaProxy = async ({
+  url,
+  homeBaseUrl,
+  authToken,
+}: HomeAuth & { url: string }) => {
+  return fetchWithAuth({
+    authToken,
+    url: `${homeBaseUrl}/proxy`,
+    options: {
+      headers: {
+        "X-SERVICE": "proxy",
+        "X-PROXY": url,
+      },
     },
   });
 };

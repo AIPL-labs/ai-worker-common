@@ -1,7 +1,7 @@
 import { authTokenToAuthHeader } from "../common/authTokenToAuthHeader";
 import { orError } from "../common/orError";
-export const fetchWithAuth = async (url, data, options = {}) => {
-    const { headers = {}, signal, authToken } = options;
+export const fetchWithAuth = async ({ url, data, options = {}, authToken, }) => {
+    const { headers = {}, signal } = options;
     const authHeaders = authToken ? authTokenToAuthHeader(authToken) : {};
     const resp = await orError(() => fetch(url, {
         signal,

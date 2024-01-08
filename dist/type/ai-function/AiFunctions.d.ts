@@ -1,25 +1,16 @@
-import { StateUpdater } from "@mjtdev/engine";
-import { AiCharacter } from "../ai-character/AiCharacter";
-import { ChatMessage } from "../chat-message/ChatMessage";
+import { Chats } from "../../chat/Chats";
 import { Chat } from "../chat/Chat";
 export type AiFunctionCtx = {
     arg?: string;
     env: {
-        getMessageById: (id: string) => ChatMessage | undefined;
-        getCharacterById: (id: string) => AiCharacter | undefined;
-        getChat: () => Chat;
-        updateChat: StateUpdater<Chat>;
-        updateMessages: StateUpdater<{
-            messages: Record<string, ChatMessage>;
-        }>;
-        updateCharacters: StateUpdater<{
-            characters: Record<string, AiCharacter>;
-        }>;
+        chats: typeof Chats;
+        chat: Chat;
+        userId: string;
     } & Record<string, unknown>;
 };
 export declare const useAiFunctionState: import("@mjtdev/engine").State<{
     functions: Record<string, AiFunctionInterface>;
-}>, updateAiFunctionState: StateUpdater<{
+}>, updateAiFunctionState: import("@mjtdev/engine").StateUpdater<{
     functions: Record<string, AiFunctionInterface>;
 }>, getAiFunctionState: import("@mjtdev/engine").StateGetter<{
     functions: Record<string, AiFunctionInterface>;

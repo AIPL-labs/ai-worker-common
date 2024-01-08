@@ -2,12 +2,18 @@ import { authTokenToAuthHeader } from "../common/authTokenToAuthHeader";
 import { orError } from "../common/orError";
 import { FetchOptions } from "./FetchOptions";
 
-export const fetchWithAuth = async <T extends BodyInit = BodyInit>(
-  url: string,
-  data?: T | string,
-  options: FetchOptions & Partial<{ authToken: string }> = {}
-): Promise<Response> => {
-  const { headers = {}, signal, authToken } = options;
+export const fetchWithAuth = async <T extends BodyInit = BodyInit>({
+  url,
+  data,
+  options = {},
+  authToken,
+}: {
+  authToken?: string;
+  url: string;
+  data?: T | string;
+  options?: FetchOptions;
+}) => {
+  const { headers = {}, signal } = options;
   const authHeaders = authToken ? authTokenToAuthHeader(authToken) : {};
   const resp = await orError(() =>
     fetch(url, {

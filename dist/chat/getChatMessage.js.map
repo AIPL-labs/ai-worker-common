@@ -1,0 +1,1 @@
+{"version":3,"file":"getChatMessage.js","sourceRoot":"","sources":["../../src/chat/getChatMessage.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEpD,MAAM,CAAC,MAAM,cAAc,GAAG,CAC5B,IAAU,EACV,SAA6B,EACJ,EAAE;IAC3B,IAAI,CAAC,SAAS,EAAE,CAAC;QACf,OAAO,SAAS,CAAC;IACnB,CAAC;IACD,OAAO,eAAe,CAAC,IAAI,CAAC,CAAC,SAAS,CAAC,CAAC;AAC1C,CAAC,CAAC"}

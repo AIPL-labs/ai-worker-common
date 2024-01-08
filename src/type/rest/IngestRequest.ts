@@ -3,17 +3,17 @@ import { DataObject } from "../data/DataObject";
 export type IngestRequest = {
   enableOcr: boolean;
   dataIds: string[];
-  resultDataId: string;
+  namespaceId: string;
 };
 
-export type IngestDataResult = {
-  dataId: string;
+export type IngestResult = DataObject & {
+  dataId?: string; // use dataId as _parentId_ for DataLink?
   errors: string[];
   ingestStartTime?: number;
   ingestEndTime?: number;
   text?: string;
   chunks: string[];
-  embeds?: VectorizeVectorMutation;
+  vectors?: string[];
 };
 
 export type VectorizeVectorMutation = {
@@ -21,10 +21,4 @@ export type VectorizeVectorMutation = {
   ids: string[];
   /* Total count of the number of processed vectors. */
   count: number;
-};
-
-export type IngestResult = DataObject & {
-  request?: IngestRequest;
-  status: "STARTING" | "EXTRACTING-TEXT" | "EMBEDDING" | "COMPLETE";
-  results: Record<string, IngestDataResult>;
 };

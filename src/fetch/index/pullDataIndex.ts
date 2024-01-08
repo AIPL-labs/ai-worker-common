@@ -1,9 +1,9 @@
-import { DataIndex } from "../../type/data-index/DataIndex";
-import { DataObject } from "../../type/data/DataObject";
-import { getBackendDataObject } from "../data/getBackendDataObject";
+// import { DataIndex } from "../../type/data-index/DataIndex";
+// import { DataObject } from "../../type/data/DataObject";
+// import { getRemoteDataObject } from "../data/getRemoteDataObject";
 
-export const pullDataIndex = <T extends DataObject = DataObject>(
-  id: string
-): Promise<DataIndex<T> | undefined> => {
-  return getBackendDataObject<DataIndex<T>>(id);
-};
+// export const pullDataIndex = <T extends DataObject = DataObject>(
+//   id: string
+// ): Promise<DataIndex<T> | undefined> => {
+//   return getRemoteDataObject<DataIndex<T>>(id);
+// };

@@ -16,9 +16,8 @@ export type AppUserProfile = {
   id: string;
   name: string;
   userCharacterId?: string;
+  aiCharacterId?: string;
   providers: ServiceProviders;
-  chatIds: string[];
-  characterIds: string[];
   voiceId?: string;
   asrConfig?: AsrConfig;
 };
@@ -42,6 +41,6 @@ export type ServiceProvider = {
 };
 
 export type AppUser = AccessUser & {
-  id: string;
-  profiles: Record<string, AppUserProfile>;
+  userName: string;
+  activeProfileId?: string;
 };
