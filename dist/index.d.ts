@@ -47,4 +47,7 @@ export * from "./ai-character/AiCharacters";
 export * from "./fetch/Fetches";
 export * from "./3rd/sdapi";
 export * from "./type/vector/VectorTypes";
+export * from "./type/phone/PhoneCall";
+export * from "./3rd/vonage/Vonages";
+export * from "./3rd/vonage/VongageTypes";
 //# sourceMappingURL=index.d.ts.map

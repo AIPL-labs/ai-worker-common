@@ -1,7 +1,8 @@
 import { AppObject, AppObjectType } from "../app/AppObject";
 import { ChatMessage } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
-import { DataObject } from "../data/DataObject";
+import { PhoneCall } from "type/phone/PhoneCall";
+import { DataLink, DataObject } from "../data/DataObject";
 import { IngestRequest } from "../rest/IngestRequest";
 import { AppMessage } from "./AppMessage";
 
@@ -11,6 +12,7 @@ export type AppMessageMap = {
   abort: string | undefined; // objectId to abort like chatId to abort generation or some other filter
   error: string;
   toast: string;
+  "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
   "chat:addMessage": {
     chatId: string;
@@ -45,21 +47,14 @@ export type AppMessageMap = {
   "dataObject:update": DataObject;
   "dataObject:murmur": DataObject;
   "dataObject:delete": string | string[];
+  "dataObject:find": string | string[];
 
   "dataLink:find": {
     parentId: string;
     objectType?: AppObjectType;
   };
 
-  "dataLink:update": {
-    parentId: string;
-    childId: string;
-    objectType: AppObjectType;
-  };
+  "dataLink:update": DataLink;
 
-  "dataLink:delete": {
-    parentId?: string;
-    childId?: string;
-    objectType?: AppObjectType;
-  };
+  "dataLink:delete": Partial<DataLink>;
 };

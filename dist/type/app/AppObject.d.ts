@@ -8,6 +8,7 @@ import { DataIndex } from "../data-index/DataIndex";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
 import { IngestResult } from "../rest/IngestRequest";
+import { PhoneCall } from "../phone/PhoneCall";
 export type AppObjectTypeMap = {
     chat: Chat;
     "chat-message": ChatMessage;
@@ -21,6 +22,7 @@ export type AppObjectTypeMap = {
     voice: AppVoice;
     "text-extraction": TextExtraction;
     "ingest-result": IngestResult;
+    "phone-call": PhoneCall;
 };
 export type AppObjectType = keyof AppObjectTypeMap;
 export type AppObject<T extends AppObjectType = AppObjectType> = AppObjectTypeMap[T];

@@ -18,4 +18,5 @@ export type DataLink = {
   parentId: string;
   childId: string;
   objectType: AppObjectType;
+  key: string;
 };

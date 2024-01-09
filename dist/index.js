@@ -71,4 +71,9 @@ export * from "./fetch/Fetches";
 export * from "./3rd/sdapi";
 // vector
 export * from "./type/vector/VectorTypes";
+// phone
+export * from "./type/phone/PhoneCall";
+// vonage
+export * from "./3rd/vonage/Vonages";
+export * from "./3rd/vonage/VongageTypes";
 //# sourceMappingURL=index.js.map

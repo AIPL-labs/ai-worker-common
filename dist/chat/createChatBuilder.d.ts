@@ -6,7 +6,7 @@ export declare const createChatBuilder: (params?: {
     messages?: Record<string, ChatMessage>;
 }) => {
     update: (updater: ChatUpdater) => any;
-    updateMessage: (messageId: string, updater: (message: ChatMessage | undefined) => ChatMessage | undefined) => any;
+    updateMessage: (messageId: string, updater: (message: ChatMessage | undefined) => ChatMessage | undefined) => ChatMessage | undefined;
     addMessage: (draft: Partial<ChatMessage>) => ChatMessage;
     get: () => {
         readonly chat: Chat;

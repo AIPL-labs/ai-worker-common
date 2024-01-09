@@ -7,6 +7,7 @@ import { createChat } from "../chat/createChat";
 import { Corproa } from "../corpus/Corpora";
 import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
+import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
 import { AppObjectType } from "../type/app/AppObject";
 import { createUserProfile } from "../user-profile/createUserProfile";
@@ -26,4 +27,5 @@ export const APP_OBJECT_CREATORS: Partial<{
   "user-profile": createUserProfile,
   "app-character": createAppCharacter,
   "ingest-result": createIngestResult,
+  "phone-call": createPhoneCall,
 };

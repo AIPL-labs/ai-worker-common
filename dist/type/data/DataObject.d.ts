@@ -11,5 +11,6 @@ export type DataLink = {
     parentId: string;
     childId: string;
     objectType: AppObjectType;
+    key: string;
 };
 //# sourceMappingURL=DataObject.d.ts.map

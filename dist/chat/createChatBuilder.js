@@ -14,10 +14,10 @@ export const createChatBuilder = (params = {}) => {
             const updatedMessage = updater(curMessage);
             if (!updatedMessage) {
                 delete curMessages[messageId];
-                return builder;
+                return undefined;
             }
             curMessages[messageId] = updatedMessage;
-            return builder;
+            return updatedMessage;
         },
         addMessage: (draft) => {
             const message = addChatMessage({ draft, builder });

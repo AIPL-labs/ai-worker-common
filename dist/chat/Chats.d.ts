@@ -5,7 +5,7 @@ export declare const Chats: {
         messages?: Record<string, import("..").ChatMessage> | undefined;
     }) => {
         update: (updater: import("./ChatUpdater").ChatUpdater) => any;
-        updateMessage: (messageId: string, updater: (message: import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined) => any;
+        updateMessage: (messageId: string, updater: (message: import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined;
         addMessage: (draft: Partial<import("..").ChatMessage>) => import("..").ChatMessage;
         get: () => {
             readonly chat: import("..").Chat;

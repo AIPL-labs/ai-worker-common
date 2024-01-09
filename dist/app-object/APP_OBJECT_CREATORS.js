@@ -6,6 +6,7 @@ import { createChat } from "../chat/createChat";
 import { Corproa } from "../corpus/Corpora";
 import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
+import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
 import { createUserProfile } from "../user-profile/createUserProfile";
 export const APP_OBJECT_CREATORS = {
@@ -20,5 +21,6 @@ export const APP_OBJECT_CREATORS = {
     "user-profile": createUserProfile,
     "app-character": createAppCharacter,
     "ingest-result": createIngestResult,
+    "phone-call": createPhoneCall,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map
