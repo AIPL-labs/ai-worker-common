@@ -1,3 +1,4 @@
+import { Objects } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
 import { addChatMessage } from "./addChatMessage";
 export const createChatBuilder = (params = {}) => {
@@ -6,6 +7,27 @@ export const createChatBuilder = (params = {}) => {
     const builder = {
         update: (updater) => {
             updater(curChat, curMessages);
+            return builder;
+        },
+        removeMessage: (messageId) => {
+            const message = curMessages[messageId];
+            if (!message) {
+                return builder;
+            }
+            const children = Objects.values(curMessages).filter((m) => m.parent === message.id);
+            for (const child of children) {
+                builder.updateMessage(child.id, (c) => {
+                    if (!c) {
+                        return c;
+                    }
+                    return {
+                        ...c,
+                        parent: message.parent,
+                    };
+                });
+                dirty.delete(messageId);
+                delete curMessages[messageId];
+            }
             return builder;
         },
         updateMessage: (messageId, updater) => {

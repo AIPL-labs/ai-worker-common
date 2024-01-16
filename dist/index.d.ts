@@ -50,4 +50,6 @@ export * from "./type/vector/VectorTypes";
 export * from "./type/phone/PhoneCall";
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
+export * from "./type/thought/Thought";
+export * from "./user-profile/UserProfiles";
 //# sourceMappingURL=index.d.ts.map

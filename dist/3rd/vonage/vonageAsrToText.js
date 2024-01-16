@@ -4,6 +4,9 @@ export const vonageAsrToText = (asr) => {
         return undefined;
     }
     const { speech } = asr;
+    if (!speech.results) {
+        return undefined;
+    }
     if (speech.results.length === 0) {
         return undefined;
     }

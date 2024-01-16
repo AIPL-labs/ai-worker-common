@@ -9,6 +9,7 @@ import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
 import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
+import { createThought } from "../thought/createThought";
 import { AppObjectType } from "../type/app/AppObject";
 import { createUserProfile } from "../user-profile/createUserProfile";
 import { AppObjectCreator } from "./createAppObject";
@@ -28,4 +29,5 @@ export const APP_OBJECT_CREATORS: Partial<{
   "app-character": createAppCharacter,
   "ingest-result": createIngestResult,
   "phone-call": createPhoneCall,
+  thought: createThought,
 };

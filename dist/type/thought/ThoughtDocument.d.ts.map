@@ -1,0 +1,1 @@
+{"version":3,"file":"ThoughtDocument.d.ts","sourceRoot":"","sources":["../../../src/type/thought/ThoughtDocument.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,oBAAoB,CAAC;AAEhD,MAAM,MAAM,eAAe,GAAG,UAAU,GAAG;IACzC,IAAI,EAAE,MAAM,CAAC;IACb,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,CAAC"}

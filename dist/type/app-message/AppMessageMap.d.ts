@@ -11,6 +11,7 @@ export type AppMessageMap = {
     abort: string | undefined;
     error: string;
     toast: string;
+    log: string;
     "chat:phone": {
         phoneCall: Partial<PhoneCall>;
         chat: Partial<Chat>;
@@ -21,6 +22,7 @@ export type AppMessageMap = {
         baseUrl?: string;
         authToken?: string;
         model?: string;
+        contextSize?: number;
         message: Partial<ChatMessage>;
     };
     ingest: IngestRequest;
@@ -36,13 +38,14 @@ export type AppMessageMap = {
         baseUrl?: string;
         authToken?: string;
         model?: string;
+        contextSize?: number;
         abortId?: string;
     };
     messages: AppMessage[];
     "dataObject:sub": string | string[];
     "dataObject:unsub": string | string[];
-    "dataObject:update": DataObject;
-    "dataObject:murmur": DataObject;
+    "dataObject:update": DataObject | DataObject[];
+    "dataObject:murmur": DataObject | DataObject[];
     "dataObject:delete": string | string[];
     "dataObject:find": string | string[];
     "dataLink:find": {

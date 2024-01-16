@@ -4,4 +4,5 @@ export type PhoneCall = DataObject & {
   phoneNumber?: string;
   callUuid?: string;
   uuid?: string;
+  greeting?: string;
 };

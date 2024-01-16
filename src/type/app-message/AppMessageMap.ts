@@ -12,6 +12,7 @@ export type AppMessageMap = {
   abort: string | undefined; // objectId to abort like chatId to abort generation or some other filter
   error: string;
   toast: string;
+  log: string;
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
   "chat:addMessage": {
@@ -20,7 +21,7 @@ export type AppMessageMap = {
     baseUrl?: string;
     authToken?: string;
     model?: string;
-
+    contextSize?: number;
     message: Partial<ChatMessage>;
   };
 
@@ -36,6 +37,7 @@ export type AppMessageMap = {
     baseUrl?: string;
     authToken?: string;
     model?: string;
+    contextSize?: number;
     abortId?: string;
   };
 
@@ -44,8 +46,8 @@ export type AppMessageMap = {
   "dataObject:sub": string | string[];
   "dataObject:unsub": string | string[];
 
-  "dataObject:update": DataObject;
-  "dataObject:murmur": DataObject;
+  "dataObject:update": DataObject | DataObject[];
+  "dataObject:murmur": DataObject | DataObject[];
   "dataObject:delete": string | string[];
   "dataObject:find": string | string[];
 

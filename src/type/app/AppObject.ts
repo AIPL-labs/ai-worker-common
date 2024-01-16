@@ -9,6 +9,7 @@ import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
 import { IngestResult } from "../rest/IngestRequest";
 import { PhoneCall } from "../phone/PhoneCall";
+import { Thought } from "../thought/Thought";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -25,6 +26,7 @@ export type AppObjectTypeMap = {
   "text-extraction": TextExtraction;
   "ingest-result": IngestResult;
   "phone-call": PhoneCall;
+  thought: Thought;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -47,6 +49,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "text-extraction",
   "ingest-result",
   "phone-call",
+  "thought",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

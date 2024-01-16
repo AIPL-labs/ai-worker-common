@@ -1,5 +1,6 @@
 import { uniqueId } from "../id/uniqueId";
 import { AppUserProfile } from "../type/user/AppUser";
+import { upgradeUserProfile } from "./upgradeUserProfile";
 
 export const createUserProfile = (
   draft: Partial<AppUserProfile>
@@ -8,27 +9,11 @@ export const createUserProfile = (
     id = uniqueId("user-profile"),
 
     name = "New User Profile",
-    providers = {
-      imagegen: {
-        apiShape: "CustomOpenAi",
-      },
-      textgen: {
-        apiShape: "CustomOpenAi",
-      },
-      crawl: {
-        apiShape: "CustomWc",
-      },
-      proxy: {
-        apiShape: "Cloudflare",
-      },
-      tts: {
-        apiShape: "CustomTts",
-      },
-    },
+    providers,
     asrConfig,
     userCharacterId,
     voiceId,
-  } = draft;
+  } = upgradeUserProfile(draft);
 
   return {
     id,

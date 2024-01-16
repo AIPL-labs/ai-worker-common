@@ -2,7 +2,13 @@ import { uniqueId } from "../id/uniqueId";
 import { PhoneCall } from "../type/phone/PhoneCall";
 
 export const createPhoneCall = (draft: Partial<PhoneCall>): PhoneCall => {
-  const { id = uniqueId("phone-call"), callUuid, phoneNumber, uuid } = draft;
+  const {
+    id = uniqueId("phone-call"),
+    callUuid,
+    phoneNumber,
+    uuid,
+    greeting,
+  } = draft;
 
-  return { id, callUuid, phoneNumber, uuid };
+  return { id, callUuid, phoneNumber, uuid, greeting };
 };

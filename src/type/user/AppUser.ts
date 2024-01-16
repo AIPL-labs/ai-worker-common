@@ -1,7 +1,7 @@
 import { AccessUser } from "../../access/AccessUser";
 
 export type ServiceProviders = {
-  textgen: ServiceProvider;
+  textgen: TextgenServiceProvider;
   imagegen: ServiceProvider;
   tts: ServiceProvider;
   proxy: ServiceProvider;
@@ -38,6 +38,25 @@ export type ServiceProvider = {
   model?: string;
   baseUrl?: string;
   authToken?: string;
+};
+const isServiceProvider = (maybe: unknown): maybe is ServiceProvider => {
+  const straw = maybe as ServiceProvider;
+  return typeof straw === "object" && typeof straw.apiShape === "string";
+};
+
+export type TextgenServiceProvider = ServiceProvider & {
+  contextSize?: number;
+};
+
+export const isTextgenServiceProvider = (
+  maybe: unknown
+): maybe is TextgenServiceProvider => {
+  const straw = maybe as TextgenServiceProvider;
+  return (
+    typeof straw === "object" &&
+    isServiceProvider(straw) &&
+    typeof straw.contextSize === "number"
+  );
 };
 
 export type AppUser = AccessUser & {

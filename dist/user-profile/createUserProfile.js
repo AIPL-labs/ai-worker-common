@@ -1,22 +1,7 @@
 import { uniqueId } from "../id/uniqueId";
+import { upgradeUserProfile } from "./upgradeUserProfile";
 export const createUserProfile = (draft) => {
-    const { id = uniqueId("user-profile"), name = "New User Profile", providers = {
-        imagegen: {
-            apiShape: "CustomOpenAi",
-        },
-        textgen: {
-            apiShape: "CustomOpenAi",
-        },
-        crawl: {
-            apiShape: "CustomWc",
-        },
-        proxy: {
-            apiShape: "Cloudflare",
-        },
-        tts: {
-            apiShape: "CustomTts",
-        },
-    }, asrConfig, userCharacterId, voiceId, } = draft;
+    const { id = uniqueId("user-profile"), name = "New User Profile", providers, asrConfig, userCharacterId, voiceId, } = upgradeUserProfile(draft);
     return {
         id,
         name,

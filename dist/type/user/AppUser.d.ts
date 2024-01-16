@@ -1,6 +1,6 @@
 import { AccessUser } from "../../access/AccessUser";
 export type ServiceProviders = {
-    textgen: ServiceProvider;
+    textgen: TextgenServiceProvider;
     imagegen: ServiceProvider;
     tts: ServiceProvider;
     proxy: ServiceProvider;
@@ -26,6 +26,10 @@ export type ServiceProvider = {
     baseUrl?: string;
     authToken?: string;
 };
+export type TextgenServiceProvider = ServiceProvider & {
+    contextSize?: number;
+};
+export declare const isTextgenServiceProvider: (maybe: unknown) => maybe is TextgenServiceProvider;
 export type AppUser = AccessUser & {
     userName: string;
     activeProfileId?: string;

@@ -101,3 +101,9 @@ export * from "./type/phone/PhoneCall";
 // vonage
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
+
+// thought
+export * from "./type/thought/Thought";
+
+// user
+export * from "./user-profile/UserProfiles";

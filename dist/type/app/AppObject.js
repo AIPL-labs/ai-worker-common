@@ -13,6 +13,7 @@ export const APP_OBJECT_TYPES = [
     "text-extraction",
     "ingest-result",
     "phone-call",
+    "thought",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

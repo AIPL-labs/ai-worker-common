@@ -7,6 +7,7 @@ export declare const setChatMessage: ({ chat, message, builder, }: {
     message: ChatMessage;
 }) => {
     update: (updater: import("./ChatUpdater").ChatUpdater) => any;
+    removeMessage: (messageId: string) => any;
     updateMessage: (messageId: string, updater: (message: ChatMessage | undefined) => ChatMessage | undefined) => ChatMessage | undefined;
     addMessage: (draft: Partial<ChatMessage>) => ChatMessage;
     get: () => {

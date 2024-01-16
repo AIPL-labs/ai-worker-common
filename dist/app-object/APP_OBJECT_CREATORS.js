@@ -8,6 +8,7 @@ import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
 import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
+import { createThought } from "../thought/createThought";
 import { createUserProfile } from "../user-profile/createUserProfile";
 export const APP_OBJECT_CREATORS = {
     "ai-agent": AiAgents.createAiAgent,
@@ -22,5 +23,6 @@ export const APP_OBJECT_CREATORS = {
     "app-character": createAppCharacter,
     "ingest-result": createIngestResult,
     "phone-call": createPhoneCall,
+    thought: createThought,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map
