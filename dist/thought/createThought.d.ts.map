@@ -1,1 +1,1 @@
-{"version":3,"file":"createThought.d.ts","sourceRoot":"","sources":["../../src/thought/createThought.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAE,MAAM,yBAAyB,CAAC;AAElD,eAAO,MAAM,aAAa,UAAW,QAAQ,OAAO,CAAC,KAAG,OAUvD,CAAC"}
+{"version":3,"file":"createThought.d.ts","sourceRoot":"","sources":["../../src/thought/createThought.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAE,MAAM,yBAAyB,CAAC;AAElD,eAAO,MAAM,aAAa,UAAW,QAAQ,OAAO,CAAC,KAAG,OAWvD,CAAC"}

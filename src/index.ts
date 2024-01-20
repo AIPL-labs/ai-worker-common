@@ -104,6 +104,7 @@ export * from "./3rd/vonage/VongageTypes";
 
 // thought
 export * from "./type/thought/Thought";
+export * from "./thought/Thoughts";
 
 // user
 export * from "./user-profile/UserProfiles";

@@ -26,7 +26,7 @@ export type AppMessageMap = {
         message: Partial<ChatMessage>;
     };
     ingest: IngestRequest;
-    "vector:delete": string | string[];
+    "vector:deleteNamespace": string | string[];
     tts: {
         text: string;
         voiceId?: string;
@@ -52,7 +52,11 @@ export type AppMessageMap = {
         parentId: string;
         objectType?: AppObjectType;
     };
-    "dataLink:update": DataLink;
+    "dataLink:upsert": DataLink;
     "dataLink:delete": Partial<DataLink>;
+    "service:state": {
+        service: "llm" | "tts" | "vector" | "extract";
+        state: "busy" | "ready";
+    };
 };
 //# sourceMappingURL=AppMessageMap.d.ts.map

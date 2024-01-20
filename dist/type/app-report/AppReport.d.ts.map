@@ -1,0 +1,1 @@
+{"version":3,"file":"AppReport.d.ts","sourceRoot":"","sources":["../../../src/type/app-report/AppReport.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,SAAS,GAAG;IACtB,IAAI,EAAE,MAAM,CAAC;IACb,MAAM,EAAE,cAAc,EAAE,CAAC;CAC1B,CAAC;AAEF,MAAM,MAAM,cAAc,GAAG;IAC3B,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,EAAE,MAAM,CAAC;CACrB,CAAC"}

@@ -26,7 +26,7 @@ export type AppMessageMap = {
   };
 
   ingest: IngestRequest;
-  "vector:delete": string | string[];
+  "vector:deleteNamespace": string | string[];
 
   tts: { text: string; voiceId?: string };
   "tts:finished": void;
@@ -56,7 +56,11 @@ export type AppMessageMap = {
     objectType?: AppObjectType;
   };
 
-  "dataLink:update": DataLink;
+  "dataLink:upsert": DataLink;
 
   "dataLink:delete": Partial<DataLink>;
+  "service:state": {
+    service: "llm" | "tts" | "vector" | "extract";
+    state: "busy" | "ready";
+  };
 };
