@@ -1,12 +1,14 @@
+import { PhoneCall } from "type/phone/PhoneCall";
 import { AppObjectType } from "../app/AppObject";
 import { ChatMessage } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
-import { PhoneCall } from "type/phone/PhoneCall";
 import { DataLink, DataObject } from "../data/DataObject";
 import { IngestRequest } from "../rest/IngestRequest";
 import { AppMessage } from "./AppMessage";
+import { CrawlParams } from "../../crawl/CrawlParams";
 export type AppMessageMap = {
     auth: string;
+    access: string;
     ping: string;
     abort: string | undefined;
     error: string;
@@ -17,6 +19,7 @@ export type AppMessageMap = {
         chat: Partial<Chat>;
     };
     "chat:start": Partial<Chat>;
+    "chat:startPublicAgent": string;
     "chat:addMessage": {
         chatId: string;
         baseUrl?: string;
@@ -51,12 +54,16 @@ export type AppMessageMap = {
     "dataLink:find": {
         parentId: string;
         objectType?: AppObjectType;
+        key?: string;
     };
     "dataLink:upsert": DataLink;
     "dataLink:delete": Partial<DataLink>;
     "service:state": {
         service: "llm" | "tts" | "vector" | "extract";
         state: "busy" | "ready";
+    };
+    webCrawl: CrawlParams & {
+        parentId: string;
     };
 };
 //# sourceMappingURL=AppMessageMap.d.ts.map

@@ -1,4 +1,4 @@
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 
 
 export function calcOctalPermissions({

@@ -1,6 +1,6 @@
 import { AppUser } from "../type/user/AppUser";
-import { AccessInfo, PermissionLevel } from "./AccessInfo";
-import { AccessUser } from "./AccessUser";
+import { AccessInfo, PermissionLevel } from "../type/access/AccessInfo";
+import { AccessUser } from "../type/access/AccessUser";
 
 export function getPermissionLevel(
   accessInfo: AccessInfo,

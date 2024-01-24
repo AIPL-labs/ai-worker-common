@@ -1,5 +1,5 @@
 import { calcOctalPermissions } from "./calculateOctalPermissions";
-import { AccessInfo, PermissionLevel } from "./AccessInfo";
+import { AccessInfo, PermissionLevel } from "../type/access/AccessInfo";
 
 export const createAccessInfo = (
   draft: { owner: string } & Partial<AccessInfo>

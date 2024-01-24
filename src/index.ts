@@ -4,7 +4,7 @@ export * from "./type/user/AppUser";
 export * from "./app-object/AppObjects";
 
 // access
-export * from "./access/AccessInfo";
+export * from "./type/access/AccessInfo";
 export * from "./access/Accesses";
 
 // rest
@@ -33,14 +33,10 @@ export * from "./type/chat/ChatTextContent";
 export * from "./type/chat-message/ChatMessage";
 export * from "./type/chat-message/ChatRole";
 
-// ai-character
+// app-character
 export * from "./type/app-character/AppCharacter";
 export * from "./type/app-character/TavernCardV1";
-export * from "./type/app-character/TavernCardv2";
-
-// ai-bot
-export * from "./agent/AiAgents";
-export * from "./type/ai-agent/AiBot";
+export * from "./type/app-character/TavernCardV2";
 
 // corpus
 export * from "./corpus/Corpora";
@@ -108,3 +104,6 @@ export * from "./thought/Thoughts";
 
 // user
 export * from "./user-profile/UserProfiles";
+
+// access
+export * from "./type/access/AccessPoint";

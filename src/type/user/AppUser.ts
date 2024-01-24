@@ -1,4 +1,4 @@
-import { AccessUser } from "../../access/AccessUser";
+import { AccessUser } from "../access/AccessUser";
 
 export type ServiceProviders = {
   textgen: TextgenServiceProvider;
@@ -61,5 +61,5 @@ export const isTextgenServiceProvider = (
 
 export type AppUser = AccessUser & {
   userName: string;
-  activeProfileId?: string;
+  // activeProfileId?: string;
 };

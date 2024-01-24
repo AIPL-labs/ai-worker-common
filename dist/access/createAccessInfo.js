@@ -1,5 +1,5 @@
 import { calcOctalPermissions } from "./calculateOctalPermissions";
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 export const createAccessInfo = (draft) => {
     const { acl = [], owner, group = owner, permissions = calcOctalPermissions({
         user: PermissionLevel.WRITE,

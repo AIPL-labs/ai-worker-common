@@ -1,4 +1,4 @@
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 export function getPermissionLevel(accessInfo, user) {
     const { id: userName, groups = [] } = user;
     // Check if the user is the owner

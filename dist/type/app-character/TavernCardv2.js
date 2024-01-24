@@ -1,2 +1,2 @@
 export {};
-//# sourceMappingURL=TavernCardv2.js.map
+//# sourceMappingURL=TavernCardV2.js.map

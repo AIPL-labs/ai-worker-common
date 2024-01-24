@@ -5,7 +5,7 @@ export declare const Accesses: {
     getPermissionLevel: typeof getPermissionLevel;
     createAccessInfo: (draft: {
         owner: string;
-    } & Partial<import("./AccessInfo").AccessInfo>) => import("./AccessInfo").AccessInfo;
-    hasAccess: (user: import("./AccessUser").AccessUser, accessInfo: import("./AccessInfo").AccessInfo, desiredLevel?: import("./AccessInfo").PermissionLevel) => boolean;
+    } & Partial<import("..").AccessInfo>) => import("..").AccessInfo;
+    hasAccess: (user: import("../type/access/AccessUser").AccessUser, accessInfo: import("..").AccessInfo, desiredLevel?: import("..").PermissionLevel) => boolean;
 };
 //# sourceMappingURL=Accesses.d.ts.map

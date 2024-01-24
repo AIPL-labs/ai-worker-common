@@ -1,4 +1,4 @@
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 export function calcOctalPermissions({ user: user, group: group, world: world, }) {
     const userOctal = permissionLevelToOctal(user);
     const groupOctal = permissionLevelToOctal(group);

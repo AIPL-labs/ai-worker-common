@@ -1,4 +1,4 @@
-import { AccessInfo } from "./AccessInfo";
+import { AccessInfo } from "../type/access/AccessInfo";
 export declare const createAccessInfo: (draft: {
     owner: string;
 } & Partial<AccessInfo>) => AccessInfo;

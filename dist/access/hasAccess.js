@@ -1,4 +1,4 @@
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 import { getPermissionLevel } from "./checkAccessPermissions";
 const LEVEL_HIERARCHY = {
     [PermissionLevel.NONE]: [],

@@ -1,5 +1,6 @@
-import { AiAgents } from "../agent/AiAgents";
+import { createAccessPoint } from "../access-point/createAccessPoint";
 import { createAppCharacter } from "../ai-character/createAppCharacter";
+import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createChatMessage } from "../chat-message/createChatMessage";
 import { createChat } from "../chat/createChat";
@@ -11,7 +12,6 @@ import { createTextExtraction } from "../text-extraction/createTextExtraction";
 import { createThought } from "../thought/createThought";
 import { createUserProfile } from "../user-profile/createUserProfile";
 export const APP_OBJECT_CREATORS = {
-    "ai-agent": AiAgents.createAiAgent,
     corpus: Corproa.createCorpus,
     "corpus-document": Corproa.createCorpusDocument,
     "data-index": createDataIndex,
@@ -24,5 +24,7 @@ export const APP_OBJECT_CREATORS = {
     "ingest-result": createIngestResult,
     "phone-call": createPhoneCall,
     thought: createThought,
+    "access-point": createAccessPoint,
+    "app-interface": createAppInterface,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

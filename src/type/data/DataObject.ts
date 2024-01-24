@@ -1,4 +1,4 @@
-import { AccessInfo } from "../../access/AccessInfo";
+import { AccessInfo } from "../access/AccessInfo";
 import { AppObjectType } from "../app/AppObject";
 
 export type DataObject = {

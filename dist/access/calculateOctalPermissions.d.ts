@@ -1,4 +1,4 @@
-import { PermissionLevel } from "./AccessInfo";
+import { PermissionLevel } from "../type/access/AccessInfo";
 export declare function calcOctalPermissions({ user: user, group: group, world: world, }: {
     user: PermissionLevel;
     group: PermissionLevel;

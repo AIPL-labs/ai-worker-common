@@ -1,6 +1,6 @@
 import { AiFunction } from "../ai-function/AiFunctions";
 import { AppReport } from "../app-report/AppReport";
-import { TavernCardV2 } from "./TavernCardv2";
+import { TavernCardV2 } from "./TavernCardV2";
 export type AppTavernCard = TavernCardV2<Partial<{
     direction: string;
     voiceId: string;

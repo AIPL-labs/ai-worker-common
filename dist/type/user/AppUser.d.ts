@@ -1,4 +1,4 @@
-import { AccessUser } from "../../access/AccessUser";
+import { AccessUser } from "../access/AccessUser";
 export type ServiceProviders = {
     textgen: TextgenServiceProvider;
     imagegen: ServiceProvider;
@@ -32,6 +32,5 @@ export type TextgenServiceProvider = ServiceProvider & {
 export declare const isTextgenServiceProvider: (maybe: unknown) => maybe is TextgenServiceProvider;
 export type AppUser = AccessUser & {
     userName: string;
-    activeProfileId?: string;
 };
 //# sourceMappingURL=AppUser.d.ts.map

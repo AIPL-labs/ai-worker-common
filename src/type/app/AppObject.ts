@@ -1,5 +1,4 @@
 import { TextExtraction } from "type/corpus/TextExtraction";
-import { AiAgent } from "../ai-agent/AiBot";
 import { AppCharacter } from "../app-character/AppCharacter";
 import { ChatMessage } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
@@ -10,12 +9,14 @@ import { AppVoice } from "../voice/AppVoice";
 import { IngestResult } from "../rest/IngestRequest";
 import { PhoneCall } from "../phone/PhoneCall";
 import { Thought } from "../thought/Thought";
+import { AccessPoint } from "../access/AccessPoint";
+import { AppInterface } from "../app-interface/AppInterface";
+import { DataObject } from "../data/DataObject";
 
 export type AppObjectTypeMap = {
   chat: Chat;
   "chat-message": ChatMessage;
   "app-character": AppCharacter;
-  "ai-agent": AiAgent;
   "app-user": AppUser;
   "user-profile": AppUserProfile;
   corpus: Corpus;
@@ -27,6 +28,8 @@ export type AppObjectTypeMap = {
   "ingest-result": IngestResult;
   "phone-call": PhoneCall;
   thought: Thought;
+  "access-point": AccessPoint;
+  "app-interface": AppInterface;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -38,7 +41,6 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "chat",
   "chat-message",
   "app-character",
-  "ai-agent",
   "app-user",
   "user-profile",
   "corpus",
@@ -50,6 +52,8 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "ingest-result",
   "phone-call",
   "thought",
+  "access-point",
+  "app-interface",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

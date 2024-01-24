@@ -1,6 +1,6 @@
 export * from "./type/user/AppUser";
 export * from "./app-object/AppObjects";
-export * from "./access/AccessInfo";
+export * from "./type/access/AccessInfo";
 export * from "./access/Accesses";
 export * from "./type/rest/CrawlWebsiteRequest";
 export * from "./type/rest/DataIndexRecordDeleteRequest";
@@ -22,9 +22,7 @@ export * from "./type/chat-message/ChatMessage";
 export * from "./type/chat-message/ChatRole";
 export * from "./type/app-character/AppCharacter";
 export * from "./type/app-character/TavernCardV1";
-export * from "./type/app-character/TavernCardv2";
-export * from "./agent/AiAgents";
-export * from "./type/ai-agent/AiBot";
+export * from "./type/app-character/TavernCardV2";
 export * from "./corpus/Corpora";
 export * from "./type/corpus/Corpus";
 export * from "./type/corpus/TextExtraction";
@@ -53,4 +51,5 @@ export * from "./3rd/vonage/VongageTypes";
 export * from "./type/thought/Thought";
 export * from "./thought/Thoughts";
 export * from "./user-profile/UserProfiles";
+export * from "./type/access/AccessPoint";
 //# sourceMappingURL=index.d.ts.map

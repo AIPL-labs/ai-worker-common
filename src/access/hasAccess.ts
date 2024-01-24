@@ -1,5 +1,5 @@
-import { AccessInfo, PermissionLevel } from "./AccessInfo";
-import { AccessUser } from "./AccessUser";
+import { AccessInfo, PermissionLevel } from "../type/access/AccessInfo";
+import { AccessUser } from "../type/access/AccessUser";
 import { getPermissionLevel } from "./checkAccessPermissions";
 
 const LEVEL_HIERARCHY: Record<PermissionLevel, PermissionLevel[]> = {
