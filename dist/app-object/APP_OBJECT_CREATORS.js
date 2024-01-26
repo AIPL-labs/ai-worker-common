@@ -9,6 +9,7 @@ import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
 import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
+import { createAccessPointTheme } from "../theme/createAccessPointTheme";
 import { createThought } from "../thought/createThought";
 import { createUserProfile } from "../user-profile/createUserProfile";
 export const APP_OBJECT_CREATORS = {
@@ -25,6 +26,7 @@ export const APP_OBJECT_CREATORS = {
     "phone-call": createPhoneCall,
     thought: createThought,
     "access-point": createAccessPoint,
+    "access-point-theme": createAccessPointTheme,
     "app-interface": createAppInterface,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

@@ -11,6 +11,7 @@ import { PhoneCall } from "../phone/PhoneCall";
 import { Thought } from "../thought/Thought";
 import { AccessPoint } from "../access/AccessPoint";
 import { AppInterface } from "../app-interface/AppInterface";
+import { AccessPointTheme } from "../theme/AccessPointTheme";
 export type AppObjectTypeMap = {
     chat: Chat;
     "chat-message": ChatMessage;
@@ -26,6 +27,7 @@ export type AppObjectTypeMap = {
     "phone-call": PhoneCall;
     thought: Thought;
     "access-point": AccessPoint;
+    "access-point-theme": AccessPointTheme;
     "app-interface": AppInterface;
 };
 export type AppObjectType = keyof AppObjectTypeMap;

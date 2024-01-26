@@ -12,6 +12,7 @@ import { Thought } from "../thought/Thought";
 import { AccessPoint } from "../access/AccessPoint";
 import { AppInterface } from "../app-interface/AppInterface";
 import { DataObject } from "../data/DataObject";
+import { AccessPointTheme } from "../theme/AccessPointTheme";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -29,6 +30,7 @@ export type AppObjectTypeMap = {
   "phone-call": PhoneCall;
   thought: Thought;
   "access-point": AccessPoint;
+  "access-point-theme": AccessPointTheme;
   "app-interface": AppInterface;
 };
 
@@ -53,6 +55,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "phone-call",
   "thought",
   "access-point",
+  "access-point-theme",
   "app-interface",
 ];
 

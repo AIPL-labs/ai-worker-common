@@ -14,6 +14,7 @@ export const APP_OBJECT_TYPES = [
     "phone-call",
     "thought",
     "access-point",
+    "access-point-theme",
     "app-interface",
 ];
 export const isAppObjectType = (maybe) => {
