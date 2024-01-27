@@ -1,5 +1,6 @@
 import { createAccessPoint } from "../access-point/createAccessPoint";
 import { createAppCharacter } from "../ai-character/createAppCharacter";
+import { createAppGroup } from "../app-group/createAppGroup";
 import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createChatMessage } from "../chat-message/createChatMessage";
@@ -28,5 +29,6 @@ export const APP_OBJECT_CREATORS = {
     "access-point": createAccessPoint,
     "access-point-theme": createAccessPointTheme,
     "app-interface": createAppInterface,
+    "app-group": createAppGroup,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

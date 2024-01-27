@@ -16,6 +16,7 @@ export const APP_OBJECT_TYPES = [
     "access-point",
     "access-point-theme",
     "app-interface",
+    "app-group",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

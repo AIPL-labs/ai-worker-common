@@ -21,6 +21,10 @@ export const hasAccess = (
   if (user.id === "system") {
     return true;
   }
+  const { groups = [] } = user;
+  if (groups.includes("app-admin")) {
+    return true;
+  }
   const level = getPermissionLevel(accessInfo, user);
   return LEVEL_HIERARCHY[level].includes(desiredLevel);
 };

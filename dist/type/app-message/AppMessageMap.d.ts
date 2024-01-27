@@ -51,6 +51,7 @@ export type AppMessageMap = {
     "dataObject:murmur": DataObject | DataObject[];
     "dataObject:delete": string | string[];
     "dataObject:find": string | string[];
+    "dataObject:findAllByObjectType": string | string[];
     "dataLink:find": {
         parentId: string;
         objectType?: AppObjectType;

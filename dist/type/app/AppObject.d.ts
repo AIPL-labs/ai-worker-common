@@ -12,6 +12,7 @@ import { Thought } from "../thought/Thought";
 import { AccessPoint } from "../access/AccessPoint";
 import { AppInterface } from "../app-interface/AppInterface";
 import { AccessPointTheme } from "../theme/AccessPointTheme";
+import { AppGroup } from "../group/AppGroup";
 export type AppObjectTypeMap = {
     chat: Chat;
     "chat-message": ChatMessage;
@@ -29,6 +30,7 @@ export type AppObjectTypeMap = {
     "access-point": AccessPoint;
     "access-point-theme": AccessPointTheme;
     "app-interface": AppInterface;
+    "app-group": AppGroup;
 };
 export type AppObjectType = keyof AppObjectTypeMap;
 export type AppObject<T extends AppObjectType = AppObjectType> = AppObjectTypeMap[T];
