@@ -1,3 +1,6 @@
-import { Chat } from "../type/chat/Chat";
-export declare const createAiFunctionPromptText: (chat: Chat) => string;
+export declare const createAiFunctionPromptText: ({ aiName, userName, functions, }: {
+    functions: string[];
+    aiName: string;
+    userName: string;
+}) => string | undefined;
 //# sourceMappingURL=createAiFunctionPromptText.d.ts.map

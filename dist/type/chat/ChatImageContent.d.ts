@@ -1,5 +1,5 @@
 export type ChatImageContent = {
     type: "image";
-    parts: Blob[];
+    parts: string[];
 };
 //# sourceMappingURL=ChatImageContent.d.ts.map

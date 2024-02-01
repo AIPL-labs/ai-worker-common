@@ -13,8 +13,8 @@ export type Chat = DataObject & {
     maxContextTokens: number;
     aiCharacterId?: string;
     userCharacterId?: string;
-    vectorStoreIds?: string[];
     stop: string[];
     stopAfter: string[];
+    params: undefined | Record<string, string>;
 };
 //# sourceMappingURL=Chat.d.ts.map

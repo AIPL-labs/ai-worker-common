@@ -9,13 +9,10 @@
 import { uniqueId } from "../id/uniqueId";
 import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
 export const createChat = (draft = {}) => {
-    const { name, userName = "User", aiName = "AI", systemName = "system", maxResponseTokens = 1024, aiCharacterId, userCharacterId, tags = [], 
-    // messageIds = [],
-    currentMessageId, // TODO what if already currentMessage?
-    id = uniqueId("chat"), vectorStoreIds, stop = DEFAULT_STOP, stopAfter = DEFAULT_STOP_AFTER, creation = Date.now(), 
-    // messageIdxId = uniqueId("data-index"),
-    modification = Date.now(), maxContextTokens = 16 * 1024, minResponseTokens = 128, } = draft;
+    const { name, userName = "User", aiName = "AI", systemName = "system", maxResponseTokens = 1024, aiCharacterId, userCharacterId, tags = [], currentMessageId, // TODO what if already currentMessage?
+    id = uniqueId("chat"), stop = DEFAULT_STOP, stopAfter = DEFAULT_STOP_AFTER, creation = Date.now(), modification = Date.now(), maxContextTokens = 16 * 1024, minResponseTokens = 128, params, } = draft;
     return {
+        params,
         stopAfter,
         stop,
         tags,
@@ -23,7 +20,6 @@ export const createChat = (draft = {}) => {
         id,
         name,
         creation,
-        // messageIdxId,
         modification,
         userName,
         aiName,
@@ -31,7 +27,6 @@ export const createChat = (draft = {}) => {
         maxResponseTokens,
         aiCharacterId,
         userCharacterId,
-        vectorStoreIds,
         maxContextTokens,
         minResponseTokens,
     };

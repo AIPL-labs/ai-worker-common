@@ -1,6 +1,7 @@
 import { Objects } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
 import { addChatMessage } from "./addChatMessage";
+import { addChatMessageAtTop } from "./addChatMessageAtTop";
 export const createChatBuilder = (params = {}) => {
     let { chat: curChat = AppObjects.create("chat"), messages: curMessages = {}, } = params;
     const dirty = new Set();
@@ -43,6 +44,11 @@ export const createChatBuilder = (params = {}) => {
         },
         addMessage: (draft) => {
             const message = addChatMessage({ draft, builder });
+            dirty.add(message.id);
+            return message;
+        },
+        addMessageAtTop: (draft) => {
+            const message = addChatMessageAtTop({ draft, builder });
             dirty.add(message.id);
             return message;
         },

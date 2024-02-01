@@ -4,6 +4,7 @@ import { ChatMessage } from "../type/chat-message/ChatMessage";
 import { Chat } from "../type/chat/Chat";
 import { ChatUpdater } from "./ChatUpdater";
 import { addChatMessage } from "./addChatMessage";
+import { addChatMessageAtTop } from "./addChatMessageAtTop";
 
 export const createChatBuilder = (
   params: {
@@ -68,6 +69,12 @@ export const createChatBuilder = (
       dirty.add(message.id);
       return message;
     },
+    addMessageAtTop: (draft: Partial<ChatMessage>) => {
+      const message = addChatMessageAtTop({ draft, builder });
+      dirty.add(message.id);
+      return message;
+    },
+
     get: () => ({ chat: curChat, messages: curMessages } as const),
     getDirty: () => Array.from(dirty.values()),
     getCurrentMessage: () => curMessages[curChat.currentMessageId!],

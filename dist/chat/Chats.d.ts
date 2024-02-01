@@ -8,6 +8,7 @@ export declare const Chats: {
         removeMessage: (messageId: string) => any;
         updateMessage: (messageId: string, updater: (message: import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined;
         addMessage: (draft: Partial<import("..").ChatMessage>) => import("..").ChatMessage;
+        addMessageAtTop: (draft: Partial<import("..").ChatMessage>) => import("..").ChatMessage;
         get: () => {
             readonly chat: import("..").Chat;
             readonly messages: Record<string, import("..").ChatMessage>;
@@ -21,5 +22,9 @@ export declare const Chats: {
         acc?: import("..").ChatMessage[] | undefined;
     }) => import("..").ChatMessage[];
     DEFAULT_STOP: string[];
+    chatMessagesToPromptTextsChatML: ({ messages, characters, }: {
+        characters: Record<string, import("..").AppCharacter | undefined>;
+        messages: import("..").ChatMessage[];
+    }) => import("./chatMessagesToPromptTextsChatML").PromptText[];
 };
 //# sourceMappingURL=Chats.d.ts.map

@@ -1,4 +1,3 @@
-import { AiFunction } from "../ai-function/AiFunctions";
 import { AppReport } from "../app-report/AppReport";
 import { TavernCardV2 } from "./TavernCardV2";
 
@@ -10,6 +9,7 @@ export type AppTavernCard = TavernCardV2<
     genInfo: {
       imagePrompt: string;
     };
+    functions: string[];
   }>
 >;
 
@@ -17,13 +17,4 @@ export type AppCharacter = {
   id: string;
   card: AppTavernCard;
   imageDataId?: string;
-  capabilities?: AiCapability[];
-};
-
-export type AiCapability = keyof CapabilityToFunctionMapping;
-
-export type CapabilityToFunctionMapping = {
-  "update-character-image": {
-    updateCharacterImage: AiFunction;
-  };
 };

@@ -16,8 +16,12 @@ export const characterToChatSystemMessages = ({ systemName, character, facts, })
         }),
         createCardSystemMessage({
             systemName,
-            title: "Message Examples",
-            text: character.card.data.mes_example,
+            title: "{{char}} Talks Like",
+            text: character.card.data.mes_example
+                ? character.card.data.mes_example
+                    .replaceAll(":", "")
+                    .replaceAll(/<[^>]*>/g, "\n")
+                : undefined,
             facts,
         }),
         createCardSystemMessage({

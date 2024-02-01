@@ -21,20 +21,19 @@ export const createChat = (draft: Partial<Chat> = {}): Chat => {
     aiCharacterId,
     userCharacterId,
     tags = [],
-    // messageIds = [],
     currentMessageId, // TODO what if already currentMessage?
     id = uniqueId("chat"),
-    vectorStoreIds,
     stop = DEFAULT_STOP,
     stopAfter = DEFAULT_STOP_AFTER,
     creation = Date.now(),
-    // messageIdxId = uniqueId("data-index"),
     modification = Date.now(),
     maxContextTokens = 16 * 1024,
     minResponseTokens = 128,
+    params,
   } = draft;
 
   return {
+    params,
     stopAfter,
     stop,
     tags,
@@ -42,7 +41,6 @@ export const createChat = (draft: Partial<Chat> = {}): Chat => {
     id,
     name,
     creation,
-    // messageIdxId,
     modification,
     userName,
     aiName,
@@ -50,7 +48,6 @@ export const createChat = (draft: Partial<Chat> = {}): Chat => {
     maxResponseTokens,
     aiCharacterId,
     userCharacterId,
-    vectorStoreIds,
     maxContextTokens,
     minResponseTokens,
   };

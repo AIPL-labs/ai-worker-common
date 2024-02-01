@@ -55,4 +55,4 @@ export type CharacterBook = {
         position?: "before_char" | "after_char";
     }>;
 };
-//# sourceMappingURL=TavernCardv2.1.d.ts.map
+//# sourceMappingURL=TavernCardV2.1.d.ts.map

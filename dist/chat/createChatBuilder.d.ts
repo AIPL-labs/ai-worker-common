@@ -9,6 +9,7 @@ export declare const createChatBuilder: (params?: {
     removeMessage: (messageId: string) => any;
     updateMessage: (messageId: string, updater: (message: ChatMessage | undefined) => ChatMessage | undefined) => ChatMessage | undefined;
     addMessage: (draft: Partial<ChatMessage>) => ChatMessage;
+    addMessageAtTop: (draft: Partial<ChatMessage>) => ChatMessage;
     get: () => {
         readonly chat: Chat;
         readonly messages: Record<string, ChatMessage>;

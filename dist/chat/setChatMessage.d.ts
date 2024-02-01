@@ -1,17 +1,16 @@
 import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { Chat } from "../type/chat/Chat";
 import { ChatBuilder } from "./ChatBuilder";
-export declare const setChatMessage: ({ chat, message, builder, }: {
+export declare const setChatMessage: ({ message, builder, }: {
     builder: ChatBuilder;
-    chat: Chat;
     message: ChatMessage;
 }) => {
     update: (updater: import("./ChatUpdater").ChatUpdater) => any;
     removeMessage: (messageId: string) => any;
     updateMessage: (messageId: string, updater: (message: ChatMessage | undefined) => ChatMessage | undefined) => ChatMessage | undefined;
     addMessage: (draft: Partial<ChatMessage>) => ChatMessage;
+    addMessageAtTop: (draft: Partial<ChatMessage>) => ChatMessage;
     get: () => {
-        readonly chat: Chat;
+        readonly chat: import("..").Chat;
         readonly messages: Record<string, ChatMessage>;
     };
     getDirty: () => string[];

@@ -107,3 +107,9 @@ export * from "./user-profile/UserProfiles";
 
 // access
 export * from "./type/access/AccessPoint";
+
+// answer
+export * from "./type/answer/Answers";
+
+// ai functions
+export * from "./ai-function/AiFunctions";

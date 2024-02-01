@@ -32,6 +32,12 @@ export type AiFunctionParam = {
   type?: string;
 };
 
+export type AiFunctionCall = {
+  name: string;
+  args: string | string[];
+  argKeys: string | string[];
+};
+
 export type AiFunctionDescription = {
   name: string;
   usage: string; // function for {usage}
