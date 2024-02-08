@@ -1,5 +1,6 @@
+import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 export declare const createAiFunctionPromptText: ({ aiName, userName, functions, }: {
-    functions: string[];
+    functions: AiFunctionDescription[];
     aiName: string;
     userName: string;
 }) => string | undefined;

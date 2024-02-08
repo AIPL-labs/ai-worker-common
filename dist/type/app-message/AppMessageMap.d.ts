@@ -38,6 +38,7 @@ export type AppMessageMap = {
         chatId?: string;
         stopAfter?: string;
         stop?: string | string[];
+        maxResponseTokens?: number;
         systemMessage?: string;
         userMessage?: string;
         assistantMessage?: string;
@@ -75,7 +76,7 @@ export type AppMessageMap = {
     "dataLink:upsert": DataLink;
     "dataLink:delete": Partial<DataLink>;
     "service:state": {
-        service: "llm" | "tts" | "vector" | "extract";
+        service: "llm" | "tts" | "vector" | "extract" | "imagegen";
         state: "busy" | "ready";
     };
     webCrawl: CrawlParams & {

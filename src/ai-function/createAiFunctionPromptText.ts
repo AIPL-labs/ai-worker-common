@@ -1,29 +1,33 @@
-import { Objects } from "@mjtdev/engine";
-import { AI_FUNCTIONS } from "./AI_FUNCTIONS";
-import { Chat } from "../type/chat/Chat";
+import { Objects, isDefined } from "@mjtdev/engine";
+import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
-// import { Chat } from "ai-worker-common";
-// import { AI_FUNCTION_PREFIX } from "../chat/addFunctionsToChat";
-// import { AI_FUNCTIONS } from "./setupAiFunctions";
+import { renderCardText } from "../ai-character/renderCardText";
 
 export const createAiFunctionPromptText = ({
   aiName,
   userName,
   functions,
 }: {
-  functions: string[];
+  functions: AiFunctionDescription[];
   aiName: string;
   userName: string;
 }) => {
-  const aiFuncPrompts = AI_FUNCTIONS.filter((aiFunc) =>
-    functions.includes(aiFunc.name)
-  )
+  const aiFuncPrompts = functions
     .map((f) => {
-      const { name, usage, params = [] } = f;
+      const { name, usage, params = [], direction } = f;
+      const functionName = `${AI_FUNCTION_PREFIX}${name}`;
+      const renderFacts = {
+        user: userName,
+        char: aiName,
+        functionName,
+      };
       const manyParams = Objects.toMany(params);
       const paramsUsages = manyParams.map((p) => {
         const { name, description } = p;
-        return `// var:${name} is the ${description}`;
+        return `// var:${name} is the ${renderCardText(
+          description,
+          renderFacts
+        )}`;
       });
       const paramsCallSignature = manyParams
         .map((p) => {
@@ -31,16 +35,18 @@ export const createAiFunctionPromptText = ({
           return `${name}:${type}`;
         })
         .join(", ");
-      const funcCallSignature = [
-        `${AI_FUNCTION_PREFIX}${name}(${paramsCallSignature});`,
-      ];
+      const funcCallSignature = [`${functionName}(${paramsCallSignature});`];
 
       return [
-        `// function for ${usage}`,
+        direction
+          ? `# DIRECTIONS: ${renderCardText(direction, renderFacts)}`
+          : undefined,
+        "",
+        `// function for ${renderCardText(usage, renderFacts)}`,
         ...paramsUsages,
         funcCallSignature,
         "",
-      ];
+      ].filter(isDefined);
     })
     .flat();
 
@@ -52,34 +58,42 @@ export const createAiFunctionPromptText = ({
 # Example function call response:
 
 <|im_start|>${userName}
-open a dialog with the message hello world<|im_end|>
+open the garage door named bay one<|im_end|>
 <|im_start|>${aiName}
-${AI_FUNCTION_PREFIX}openDialog("hello world");<|im_end|>
+${AI_FUNCTION_PREFIX}openGarageDoor(name:"bay one");
+garage door bay one opened.
+<|im_end|>
 
-# Example of natural language response:
-
-<|im_start|>${userName}
-hello<|im_end|>
-<|im_start|>${aiName}
-hello there!<|im_end|>
 `;
 
-  const direction = `
-Whenever you want to perform a function call DO NOT RESPOND with natural language!
-instead call the function in your next response as the example function calls above show.
-ONLY CALL FUNCTIONS IN THE ABOVE KNOWN FUNCTIONS LIST!
-Mostly ${aiName} will respond with natural language.
-Only respond with function calls when needed!!!
-Only prefix function calls with ${AI_FUNCTION_PREFIX}
-  `;
+  // ${aiName} will respond with natural language with no function calls most of the time unless directed otherwise.
+  // It is OK to use natural language AFTER the function call on the next line.
+  // Pay attention to the directions and usage of each function call.
+  const direction = `# Function Calls
+  ${aiName} has the ability to call functions along with natural language responses.
+  Whenever ${aiName} wants to perform a function call they do so without asking.
+  ${aiName} ONLY CALLS FUNCTIONS IN THE Available Functions list!!!
+  DO NOT CALL FUNCTIONS THAT ARE NOT AVAILABLE!!!
+  Only prefix function calls with ${AI_FUNCTION_PREFIX} otherwise never use this emoji.
+  Natural language responses do not use emojis
+  NEVER tell ${userName} about function calls!
+  NEVER ask ${userName} for permission to call functions, just do it!
+    `;
 
+  //   const direction = `# Function Call RULES for ${aiName}
+  // ${aiName} ONLY CALLS FUNCTIONS IN THE Available Functions list!!!
+  // DO NOT CALL FUNCTIONS THAT ARE NOT AVAILABLE!!!
+  // Sometimes ${aiName} will need to call a function without specific direction from ${userName}
+  // The functions are all available for ${aiName} and may be called at any time.
+  // NEVER ask ${userName} for permission to call functions, just do it!
+  //   `;
   return [
+    direction,
+    example,
     `${aiName} knows about the following function calls:`,
     "",
-    "# Known Functions",
+    "# Available Functions",
     ...aiFuncPrompts,
     "",
-    example,
-    direction,
   ].join("\n");
 };

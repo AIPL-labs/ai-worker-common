@@ -1,5 +1,5 @@
 // import { addChatText } from "./addChatText";
-import { DEFAULT_STOP } from "./DEFAULT_STOP";
+import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
 import { chatMessagesToPromptTextsChatML } from "./chatMessagesToPromptTextsChatML";
 import { createChat } from "./createChat";
 import { createChatBuilder } from "./createChatBuilder";
@@ -10,6 +10,7 @@ export const Chats = {
     createChatBuilder,
     listChatMessages,
     DEFAULT_STOP,
+    DEFAULT_STOP_AFTER,
     chatMessagesToPromptTextsChatML,
     // React specific
     // useChat,

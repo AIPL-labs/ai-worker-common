@@ -84,4 +84,5 @@ export * from "./type/access/AccessPoint";
 export * from "./type/answer/Answers";
 // ai functions
 export * from "./ai-function/AiFunctions";
+export * from "./type/ai-function/AiFunctions";
 //# sourceMappingURL=index.js.map

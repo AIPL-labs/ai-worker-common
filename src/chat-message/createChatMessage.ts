@@ -14,6 +14,7 @@ export const createChatMessage = (draft: Partial<ChatMessage>): ChatMessage => {
     characterId,
     disabled,
     status = "created",
+    functionResults,
   } = draft;
   // console.log(`${characterId} ${name} ${JSON.stringify(content)}`);
   return {
@@ -28,5 +29,6 @@ export const createChatMessage = (draft: Partial<ChatMessage>): ChatMessage => {
     parent,
     status,
     updateTime,
+    functionResults,
   };
 };

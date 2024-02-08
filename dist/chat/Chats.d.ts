@@ -22,6 +22,7 @@ export declare const Chats: {
         acc?: import("..").ChatMessage[] | undefined;
     }) => import("..").ChatMessage[];
     DEFAULT_STOP: string[];
+    DEFAULT_STOP_AFTER: never[];
     chatMessagesToPromptTextsChatML: ({ messages, characters, }: {
         characters: Record<string, import("..").AppCharacter | undefined>;
         messages: import("..").ChatMessage[];

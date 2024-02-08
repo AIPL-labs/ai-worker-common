@@ -40,7 +40,6 @@ export const characterToChatSystemMessages = ({
     }),
     createCardSystemMessage({
       systemName,
-      title: "Context",
       text: character.card.data.system_prompt,
       facts,
     }),

@@ -6,9 +6,10 @@ export type AppTavernCard = TavernCardV2<
     direction: string;
     voiceId: string;
     reports: AppReport[];
-    genInfo: {
+    physicalDescription: string;
+    genInfo: Partial<{
       imagePrompt: string;
-    };
+    }>;
     functions: string[];
   }>
 >;

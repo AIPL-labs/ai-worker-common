@@ -1,6 +1,2 @@
-import { createState } from "@mjtdev/engine";
-// export type
-export const [useAiFunctionState, updateAiFunctionState, getAiFunctionState] = createState({
-    functions: {},
-});
+export {};
 //# sourceMappingURL=AiFunctions.js.map

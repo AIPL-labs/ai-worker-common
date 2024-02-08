@@ -54,4 +54,5 @@ export * from "./user-profile/UserProfiles";
 export * from "./type/access/AccessPoint";
 export * from "./type/answer/Answers";
 export * from "./ai-function/AiFunctions";
+export * from "./type/ai-function/AiFunctions";
 //# sourceMappingURL=index.d.ts.map

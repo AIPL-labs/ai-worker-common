@@ -4,9 +4,10 @@ export type AppTavernCard = TavernCardV2<Partial<{
     direction: string;
     voiceId: string;
     reports: AppReport[];
-    genInfo: {
+    physicalDescription: string;
+    genInfo: Partial<{
         imagePrompt: string;
-    };
+    }>;
     functions: string[];
 }>>;
 export type AppCharacter = {

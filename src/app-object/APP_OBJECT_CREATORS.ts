@@ -1,5 +1,6 @@
 import { createAccessPoint } from "../access-point/createAccessPoint";
 import { createAppCharacter } from "../ai-character/createAppCharacter";
+import { createAiFunctionCall } from "../ai-function/createAiFunctionCall";
 import { createAppGroup } from "../app-group/createAppGroup";
 import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppVoice } from "../app-voice/createAppVoice";
@@ -35,4 +36,5 @@ export const APP_OBJECT_CREATORS: Partial<{
   "access-point-theme": createAccessPointTheme,
   "app-interface": createAppInterface,
   "app-group": createAppGroup,
+  "function-call": createAiFunctionCall,
 };

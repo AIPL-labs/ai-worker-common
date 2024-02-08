@@ -1,1 +1,1 @@
-{"version":3,"file":"DEFAULT_STOP.js","sourceRoot":"","sources":["../../src/chat/DEFAULT_STOP.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,YAAY,GAAG,CAAC,aAAa,EAAE,YAAY,CAAC,CAAC;AAC1D,MAAM,CAAC,MAAM,kBAAkB,GAAG,CAAC,GAAG,CAAC,CAAC"}
+{"version":3,"file":"DEFAULT_STOP.js","sourceRoot":"","sources":["../../src/chat/DEFAULT_STOP.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,YAAY,GAAG,CAAC,aAAa,EAAE,YAAY,CAAC,CAAC;AAC1D,2CAA2C;AAC3C,MAAM,CAAC,MAAM,kBAAkB,GAAG,EAAE,CAAC"}

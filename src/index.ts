@@ -113,3 +113,4 @@ export * from "./type/answer/Answers";
 
 // ai functions
 export * from "./ai-function/AiFunctions";
+export * from "./type/ai-function/AiFunctions";

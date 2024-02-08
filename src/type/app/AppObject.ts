@@ -14,6 +14,7 @@ import { AppInterface } from "../app-interface/AppInterface";
 import { DataObject } from "../data/DataObject";
 import { AccessPointTheme } from "../theme/AccessPointTheme";
 import { AppGroup } from "../group/AppGroup";
+import { AiFunctionCall } from "../ai-function/AiFunctions";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -34,6 +35,7 @@ export type AppObjectTypeMap = {
   "access-point-theme": AccessPointTheme;
   "app-interface": AppInterface;
   "app-group": AppGroup;
+  "function-call": AiFunctionCall;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -60,6 +62,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "access-point-theme",
   "app-interface",
   "app-group",
+  "function-call",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

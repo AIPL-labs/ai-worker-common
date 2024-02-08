@@ -1,37 +1,23 @@
-import { Chats } from "../../chat/Chats";
-import { Chat } from "../chat/Chat";
-export type AiFunctionCtx = {
-    arg?: string;
-    env: {
-        chats: typeof Chats;
-        chat: Chat;
-        userId: string;
-    } & Record<string, unknown>;
-};
-export declare const useAiFunctionState: import("@mjtdev/engine").State<{
-    functions: Record<string, AiFunctionInterface>;
-}>, updateAiFunctionState: import("@mjtdev/engine").StateUpdater<{
-    functions: Record<string, AiFunctionInterface>;
-}>, getAiFunctionState: import("@mjtdev/engine").StateGetter<{
-    functions: Record<string, AiFunctionInterface>;
-}>;
-export type AiFunction = (ctx: AiFunctionCtx) => void;
+import { DataObject } from "../data/DataObject";
 export type AiFunctionParam = {
     name: string;
     description: string;
     type?: string;
 };
-export type AiFunctionCall = {
-    name: string;
-    args: string | string[];
-    argKeys: string | string[];
+export type AiFunctionCall = DataObject & {
+    name?: string;
+    args: Record<string, string>;
 };
 export type AiFunctionDescription = {
     name: string;
     usage: string;
     params?: AiFunctionParam | AiFunctionParam[];
+    direction?: string;
 };
-export type AiFunctionInterface = AiFunctionDescription & {
-    func?: AiFunction;
+export type AssistedEditorCommandProps = {
+    type: string;
+    name: string;
+    fieldName: string;
+    value: string;
 };
 //# sourceMappingURL=AiFunctions.d.ts.map

@@ -1,3 +1,4 @@
+import { isDefined } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
 import { renderCardText } from "./renderCardText";
 
@@ -8,7 +9,7 @@ export const createCardSystemMessage = ({
   facts,
 }: {
   systemName: string;
-  title: string;
+  title?: string;
   text?: string;
   facts: Record<string, string | undefined>;
 }) => {
@@ -21,7 +22,10 @@ export const createCardSystemMessage = ({
     name: systemName,
     content: {
       type: "text",
-      parts: [`# ${renderedTitle}:\n`, renderCardText(text, facts)],
+      parts: [
+        renderedTitle ? `# ${renderedTitle}:\n` : undefined,
+        renderCardText(text, facts),
+      ].filter(isDefined),
     },
   });
   return ms;
