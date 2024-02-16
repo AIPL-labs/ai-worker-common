@@ -1,5 +1,5 @@
 import { TextGens, isDefined, isUndefined } from "@mjtdev/engine";
-import { PromptText } from "./chatMessagesToPromptTextsChatML";
+import { PromptText } from "../chat/chatMessagesToPromptTextsChatML";
 
 export const condenseToFitBudget = (
   values: readonly PromptText[],

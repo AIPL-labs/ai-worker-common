@@ -1,6 +1,14 @@
 import { isDefined } from "@mjtdev/engine";
 import { createCardSystemMessage } from "./createCardSystemMessage";
-export const characterToChatSystemMessages = ({ systemName, character, facts, }) => {
+import { DEFAULT_MES_EXAMPLE } from "./DEFAULT_MES_EXAMPLE";
+export const trimSmallTextToUndefined = (text) => {
+    if (!text) {
+        return undefined;
+    }
+    return text.trim().length < 10 ? undefined : text;
+};
+export const characterToChatSystemMessages = ({ systemName, character, facts, options = {}, }) => {
+    const { startChatLinePrefix = "<|im_start|>", afterCharPostfix = "\n", endChatLinePostfix = "<|im_end|>", } = options;
     return [
         createCardSystemMessage({
             systemName,
@@ -16,12 +24,24 @@ export const characterToChatSystemMessages = ({ systemName, character, facts, })
         }),
         createCardSystemMessage({
             systemName,
-            title: "{{char}} Talks Like",
-            text: character.card.data.mes_example
-                ? character.card.data.mes_example
-                    .replaceAll(":", "")
-                    .replaceAll(/<[^>]*>/g, "\n")
-                : undefined,
+            title: "Examples of what {{char}} talks like:",
+            text: (trimSmallTextToUndefined(character.card.data.mes_example) ??
+                DEFAULT_MES_EXAMPLE)
+                // ? character.card.data.mes_example
+                // .replaceAll(":", "")
+                // .replaceAll(/<[^>]*>/g, "\n")
+                .split("\n")
+                .map((line) => {
+                if (!line.includes(":")) {
+                    return line;
+                }
+                const [char, ...rest] = line.trim().split(":");
+                return `${startChatLinePrefix}${char}${afterCharPostfix}${rest
+                    .join(":")
+                    .trim()}${endChatLinePostfix}`;
+            })
+                .join("\n"),
+            // : undefined,
             facts,
         }),
         createCardSystemMessage({

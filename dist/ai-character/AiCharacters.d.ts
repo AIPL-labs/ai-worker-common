@@ -1,11 +1,16 @@
 export declare const AiCharacters: {
-    characterToChatSystemMessages: ({ systemName, character, facts, }: {
+    characterToChatSystemMessages: ({ systemName, character, facts, options, }: {
         systemName: string;
         character: import("..").AppCharacter;
         facts: {
             char: string | undefined;
             user: string | undefined;
         };
+        options?: Partial<{
+            startChatLinePrefix: string;
+            afterCharPostfix: string;
+            endChatLinePostfix: string;
+        }> | undefined;
     }) => import("..").ChatMessage[];
     renderCardText: (template: string | undefined, facts: Record<string, string | undefined>) => string;
     createCardSystemMessage: ({ systemName: systemName, title, text, facts, }: {
@@ -15,5 +20,6 @@ export declare const AiCharacters: {
         facts: Record<string, string | undefined>;
     }) => import("..").ChatMessage | undefined;
     createTavernCard: (draft?: Partial<import("..").AppTavernCard>) => import("..").AppTavernCard;
+    DEFAULT_MES_EXAMPLE: string;
 };
 //# sourceMappingURL=AiCharacters.d.ts.map

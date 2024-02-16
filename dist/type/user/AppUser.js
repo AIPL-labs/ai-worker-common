@@ -4,6 +4,7 @@ export const SERVICE_PROVIDER_API_SHAPES = [
     "Cloudflare",
     "CustomOpenAi",
     "CustomTts",
+    "CustomAsr",
     "BrowserTts",
 ];
 const isServiceProvider = (maybe) => {

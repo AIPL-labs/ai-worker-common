@@ -1,7 +1,8 @@
 import { Arrays, Objects, safe } from "@mjtdev/engine";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
-export const parseAiFunctionText = (text) => {
-    const regex = new RegExp(`${AI_FUNCTION_PREFIX} ?([a-zA-Z0-9_-]+)\\((.*)\\);?(.*)$`, "gm");
+export const parseAiFunctionText = (text, options = {}) => {
+    const { aiFunctionPrefix = AI_FUNCTION_PREFIX } = options;
+    const regex = new RegExp(`${aiFunctionPrefix} ?([a-zA-Z0-9_-]+)\\((.*)\\);?(.*)$`, "gm");
     // const match = Arrays.from(regex.exec(text) ?? []);
     const matches = Arrays.from(text.matchAll(regex));
     const strippedText = text.replaceAll(regex, "");
@@ -21,7 +22,7 @@ export const parseAiFunctionText = (text) => {
     return { calls, strippedText };
 };
 export const parseAiFunctionArgText = (text) => {
-    const regex = new RegExp('([a-zA-Z0-9_-]+):"(.*?)",?', "gm");
+    const regex = new RegExp("([a-zA-Z0-9_-]+):[\"'](.*?)[\"'],?", "gm");
     const matches = Arrays.from(text.matchAll(regex));
     if (matches.length === 0) {
         return { _: text };

@@ -6,6 +6,7 @@ export type ServiceProviders = {
   tts: ServiceProvider;
   proxy: ServiceProvider;
   crawl: ServiceProvider;
+  asr: ServiceProvider;
 };
 
 export type AsrConfig = {
@@ -28,6 +29,7 @@ export const SERVICE_PROVIDER_API_SHAPES = [
   "Cloudflare",
   "CustomOpenAi",
   "CustomTts",
+  "CustomAsr",
   "BrowserTts",
 ] as const;
 
@@ -61,5 +63,4 @@ export const isTextgenServiceProvider = (
 
 export type AppUser = AccessUser & {
   userName: string;
-  // activeProfileId?: string;
 };

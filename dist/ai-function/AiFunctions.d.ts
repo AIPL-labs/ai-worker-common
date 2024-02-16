@@ -4,7 +4,9 @@ export declare const AiFunctions: {
         aiName: string;
         userName: string;
     }) => string | undefined;
-    parseAiFunctionText: (text: string) => {
+    parseAiFunctionText: (text: string, options?: Partial<{
+        aiFunctionPrefix: string;
+    }>) => {
         readonly calls: {
             readonly match: RegExpMatchArray;
             readonly matchesTextLength: number;

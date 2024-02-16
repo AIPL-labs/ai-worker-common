@@ -18,7 +18,7 @@ export type ChatMessage = DataObject & {
   status: string;
 };
 
-export type FunctionCallResult = {
+export type FunctionCallResult = DataObject & {
   type: "text" | "image" | "memory" | "summary";
   value: string | string[];
   prompt?: string;

@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatAnswer.js","sourceRoot":"","sources":["../../../src/type/chat-answer/ChatAnswer.ts"],"names":[],"mappings":"AAIA,MAAM,CAAC,MAAM,YAAY,GAAG,CAAC,KAAc,EAAuB,EAAE;IAClE,MAAM,KAAK,GAAG,KAAmB,CAAC;IAClC,OAAO,OAAO,KAAK,KAAK,QAAQ,IAAI,OAAO,KAAK,CAAC,MAAM,KAAK,QAAQ,CAAC;AACvE,CAAC,CAAC"}

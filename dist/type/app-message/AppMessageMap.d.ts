@@ -34,6 +34,15 @@ export type AppMessageMap = {
         contextSize?: number;
         message: Partial<ChatMessage>;
     };
+    "chat:insertMessage": {
+        chatId: string;
+        targetId: string | undefined;
+        message: Partial<ChatMessage>;
+    };
+    "chat:deleteMessage": {
+        chatId: string;
+        messageId: string;
+    };
     "chat:ask": Partial<{
         chatId?: string;
         stopAfter?: string;
@@ -43,6 +52,7 @@ export type AppMessageMap = {
         userMessage?: string;
         assistantMessage?: string;
         returnId: string;
+        streamId: string;
     }>;
     ingest: IngestRequest;
     "vector:deleteNamespace": string | string[];

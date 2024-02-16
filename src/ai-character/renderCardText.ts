@@ -10,11 +10,11 @@ export const renderCardText = (
   }
   return template.replace(PARM_REGEX, (match, factKey, factIndexMaybe) => {
     const fact = facts[factKey];
-    if (typeof fact !== "string") {
-      console.warn("nonstring fact", [factKey, fact]);
-    }
     if (isUndefined(fact)) {
       return "";
+    }
+    if (typeof fact !== "string") {
+      console.warn("nonstring fact", [factKey, fact]);
     }
     return String(fact);
   });

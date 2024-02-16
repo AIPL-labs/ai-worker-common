@@ -5,6 +5,7 @@ import { Chat } from "../type/chat/Chat";
 import { ChatUpdater } from "./ChatUpdater";
 import { addChatMessage } from "./addChatMessage";
 import { addChatMessageAtTop } from "./addChatMessageAtTop";
+import { setChatMessage } from "./setChatMessage";
 
 export const createChatBuilder = (
   params: {
@@ -18,6 +19,7 @@ export const createChatBuilder = (
   } = params;
 
   const dirty = new Set<string>();
+  const deletes = new Set<string>();
 
   const builder = {
     update: (updater: ChatUpdater) => {
@@ -47,6 +49,15 @@ export const createChatBuilder = (
         delete curMessages[messageId];
       }
 
+      deletes.add(messageId);
+
+      if (curChat.currentMessageId === messageId) {
+        builder.update((c) => {
+          c.currentMessageId = message.parent;
+          c.modification = Date.now();
+        });
+      }
+
       return builder;
     },
     updateMessage: (
@@ -63,6 +74,40 @@ export const createChatBuilder = (
       curMessages[messageId] = updatedMessage;
       return updatedMessage;
     },
+    insertMessage: ({
+      targetId,
+      draft,
+    }: {
+      targetId: string | undefined;
+      draft: Partial<ChatMessage>;
+    }) => {
+      const targetChildren = Objects.values(curMessages).filter(
+        (m) => m.parent === targetId
+      );
+      const targetMessage = targetId ? curMessages[targetId] : undefined;
+      const message = AppObjects.create("chat-message", {
+        ...draft,
+        parent: targetMessage?.parent,
+      });
+      setChatMessage({
+        message,
+        builder,
+      });
+      dirty.add(message.id);
+      for (const child of targetChildren) {
+        child.parent = message.id;
+        setChatMessage({ message: child, builder });
+        dirty.add(child.id);
+      }
+      if (curChat.currentMessageId === targetId) {
+        builder.update((c) => {
+          c.currentMessageId = message.id;
+          c.modification = Date.now();
+        });
+      }
+
+      return builder;
+    },
 
     addMessage: (draft: Partial<ChatMessage>) => {
       const message = addChatMessage({ draft, builder });
@@ -77,6 +122,7 @@ export const createChatBuilder = (
 
     get: () => ({ chat: curChat, messages: curMessages } as const),
     getDirty: () => Array.from(dirty.values()),
+    getDeletes: () => Array.from(deletes.values()),
     getCurrentMessage: () => curMessages[curChat.currentMessageId!],
   };
   return builder;

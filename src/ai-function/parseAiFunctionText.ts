@@ -1,9 +1,13 @@
 import { Arrays, Objects, safe } from "@mjtdev/engine";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
 
-export const parseAiFunctionText = (text: string) => {
+export const parseAiFunctionText = (
+  text: string,
+  options: Partial<{ aiFunctionPrefix: string }> = {}
+) => {
+  const { aiFunctionPrefix = AI_FUNCTION_PREFIX } = options;
   const regex = new RegExp(
-    `${AI_FUNCTION_PREFIX} ?([a-zA-Z0-9_-]+)\\((.*)\\);?(.*)$`,
+    `${aiFunctionPrefix} ?([a-zA-Z0-9_-]+)\\((.*)\\);?(.*)$`,
     "gm"
   );
 
@@ -29,7 +33,7 @@ export const parseAiFunctionText = (text: string) => {
 };
 
 export const parseAiFunctionArgText = (text: string) => {
-  const regex = new RegExp('([a-zA-Z0-9_-]+):"(.*?)",?', "gm");
+  const regex = new RegExp("([a-zA-Z0-9_-]+):[\"'](.*?)[\"'],?", "gm");
 
   const matches = Arrays.from(text.matchAll(regex));
   if (matches.length === 0) {

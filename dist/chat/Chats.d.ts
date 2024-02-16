@@ -7,6 +7,10 @@ export declare const Chats: {
         update: (updater: import("./ChatUpdater").ChatUpdater) => any;
         removeMessage: (messageId: string) => any;
         updateMessage: (messageId: string, updater: (message: import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined) => import("..").ChatMessage | undefined;
+        insertMessage: ({ targetId, draft, }: {
+            targetId: string | undefined;
+            draft: Partial<import("..").ChatMessage>;
+        }) => any;
         addMessage: (draft: Partial<import("..").ChatMessage>) => import("..").ChatMessage;
         addMessageAtTop: (draft: Partial<import("..").ChatMessage>) => import("..").ChatMessage;
         get: () => {
@@ -14,6 +18,7 @@ export declare const Chats: {
             readonly messages: Record<string, import("..").ChatMessage>;
         };
         getDirty: () => string[];
+        getDeletes: () => string[];
         getCurrentMessage: () => import("..").ChatMessage;
     };
     listChatMessages: ({ messages, messageId, acc, }: {

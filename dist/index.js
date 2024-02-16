@@ -2,8 +2,8 @@ export * from "./type/user/AppUser";
 // create
 export * from "./app-object/AppObjects";
 // access
-export * from "./type/access/AccessInfo";
 export * from "./access/Accesses";
+export * from "./type/access/AccessInfo";
 // rest
 export * from "./type/rest/CrawlWebsiteRequest";
 export * from "./type/rest/DataIndexRecordDeleteRequest";
@@ -74,15 +74,15 @@ export * from "./type/phone/PhoneCall";
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
 // thought
-export * from "./type/thought/Thought";
 export * from "./thought/Thoughts";
+export * from "./type/thought/Thought";
 // user
 export * from "./user-profile/UserProfiles";
 // access
 export * from "./type/access/AccessPoint";
-// answer
-export * from "./type/answer/Answers";
 // ai functions
 export * from "./ai-function/AiFunctions";
 export * from "./type/ai-function/AiFunctions";
+// chat answer
+export * from "./type/chat-answer/ChatAnswer";
 //# sourceMappingURL=index.js.map
