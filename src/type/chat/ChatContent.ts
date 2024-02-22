@@ -1,5 +1,5 @@
 import { ChatImageContent } from "./ChatImageContent";
-import { ChatTextContent } from "./ChatTextContent";
+import { ChatAudioContent, ChatTextContent } from "./ChatTextContent";
 
-export type ChatContent = ChatTextContent 
+export type ChatContent = ChatTextContent | ChatAudioContent;
 // | ChatImageContent;

@@ -48,6 +48,7 @@ export * from "./type/vector/VectorTypes";
 export * from "./type/phone/PhoneCall";
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
+export * from "./3rd/elevenlabs/ElevenLabsWebsocketResult";
 export * from "./thought/Thoughts";
 export * from "./type/thought/Thought";
 export * from "./user-profile/UserProfiles";
@@ -55,4 +56,6 @@ export * from "./type/access/AccessPoint";
 export * from "./ai-function/AiFunctions";
 export * from "./type/ai-function/AiFunctions";
 export * from "./type/chat-answer/ChatAnswer";
+export * from "./type/asr/AsrTypes";
+export * from "./type/asr/Asrs";
 //# sourceMappingURL=index.d.ts.map

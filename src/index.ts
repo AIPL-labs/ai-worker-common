@@ -98,6 +98,9 @@ export * from "./type/phone/PhoneCall";
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
 
+// elevenlabs
+export * from "./3rd/elevenlabs/ElevenLabsWebsocketResult";
+
 // thought
 export * from "./thought/Thoughts";
 export * from "./type/thought/Thought";
@@ -114,3 +117,7 @@ export * from "./type/ai-function/AiFunctions";
 
 // chat answer
 export * from "./type/chat-answer/ChatAnswer";
+
+// asr
+export * from "./type/asr/AsrTypes";
+export * from "./type/asr/Asrs";

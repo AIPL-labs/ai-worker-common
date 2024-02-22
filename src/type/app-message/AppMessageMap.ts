@@ -8,15 +8,43 @@ import { IngestRequest } from "../rest/IngestRequest";
 import { UserLoginRequest } from "../rest/UserLoginRequest";
 import { AppMessage } from "./AppMessage";
 import { AiFunctionCall } from "../ai-function/AiFunctions";
+import { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
+import { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
+
+export type MessageChunk = {
+  id: string;
+  idx: number;
+  total: number;
+  chunk: string;
+};
+
+export type AbortableMessageDetail = { abortId: string };
+export const isAbortableMessageDetail = (
+  maybe: unknown
+): maybe is AbortableMessageDetail => {
+  const straw = maybe as AbortableMessageDetail;
+  return typeof straw === "object" && typeof straw.abortId === "string";
+};
+
+export type ReturnableMessageDetail = { returnId: string };
+export const isReturnableMessageDetail = (
+  maybe: unknown
+): maybe is ReturnableMessageDetail => {
+  const straw = maybe as ReturnableMessageDetail;
+  return typeof straw === "object" && typeof straw.returnId === "string";
+};
 
 export type AppMessageMap = {
   auth: string;
   access: string;
   ping: string;
-  abort: string | undefined; // objectId to abort like chatId to abort generation or some other filter
+  abort: string; // abortId
   error: string;
   toast: string;
   log: string;
+  "appInterface:update": {
+    ttsEnabled: boolean;
+  };
   "return:dataObject": DataObject;
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
@@ -24,7 +52,7 @@ export type AppMessageMap = {
     accessPointId: string;
     params: Record<string, string>;
   };
-  "chat:addMessage": {
+  "chat:addMessage": Partial<AbortableMessageDetail> & {
     chatId: string;
     baseUrl?: string;
     authToken?: string;
@@ -41,33 +69,29 @@ export type AppMessageMap = {
     chatId: string;
     messageId: string;
   };
-  "chat:ask": Partial<{
-    chatId?: string;
-    stopAfter?: string;
-    stop?: string | string[];
-    maxResponseTokens?: number;
-    systemMessage?: string;
-    userMessage?: string;
-    assistantMessage?: string;
-    returnId: string;
-    streamId: string;
-  }>;
+  "chat:ask": Partial<
+    ReturnableMessageDetail & {
+      chatId?: string;
+      stopAfter?: string;
+      stop?: string | string[];
+      maxResponseTokens?: number;
+      systemMessage?: string;
+      userMessage?: string;
+      assistantMessage?: string;
+      streamId: string;
+    }
+  >;
 
   ingest: IngestRequest;
   "vector:deleteNamespace": string | string[];
 
+  "image:generate": Partial<AbortableMessageDetail> &
+    ReturnableMessageDetail & { request: Partial<SdApiTxt2ImgRequest> };
+
   tts: { text: string; voiceId?: string };
+  "tts:elevenlabs:result": ElevenLabsWebsocketResult & { mediaType: string };
   "tts:finished": void;
   "corpusDocument:delete": string | string[];
-
-  "chat:generateAiText": {
-    chatId: string;
-    baseUrl?: string;
-    authToken?: string;
-    model?: string;
-    contextSize?: number;
-    abortId?: string;
-  };
 
   messages: AppMessage[];
 
@@ -102,4 +126,5 @@ export type AppMessageMap = {
   "user:groupAdd": string | string[];
   "user:groupRemove": string | string[];
   "function:call": AiFunctionCall;
+  "message:chunk": MessageChunk;
 };

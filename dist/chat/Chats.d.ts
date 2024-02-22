@@ -32,5 +32,6 @@ export declare const Chats: {
         characters: Record<string, import("..").AppCharacter | undefined>;
         messages: import("..").ChatMessage[];
     }) => import("./chatMessagesToPromptTextsChatML").PromptText[];
+    chatMessageToText: (message: import("..").ChatMessage) => string;
 };
 //# sourceMappingURL=Chats.d.ts.map

@@ -1,27 +1,30 @@
-export const upgradeUserProfile = (draft) => {
+export const upgradeServiceProviders = (providers = {}) => {
     const upgradedProviders = {
         imagegen: {
-            apiShape: "CustomOpenAi",
-            ...(draft.providers?.imagegen ?? {}),
+            apiShape: "CustomImagegen",
+            ...(providers?.imagegen ?? {}),
         },
         textgen: {
             apiShape: "CustomOpenAi",
-            contextSize: 4096,
-            ...(draft.providers?.textgen ?? {}),
+            ...(providers?.textgen ?? {}),
         },
         crawl: {
             apiShape: "CustomWc",
-            ...(draft.providers?.crawl ?? {}),
+            ...(providers?.crawl ?? {}),
         },
         proxy: {
             apiShape: "Cloudflare",
-            ...(draft.providers?.proxy ?? {}),
+            ...(providers?.proxy ?? {}),
         },
         tts: {
             apiShape: "CustomTts",
-            ...(draft.providers?.tts ?? {}),
+            ...(providers?.tts ?? {}),
+        },
+        asr: {
+            apiShape: "CustomAsr",
+            ...(providers?.asr ?? {}),
         },
     };
-    return { ...draft, providers: upgradedProviders };
+    return upgradedProviders;
 };
 //# sourceMappingURL=upgradeUserProfile.js.map

@@ -1,12 +1,25 @@
 export const SERVICE_PROVIDER_API_SHAPES = [
     "CustomWc",
     "OpenAi",
+    "CustomProxy",
     "Cloudflare",
     "CustomOpenAi",
-    "CustomTts",
-    "CustomAsr",
     "BrowserTts",
+    "CustomTts",
+    "CustomImagegen",
+    "ElevenlabsTts",
+    "CustomAsr",
 ];
+export const SERVICE_PROVIDER_EXTRA_KEYS = {
+    textgen: ["contextSize", "topP"],
+    tts: [
+        "stability",
+        "similarityBoost",
+        "useSpeakerBoost",
+        "style",
+        "chunkLengthSchedule",
+    ],
+};
 const isServiceProvider = (maybe) => {
     const straw = maybe;
     return typeof straw === "object" && typeof straw.apiShape === "string";

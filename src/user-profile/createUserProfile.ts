@@ -1,19 +1,18 @@
 import { uniqueId } from "../id/uniqueId";
 import { AppUserProfile } from "../type/user/AppUser";
-import { upgradeUserProfile } from "./upgradeUserProfile";
+import { upgradeServiceProviders } from "./upgradeUserProfile";
 
 export const createUserProfile = (
   draft: Partial<AppUserProfile>
 ): AppUserProfile => {
   const {
     id = uniqueId("user-profile"),
-
     name = "New User Profile",
-    providers,
+    providers = upgradeServiceProviders(),
     asrConfig,
     userCharacterId,
     voiceId,
-  } = upgradeUserProfile(draft);
+  } = draft;
 
   return {
     id,

@@ -73,6 +73,8 @@ export * from "./type/phone/PhoneCall";
 // vonage
 export * from "./3rd/vonage/Vonages";
 export * from "./3rd/vonage/VongageTypes";
+// elevenlabs
+export * from "./3rd/elevenlabs/ElevenLabsWebsocketResult";
 // thought
 export * from "./thought/Thoughts";
 export * from "./type/thought/Thought";
@@ -85,4 +87,7 @@ export * from "./ai-function/AiFunctions";
 export * from "./type/ai-function/AiFunctions";
 // chat answer
 export * from "./type/chat-answer/ChatAnswer";
+// asr
+export * from "./type/asr/AsrTypes";
+export * from "./type/asr/Asrs";
 //# sourceMappingURL=index.js.map

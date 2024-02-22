@@ -1,5 +1,5 @@
-import { upgradeUserProfile } from "./upgradeUserProfile";
+import { upgradeServiceProviders } from "./upgradeUserProfile";
 export const UserProfiles = {
-    upgradeUserProfile,
+    upgradeServiceProviders,
 };
 //# sourceMappingURL=UserProfiles.js.map

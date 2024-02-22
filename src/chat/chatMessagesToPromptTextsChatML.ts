@@ -1,6 +1,7 @@
 import { isDefined } from "@mjtdev/engine";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
 import { AppCharacter } from "../type/app-character/AppCharacter";
+import { ChatMessage } from "../type/chat-message/ChatMessage";
+import { chatMessageToText } from "./chatMessageToText";
 
 export type PromptText = {
   text: string;
@@ -17,20 +18,11 @@ export const chatMessagesToPromptTextsChatML = ({
   const messageStart = "<|im_start|>";
   const messageEnd = "<|im_end|>";
   return messages
-    .filter((message) => {
-      if (message.content.type !== "text") {
-        return false;
-      }
-      return true;
-    })
     .map((message, i) => {
       const characterName =
         characters[message.characterId ?? ""]?.card.data.name;
       const author = characterName ?? message.role;
-      const text =
-        message.content.type === "text"
-          ? message.content.parts.join("").trim()
-          : "";
+      const text = chatMessageToText(message);
 
       if (i === messages.length - 1) {
         return {

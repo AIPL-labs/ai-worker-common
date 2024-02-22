@@ -1,1 +1,1 @@
-{"version":3,"file":"UserProfiles.js","sourceRoot":"","sources":["../../src/user-profile/UserProfiles.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,sBAAsB,CAAC;AAE1D,MAAM,CAAC,MAAM,YAAY,GAAG;IAC1B,kBAAkB;CACnB,CAAC"}
+{"version":3,"file":"UserProfiles.js","sourceRoot":"","sources":["../../src/user-profile/UserProfiles.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,uBAAuB,EAAE,MAAM,sBAAsB,CAAC;AAE/D,MAAM,CAAC,MAAM,YAAY,GAAG;IAC1B,uBAAuB;CACxB,CAAC"}

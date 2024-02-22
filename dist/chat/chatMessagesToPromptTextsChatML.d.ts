@@ -1,5 +1,5 @@
-import { ChatMessage } from "../type/chat-message/ChatMessage";
 import { AppCharacter } from "../type/app-character/AppCharacter";
+import { ChatMessage } from "../type/chat-message/ChatMessage";
 export type PromptText = {
     text: string;
     role: "user" | "system" | "assistant";
