@@ -1,9 +1,19 @@
-export type AppReport = {
+export type AppReportQuestionnaire = {
   name: string;
-  fields: AppReportField[];
+  fields: AppReportFieldQuestion[];
 };
 
-export type AppReportField = {
+export type AppReportAnswers = {
+  name: string;
+  fields: AppReportFieldAnswer[];
+};
+
+export type AppReportFieldQuestion = {
   name: string;
   description: string;
+};
+
+export type AppReportFieldAnswer = {
+  name: string;
+  answer: string;
 };

@@ -121,3 +121,6 @@ export * from "./type/chat-answer/ChatAnswer";
 // asr
 export * from "./type/asr/AsrTypes";
 export * from "./type/asr/Asrs";
+
+// report
+export * from "./type/app-report/AppReport";

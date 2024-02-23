@@ -13,14 +13,20 @@ export type ChatMessage = DataObject & {
   name?: string;
   role: ChatRole;
   content: ChatContent;
-  functionResults?: FunctionCallResult[];
+  // functionResults?: FunctionCallResult[];
   metadata: Partial<{ model: string }>;
   status: string;
 };
 
+export type ChatData = DataObject & {
+  type?: string;
+  name?: string;
+  values?: Record<string, string>;
+};
+
 export type FunctionCallResult = DataObject & {
-  type: "text" | "image" | "memory" | "summary";
-  value: string | string[];
+  type?: "text" | "image";
+  value?: string | string[];
   prompt?: string;
   call: AiFunctionCall;
 };

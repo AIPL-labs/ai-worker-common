@@ -7,6 +7,7 @@ import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createChatMessage } from "../chat-message/createChatMessage";
 import { createChat } from "../chat/createChat";
+import { createChatData } from "../chat/createChatData";
 import { Corproa } from "../corpus/Corpora";
 import { createDataIndex } from "../data-index/crateDataIndex";
 import { createIngestResult } from "../ingest/createIngestResult";
@@ -34,5 +35,6 @@ export const APP_OBJECT_CREATORS = {
     "app-group": createAppGroup,
     "function-call": createAiFunctionCall,
     "function-call-result": createFunctionCallResult,
+    "chat-data": createChatData,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

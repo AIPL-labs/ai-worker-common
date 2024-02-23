@@ -1,6 +1,6 @@
 import { TextExtraction } from "type/corpus/TextExtraction";
 import { AppCharacter } from "../app-character/AppCharacter";
-import { ChatMessage, FunctionCallResult } from "../chat-message/ChatMessage";
+import { ChatData, ChatMessage, FunctionCallResult } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
 import { Corpus, CorpusDocument } from "../corpus/Corpus";
 import { DataIndex } from "../data-index/DataIndex";
@@ -34,6 +34,7 @@ export type AppObjectTypeMap = {
     "app-group": AppGroup;
     "function-call": AiFunctionCall;
     "function-call-result": FunctionCallResult;
+    "chat-data": ChatData;
 };
 export type AppObjectType = keyof AppObjectTypeMap;
 export type AppObject<T extends AppObjectType = AppObjectType> = AppObjectTypeMap[T];

@@ -58,4 +58,5 @@ export * from "./type/ai-function/AiFunctions";
 export * from "./type/chat-answer/ChatAnswer";
 export * from "./type/asr/AsrTypes";
 export * from "./type/asr/Asrs";
+export * from "./type/app-report/AppReport";
 //# sourceMappingURL=index.d.ts.map

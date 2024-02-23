@@ -4,8 +4,12 @@ export const renderCardText = (template, facts) => {
     if (!template) {
         return "";
     }
+    const caseInsensitiveFacts = Object.fromEntries(Object.entries(facts).map(([key, value]) => [
+        key.toLocaleLowerCase(),
+        value,
+    ]));
     return template.replace(PARM_REGEX, (match, factKey, factIndexMaybe) => {
-        const fact = facts[factKey];
+        const fact = caseInsensitiveFacts[factKey?.toLocaleLowerCase()];
         if (isUndefined(fact)) {
             return "";
         }
