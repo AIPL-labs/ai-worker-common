@@ -12,7 +12,9 @@ export declare const AiCharacters: {
             endChatLinePostfix: string;
         }> | undefined;
     }) => import("..").ChatMessage[];
-    renderCardText: (template: string | undefined, facts: Record<string, string | undefined>) => string;
+    renderCardText: (template: string | undefined, facts: Record<string, string | undefined>, options?: Partial<{
+        skipNotFound: boolean;
+    }>) => string;
     createCardSystemMessage: ({ systemName: systemName, title, text, facts, }: {
         systemName: string;
         title?: string | undefined;

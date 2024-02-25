@@ -6,6 +6,7 @@ export type AppTavernCard = TavernCardV2<Partial<{
     elevenLabsVoiceId: string;
     reports: AppReportQuestionnaire[];
     physicalDescription: string;
+    aipl: string;
     genInfo: Partial<{
         imagePrompt: string;
     }>;

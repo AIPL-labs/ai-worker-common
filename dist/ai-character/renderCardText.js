@@ -1,6 +1,6 @@
 import { isUndefined } from "@mjtdev/engine";
 const PARM_REGEX = /{+[\s]*([a-zA-Z0-9\$\-\.]+)[\s]*}+\[?([\-0-9]*)/gim;
-export const renderCardText = (template, facts) => {
+export const renderCardText = (template, facts, options = {}) => {
     if (!template) {
         return "";
     }
@@ -8,10 +8,11 @@ export const renderCardText = (template, facts) => {
         key.toLocaleLowerCase(),
         value,
     ]));
+    const { skipNotFound = false } = options;
     return template.replace(PARM_REGEX, (match, factKey, factIndexMaybe) => {
         const fact = caseInsensitiveFacts[factKey?.toLocaleLowerCase()];
         if (isUndefined(fact)) {
-            return "";
+            return skipNotFound ? `{${factKey}}` : "";
         }
         if (typeof fact !== "string") {
             console.warn("nonstring fact", [factKey, fact]);

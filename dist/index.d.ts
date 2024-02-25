@@ -59,4 +59,5 @@ export * from "./type/chat-answer/ChatAnswer";
 export * from "./type/asr/AsrTypes";
 export * from "./type/asr/Asrs";
 export * from "./type/app-report/AppReport";
+export * from "./aipl/Aipls";
 //# sourceMappingURL=index.d.ts.map

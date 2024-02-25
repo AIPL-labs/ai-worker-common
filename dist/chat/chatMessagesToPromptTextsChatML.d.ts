@@ -4,8 +4,9 @@ export type PromptText = {
     text: string;
     role: "user" | "system" | "assistant";
 };
-export declare const chatMessagesToPromptTextsChatML: ({ messages, characters, }: {
+export declare const chatMessagesToPromptTextsChatML: ({ messages, characters, facts, }: {
     characters: Record<string, AppCharacter | undefined>;
     messages: ChatMessage[];
+    facts?: Record<string, string | undefined> | undefined;
 }) => PromptText[];
 //# sourceMappingURL=chatMessagesToPromptTextsChatML.d.ts.map

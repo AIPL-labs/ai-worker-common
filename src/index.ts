@@ -124,3 +124,6 @@ export * from "./type/asr/Asrs";
 
 // report
 export * from "./type/app-report/AppReport";
+
+// AIPL
+export * from "./aipl/Aipls";
