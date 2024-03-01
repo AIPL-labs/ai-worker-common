@@ -1,1 +1,1 @@
-{"version":3,"file":"DEFAULT_STOP.d.ts","sourceRoot":"","sources":["../../src/chat/DEFAULT_STOP.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,YAAY,UAAgC,CAAC;AAE1D,eAAO,MAAM,kBAAkB,SAAK,CAAC"}
+{"version":3,"file":"DEFAULT_STOP.d.ts","sourceRoot":"","sources":["../../src/chat/DEFAULT_STOP.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,YAAY,UAexB,CAAC;AAEF,eAAO,MAAM,kBAAkB,SAAK,CAAC"}

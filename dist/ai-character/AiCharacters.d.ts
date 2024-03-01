@@ -1,17 +1,15 @@
 export declare const AiCharacters: {
-    characterToChatSystemMessages: ({ systemName, character, facts, options, }: {
+    characterToChatSystemMessages: ({ systemName, character, facts, aiFunctions, messageTemplate, }: {
         systemName: string;
         character: import("..").AppCharacter;
+        aiFunctions: import("..").AiFunctionDescription[];
         facts: {
             char: string | undefined;
             user: string | undefined;
         };
-        options?: Partial<{
-            startChatLinePrefix: string;
-            afterCharPostfix: string;
-            endChatLinePostfix: string;
-        }> | undefined;
+        messageTemplate?: import("../chat/chatMessagesToPromptTextsChatML").ChatMessageTemplate | undefined;
     }) => import("..").ChatMessage[];
+    /** @deprecated @see Prompts */
     renderCardText: (template: string | undefined, facts: Record<string, string | undefined>, options?: Partial<{
         skipNotFound: boolean;
     }>) => string;

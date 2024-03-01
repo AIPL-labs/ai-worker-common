@@ -1,8 +1,9 @@
 export declare const AiFunctions: {
-    createAiFunctionPromptText: ({ aiName, userName, functions, }: {
+    createAiFunctionPromptText: ({ aiName, userName, functions, messageTemplate: messageTemplate, }: {
         functions: import("..").AiFunctionDescription[];
         aiName: string;
         userName: string;
+        messageTemplate?: import("../chat/chatMessagesToPromptTextsChatML").ChatMessageTemplate | undefined;
     }) => string | undefined;
     parseAiFunctionText: (text: string, options?: Partial<{
         aiFunctionPrefix: string;

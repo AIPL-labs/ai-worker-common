@@ -9,17 +9,80 @@ export type PromptText = {
   role: "user" | "system" | "assistant";
 };
 
+export type ChatMessageTemplate = {
+  messageStart: string;
+  messageEnd: string;
+  afterCharPostfix: string;
+};
+
+export const CHAT_ML_TEMPLATE: ChatMessageTemplate = {
+  messageStart: "<|im_start|>",
+  messageEnd: "<|im_end|>",
+  afterCharPostfix: "\n",
+};
+
+export const OPENCHAT_TEMPLATE: ChatMessageTemplate = {
+  messageStart: "GPT4 Correct ",
+  afterCharPostfix: ": ",
+  messageEnd: "<|end_of_turn|>",
+};
+// export const OPENCHAT_TEMPLATE: ChatMessageTemplate = {
+//   messageStart: "<|im_start|>",
+//   afterCharPostfix: "\n",
+//   messageEnd: "<|end_of_turn|>",
+// };
+export const PLAY_TEMPLATE: ChatMessageTemplate = {
+  // messageStart: "<|im_start|>",
+  // messageStart: "[INST]",
+  messageStart: "📩",
+  // messageStart: "",
+  // messageStart: "🟢",
+  // messageStart: "💬",
+  // messageStart: "✉️",
+  afterCharPostfix: "\n",
+  // afterCharPostfix: ": ",
+  // messageEnd: "<|end_of_turn|>",
+  // messageEnd: "<|/s|>",
+  // messageEnd: "<|end_of_turn|>",
+  // messageEnd: "</s>",
+  // messageEnd: "[/INST]",
+  // messageEnd: "<|end_of_turn|>",
+  messageEnd: "🛑",
+};
+
+const CHAT_GLM3_TEMPlATE: ChatMessageTemplate = {
+  messageStart: "<|",
+  afterCharPostfix: "|>",
+  messageEnd: "",
+};
+const CHAT_GLM3_MOD_TEMPlATE: ChatMessageTemplate = {
+  ...CHAT_GLM3_TEMPlATE,
+  messageEnd: "<|end_of_turn|>",
+};
+
+export const DEFAULT_CHAT_MESSAGE_TEMPLATE = CHAT_ML_TEMPLATE;
+// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = OPENCHAT_TEMPLATE;
+// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = PLAY_TEMPLATE;
+// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = CHAT_GLM3_MOD_TEMPlATE;
+
 export const chatMessagesToPromptTextsChatML = ({
   messages,
   characters,
   facts = {},
+  messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE,
 }: {
   characters: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
   facts?: Record<string, string | undefined>;
+  messageTemplate?: ChatMessageTemplate;
 }): PromptText[] => {
-  const messageStart = "<|im_start|>";
-  const messageEnd = "<|im_end|>";
+  // const {
+  //   messageStart = "<|im_start|>",
+  //   messageEnd = "<|im_end|>",
+  //   afterCharPostfix = "\n",
+  // } = options;
+  // const { messageStart = "<|im_start|>", messageEnd = "<|im_end|>" } = options;
+  const { messageStart, afterCharPostfix, messageEnd } = messageTemplate;
 
   return messages
     .map((message, i) => {
@@ -35,12 +98,12 @@ export const chatMessagesToPromptTextsChatML = ({
       if (i === messages.length - 1) {
         return {
           role: message.role,
-          text: `${messageStart}${author}\n${renderedText}`,
+          text: `${messageStart}${author}${afterCharPostfix}${renderedText}`,
         };
       }
       return {
         role: message.role,
-        text: `${messageStart}${author}\n${renderedText}${messageEnd}`,
+        text: `${messageStart}${author}${afterCharPostfix}${renderedText}${messageEnd}`,
       };
     })
     .filter(isDefined);

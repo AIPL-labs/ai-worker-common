@@ -28,10 +28,11 @@ export declare const Chats: {
     }) => import("..").ChatMessage[];
     DEFAULT_STOP: string[];
     DEFAULT_STOP_AFTER: never[];
-    chatMessagesToPromptTextsChatML: ({ messages, characters, facts, }: {
+    chatMessagesToPromptTextsChatML: ({ messages, characters, facts, messageTemplate, }: {
         characters: Record<string, import("..").AppCharacter | undefined>;
         messages: import("..").ChatMessage[];
         facts?: Record<string, string | undefined> | undefined;
+        messageTemplate?: import("./chatMessagesToPromptTextsChatML").ChatMessageTemplate | undefined;
     }) => import("./chatMessagesToPromptTextsChatML").PromptText[];
     chatMessageToText: (message: import("..").ChatMessage) => string;
 };

@@ -1,14 +1,13 @@
-import {
-  characterToChatSystemMessages,
-} from "./characterToChatSystemMessages";
-import { DEFAULT_MES_EXAMPLE } from "./DEFAULT_MES_EXAMPLE";
+import { characterToChatSystemMessages } from "./characterToChatSystemMessages";
+import { DEFAULT_MES_EXAMPLE } from "../ai/prompt/DEFAULT_MES_EXAMPLE";
 import { createCardSystemMessage } from "./createCardSystemMessage";
 import { createTavernCard } from "./createTavernCard";
-import { renderCardText } from "./renderCardText";
+import { renderTemplateText } from "../ai/prompt/renderTemplateText";
 
 export const AiCharacters = {
   characterToChatSystemMessages,
-  renderCardText,
+  /** @deprecated @see Prompts */
+  renderCardText: renderTemplateText,
   createCardSystemMessage,
   createTavernCard,
   DEFAULT_MES_EXAMPLE,

@@ -1,6 +1,6 @@
 import { isDefined } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
-import { renderCardText } from "./renderCardText";
+import { renderTemplateText } from "../ai/prompt/renderTemplateText";
 
 export const createCardSystemMessage = ({
   systemName: systemName,
@@ -16,7 +16,9 @@ export const createCardSystemMessage = ({
   if (text.trim().length === 0) {
     return undefined;
   }
-  const renderedTitle = renderCardText(title, facts, {skipNotFound: true});
+  const renderedTitle = renderTemplateText(title, facts, {
+    skipNotFound: true,
+  });
   const ms = AppObjects.create("chat-message", {
     role: "system",
     name: systemName,
@@ -24,7 +26,7 @@ export const createCardSystemMessage = ({
       type: "text",
       parts: [
         renderedTitle ? `# ${renderedTitle}:\n` : undefined,
-        renderCardText(text, facts, {skipNotFound: true}),
+        renderTemplateText(text, facts, { skipNotFound: true }),
       ].filter(isDefined),
     },
   });

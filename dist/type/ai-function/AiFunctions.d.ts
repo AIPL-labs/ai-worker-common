@@ -13,6 +13,7 @@ export type AiFunctionDescription = {
     usage: string;
     params?: AiFunctionParam | AiFunctionParam[];
     direction?: string;
+    messageExample?: string;
 };
 export type AssistedEditorCommandProps = {
     type: string;

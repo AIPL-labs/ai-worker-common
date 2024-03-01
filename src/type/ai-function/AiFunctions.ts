@@ -16,6 +16,7 @@ export type AiFunctionDescription = {
   usage: string; // function for {usage}
   params?: AiFunctionParam | AiFunctionParam[];
   direction?: string;
+  messageExample?: string;
 };
 
 export type AssistedEditorCommandProps = {

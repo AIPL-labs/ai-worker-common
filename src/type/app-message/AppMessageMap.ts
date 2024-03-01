@@ -39,9 +39,13 @@ export type AppMessageMap = {
   access: string;
   ping: string;
   abort: string; // abortId
-  error: string;
+  // error: string;
   toast: string;
-  log: string;
+  log: {
+    message?: string;
+    extra?: unknown;
+    level?: "info" | "debug" | "error" | "trace";
+  };
   "appInterface:update": {
     ttsEnabled: boolean;
   };
@@ -125,6 +129,8 @@ export type AppMessageMap = {
   "user:delete": string | string[];
   "user:groupAdd": string | string[];
   "user:groupRemove": string | string[];
+  "user:changePassword": { userId: string; password: string };
+
   "function:call": AiFunctionCall;
   "message:chunk": MessageChunk;
 };
