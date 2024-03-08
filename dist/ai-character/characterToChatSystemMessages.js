@@ -4,7 +4,7 @@ import { Prompts } from "../ai/prompt/Prompts";
 import { textToChatMessageExampleText } from "../ai/prompt/textToChatMessageExampleText";
 import { createCardSystemMessage } from "./createCardSystemMessage";
 import { AI_FUNCTION_PREFIX } from "../ai-function/AI_FUNCTION_TOKEN";
-import { DEFAULT_CHAT_MESSAGE_TEMPLATE, } from "../chat/chatMessagesToPromptTextsChatML";
+import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 const trimSmallTextToUndefined = (text) => {
     if (!text) {
         return undefined;

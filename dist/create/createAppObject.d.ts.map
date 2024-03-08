@@ -1,1 +1,0 @@
-{"version":3,"file":"createAppObject.d.ts","sourceRoot":"","sources":["../../src/create/createAppObject.ts"],"names":[],"mappings":"AAAA,OAAO,EACL,aAAa,EACb,SAAS,EACT,oBAAoB,EACrB,MAAM,uBAAuB,CAAC;AAG/B,MAAM,MAAM,gBAAgB,CAAC,CAAC,SAAS,aAAa,IAAI,CACtD,KAAK,EAAE,OAAO,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,KACzB,oBAAoB,CAAC,CAAC,CAAC,CAAC;AAE7B,eAAO,MAAM,eAAe,yIAS3B,CAAC"}

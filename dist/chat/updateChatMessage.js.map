@@ -1,1 +1,0 @@
-{"version":3,"file":"updateChatMessage.js","sourceRoot":"","sources":["../../src/chat/updateChatMessage.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,iBAAiB,EAAE,MAAM,uCAAuC,CAAC;AAE1E,MAAM,CAAC,MAAM,iBAAiB,GAAG,CAC/B,IAAU,EACV,SAAiB,EACjB,OAAuC,EACvC,EAAE;IACF,OAAO,iBAAiB,CAAC,0BAA0B,CACjD,IAAI,CAAC,YAAY,EACjB,SAAS,EACT,OAAO,CACR,CAAC;AACJ,CAAC,CAAC"}

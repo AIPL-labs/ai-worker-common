@@ -1,4 +1,4 @@
-import { ChatMessageTemplate } from "../chat/chatMessagesToPromptTextsChatML";
+import { ChatMessageTemplate } from "chat/ChatMessageTemplate";
 import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 export declare const createAiFunctionPromptText: ({ aiName, userName, functions, messageTemplate: messageTemplate, }: {
     functions: AiFunctionDescription[];

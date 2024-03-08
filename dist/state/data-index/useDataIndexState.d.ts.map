@@ -1,1 +1,0 @@
-{"version":3,"file":"useDataIndexState.d.ts","sourceRoot":"","sources":["../../../src/state/data-index/useDataIndexState.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAC;AACrD,OAAO,EAAE,SAAS,EAAE,MAAM,iCAAiC,CAAC;AAI5D,eAAO,MAAM,iBAAiB,4BACxB,MAAM,YACD,QAAQ;IAAE,gBAAgB,EAAE,OAAO,CAAA;CAAE,CAAC,6BAchD,CAAC"}

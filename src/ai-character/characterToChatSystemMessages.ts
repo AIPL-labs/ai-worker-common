@@ -7,10 +7,8 @@ import { AppCharacter } from "../type/app-character/AppCharacter";
 import { ChatMessage } from "../type/chat-message/ChatMessage";
 import { createCardSystemMessage } from "./createCardSystemMessage";
 import { AI_FUNCTION_PREFIX } from "../ai-function/AI_FUNCTION_TOKEN";
-import {
-  ChatMessageTemplate,
-  DEFAULT_CHAT_MESSAGE_TEMPLATE,
-} from "../chat/chatMessagesToPromptTextsChatML";
+import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
+import { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
 
 const trimSmallTextToUndefined = (text: string | undefined) => {
   if (!text) {

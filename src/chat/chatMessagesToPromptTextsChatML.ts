@@ -1,98 +1,67 @@
 import { isDefined } from "@mjtdev/engine";
+import { Prompts } from "../ai/prompt/Prompts";
+import { Aipls } from "../aipl/Aipls";
+import { AiplContext } from "../aipl/runtime/AiplContext";
 import { AppCharacter } from "../type/app-character/AppCharacter";
 import { ChatMessage } from "../type/chat-message/ChatMessage";
+import { ChatMessageTemplate } from "./ChatMessageTemplate";
+import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "./DEFAULT_CHAT_MESSAGE_TEMPLATE";
+import { PromptText } from "./PromptText";
 import { chatMessageToText } from "./chatMessageToText";
-import { AiCharacters } from "../ai-character/AiCharacters";
 
-export type PromptText = {
-  text: string;
-  role: "user" | "system" | "assistant";
+export const renderAiplProgramText = (
+  programText: string,
+  context: AiplContext
+) => {
+  try {
+    const program = Aipls.tryParseAipl(programText);
+    // if (!program.status) {
+    //   context.logger("Error parsing AIPL text", { program, context });
+    //   return Prompts.renderTemplateText(programText, context.state);
+    // }
+    const updatedContext = Aipls.evaluateAiplProgram(context)(program);
+    return updatedContext.texts.join("");
+  } catch (error) {
+    context.error(error);
+    // context.logger("Error evaluating AIPL program", { program, context });
+    return Prompts.renderTemplateText(programText, context.state);
+  }
 };
-
-export type ChatMessageTemplate = {
-  messageStart: string;
-  messageEnd: string;
-  afterCharPostfix: string;
-};
-
-export const CHAT_ML_TEMPLATE: ChatMessageTemplate = {
-  messageStart: "<|im_start|>",
-  messageEnd: "<|im_end|>",
-  afterCharPostfix: "\n",
-};
-
-export const OPENCHAT_TEMPLATE: ChatMessageTemplate = {
-  messageStart: "GPT4 Correct ",
-  afterCharPostfix: ": ",
-  messageEnd: "<|end_of_turn|>",
-};
-// export const OPENCHAT_TEMPLATE: ChatMessageTemplate = {
-//   messageStart: "<|im_start|>",
-//   afterCharPostfix: "\n",
-//   messageEnd: "<|end_of_turn|>",
-// };
-export const PLAY_TEMPLATE: ChatMessageTemplate = {
-  // messageStart: "<|im_start|>",
-  // messageStart: "[INST]",
-  messageStart: "📩",
-  // messageStart: "",
-  // messageStart: "🟢",
-  // messageStart: "💬",
-  // messageStart: "✉️",
-  afterCharPostfix: "\n",
-  // afterCharPostfix: ": ",
-  // messageEnd: "<|end_of_turn|>",
-  // messageEnd: "<|/s|>",
-  // messageEnd: "<|end_of_turn|>",
-  // messageEnd: "</s>",
-  // messageEnd: "[/INST]",
-  // messageEnd: "<|end_of_turn|>",
-  messageEnd: "🛑",
-};
-
-const CHAT_GLM3_TEMPlATE: ChatMessageTemplate = {
-  messageStart: "<|",
-  afterCharPostfix: "|>",
-  messageEnd: "",
-};
-const CHAT_GLM3_MOD_TEMPlATE: ChatMessageTemplate = {
-  ...CHAT_GLM3_TEMPlATE,
-  messageEnd: "<|end_of_turn|>",
-};
-
-export const DEFAULT_CHAT_MESSAGE_TEMPLATE = CHAT_ML_TEMPLATE;
-// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = OPENCHAT_TEMPLATE;
-// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = PLAY_TEMPLATE;
-// export const DEFAULT_CHAT_MESSAGE_TEMPLATE = CHAT_GLM3_MOD_TEMPlATE;
 
 export const chatMessagesToPromptTextsChatML = ({
   messages,
   characters,
-  facts = {},
+  // facts = {},
+  aiplContext,
   messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE,
 }: {
   characters: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
-  facts?: Record<string, string | undefined>;
+  // facts?: Record<string, string | undefined>;
   messageTemplate?: ChatMessageTemplate;
+  aiplContext: AiplContext;
 }): PromptText[] => {
-  // const {
-  //   messageStart = "<|im_start|>",
-  //   messageEnd = "<|im_end|>",
-  //   afterCharPostfix = "\n",
-  // } = options;
-  // const { messageStart = "<|im_start|>", messageEnd = "<|im_end|>" } = options;
   const { messageStart, afterCharPostfix, messageEnd } = messageTemplate;
-
+  // const aiplState = {
+  //   assistant: aiCharacter?.card.data.name,
+  //   user: userCharacter?.card.data.name,
+  //   char: character.card.data.name,
+  //   ...facts,
+  // };
   return messages
     .map((message, i) => {
       const characterName =
         characters[message.characterId ?? ""]?.card.data.name;
       const author = characterName ?? message.role;
       const rawText = chatMessageToText(message);
+      const updatedState = { ...aiplContext.state, char: characterName };
       const renderedText =
         message.role === "system"
-          ? AiCharacters.renderCardText(rawText, facts)
+          ? // ? Prompts.renderTemplateText(rawText, facts)
+            renderAiplProgramText(rawText, {
+              ...aiplContext,
+              state: updatedState,
+            })
           : rawText;
 
       if (i === messages.length - 1) {

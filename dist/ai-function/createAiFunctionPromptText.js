@@ -1,7 +1,7 @@
 import { Objects, isDefined } from "@mjtdev/engine";
 import { renderTemplateText } from "../ai/prompt/renderTemplateText";
-import { DEFAULT_CHAT_MESSAGE_TEMPLATE, } from "../chat/chatMessagesToPromptTextsChatML";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
+import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 export const createAiFunctionPromptText = ({ aiName, userName, functions, messageTemplate: messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
     //   const messageExample = `<|im_start|>${userName}
     // open the garage door named bay one<|im_end|>

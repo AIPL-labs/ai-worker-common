@@ -1,4 +1,4 @@
-import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "./chatMessagesToPromptTextsChatML";
+import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "./DEFAULT_CHAT_MESSAGE_TEMPLATE";
 // export const DEFAULT_STOP = ["<|im_start>", "<|im_end|>"];
 export const DEFAULT_STOP = [
     "<|im_start>",

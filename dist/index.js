@@ -23,6 +23,7 @@ export * from "./type/chat/Chat";
 export * from "./type/chat/ChatContent";
 export * from "./type/chat/ChatImageContent";
 export * from "./type/chat/ChatTextContent";
+export * from "./chat/PromptText";
 // chat-message
 export * from "./type/chat-message/ChatMessage";
 export * from "./type/chat-message/ChatRole";
@@ -94,4 +95,7 @@ export * from "./type/asr/Asrs";
 export * from "./type/app-report/AppReport";
 // AIPL
 export * from "./aipl/Aipls";
+export * from "./aipl/AiplAstSpec";
+// prompts
+export * from "./ai/prompt/Prompts";
 //# sourceMappingURL=index.js.map

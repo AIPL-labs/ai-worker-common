@@ -7,7 +7,7 @@ export declare const AiCharacters: {
             char: string | undefined;
             user: string | undefined;
         };
-        messageTemplate?: import("../chat/chatMessagesToPromptTextsChatML").ChatMessageTemplate | undefined;
+        messageTemplate?: import("../chat/ChatMessageTemplate").ChatMessageTemplate | undefined;
     }) => import("..").ChatMessage[];
     /** @deprecated @see Prompts */
     renderCardText: (template: string | undefined, facts: Record<string, string | undefined>, options?: Partial<{

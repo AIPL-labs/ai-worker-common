@@ -39,6 +39,10 @@ export type AppMessageMap = {
         ttsEnabled: boolean;
     };
     "return:dataObject": DataObject;
+    "chat:debug": {
+        prompt: string;
+        facts: Record<string, string | undefined>;
+    };
     "chat:phone": {
         phoneCall: Partial<PhoneCall>;
         chat: Partial<Chat>;

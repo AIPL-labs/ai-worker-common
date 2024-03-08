@@ -1,1 +1,0 @@
-{"version":3,"file":"Embedding.d.ts","sourceRoot":"","sources":["../../../src/type/corpus/Embedding.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,oBAAoB,CAAC;AAChD,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AAEtD,MAAM,MAAM,SAAS,GAAG,UAAU,GAAG;IAAE,OAAO,EAAE,gBAAgB,EAAE,CAAA;CAAE,CAAC"}

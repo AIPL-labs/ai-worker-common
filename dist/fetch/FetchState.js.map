@@ -1,1 +1,0 @@
-{"version":3,"file":"FetchState.js","sourceRoot":"","sources":["../../src/fetch/FetchState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,gBAAgB,CAAC;AAE7C,MAAM,CAAC,MAAM,CAAC,aAAa,EAAE,gBAAgB,EAAE,aAAa,CAAC,GAAG,WAAW,CAAC;IAC1E,WAAW,EAAE,SAA+B;IAC5C,SAAS,EAAE,SAA+B;CAC3C,CAAC,CAAC"}

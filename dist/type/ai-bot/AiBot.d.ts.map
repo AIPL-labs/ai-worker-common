@@ -1,1 +1,0 @@
-{"version":3,"file":"AiBot.d.ts","sourceRoot":"","sources":["../../../src/type/ai-bot/AiBot.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,KAAK,GAAG;IAClB,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,MAAM,EAAE,CAAC;IAClB,aAAa,CAAC,EAAE,MAAM,CAAC;IACvB,eAAe,CAAC,EAAE,MAAM,CAAC;CAC1B,CAAC"}

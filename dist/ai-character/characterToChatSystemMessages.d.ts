@@ -1,7 +1,7 @@
 import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 import { AppCharacter } from "../type/app-character/AppCharacter";
 import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { ChatMessageTemplate } from "../chat/chatMessagesToPromptTextsChatML";
+import { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
 export declare const characterToChatSystemMessages: ({ systemName, character, facts, aiFunctions, messageTemplate, }: {
     systemName: string;
     character: AppCharacter;

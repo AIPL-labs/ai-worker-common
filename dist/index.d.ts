@@ -18,6 +18,7 @@ export * from "./type/chat/Chat";
 export * from "./type/chat/ChatContent";
 export * from "./type/chat/ChatImageContent";
 export * from "./type/chat/ChatTextContent";
+export * from "./chat/PromptText";
 export * from "./type/chat-message/ChatMessage";
 export * from "./type/chat-message/ChatRole";
 export * from "./type/app-character/AppCharacter";
@@ -60,4 +61,6 @@ export * from "./type/asr/AsrTypes";
 export * from "./type/asr/Asrs";
 export * from "./type/app-report/AppReport";
 export * from "./aipl/Aipls";
+export * from "./aipl/AiplAstSpec";
+export * from "./ai/prompt/Prompts";
 //# sourceMappingURL=index.d.ts.map

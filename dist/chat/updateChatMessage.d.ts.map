@@ -1,1 +1,0 @@
-{"version":3,"file":"updateChatMessage.d.ts","sourceRoot":"","sources":["../../src/chat/updateChatMessage.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,kCAAkC,CAAC;AAC/D,OAAO,EAAE,IAAI,EAAE,MAAM,mBAAmB,CAAC;AAGzC,eAAO,MAAM,iBAAiB,SACtB,IAAI,aACC,MAAM,qBACE,WAAW,KAAK,IAAI,SAOxC,CAAC"}

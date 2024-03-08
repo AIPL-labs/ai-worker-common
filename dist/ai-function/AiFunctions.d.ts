@@ -3,7 +3,7 @@ export declare const AiFunctions: {
         functions: import("..").AiFunctionDescription[];
         aiName: string;
         userName: string;
-        messageTemplate?: import("../chat/chatMessagesToPromptTextsChatML").ChatMessageTemplate | undefined;
+        messageTemplate?: import("../chat/ChatMessageTemplate").ChatMessageTemplate | undefined;
     }) => string | undefined;
     parseAiFunctionText: (text: string, options?: Partial<{
         aiFunctionPrefix: string;

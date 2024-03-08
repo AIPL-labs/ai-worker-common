@@ -1,1 +1,0 @@
-{"version":3,"file":"EmbedRequest.d.ts","sourceRoot":"","sources":["../../../src/type/vector/EmbedRequest.ts"],"names":[],"mappings":"AAEA,MAAM,MAAM,YAAY,GAAG;IACzB,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,MAAM,EAAE,MAAM,GAAG,MAAM,EAAE,CAAC;IAC1B,QAAQ,EAAE,MAAM,CAAC;IACjB,SAAS,EAAE,MAAM,CAAC;IAClB,QAAQ,CAAC,EAAE,MAAM,CAAC;CACnB,CAAC"}
