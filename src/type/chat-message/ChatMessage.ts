@@ -1,3 +1,4 @@
+import { AiplNode } from "../../aipl/AiplAstSpec";
 import { AiFunctionCall } from "../ai-function/AiFunctions";
 import { ChatContent } from "../chat/ChatContent";
 import { DataObject } from "../data/DataObject";
@@ -18,10 +19,13 @@ export type ChatMessage = DataObject & {
   status: string;
 };
 
-export type ChatData = DataObject & {
+export type ChatStateEntry = DataObject & {
   type?: string;
-  name?: string;
-  values?: Record<string, string>;
+  namespace?: string;
+  key?: string;
+  value?: string;
+  node?: AiplNode;
+  contextName?: string
 };
 
 export type FunctionCallResult = DataObject & {

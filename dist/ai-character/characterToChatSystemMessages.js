@@ -1,5 +1,4 @@
 import { isDefined } from "@mjtdev/engine";
-import { DEFAULT_MES_EXAMPLE } from "../ai/prompt/DEFAULT_MES_EXAMPLE";
 import { Prompts } from "../ai/prompt/Prompts";
 import { textToChatMessageExampleText } from "../ai/prompt/textToChatMessageExampleText";
 import { createCardSystemMessage } from "./createCardSystemMessage";
@@ -11,20 +10,13 @@ const trimSmallTextToUndefined = (text) => {
     }
     return text.trim().length < 10 ? undefined : text;
 };
-export const characterToChatSystemMessages = ({ systemName, character, facts, aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
-    const { 
-    // CHATML
-    // startChatLinePrefix = "<|im_start|>",
-    // afterCharPostfix = "\n",
-    // endChatLinePostfix = "<|im_end|>",
-    // openchat
-    messageStart, messageEnd, 
-    // startChatLinePrefix,
-    afterCharPostfix,
-    // endChatLinePostfix,
-     } = messageTemplate;
-    const cardMessageExample = trimSmallTextToUndefined(character.card.data.mes_example) ??
-        DEFAULT_MES_EXAMPLE;
+export const characterToChatSystemMessages = ({ systemName, character, fieldNameToAiplContext, 
+// aiplContext,
+// facts,
+aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
+    const { messageStart, messageEnd, afterCharPostfix } = messageTemplate;
+    const cardMessageExample = trimSmallTextToUndefined(character.card.data.mes_example);
+    // ??  DEFAULT_MES_EXAMPLE;
     const functionMessageExample = aiFunctions
         .map((func) => Prompts.renderTemplateText(Prompts.textToChatMessageExampleText({
         text: func.messageExample,
@@ -38,38 +30,54 @@ export const characterToChatSystemMessages = ({ systemName, character, facts, ai
         .join("\n");
     return [
         createCardSystemMessage({
+            // cardFieldName: "description",
             systemName,
-            title: "{{char}} Description",
+            title: "{char} Description",
             text: character.card.data.description,
-            facts,
+            aiplContext: fieldNameToAiplContext("description"),
+            // facts,
         }),
         createCardSystemMessage({
+            // cardFieldName: "personality",
             systemName,
-            title: "{{char}} Personality",
+            title: "{char} Personality",
             text: character.card.data.personality,
-            facts,
+            // aiplContext,
+            aiplContext: fieldNameToAiplContext("personality"),
+            // facts,
         }),
         createCardSystemMessage({
+            // cardFieldName: "mes_example",
             systemName,
-            title: "Examples of what {{char}} talks like:",
+            title: "Examples of what {char} talks like:",
             text: textToChatMessageExampleText({
-                text: [cardMessageExample, functionMessageExample].join("\n"),
+                text: [cardMessageExample, functionMessageExample]
+                    .filter(isDefined)
+                    .join("\n"),
                 afterCharPostfix,
                 endChatLinePostfix: messageEnd,
                 startChatLinePrefix: messageStart,
             }),
-            facts,
+            aiplContext: fieldNameToAiplContext("mes_example"),
+            // aiplContext,
+            // facts,
         }),
         createCardSystemMessage({
+            // cardFieldName: "system_prompt",
             systemName,
             text: character.card.data.system_prompt,
-            facts,
+            // aiplContext,
+            aiplContext: fieldNameToAiplContext("system_prompt"),
+            // facts,
         }),
         createCardSystemMessage({
+            // cardFieldName: "scenario",
             systemName,
             title: "Scenerio",
             text: character.card.data.scenario,
-            facts,
+            // aiplContext,
+            aiplContext: fieldNameToAiplContext("scenario"),
+            // facts,
         }),
     ].filter(isDefined);
 };

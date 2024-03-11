@@ -28,13 +28,13 @@ export declare const Chats: {
     }) => import("..").ChatMessage[];
     DEFAULT_STOP: string[];
     DEFAULT_STOP_AFTER: never[];
-    chatMessagesToPromptTextsChatML: ({ messages, characters, aiplContext, messageTemplate, }: {
+    chatMessagesToPromptTextsChatML: ({ messages, characters, messageTemplate, }: {
         characters: Record<string, import("..").AppCharacter | undefined>;
         messages: import("..").ChatMessage[];
         messageTemplate?: import("./ChatMessageTemplate").ChatMessageTemplate | undefined;
-        aiplContext: import("../aipl/runtime/AiplContext").AiplContext;
     }) => import("./PromptText").PromptText[];
     chatMessageToText: (message: import("..").ChatMessage) => string;
-    chatDatasToFacts: (chatDatas: import("..").ChatData[]) => Record<string, string>;
+    chatStateEntriesToFacts: (chatDatas: import("..").ChatStateEntry[]) => Record<string, string | undefined>;
+    chatStateEntriesToDecoratedFacts: (chatDatas: import("..").ChatStateEntry[]) => Record<string, import("../aipl/runtime/AiplContext").AiplDecoratedValue<string | undefined>>;
 };
 //# sourceMappingURL=Chats.d.ts.map

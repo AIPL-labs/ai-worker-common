@@ -12,6 +12,6 @@ export type AppReportFieldQuestion = {
 };
 export type AppReportFieldAnswer = {
     name: string;
-    answer: string;
+    answer: string | undefined;
 };
 //# sourceMappingURL=AppReport.d.ts.map

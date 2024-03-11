@@ -23,8 +23,6 @@ export const evaluateNodeToString: AiplNodePrimitiveEvaluator<
       return buffer.join("");
     }
     case "templateVariable": {
-      node.type;
-      // context.logger("templateVariable", { node, state: context.state });
       return context.state[node.identifier.value] ?? node.defaultValue ?? "";
     }
   }

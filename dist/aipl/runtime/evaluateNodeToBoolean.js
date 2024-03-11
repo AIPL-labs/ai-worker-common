@@ -1,13 +1,14 @@
 import { evaluateNodeToNumber } from "./evaluateNodeToNumber";
 import { evaluateNodeToString } from "./evaluateNodeToString";
 export const evaluateNodeToBoolean = (context) => (node) => {
-    const trace = (message) => {
-        context.logger(`evaluateNodeToBoolean ${node.loc.start.offset} ${node.type} ${message}`, { node });
+    const trace = (message, extra) => {
+        context.logger(`evaluateNodeToBoolean ${node.loc.start.offset} ${node.type} ${message}`, extra);
     };
     trace("start");
     switch (node.type) {
         case "stringLiteral": {
-            return context.softFunctionToBoolean(evaluateNodeToString(context)(node.value));
+            const value = context.softFunctionToBoolean(evaluateNodeToString(context)(node.value), node);
+            return value;
         }
         case "expr": {
             return evaluateNodeToBoolean(context)(node.value);
@@ -53,7 +54,7 @@ export const evaluateNodeToBoolean = (context) => (node) => {
                     const leftValue = evaluateNodeToNumber(context)(left);
                     const rightValue = evaluateNodeToNumber(context)(right);
                     const result = leftValue > rightValue;
-                    context.logger("evaluateNodeToBoolean >", {
+                    trace("evaluateNodeToBoolean >", {
                         leftValue,
                         rightValue,
                         result,
@@ -88,7 +89,7 @@ export const evaluateNodeToBoolean = (context) => (node) => {
             if (!stateValue) {
                 return false;
             }
-            return context.stringToBoolean(stateValue);
+            return context.stringToBoolean(stateValue, node);
         }
         // case "function": {
         //   trace("function");

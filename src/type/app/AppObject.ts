@@ -1,24 +1,23 @@
 import { TextExtraction } from "type/corpus/TextExtraction";
+import { AccessPoint } from "../access/AccessPoint";
+import { AiFunctionCall } from "../ai-function/AiFunctions";
 import { AppCharacter } from "../app-character/AppCharacter";
+import { AppInterface } from "../app-interface/AppInterface";
 import {
-  ChatData,
   ChatMessage,
+  ChatStateEntry,
   FunctionCallResult,
 } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
 import { Corpus, CorpusDocument } from "../corpus/Corpus";
 import { DataIndex } from "../data-index/DataIndex";
+import { AppGroup } from "../group/AppGroup";
+import { PhoneCall } from "../phone/PhoneCall";
+import { IngestResult } from "../rest/IngestRequest";
+import { AccessPointTheme } from "../theme/AccessPointTheme";
+import { Thought } from "../thought/Thought";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
-import { IngestResult } from "../rest/IngestRequest";
-import { PhoneCall } from "../phone/PhoneCall";
-import { Thought } from "../thought/Thought";
-import { AccessPoint } from "../access/AccessPoint";
-import { AppInterface } from "../app-interface/AppInterface";
-import { DataObject } from "../data/DataObject";
-import { AccessPointTheme } from "../theme/AccessPointTheme";
-import { AppGroup } from "../group/AppGroup";
-import { AiFunctionCall } from "../ai-function/AiFunctions";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -41,7 +40,7 @@ export type AppObjectTypeMap = {
   "app-group": AppGroup;
   "function-call": AiFunctionCall;
   "function-call-result": FunctionCallResult;
-  "chat-data": ChatData;
+  "chat-state-entry": ChatStateEntry;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -69,7 +68,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "app-interface",
   "app-group",
   "function-call",
-  "chat-data",
+  "chat-state-entry",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

@@ -18,7 +18,7 @@ export const APP_OBJECT_TYPES = [
     "app-interface",
     "app-group",
     "function-call",
-    "chat-data",
+    "chat-state-entry",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

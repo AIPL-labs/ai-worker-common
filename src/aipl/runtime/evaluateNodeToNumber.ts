@@ -23,7 +23,8 @@ export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<
   switch (node.type) {
     case "stringLiteral": {
       const softNumber = context.softFunctionToNumber(
-        evaluateNodeToString(context)(node.value)
+        evaluateNodeToString(context)(node.value),
+        node
       );
       trace(`stringLiteral softNumber: ${softNumber}`);
       return softNumber;
@@ -33,7 +34,7 @@ export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<
     }
     case "binaryExpr": {
       // TODO compound expression numeric conversion
-      context.logger("evaluateNodeToNumber: UNEXPECTED compoundExpr", { node });
+      context.logger("evaluateNodeToNumber: UNEXPECTED binaryExpr", { node });
       return 0;
     }
     // case "compoundExpr": {
@@ -90,7 +91,7 @@ export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<
       if (!stateValue) {
         return 0;
       }
-      return context.stringToNumber(stateValue);
+      return context.stringToNumber(stateValue, node);
     }
     // case "function": {
     //   return context.softFunctionToNumber(node);

@@ -12,6 +12,7 @@ export type AppTavernCard = TavernCardV2<Partial<{
     }>;
     functions: string[];
 }>>;
+export type AppCharacterFieldName = keyof AppCharacter["card"]["data"];
 export type AppCharacter = {
     id: string;
     card: AppTavernCard;

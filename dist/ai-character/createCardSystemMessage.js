@@ -1,22 +1,20 @@
 import { isDefined } from "@mjtdev/engine";
+import { Aipls } from "../aipl/Aipls";
 import { AppObjects } from "../app-object/AppObjects";
-import { renderTemplateText } from "../ai/prompt/renderTemplateText";
-export const createCardSystemMessage = ({ systemName: systemName, title, text = "", facts, }) => {
+export const createCardSystemMessage = ({ systemName, title, text = "", aiplContext, }) => {
     if (text.trim().length === 0) {
         return undefined;
     }
-    const renderedTitle = renderTemplateText(title, facts, {
-        skipNotFound: true,
-    });
+    const fullText = [title ? `# ${title}:` : undefined, text]
+        .filter(isDefined)
+        .join("\n");
+    const renderedText = Aipls.renderAiplProgramText(fullText, aiplContext);
     const ms = AppObjects.create("chat-message", {
         role: "system",
         name: systemName,
         content: {
             type: "text",
-            parts: [
-                renderedTitle ? `# ${renderedTitle}:\n` : undefined,
-                renderTemplateText(text, facts, { skipNotFound: true }),
-            ].filter(isDefined),
+            parts: [renderedText].filter(isDefined),
         },
     });
     return ms;

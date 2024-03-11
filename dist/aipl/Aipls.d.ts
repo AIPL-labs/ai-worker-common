@@ -12,30 +12,13 @@ export declare const Aipls: {
             value: string;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
-            type: "assignment";
-            question: {
-                type: "stringLiteral";
-                value: {
-                    type: "template";
-                    value: (string | {
-                        type: "templateVariable";
-                        identifier: {
-                            type: "identifier";
-                            value: string;
-                            loc: import("./AiplAstSpec").AiplLoc;
-                        };
-                        defaultValue?: string | undefined;
-                        loc: import("./AiplAstSpec").AiplLoc;
-                    })[];
-                    loc: import("./AiplAstSpec").AiplLoc;
-                };
-                loc: import("./AiplAstSpec").AiplLoc;
-            };
+            type: "templateVariable";
             identifier: {
                 type: "identifier";
                 value: string;
                 loc: import("./AiplAstSpec").AiplLoc;
             };
+            defaultValue?: string | undefined;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
             type: "conditionalAssignment";
@@ -122,13 +105,30 @@ export declare const Aipls: {
             };
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
-            type: "templateVariable";
+            type: "assignment";
+            question: {
+                type: "stringLiteral";
+                value: {
+                    type: "template";
+                    value: (string | {
+                        type: "templateVariable";
+                        identifier: {
+                            type: "identifier";
+                            value: string;
+                            loc: import("./AiplAstSpec").AiplLoc;
+                        };
+                        defaultValue?: string | undefined;
+                        loc: import("./AiplAstSpec").AiplLoc;
+                    })[];
+                    loc: import("./AiplAstSpec").AiplLoc;
+                };
+                loc: import("./AiplAstSpec").AiplLoc;
+            };
             identifier: {
                 type: "identifier";
                 value: string;
                 loc: import("./AiplAstSpec").AiplLoc;
             };
-            defaultValue?: string | undefined;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
             type: "code";
@@ -206,30 +206,13 @@ export declare const Aipls: {
             value: string;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
-            type: "assignment";
-            question: {
-                type: "stringLiteral";
-                value: {
-                    type: "template";
-                    value: (string | {
-                        type: "templateVariable";
-                        identifier: {
-                            type: "identifier";
-                            value: string;
-                            loc: import("./AiplAstSpec").AiplLoc;
-                        };
-                        defaultValue?: string | undefined;
-                        loc: import("./AiplAstSpec").AiplLoc;
-                    })[];
-                    loc: import("./AiplAstSpec").AiplLoc;
-                };
-                loc: import("./AiplAstSpec").AiplLoc;
-            };
+            type: "templateVariable";
             identifier: {
                 type: "identifier";
                 value: string;
                 loc: import("./AiplAstSpec").AiplLoc;
             };
+            defaultValue?: string | undefined;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
             type: "conditionalAssignment";
@@ -316,13 +299,30 @@ export declare const Aipls: {
             };
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
-            type: "templateVariable";
+            type: "assignment";
+            question: {
+                type: "stringLiteral";
+                value: {
+                    type: "template";
+                    value: (string | {
+                        type: "templateVariable";
+                        identifier: {
+                            type: "identifier";
+                            value: string;
+                            loc: import("./AiplAstSpec").AiplLoc;
+                        };
+                        defaultValue?: string | undefined;
+                        loc: import("./AiplAstSpec").AiplLoc;
+                    })[];
+                    loc: import("./AiplAstSpec").AiplLoc;
+                };
+                loc: import("./AiplAstSpec").AiplLoc;
+            };
             identifier: {
                 type: "identifier";
                 value: string;
                 loc: import("./AiplAstSpec").AiplLoc;
             };
-            defaultValue?: string | undefined;
             loc: import("./AiplAstSpec").AiplLoc;
         } | {
             type: "code";
@@ -389,5 +389,6 @@ export declare const Aipls: {
         })[];
         loc: import("./AiplAstSpec").AiplLoc;
     }>;
+    renderAiplProgramText: (programText: string, context: import("./runtime/AiplContext").AiplContext) => string;
 };
 //# sourceMappingURL=Aipls.d.ts.map

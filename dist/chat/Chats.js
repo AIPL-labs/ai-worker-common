@@ -1,5 +1,6 @@
 import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
-import { chatDatasToFacts } from "./chatDatasToFacts";
+import { chatStateEntriesToFacts } from "./chatStateEntriesToFacts";
+import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
 import { chatMessageToText } from "./chatMessageToText";
 import { chatMessagesToPromptTextsChatML } from "./chatMessagesToPromptTextsChatML";
 import { createChat } from "./createChat";
@@ -13,6 +14,7 @@ export const Chats = {
     DEFAULT_STOP_AFTER,
     chatMessagesToPromptTextsChatML,
     chatMessageToText,
-    chatDatasToFacts,
+    chatStateEntriesToFacts,
+    chatStateEntriesToDecoratedFacts,
 };
 //# sourceMappingURL=Chats.js.map

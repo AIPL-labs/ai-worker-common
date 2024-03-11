@@ -1,16 +1,22 @@
-import { AiplAstSpec } from "../AiplAstSpec";
+import { AiplAstSpec, AiplNode } from "../AiplAstSpec";
 import { AiplState } from "aipl/AiplState";
+export type AiplDecoratedValue<T> = {
+    value: T;
+    node?: AiplNode;
+    contextName?: string;
+};
 export type AiplContext = {
+    name?: string;
     state: AiplState;
     texts: string[];
     assignAnswerToIdentifier: ({ question, identifier, }: {
         question: string;
         identifier: AiplAstSpec["identifier"];
     }) => void;
-    softFunctionToBoolean: (value: string) => boolean;
-    softFunctionToNumber: (value: string) => number;
-    stringToBoolean: (value: string) => boolean;
-    stringToNumber: (value: string) => number;
+    softFunctionToBoolean: (value: string, node: AiplNode) => boolean;
+    softFunctionToNumber: (value: string, node: AiplNode) => number;
+    stringToBoolean: (value: string, node: AiplNode) => boolean;
+    stringToNumber: (value: string, node: AiplNode) => number;
     logger: (message: string, ...extra: any[]) => void;
     error: (error: unknown) => void;
 };

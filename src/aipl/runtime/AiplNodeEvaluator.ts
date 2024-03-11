@@ -1,5 +1,5 @@
 import { AiplAstSpec, AiplNodeType } from "../AiplAstSpec";
-import { AiplContext } from "./AiplContext";
+import { AiplContext, AiplDecoratedValue } from "./AiplContext";
 
 export type AiplNodeEvaluator<T extends AiplNodeType> = (
   context: Readonly<AiplContext>

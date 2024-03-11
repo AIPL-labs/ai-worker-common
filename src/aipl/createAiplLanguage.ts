@@ -50,7 +50,7 @@ const numberParser = P.regexp(/[0-9]+/)
   .map((value) => Number(value))
   .map((value) => ({ type: "number", value } as const));
 
-const innerTemplateVariable = identifierParser.chain((identifier) =>
+const innerTemplateVariable = addLoc(identifierParser).chain((identifier) =>
   P.alt(
     P.string(":")
       .then(P.regexp(/[^}]+/))
@@ -70,23 +70,23 @@ const innerTemplateVariable = identifierParser.chain((identifier) =>
   )
 );
 
-const innerTemplateVariableParser = P.alt(
-  // P.seq(P.regex(/[^:]+/), P.string(":"), P.regex(/[^}]+/)),
-  P.seq(P.regex(/[^}]+/))
-).map((value) => {
-  if (value.length === 1) {
-    return {
-      type: "templateVariable",
-      identifier: value[0],
-      defaultText: undefined,
-    } as const;
-  }
-  // return {
-  //   type: "templateVariable",
-  //   identifier: value[0],
-  //   defaultText: value[1],
-  // } as const;
-});
+// const innerTemplateVariableParser = P.alt(
+//   // P.seq(P.regex(/[^:]+/), P.string(":"), P.regex(/[^}]+/)),
+//   P.seq(P.regex(/[^}]+/))
+// ).map((value) => {
+//   if (value.length === 1) {
+//     return {
+//       type: "templateVariable",
+//       identifier: value[0],
+//       defaultText: undefined,
+//     } as const;
+//   }
+//   // return {
+//   //   type: "templateVariable",
+//   //   identifier: value[0],
+//   //   defaultText: value[1],
+//   // } as const;
+// });
 
 const templateVariableParser = P.alt(
   P.seq(P.string("{"), innerTemplateVariable, P.string("}")),
@@ -190,7 +190,7 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
           P.optWhitespace,
-          operatorParser,
+          r.operator,
           P.optWhitespace,
           P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
           P.optWhitespace,

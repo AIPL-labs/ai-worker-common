@@ -16,6 +16,8 @@ export type AppTavernCard = TavernCardV2<
   }>
 >;
 
+export type AppCharacterFieldName = keyof AppCharacter["card"]["data"];
+
 export type AppCharacter = {
   id: string;
   card: AppTavernCard;

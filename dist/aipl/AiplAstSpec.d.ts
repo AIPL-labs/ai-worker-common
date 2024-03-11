@@ -15,6 +15,7 @@ export type AiplLoc = {
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
 export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
+export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]['type'];
 export type AiplAstSpec = {
     text: {
         type: "text";

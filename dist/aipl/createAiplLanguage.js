@@ -19,7 +19,7 @@ const textParser = P.regexp(/[^{}()]+/).map((value) => ({
 const numberParser = P.regexp(/[0-9]+/)
     .map((value) => Number(value))
     .map((value) => ({ type: "number", value }));
-const innerTemplateVariable = identifierParser.chain((identifier) => P.alt(P.string(":")
+const innerTemplateVariable = addLoc(identifierParser).chain((identifier) => P.alt(P.string(":")
     .then(P.regexp(/[^}]+/))
     .map((defaultValue) => ({
     type: "templateVariable",
@@ -30,22 +30,23 @@ const innerTemplateVariable = identifierParser.chain((identifier) => P.alt(P.str
     identifier,
     defaultText: undefined,
 })));
-const innerTemplateVariableParser = P.alt(
-// P.seq(P.regex(/[^:]+/), P.string(":"), P.regex(/[^}]+/)),
-P.seq(P.regex(/[^}]+/))).map((value) => {
-    if (value.length === 1) {
-        return {
-            type: "templateVariable",
-            identifier: value[0],
-            defaultText: undefined,
-        };
-    }
-    // return {
-    //   type: "templateVariable",
-    //   identifier: value[0],
-    //   defaultText: value[1],
-    // } as const;
-});
+// const innerTemplateVariableParser = P.alt(
+//   // P.seq(P.regex(/[^:]+/), P.string(":"), P.regex(/[^}]+/)),
+//   P.seq(P.regex(/[^}]+/))
+// ).map((value) => {
+//   if (value.length === 1) {
+//     return {
+//       type: "templateVariable",
+//       identifier: value[0],
+//       defaultText: undefined,
+//     } as const;
+//   }
+//   // return {
+//   //   type: "templateVariable",
+//   //   identifier: value[0],
+//   //   defaultText: value[1],
+//   // } as const;
+// });
 const templateVariableParser = P.alt(P.seq(P.string("{"), innerTemplateVariable, P.string("}")), P.seq(P.string("{{"), innerTemplateVariable, P.string("}}"))
 // P.string("{").then(innerTemplateVariable).skip(P.string("}")),
 // P.string("{{").then(innerTemplateVariable).skip(P.string("}}"))
@@ -82,7 +83,7 @@ export const createAiplLanguage = () => {
             question: value[2],
             identifier: value[6],
         }))),
-        binaryExpr: (r) => addLoc(P.seq(P.string("("), P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, operatorParser, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, P.string(")")).map((result) => ({
+        binaryExpr: (r) => addLoc(P.seq(P.string("("), P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, r.operator, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, P.string(")")).map((result) => ({
             type: "binaryExpr",
             left: result[2],
             op: result[4],

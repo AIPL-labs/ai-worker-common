@@ -12,19 +12,21 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
   | "stringLiteral",
   boolean
 > = (context) => (node) => {
-  const trace = (message: string) => {
+  const trace = (message: string, extra?: any) => {
     context.logger(
       `evaluateNodeToBoolean ${node.loc.start.offset} ${node.type} ${message}`,
-      { node }
+      extra
     );
   };
   trace("start");
 
   switch (node.type) {
     case "stringLiteral": {
-      return context.softFunctionToBoolean(
-        evaluateNodeToString(context)(node.value)
+      const value = context.softFunctionToBoolean(
+        evaluateNodeToString(context)(node.value),
+        node
       );
+      return value;
     }
     case "expr": {
       return evaluateNodeToBoolean(context)(node.value);
@@ -73,7 +75,7 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
           const leftValue = evaluateNodeToNumber(context)(left);
           const rightValue = evaluateNodeToNumber(context)(right);
           const result = leftValue > rightValue;
-          context.logger("evaluateNodeToBoolean >", {
+          trace("evaluateNodeToBoolean >", {
             leftValue,
             rightValue,
             result,
@@ -108,7 +110,7 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
       if (!stateValue) {
         return false;
       }
-      return context.stringToBoolean(stateValue);
+      return context.stringToBoolean(stateValue, node);
     }
     // case "function": {
     //   trace("function");

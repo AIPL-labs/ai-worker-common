@@ -1,5 +1,5 @@
-import { Objects } from "@mjtdev/engine";
-export const chatDatasToFacts = (chatDatas) => {
+import { isDefined } from "@mjtdev/engine";
+export const chatStateEntriesToFacts = (chatDatas) => {
     const currentState = {
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString(),
@@ -8,15 +8,16 @@ export const chatDatasToFacts = (chatDatas) => {
         return a.id.localeCompare(b.id);
     });
     for (const chatData of sorted) {
-        const { name, values } = chatData;
-        if (!name || !values || Objects.keys(values).length === 0) {
-            continue;
-        }
-        Objects.entries(values).forEach((entry) => {
-            const [key, value] = entry;
-            currentState[`${name.replaceAll(" ", "")}.${key.replaceAll(" ", "")}`] =
-                value;
-        });
+        const { namespace, key, value, node } = chatData;
+        currentState[[namespace, key].filter(isDefined).join(".")] = value;
+        // if (!namespace || !values || Objects.keys(values).length === 0) {
+        //   continue;
+        // }
+        // Objects.entries(values).forEach((entry) => {
+        //   const [key, value] = entry;
+        //   currentState[`${name.replaceAll(" ", "")}.${key.replaceAll(" ", "")}`] =
+        //     value;
+        // });
     }
     return currentState;
 };
