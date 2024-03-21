@@ -18,6 +18,7 @@ import { AccessPointTheme } from "../theme/AccessPointTheme";
 import { Thought } from "../thought/Thought";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
+import { AppWebsocket } from "../app-websocket/AppWebsocket";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -41,6 +42,7 @@ export type AppObjectTypeMap = {
   "function-call": AiFunctionCall;
   "function-call-result": FunctionCallResult;
   "chat-state-entry": ChatStateEntry;
+  "app-websocket": AppWebsocket;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
@@ -69,6 +71,7 @@ export const APP_OBJECT_TYPES: AppObjectType[] = [
   "app-group",
   "function-call",
   "chat-state-entry",
+  "app-websocket",
 ];
 
 export const isAppObjectType = (maybe: unknown): maybe is AppObjectType => {

@@ -5,6 +5,7 @@ import { createFunctionCallResult } from "../ai-function/createFunctionCallResul
 import { createAppGroup } from "../app-group/createAppGroup";
 import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppVoice } from "../app-voice/createAppVoice";
+import { createAppWebsocket } from "../app-websocket/createAppWebsocket";
 import { createChatMessage } from "../chat-message/createChatMessage";
 import { createChat } from "../chat/createChat";
 import { createChatStateEntry } from "../chat/createChatStateEntry";
@@ -36,5 +37,6 @@ export const APP_OBJECT_CREATORS = {
     "function-call": createAiFunctionCall,
     "function-call-result": createFunctionCallResult,
     "chat-state-entry": createChatStateEntry,
+    "app-websocket": createAppWebsocket,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

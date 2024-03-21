@@ -63,4 +63,5 @@ export * from "./type/app-report/AppReport";
 export * from "./aipl/Aipls";
 export * from "./aipl/AiplAstSpec";
 export * from "./ai/prompt/Prompts";
+export * from "./type/rest/ServiceInstanceInfo";
 //# sourceMappingURL=index.d.ts.map

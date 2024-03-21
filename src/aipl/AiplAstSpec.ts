@@ -21,7 +21,7 @@ export type AiplBooleanOp = "&" | "&&" | "|" | "||";
 export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
 
-export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]['type'];
+export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
 
 export type AiplAstSpec = {
   text: { type: "text"; value: string; loc: AiplLoc };
@@ -30,23 +30,58 @@ export type AiplAstSpec = {
     value: AiplAstSpec["template"];
     loc: AiplLoc;
   };
+
+  entry: {
+    type: "entry";
+    key: string;
+    op: ":" | "=";
+    value: AiplAstSpec["stringLiteral"];
+    loc: AiplLoc;
+  };
+
+  list: {
+    type: "list";
+    values: AiplAstSpec["entry"][];
+    loc: AiplLoc;
+  };
+
+  // urlParamList: {
+  //   type: "urlParamList";
+  //   values: AiplAstSpec["urlJsonEntry"];
+  // };
+
+  urlFunction: {
+    type: "urlFunction";
+    url: AiplAstSpec["url"];
+    args?: AiplAstSpec["list"];
+    loc: AiplLoc;
+  };
+
+  url: {
+    type: "url";
+    scheme: "http" | "https";
+    host: string;
+    path?: string;
+    query?: string;
+    loc: AiplLoc;
+  };
   number: { type: "number"; value: number; loc: AiplLoc };
   identifier: { type: "identifier"; value: string; loc: AiplLoc };
   operator: { type: "operator"; value: AiplOp; loc: AiplLoc };
   comment: { type: "comment"; value: string; loc: AiplLoc };
   assignment: {
     type: "assignment";
-    question: AiplAstSpec["stringLiteral"];
+    question: AiplAstSpec["stringLiteral" | "urlFunction"];
     identifier: AiplAstSpec["identifier"];
     loc: AiplLoc;
   };
-  conditionalAssignment: {
-    type: "conditionalAssignment";
-    condition: AiplAstSpec["expr"];
-    question: AiplAstSpec["stringLiteral"];
-    identifier: AiplAstSpec["identifier"];
-    loc: AiplLoc;
-  };
+  // conditionalAssignment: {
+  //   type: "conditionalAssignment";
+  //   condition: AiplAstSpec["expr"];
+  //   question: AiplAstSpec["stringLiteral"];
+  //   identifier: AiplAstSpec["identifier"];
+  //   loc: AiplLoc;
+  // };
   templateVariable: {
     type: "templateVariable";
     identifier: AiplAstSpec["identifier"];
@@ -55,10 +90,12 @@ export type AiplAstSpec = {
   };
   expr: {
     type: "expr";
-    value: AiplAstSpec["stringLiteral" | "binaryExpr"];
-    // | "identifier"
-    // | "number"
-    // | "unaryExpr"
+    value: AiplAstSpec[
+      | "stringLiteral"
+      | "binaryExpr"
+      | "unaryExpr"
+      | "number"
+      | "identifier"];
     loc: AiplLoc;
   };
   unaryExpr: {
@@ -91,7 +128,7 @@ export type AiplAstSpec = {
     value: AiplAstSpec[
       | "comment"
       | "assignment"
-      | "conditionalAssignment"
+      // | "conditionalAssignment"
       | "text"
       | "templateVariable"
       | "code"][];

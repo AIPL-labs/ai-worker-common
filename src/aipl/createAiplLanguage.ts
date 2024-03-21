@@ -1,5 +1,6 @@
 import P from "parsimmon";
 import { AiplAstSpec } from "./AiplAstSpec";
+import { isDefined } from "@mjtdev/engine";
 
 const addLoc = <T>(parser: P.Parser<T>) => {
   return parser
@@ -70,29 +71,9 @@ const innerTemplateVariable = addLoc(identifierParser).chain((identifier) =>
   )
 );
 
-// const innerTemplateVariableParser = P.alt(
-//   // P.seq(P.regex(/[^:]+/), P.string(":"), P.regex(/[^}]+/)),
-//   P.seq(P.regex(/[^}]+/))
-// ).map((value) => {
-//   if (value.length === 1) {
-//     return {
-//       type: "templateVariable",
-//       identifier: value[0],
-//       defaultText: undefined,
-//     } as const;
-//   }
-//   // return {
-//   //   type: "templateVariable",
-//   //   identifier: value[0],
-//   //   defaultText: value[1],
-//   // } as const;
-// });
-
 const templateVariableParser = P.alt(
   P.seq(P.string("{"), innerTemplateVariable, P.string("}")),
   P.seq(P.string("{{"), innerTemplateVariable, P.string("}}"))
-  // P.string("{").then(innerTemplateVariable).skip(P.string("}")),
-  // P.string("{{").then(innerTemplateVariable).skip(P.string("}}"))
 ).map((value) => value[1]);
 
 const commentParser = P.string("(#").then(
@@ -123,6 +104,79 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+    entry: (r) =>
+      addLoc(
+        P.seq(
+          P.regex(/[a-zA-Z0-9-_.]+/),
+          P.optWhitespace,
+          P.alt(P.string(":"), P.string("=")),
+          P.optWhitespace,
+          r.stringLiteral
+        ).map(
+          (value) =>
+            ({
+              type: "entry",
+              key: value[0],
+              op: value[2],
+              value: value[4],
+            } as const)
+        )
+      ),
+    list: (r) =>
+      addLoc(
+        P.seq(
+          P.string("("),
+          P.optWhitespace,
+          P.seq(
+            P.optWhitespace,
+            r.entry,
+            P.optWhitespace,
+            P.alt(P.string(","), P.succeed(undefined)),
+            P.optWhitespace
+          )
+            .map((v) => v[1])
+            .many()
+            .map(
+              (values) =>
+                ({
+                  type: "list",
+                  values: values,
+                } as const)
+            ),
+          P.optWhitespace,
+          P.string(")")
+        ).map((value) => value[2])
+      ),
+    urlFunction: (r) =>
+      addLoc(
+        P.seq(r.url, P.optWhitespace, P.alt(r.list, P.succeed(undefined))).map(
+          (value) =>
+            ({
+              type: "urlFunction",
+              url: value[0],
+              args: value[2],
+            } as const)
+        )
+      ),
+    url: () =>
+      addLoc(
+        P.seq(
+          P.alt(P.string("https"), P.string("http")),
+          P.string("://"),
+          P.regex(/[a-zA-Z0-9.-]+/),
+          P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)),
+          P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))
+        ).map(
+          (value) =>
+            ({
+              type: "url",
+              scheme: value[0],
+              host: value[2],
+              path: value[3],
+              query: value[4],
+            } as const)
+        )
+      ),
     number: () => addLoc(numberParser),
     template: (r) =>
       addLoc(
@@ -134,38 +188,38 @@ export const createAiplLanguage = () => {
     operator: () => addLoc(operatorParser),
     comment: () => addLoc(commentParser),
     templateVariable: () => addLoc(templateVariableParser),
-    conditionalAssignment: (r) =>
+    // conditionalAssignment: (r) =>
+    //   addLoc(
+    //     P.seq(
+    //       P.string("("),
+    //       P.optWhitespace,
+    //       r.expr,
+    //       P.optWhitespace,
+    //       P.string("?"),
+    //       P.optWhitespace,
+    //       r.stringLiteral,
+    //       P.optWhitespace,
+    //       P.string("->"),
+    //       P.optWhitespace,
+    //       r.identifier,
+    //       P.optWhitespace,
+    //       P.string(")")
+    //     ).map(
+    //       (value) =>
+    //         ({
+    //           type: "conditionalAssignment",
+    //           condition: value[2],
+    //           question: value[6],
+    //           identifier: value[10],
+    //         } as const)
+    //     )
+    //   ),
+    assignment: (r) =>
       addLoc(
         P.seq(
           P.string("("),
           P.optWhitespace,
-          r.expr,
-          P.optWhitespace,
-          P.string("?"),
-          P.optWhitespace,
-          r.stringLiteral,
-          P.optWhitespace,
-          P.string("->"),
-          P.optWhitespace,
-          r.identifier,
-          P.optWhitespace,
-          P.string(")")
-        ).map(
-          (value) =>
-            ({
-              type: "conditionalAssignment",
-              condition: value[2],
-              question: value[6],
-              identifier: value[10],
-            } as const)
-        )
-      ),
-    assignment: (r) =>
-      addLoc(
-        P.seq(
-          P.string("(="),
-          P.optWhitespace,
-          r.stringLiteral,
+          P.alt(r.stringLiteral, r.urlFunction),
           P.optWhitespace,
           P.string("->"),
           P.optWhitespace,
@@ -208,7 +262,13 @@ export const createAiplLanguage = () => {
 
     expr: (r) =>
       addLoc(
-        P.alt(r.binaryExpr, r.stringLiteral).map((value) => ({
+        P.alt(
+          r.binaryExpr,
+          r.stringLiteral,
+          r.unaryExpr,
+          r.identifier,
+          r.number
+        ).map((value) => ({
           type: "expr",
           value,
         }))
@@ -237,7 +297,7 @@ export const createAiplLanguage = () => {
         P.alt(
           r.comment,
           r.assignment,
-          r.conditionalAssignment,
+          // r.conditionalAssignment,
 
           // r.template,
           r.text,

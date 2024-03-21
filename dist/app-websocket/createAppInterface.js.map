@@ -1,0 +1,1 @@
+{"version":3,"file":"createAppInterface.js","sourceRoot":"","sources":["../../src/app-websocket/createAppInterface.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAG1C,MAAM,CAAC,MAAM,kBAAkB,GAAG,CAChC,QAA+B,EAAE,EACnB,EAAE;IAChB,MAAM,EAAE,EAAE,GAAG,QAAQ,CAAC,eAAe,CAAC,EAAE,GAAG,KAAK,CAAC;IACjD,OAAO,EAAE,EAAE,EAAE,CAAC;AAChB,CAAC,CAAC"}

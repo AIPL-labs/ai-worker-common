@@ -19,6 +19,7 @@ export const APP_OBJECT_TYPES = [
     "app-group",
     "function-call",
     "chat-state-entry",
+    "app-websocket",
 ];
 export const isAppObjectType = (maybe) => {
     const straw = maybe;

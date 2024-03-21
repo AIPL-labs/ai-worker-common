@@ -3,7 +3,7 @@ export declare const AiCharacters: {
         systemName: string;
         character: import("..").AppCharacter;
         aiFunctions: import("..").AiFunctionDescription[];
-        fieldNameToAiplContext: (filedName: "name" | "description" | "personality" | "scenario" | "first_mes" | "mes_example" | "creator_notes" | "system_prompt" | "post_history_instructions" | "alternate_greetings" | "character_book" | "tags" | "creator" | "character_version" | "extensions") => import("../aipl/runtime/AiplContext").AiplContext;
+        fieldNameToAiplContext: (filedName: "name" | "tags" | "description" | "personality" | "scenario" | "first_mes" | "mes_example" | "creator_notes" | "system_prompt" | "post_history_instructions" | "alternate_greetings" | "character_book" | "creator" | "character_version" | "extensions") => import("../aipl/runtime/AiplContext").AiplContext;
         messageTemplate?: import("../chat/ChatMessageTemplate").ChatMessageTemplate | undefined;
     }) => import("..").ChatMessage[];
     /** @deprecated @see Prompts */

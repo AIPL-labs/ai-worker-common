@@ -132,3 +132,6 @@ export * from "./aipl/AiplAstSpec";
 
 // prompts
 export * from "./ai/prompt/Prompts";
+
+// GCP
+export * from "./type/rest/ServiceInstanceInfo";

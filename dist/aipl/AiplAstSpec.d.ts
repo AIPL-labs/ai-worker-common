@@ -15,7 +15,7 @@ export type AiplLoc = {
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
 export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
-export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]['type'];
+export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
 export type AiplAstSpec = {
     text: {
         type: "text";
@@ -25,6 +25,32 @@ export type AiplAstSpec = {
     stringLiteral: {
         type: "stringLiteral";
         value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
+    entry: {
+        type: "entry";
+        key: string;
+        op: ":" | "=";
+        value: AiplAstSpec["stringLiteral"];
+        loc: AiplLoc;
+    };
+    list: {
+        type: "list";
+        values: AiplAstSpec["entry"][];
+        loc: AiplLoc;
+    };
+    urlFunction: {
+        type: "urlFunction";
+        url: AiplAstSpec["url"];
+        args?: AiplAstSpec["list"];
+        loc: AiplLoc;
+    };
+    url: {
+        type: "url";
+        scheme: "http" | "https";
+        host: string;
+        path?: string;
+        query?: string;
         loc: AiplLoc;
     };
     number: {
@@ -49,14 +75,7 @@ export type AiplAstSpec = {
     };
     assignment: {
         type: "assignment";
-        question: AiplAstSpec["stringLiteral"];
-        identifier: AiplAstSpec["identifier"];
-        loc: AiplLoc;
-    };
-    conditionalAssignment: {
-        type: "conditionalAssignment";
-        condition: AiplAstSpec["expr"];
-        question: AiplAstSpec["stringLiteral"];
+        question: AiplAstSpec["stringLiteral" | "urlFunction"];
         identifier: AiplAstSpec["identifier"];
         loc: AiplLoc;
     };
@@ -68,7 +87,7 @@ export type AiplAstSpec = {
     };
     expr: {
         type: "expr";
-        value: AiplAstSpec["stringLiteral" | "binaryExpr"];
+        value: AiplAstSpec["stringLiteral" | "binaryExpr" | "unaryExpr" | "number" | "identifier"];
         loc: AiplLoc;
     };
     unaryExpr: {
@@ -97,7 +116,7 @@ export type AiplAstSpec = {
     };
     program: {
         type: "program";
-        value: AiplAstSpec["comment" | "assignment" | "conditionalAssignment" | "text" | "templateVariable" | "code"][];
+        value: AiplAstSpec["comment" | "assignment" | "text" | "templateVariable" | "code"][];
         loc: AiplLoc;
     };
 };

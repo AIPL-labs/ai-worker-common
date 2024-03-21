@@ -33,6 +33,8 @@ export type AppMessageMap = {
     log: {
         message?: string;
         extra?: unknown;
+        stack?: string;
+        cause?: unknown;
         level?: "info" | "debug" | "error" | "trace";
     };
     "appInterface:update": {
@@ -92,6 +94,10 @@ export type AppMessageMap = {
         mediaType: string;
     };
     "tts:finished": void;
+    "tts:say": {
+        text: string;
+        characterId: string;
+    };
     "corpusDocument:delete": string | string[];
     messages: AppMessage[];
     "dataObject:sub": string | string[];
@@ -100,7 +106,7 @@ export type AppMessageMap = {
     "dataObject:murmur": DataObject | DataObject[];
     "dataObject:delete": string | string[];
     "dataObject:find": string | string[];
-    "dataObject:findAllByObjectType": string | string[];
+    "dataObject:findAllByObjectType": AppObjectType | AppObjectType[];
     "dataLink:find": {
         parentId: string;
         objectType?: AppObjectType;
