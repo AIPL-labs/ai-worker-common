@@ -1,3 +1,3 @@
 import { AppObjectType } from "../type/app/AppObject";
-export declare const uniqueId: (type: AppObjectType | "data") => string;
+export declare const uniqueId: (type: AppObjectType | "data", nonce?: string) => string;
 //# sourceMappingURL=uniqueId.d.ts.map

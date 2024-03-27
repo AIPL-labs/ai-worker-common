@@ -1,4 +1,4 @@
-import { ServiceProviders } from "../type/user/AppUser";
+import { ServiceProviders } from "../type/app-service/AppService";
 
 export const upgradeServiceProviders = (
   providers: Partial<ServiceProviders> = {}

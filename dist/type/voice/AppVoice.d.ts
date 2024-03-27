@@ -1,5 +1,5 @@
+import { ApiShape } from "../app-service/AppService";
 import { DataObject } from "../data/DataObject";
-import { ApiShape } from "../user/AppUser";
 export type BrowserVoiceConfig = {
     pitch: number;
     rate: number;

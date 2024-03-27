@@ -1,0 +1,1 @@
+{"version":3,"file":"Gis.d.ts","sourceRoot":"","sources":["../../../src/3rd/gis/Gis.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,aAAa,GAAG,OAAO,CAAC;IAClC,KAAK,EAAE,MAAM,CAAC;IACd,cAAc,EAAE,OAAO,CAAC;IACxB,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,MAAM,CAAC;CACjB,CAAC,CAAC"}

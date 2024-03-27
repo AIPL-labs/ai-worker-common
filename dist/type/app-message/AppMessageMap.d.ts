@@ -1,5 +1,8 @@
 import { PhoneCall } from "type/phone/PhoneCall";
+import { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
+import { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
 import { CrawlParams } from "../../crawl/CrawlParams";
+import { AiFunctionCall } from "../ai-function/AiFunctions";
 import { AppObjectType } from "../app/AppObject";
 import { ChatMessage } from "../chat-message/ChatMessage";
 import { Chat } from "../chat/Chat";
@@ -7,9 +10,6 @@ import { DataLink, DataObject } from "../data/DataObject";
 import { IngestRequest } from "../rest/IngestRequest";
 import { UserLoginRequest } from "../rest/UserLoginRequest";
 import { AppMessage } from "./AppMessage";
-import { AiFunctionCall } from "../ai-function/AiFunctions";
-import { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
-import { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
 export type MessageChunk = {
     id: string;
     idx: number;
@@ -25,7 +25,11 @@ export type ReturnableMessageDetail = {
 };
 export declare const isReturnableMessageDetail: (maybe: unknown) => maybe is ReturnableMessageDetail;
 export type AppMessageMap = {
-    auth: string;
+    auth: string | {
+        userName?: string;
+        password?: string;
+        gisCredential?: string;
+    };
     access: string;
     ping: string;
     abort: string;
@@ -37,9 +41,11 @@ export type AppMessageMap = {
         cause?: unknown;
         level?: "info" | "debug" | "error" | "trace";
     };
-    "appInterface:update": {
+    "appInterface:update": Partial<{
         ttsEnabled: boolean;
-    };
+        gisClientId: string;
+    }>;
+    "appInterface:ready": unknown;
     "return:dataObject": DataObject;
     "chat:debug": {
         prompt: string;
@@ -134,5 +140,10 @@ export type AppMessageMap = {
     };
     "function:call": AiFunctionCall;
     "message:chunk": MessageChunk;
+    "stat:get": Partial<{
+        namespace: string;
+        key: string;
+    }>;
+    "app:upgrade": unknown;
 };
 //# sourceMappingURL=AppMessageMap.d.ts.map

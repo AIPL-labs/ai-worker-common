@@ -64,4 +64,8 @@ export * from "./aipl/Aipls";
 export * from "./aipl/AiplAstSpec";
 export * from "./ai/prompt/Prompts";
 export * from "./type/rest/ServiceInstanceInfo";
+export * from "./type/app-websocket/AppWebsocket";
+export * from "./type/app-service/AppService";
+export * from "./id/Ids";
+export * from "./3rd/gis/Gis";
 //# sourceMappingURL=index.d.ts.map

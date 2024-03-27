@@ -4,6 +4,8 @@ import { createAiFunctionCall } from "../ai-function/createAiFunctionCall";
 import { createFunctionCallResult } from "../ai-function/createFunctionCallResult";
 import { createAppGroup } from "../app-group/createAppGroup";
 import { createAppInterface } from "../app-interface/createAppInterface";
+import { createAppService } from "../app-service/createAppService";
+import { createAppServiceProvider } from "../app-service/createAppServiceProvider";
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createAppWebsocket } from "../app-websocket/createAppWebsocket";
 import { createChatMessage } from "../chat-message/createChatMessage";
@@ -38,5 +40,7 @@ export const APP_OBJECT_CREATORS = {
     "function-call-result": createFunctionCallResult,
     "chat-state-entry": createChatStateEntry,
     "app-websocket": createAppWebsocket,
+    "app-service": createAppService,
+    "app-service-provider": createAppServiceProvider,
 };
 //# sourceMappingURL=APP_OBJECT_CREATORS.js.map

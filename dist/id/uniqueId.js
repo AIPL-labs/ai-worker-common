@@ -1,4 +1,4 @@
-export const uniqueId = (type) => {
-    return `${type}-${Date.now()}-${crypto.randomUUID()}`;
+export const uniqueId = (type, nonce = `${Date.now()}-${crypto.randomUUID()}`) => {
+    return `${type}-${nonce}`;
 };
 //# sourceMappingURL=uniqueId.js.map
