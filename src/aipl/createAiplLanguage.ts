@@ -39,7 +39,9 @@ const operatorParser = P.alt(
     } as const)
 );
 
-const textParser = P.regexp(/[^{}()]+/).map(
+const textParser = P.regexp(/[^{}()\\]+/).map(
+  // const textParser = P.regexp(/[^{})]+/).map(
+  // const textParser = P.regexp(/[^{}]+/).map(
   (value) =>
     ({
       type: "text",
@@ -90,6 +92,30 @@ const commentParser = P.string("(#").then(
 
 export const createAiplLanguage = () => {
   return P.createLanguage<AiplAstSpec>({
+    escapedSymbol: (r) =>
+      addLoc(
+        P.seq(P.string("\\"), P.alt(r.leftParen, r.rightParen)).map(
+          (value) =>
+            ({
+              type: "escapedSymbol",
+              value: value[1].value,
+              // value: ")",
+            } as const)
+        )
+      ),
+
+    leftParen: () =>
+      addLoc(
+        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string("("))
+        // P.seq(P.string("(")).map(
+        P.string("(").map(() => ({ type: "symbol", value: "(" } as const))
+      ),
+    rightParen: () =>
+      addLoc(
+        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string(")"))
+        // P.seq(P.string(")"))
+        P.string(")").map(() => ({ type: "symbol", value: ")" } as const))
+      ),
     text: () => addLoc(textParser),
     stringLiteral: (r) =>
       addLoc(
@@ -125,7 +151,8 @@ export const createAiplLanguage = () => {
     list: (r) =>
       addLoc(
         P.seq(
-          P.string("("),
+          // P.string("("),
+          r.leftParen,
           P.optWhitespace,
           P.seq(
             P.optWhitespace,
@@ -144,7 +171,8 @@ export const createAiplLanguage = () => {
                 } as const)
             ),
           P.optWhitespace,
-          P.string(")")
+          r.rightParen
+          // P.string(")")
         ).map((value) => value[2])
       ),
     urlFunction: (r) =>
@@ -188,36 +216,11 @@ export const createAiplLanguage = () => {
     operator: () => addLoc(operatorParser),
     comment: () => addLoc(commentParser),
     templateVariable: () => addLoc(templateVariableParser),
-    // conditionalAssignment: (r) =>
-    //   addLoc(
-    //     P.seq(
-    //       P.string("("),
-    //       P.optWhitespace,
-    //       r.expr,
-    //       P.optWhitespace,
-    //       P.string("?"),
-    //       P.optWhitespace,
-    //       r.stringLiteral,
-    //       P.optWhitespace,
-    //       P.string("->"),
-    //       P.optWhitespace,
-    //       r.identifier,
-    //       P.optWhitespace,
-    //       P.string(")")
-    //     ).map(
-    //       (value) =>
-    //         ({
-    //           type: "conditionalAssignment",
-    //           condition: value[2],
-    //           question: value[6],
-    //           identifier: value[10],
-    //         } as const)
-    //     )
-    //   ),
     assignment: (r) =>
       addLoc(
         P.seq(
-          P.string("("),
+          // P.string("("),
+          r.leftParen,
           P.optWhitespace,
           P.alt(r.stringLiteral, r.urlFunction),
           P.optWhitespace,
@@ -226,7 +229,8 @@ export const createAiplLanguage = () => {
           r.identifier,
           P.optWhitespace,
 
-          P.string(")")
+          // P.string(")")
+          r.rightParen
         ).map(
           (value) =>
             ({
@@ -240,7 +244,8 @@ export const createAiplLanguage = () => {
     binaryExpr: (r) =>
       addLoc(
         P.seq(
-          P.string("("),
+          // P.string("("),
+          r.leftParen,
           P.optWhitespace,
           P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
           P.optWhitespace,
@@ -248,7 +253,8 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
           P.optWhitespace,
-          P.string(")")
+          // P.string(")")
+          r.rightParen
         ).map(
           (result) =>
             ({
@@ -283,7 +289,16 @@ export const createAiplLanguage = () => {
 
     code: (r) =>
       addLoc(
-        P.seq(P.string("("), P.alt(r.expr), r.program, P.string(")")).map(
+        P.seq(
+          // P.string("("),
+          r.leftParen,
+
+          P.alt(r.expr),
+          r.program,
+          r.rightParen
+
+          // P.string(")")
+        ).map(
           (value) =>
             ({
               type: "code",
@@ -295,15 +310,16 @@ export const createAiplLanguage = () => {
     program: (r) =>
       addLoc(
         P.alt(
+          r.escapedSymbol,
           r.comment,
           r.assignment,
           // r.conditionalAssignment,
 
           // r.template,
-          r.text,
+          r.code,
           r.templateVariable,
-
-          r.code
+          r.text
+          // r.anyText
         )
           .many()
           .map((value) => ({ type: "program", value } as const))

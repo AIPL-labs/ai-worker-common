@@ -17,6 +17,21 @@ export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
 export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
 export type AiplAstSpec = {
+    escapedSymbol: {
+        type: "escapedSymbol";
+        value: AiplAstSpec["leftParen"]["value"] | AiplAstSpec["rightParen"]["value"];
+        loc: AiplLoc;
+    };
+    leftParen: {
+        type: "symbol";
+        value: "(";
+        loc: AiplLoc;
+    };
+    rightParen: {
+        type: "symbol";
+        value: ")";
+        loc: AiplLoc;
+    };
     text: {
         type: "text";
         value: string;
@@ -116,7 +131,7 @@ export type AiplAstSpec = {
     };
     program: {
         type: "program";
-        value: AiplAstSpec["comment" | "assignment" | "text" | "templateVariable" | "code"][];
+        value: AiplAstSpec["escapedSymbol" | "comment" | "assignment" | "text" | "templateVariable" | "code"][];
         loc: AiplLoc;
     };
 };

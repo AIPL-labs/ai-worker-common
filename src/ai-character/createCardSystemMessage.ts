@@ -8,9 +8,7 @@ export const createCardSystemMessage = ({
   title,
   text = "",
   aiplContext,
-}: // cardFieldName,
-{
-  // cardFieldName: keyof AppCharacter["card"]["data"];
+}: {
   systemName: string;
   title?: string;
   text?: string;

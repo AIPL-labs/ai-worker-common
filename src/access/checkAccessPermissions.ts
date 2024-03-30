@@ -1,4 +1,3 @@
-import { AppUser } from "../type/user/AppUser";
 import { AccessInfo, PermissionLevel } from "../type/access/AccessInfo";
 import { AccessUser } from "../type/access/AccessUser";
 

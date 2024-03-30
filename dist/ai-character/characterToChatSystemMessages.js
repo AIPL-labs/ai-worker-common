@@ -10,10 +10,7 @@ const trimSmallTextToUndefined = (text) => {
     }
     return text.trim().length < 10 ? undefined : text;
 };
-export const characterToChatSystemMessages = ({ systemName, character, fieldNameToAiplContext, 
-// aiplContext,
-// facts,
-aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
+export const characterToChatSystemMessages = ({ systemName, character, fieldNameToAiplContext, aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
     const { messageStart, messageEnd, afterCharPostfix } = messageTemplate;
     const cardMessageExample = trimSmallTextToUndefined(character.card.data.mes_example);
     // ??  DEFAULT_MES_EXAMPLE;
@@ -30,24 +27,18 @@ aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
         .join("\n");
     return [
         createCardSystemMessage({
-            // cardFieldName: "description",
             systemName,
             title: "{char} Description",
             text: character.card.data.description,
             aiplContext: fieldNameToAiplContext("description"),
-            // facts,
         }),
         createCardSystemMessage({
-            // cardFieldName: "personality",
             systemName,
             title: "{char} Personality",
             text: character.card.data.personality,
-            // aiplContext,
             aiplContext: fieldNameToAiplContext("personality"),
-            // facts,
         }),
         createCardSystemMessage({
-            // cardFieldName: "mes_example",
             systemName,
             title: "Examples of what {char} talks like:",
             text: textToChatMessageExampleText({
@@ -59,25 +50,17 @@ aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
                 startChatLinePrefix: messageStart,
             }),
             aiplContext: fieldNameToAiplContext("mes_example"),
-            // aiplContext,
-            // facts,
         }),
         createCardSystemMessage({
-            // cardFieldName: "system_prompt",
             systemName,
             text: character.card.data.system_prompt,
-            // aiplContext,
             aiplContext: fieldNameToAiplContext("system_prompt"),
-            // facts,
         }),
         createCardSystemMessage({
-            // cardFieldName: "scenario",
             systemName,
             title: "Scenerio",
             text: character.card.data.scenario,
-            // aiplContext,
             aiplContext: fieldNameToAiplContext("scenario"),
-            // facts,
         }),
     ].filter(isDefined);
 };

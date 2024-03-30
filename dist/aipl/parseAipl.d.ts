@@ -2,6 +2,10 @@
 export declare const parseAipl: (text: string) => import("parsimmon").Result<{
     type: "program";
     value: ({
+        type: "escapedSymbol";
+        value: "(" | ")";
+        loc: import("./AiplAstSpec").AiplLoc;
+    } | {
         type: "text";
         value: string;
         loc: import("./AiplAstSpec").AiplLoc;

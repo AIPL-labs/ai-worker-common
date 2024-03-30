@@ -12,7 +12,10 @@ const operatorParser = P.alt(P.string("&&"), P.string("&"), P.string("||"), P.st
     type: "operator",
     value,
 }));
-const textParser = P.regexp(/[^{}()]+/).map((value) => ({
+const textParser = P.regexp(/[^{}()\\]+/).map(
+// const textParser = P.regexp(/[^{})]+/).map(
+// const textParser = P.regexp(/[^{}]+/).map(
+(value) => ({
     type: "text",
     value,
 }));
@@ -39,6 +42,19 @@ const commentParser = P.string("(#").then(P.regex(/[^)]+/)
 })));
 export const createAiplLanguage = () => {
     return P.createLanguage({
+        escapedSymbol: (r) => addLoc(P.seq(P.string("\\"), P.alt(r.leftParen, r.rightParen)).map((value) => ({
+            type: "escapedSymbol",
+            value: value[1].value,
+            // value: ")",
+        }))),
+        leftParen: () => addLoc(
+        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string("("))
+        // P.seq(P.string("(")).map(
+        P.string("(").map(() => ({ type: "symbol", value: "(" }))),
+        rightParen: () => addLoc(
+        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string(")"))
+        // P.seq(P.string(")"))
+        P.string(")").map(() => ({ type: "symbol", value: ")" }))),
         text: () => addLoc(textParser),
         stringLiteral: (r) => addLoc(P.alt(P.seq(P.string('"'), r.template, P.string('"')), P.seq(P.string("'"), r.template, P.string("'"))).map((value) => ({
             type: "stringLiteral",
@@ -50,13 +66,17 @@ export const createAiplLanguage = () => {
             op: value[2],
             value: value[4],
         }))),
-        list: (r) => addLoc(P.seq(P.string("("), P.optWhitespace, P.seq(P.optWhitespace, r.entry, P.optWhitespace, P.alt(P.string(","), P.succeed(undefined)), P.optWhitespace)
+        list: (r) => addLoc(P.seq(
+        // P.string("("),
+        r.leftParen, P.optWhitespace, P.seq(P.optWhitespace, r.entry, P.optWhitespace, P.alt(P.string(","), P.succeed(undefined)), P.optWhitespace)
             .map((v) => v[1])
             .many()
             .map((values) => ({
             type: "list",
             values: values,
-        })), P.optWhitespace, P.string(")")).map((value) => value[2])),
+        })), P.optWhitespace, r.rightParen
+        // P.string(")")
+        ).map((value) => value[2])),
         urlFunction: (r) => addLoc(P.seq(r.url, P.optWhitespace, P.alt(r.list, P.succeed(undefined))).map((value) => ({
             type: "urlFunction",
             url: value[0],
@@ -77,38 +97,20 @@ export const createAiplLanguage = () => {
         operator: () => addLoc(operatorParser),
         comment: () => addLoc(commentParser),
         templateVariable: () => addLoc(templateVariableParser),
-        // conditionalAssignment: (r) =>
-        //   addLoc(
-        //     P.seq(
-        //       P.string("("),
-        //       P.optWhitespace,
-        //       r.expr,
-        //       P.optWhitespace,
-        //       P.string("?"),
-        //       P.optWhitespace,
-        //       r.stringLiteral,
-        //       P.optWhitespace,
-        //       P.string("->"),
-        //       P.optWhitespace,
-        //       r.identifier,
-        //       P.optWhitespace,
-        //       P.string(")")
-        //     ).map(
-        //       (value) =>
-        //         ({
-        //           type: "conditionalAssignment",
-        //           condition: value[2],
-        //           question: value[6],
-        //           identifier: value[10],
-        //         } as const)
-        //     )
-        //   ),
-        assignment: (r) => addLoc(P.seq(P.string("("), P.optWhitespace, P.alt(r.stringLiteral, r.urlFunction), P.optWhitespace, P.string("->"), P.optWhitespace, r.identifier, P.optWhitespace, P.string(")")).map((value) => ({
+        assignment: (r) => addLoc(P.seq(
+        // P.string("("),
+        r.leftParen, P.optWhitespace, P.alt(r.stringLiteral, r.urlFunction), P.optWhitespace, P.string("->"), P.optWhitespace, r.identifier, P.optWhitespace, 
+        // P.string(")")
+        r.rightParen).map((value) => ({
             type: "assignment",
             question: value[2],
             identifier: value[6],
         }))),
-        binaryExpr: (r) => addLoc(P.seq(P.string("("), P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, r.operator, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, P.string(")")).map((result) => ({
+        binaryExpr: (r) => addLoc(P.seq(
+        // P.string("("),
+        r.leftParen, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, r.operator, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, 
+        // P.string(")")
+        r.rightParen).map((result) => ({
             type: "binaryExpr",
             left: result[2],
             op: result[4],
@@ -119,15 +121,21 @@ export const createAiplLanguage = () => {
             value,
         }))),
         unaryExpr: (r) => addLoc(P.seq(P.string("!"), r.expr).map((value) => ({ type: "unaryExpr", op: value[0], operand: value[1] }))),
-        code: (r) => addLoc(P.seq(P.string("("), P.alt(r.expr), r.program, P.string(")")).map((value) => ({
+        code: (r) => addLoc(P.seq(
+        // P.string("("),
+        r.leftParen, P.alt(r.expr), r.program, r.rightParen
+        // P.string(")")
+        ).map((value) => ({
             type: "code",
             condition: value[1],
             body: value[2],
         }))),
-        program: (r) => addLoc(P.alt(r.comment, r.assignment, 
+        program: (r) => addLoc(P.alt(r.escapedSymbol, r.comment, r.assignment, 
         // r.conditionalAssignment,
         // r.template,
-        r.text, r.templateVariable, r.code)
+        r.code, r.templateVariable, r.text
+        // r.anyText
+        )
             .many()
             .map((value) => ({ type: "program", value }))),
     });

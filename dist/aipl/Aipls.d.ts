@@ -4,6 +4,10 @@ export declare const Aipls: {
     tryParseAipl: (text: string) => {
         type: "program";
         value: ({
+            type: "escapedSymbol";
+            value: "(" | ")";
+            loc: import("./AiplAstSpec").AiplLoc;
+        } | {
             type: "text";
             value: string;
             loc: import("./AiplAstSpec").AiplLoc;
@@ -166,6 +170,10 @@ export declare const Aipls: {
     parseAipl: (text: string) => import("parsimmon").Result<{
         type: "program";
         value: ({
+            type: "escapedSymbol";
+            value: "(" | ")";
+            loc: import("./AiplAstSpec").AiplLoc;
+        } | {
             type: "text";
             value: string;
             loc: import("./AiplAstSpec").AiplLoc;

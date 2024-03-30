@@ -49,6 +49,12 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
     for (const childNode of node.value) {
       try {
         switch (childNode.type) {
+          case "escapedSymbol": {
+            result = produce(result, (r) => {
+              r.texts.push(childNode.value);
+            });
+            continue;
+          }
           case "text": {
             result = produce(result, (r) => {
               r.texts.push(childNode.value);
