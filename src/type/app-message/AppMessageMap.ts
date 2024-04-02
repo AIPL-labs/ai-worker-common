@@ -34,6 +34,18 @@ export const isReturnableMessageDetail = (
   return typeof straw === "object" && typeof straw.returnId === "string";
 };
 
+export type StreamableMessageDetail = { streamId: string };
+export const isStreamableMessageDetail = (
+  maybe: unknown
+): maybe is StreamableMessageDetail => {
+  const straw = maybe as StreamableMessageDetail;
+  return typeof straw === "object" && typeof straw.streamId === "string";
+};
+
+export type InteractiveMessageDetail = AbortableMessageDetail &
+  ReturnableMessageDetail &
+  StreamableMessageDetail;
+
 export type AppMessageMap = {
   auth:
     | string
@@ -85,7 +97,7 @@ export type AppMessageMap = {
     messageId: string;
   };
   "chat:ask": Partial<
-    ReturnableMessageDetail & {
+    InteractiveMessageDetail & {
       chatId?: string;
       stopAfter?: string;
       stop?: string | string[];
@@ -93,7 +105,6 @@ export type AppMessageMap = {
       systemMessage?: string;
       userMessage?: string;
       assistantMessage?: string;
-      streamId: string;
     }
   >;
 
@@ -137,7 +148,11 @@ export type AppMessageMap = {
   webCrawl: CrawlParams & {
     parentId: string;
   };
-  "user:create": UserLoginRequest & { accessToken?: string; groups: string[] };
+  "user:create": UserLoginRequest & {
+    accessToken?: string;
+    groups: string[];
+    publicName?: string;
+  };
   "user:delete": string | string[];
   "user:groupAdd": string | string[];
   "user:groupRemove": string | string[];

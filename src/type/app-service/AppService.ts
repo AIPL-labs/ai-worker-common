@@ -14,9 +14,13 @@ export type AppService = DataObject & {
     | "extract"
     | "imagegen"
     | "db";
-  status: "busy" | "ready" | "offline";
   enabled: boolean;
   count: number;
+};
+
+export type AppServiceNode = DataObject & {
+  url?: string;
+  status: "busy" | "ready" | "offline";
 };
 
 export type CommonServiceProvider = {

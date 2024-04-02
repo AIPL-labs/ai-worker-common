@@ -24,6 +24,11 @@ export type ReturnableMessageDetail = {
     returnId: string;
 };
 export declare const isReturnableMessageDetail: (maybe: unknown) => maybe is ReturnableMessageDetail;
+export type StreamableMessageDetail = {
+    streamId: string;
+};
+export declare const isStreamableMessageDetail: (maybe: unknown) => maybe is StreamableMessageDetail;
+export type InteractiveMessageDetail = AbortableMessageDetail & ReturnableMessageDetail & StreamableMessageDetail;
 export type AppMessageMap = {
     auth: string | {
         userName?: string;
@@ -77,7 +82,7 @@ export type AppMessageMap = {
         chatId: string;
         messageId: string;
     };
-    "chat:ask": Partial<ReturnableMessageDetail & {
+    "chat:ask": Partial<InteractiveMessageDetail & {
         chatId?: string;
         stopAfter?: string;
         stop?: string | string[];
@@ -85,7 +90,6 @@ export type AppMessageMap = {
         systemMessage?: string;
         userMessage?: string;
         assistantMessage?: string;
-        streamId: string;
     }>;
     ingest: IngestRequest;
     "vector:deleteNamespace": string | string[];
@@ -130,6 +134,7 @@ export type AppMessageMap = {
     "user:create": UserLoginRequest & {
         accessToken?: string;
         groups: string[];
+        publicName?: string;
     };
     "user:delete": string | string[];
     "user:groupAdd": string | string[];

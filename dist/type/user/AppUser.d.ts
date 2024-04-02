@@ -13,7 +13,11 @@ export type AppUserProfile = {
     voiceId?: string;
     asrConfig?: AsrConfig;
 };
-export type AppUser = AccessUser & {
+export type AppUser = AccessUser & PublicUser & {
     userName: string;
+};
+export type PublicUser = {
+    publicName?: string;
+    publicAvatar?: string;
 };
 //# sourceMappingURL=AppUser.d.ts.map

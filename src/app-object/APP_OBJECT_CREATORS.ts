@@ -5,6 +5,7 @@ import { createFunctionCallResult } from "../ai-function/createFunctionCallResul
 import { createAppGroup } from "../app-group/createAppGroup";
 import { createAppInterface } from "../app-interface/createAppInterface";
 import { createAppService } from "../app-service/createAppService";
+import { createAppServiceNode } from "../app-service/createAppServiceNode";
 import { createAppServiceProvider } from "../app-service/createAppServiceProvider";
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createAppWebsocket } from "../app-websocket/createAppWebsocket";
@@ -46,5 +47,6 @@ export const APP_OBJECT_CREATORS: Partial<{
   "chat-state-entry": createChatStateEntry,
   "app-websocket": createAppWebsocket,
   "app-service": createAppService,
+  "app-service-node": createAppServiceNode,
   "app-service-provider": createAppServiceProvider,
 };

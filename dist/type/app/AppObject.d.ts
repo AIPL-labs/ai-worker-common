@@ -15,7 +15,7 @@ import { Thought } from "../thought/Thought";
 import { AppUser, AppUserProfile } from "../user/AppUser";
 import { AppVoice } from "../voice/AppVoice";
 import { AppWebsocket } from "../app-websocket/AppWebsocket";
-import { AppService, AppServiceProvider } from "../app-service/AppService";
+import { AppService, AppServiceNode, AppServiceProvider } from "../app-service/AppService";
 export type AppObjectTypeMap = {
     chat: Chat;
     "chat-message": ChatMessage;
@@ -39,6 +39,7 @@ export type AppObjectTypeMap = {
     "chat-state-entry": ChatStateEntry;
     "app-websocket": AppWebsocket;
     "app-service": AppService;
+    "app-service-node": AppServiceNode;
     "app-service-provider": AppServiceProvider;
 };
 export type AppObjectType = keyof AppObjectTypeMap;

@@ -6,12 +6,11 @@ export const createAppService = (
 ): AppService => {
   const {
     id = uniqueId("app-service"),
-    status = "offline",
     type = "unknown",
     enabled = false,
     count = 0,
     host,
     domain,
   } = draft;
-  return { id, status, type, enabled, count, host, domain };
+  return { id, type, enabled, count, host, domain };
 };

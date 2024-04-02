@@ -16,6 +16,12 @@ export type AppUserProfile = {
   asrConfig?: AsrConfig;
 };
 
-export type AppUser = AccessUser & {
-  userName: string;
+export type AppUser = AccessUser &
+  PublicUser & {
+    userName: string;
+  };
+
+export type PublicUser = {
+  publicName?: string;
+  publicAvatar?: string;
 };
