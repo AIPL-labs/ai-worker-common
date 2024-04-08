@@ -1,14 +1,18 @@
 import { ApiShape } from "../app-service/AppService";
 import { DataObject } from "../data/DataObject";
-export type BrowserVoiceConfig = {
-    pitch: number;
-    rate: number;
-    delay: number;
-    voiceName: string;
+export type CustomVoiceStyle = {
+    alpha: number;
+    beta: number;
+    steps: number;
+    scale: number;
+    sampleRate: number;
+};
+export type CustomTtsRequest = CustomVoiceStyle & {
+    text: string;
+    voiceSample: string;
 };
 export type AppVoice = DataObject & {
-    name: string;
+    name?: string;
     apiShape: ApiShape;
-    browserVoiceConfig: Partial<BrowserVoiceConfig>;
 };
 //# sourceMappingURL=AppVoice.d.ts.map

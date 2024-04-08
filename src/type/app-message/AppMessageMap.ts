@@ -10,6 +10,7 @@ import { DataLink, DataObject } from "../data/DataObject";
 import { IngestRequest } from "../rest/IngestRequest";
 import { UserLoginRequest } from "../rest/UserLoginRequest";
 import { AppMessage } from "./AppMessage";
+import { AppCharacter } from "../app-character/AppCharacter";
 
 export type MessageChunk = {
   id: string;
@@ -117,7 +118,7 @@ export type AppMessageMap = {
   tts: { text: string; voiceId?: string };
   "tts:elevenlabs:result": ElevenLabsWebsocketResult & { mediaType: string };
   "tts:finished": void;
-  "tts:say": { text: string; characterId: string };
+  "tts:say": { text: string; character: AppCharacter };
   "corpusDocument:delete": string | string[];
 
   messages: AppMessage[];

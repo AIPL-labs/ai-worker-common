@@ -108,4 +108,6 @@ export * from "./type/app-service/AppService";
 export * from "./id/Ids";
 // GIS
 export * from "./3rd/gis/Gis";
+// Images
+export * from "./image/AppImages";
 //# sourceMappingURL=index.js.map

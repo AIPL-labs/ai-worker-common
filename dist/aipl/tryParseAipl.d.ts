@@ -1,12 +1,12 @@
 export declare const tryParseAipl: (text: string) => {
     type: "program";
     value: ({
-        type: "text";
-        value: string;
-        loc: import("./AiplAstSpec").AiplLoc;
-    } | {
         type: "escapedSymbol";
         value: "(" | ")";
+        loc: import("./AiplAstSpec").AiplLoc;
+    } | {
+        type: "text";
+        value: string;
         loc: import("./AiplAstSpec").AiplLoc;
     } | {
         type: "comment";
@@ -46,7 +46,7 @@ export declare const tryParseAipl: (text: string) => {
                 values: {
                     type: "entry";
                     key: string;
-                    op: ":" | "=";
+                    op: "=" | ":";
                     value: {
                         type: "stringLiteral";
                         value: {

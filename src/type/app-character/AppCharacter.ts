@@ -1,18 +1,33 @@
+import { ByteLike } from "@mjtdev/engine";
 import { AppReportQuestionnaire } from "../app-report/AppReport";
+import { CustomVoiceStyle } from "../voice/AppVoice";
 import { TavernCardV2 } from "./TavernCardV2";
+
+export type AppCharacterVoice = Partial<{
+  elevenLabsVoiceId: string;
+  // sampleB64: string;
+  style: Partial<CustomVoiceStyle>;
+}>;
+
+export type DecomposedAppCharacter = {
+  character: AppCharacter;
+  image?: ByteLike;
+  voiceSample?: ByteLike;
+};
 
 export type AppTavernCard = TavernCardV2<
   Partial<{
     direction: string;
-    voiceId: string;
-    elevenLabsVoiceId: string;
+    // voiceId: string;
     reports: AppReportQuestionnaire[];
     physicalDescription: string;
-    aipl: string;
     genInfo: Partial<{
       imagePrompt: string;
     }>;
     functions: string[];
+    voice: AppCharacterVoice;
+    /** @deprecated */
+    elevenLabsVoiceId: string;
   }>
 >;
 

@@ -10,6 +10,7 @@ import { DataLink, DataObject } from "../data/DataObject";
 import { IngestRequest } from "../rest/IngestRequest";
 import { UserLoginRequest } from "../rest/UserLoginRequest";
 import { AppMessage } from "./AppMessage";
+import { AppCharacter } from "../app-character/AppCharacter";
 export type MessageChunk = {
     id: string;
     idx: number;
@@ -106,7 +107,7 @@ export type AppMessageMap = {
     "tts:finished": void;
     "tts:say": {
         text: string;
-        characterId: string;
+        character: AppCharacter;
     };
     "corpusDocument:delete": string | string[];
     messages: AppMessage[];

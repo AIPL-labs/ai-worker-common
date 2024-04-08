@@ -26,7 +26,7 @@ export const SERVICE_TYPE_TO_API_SHAPES = {
     tts: ["BrowserTts", "CustomTts", "ElevenlabsTts"],
     vector: [],
     extract: [],
-    imagegen: [],
+    imagegen: ["Cloudflare", "CustomImagegen"],
     db: [],
     asr: ["CustomAsr"],
     proxy: [],
