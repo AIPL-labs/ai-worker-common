@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { Corpus, CorpusDocument } from "../type/corpus/Corpus";
+import type { Corpus, CorpusDocument } from "../type/corpus/Corpus";
 
 export const createCorpus = (draft: Partial<Corpus>): Corpus => {
   const {

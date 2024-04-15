@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { ChatStateEntry } from "../type/chat-message/ChatMessage";
+import type { ChatStateEntry } from "../type/chat-message/ChatMessage";
 
 export const createChatStateEntry = (
   draft: Partial<ChatStateEntry> = {}

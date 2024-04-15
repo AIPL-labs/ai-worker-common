@@ -1,6 +1,6 @@
 import { assertValue } from "@mjtdev/engine";
 import { fetchWithAuth } from "../fetchWithAuth";
-import { HomeAuth } from "./HomeAuth";
+import type { HomeAuth } from "./HomeAuth";
 
 export const deleteRemoteData = async ({
   id,

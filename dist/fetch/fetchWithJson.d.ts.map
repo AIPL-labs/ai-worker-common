@@ -1,1 +1,1 @@
-{"version":3,"file":"fetchWithJson.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchWithJson.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAI9C,eAAO,MAAM,aAAa;;SAOnB,MAAM;;;uBAqBZ,CAAC"}
+{"version":3,"file":"fetchWithJson.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchWithJson.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAInD,eAAO,MAAM,aAAa,kEAKvB;IACD,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,GAAG,EAAE,MAAM,CAAC;IACZ,IAAI,CAAC,EAAE,CAAC,GAAG,MAAM,CAAC;IAClB,OAAO,CAAC,EAAE,QAAQ,YAAY,CAAC,CAAC;CACjC,sBAkBA,CAAC"}

@@ -1,4 +1,4 @@
-import { FetchOptions } from "./FetchOptions";
+import type { FetchOptions } from "./FetchOptions";
 import { HomeAuth } from "./data/HomeAuth";
 import { fetchWithAuth } from "./fetchWithAuth";
 

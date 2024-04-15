@@ -1,16 +1,16 @@
-import { PhoneCall } from "type/phone/PhoneCall";
-import { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
-import { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
-import { CrawlParams } from "../../crawl/CrawlParams";
-import { AiFunctionCall } from "../ai-function/AiFunctions";
-import { AppObjectType } from "../app/AppObject";
-import { ChatMessage } from "../chat-message/ChatMessage";
-import { Chat } from "../chat/Chat";
-import { DataLink, DataObject } from "../data/DataObject";
-import { IngestRequest } from "../rest/IngestRequest";
-import { UserLoginRequest } from "../rest/UserLoginRequest";
-import { AppMessage } from "./AppMessage";
-import { AppCharacter } from "../app-character/AppCharacter";
+import type { PhoneCall } from "type/phone/PhoneCall";
+import type { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
+import type { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
+import type { CrawlParams } from "../../crawl/CrawlParams";
+import type { AiFunctionCall } from "../ai-function/AiFunctions";
+import type { AppObjectType } from "../app/AppObject";
+import type { ChatMessage } from "../chat-message/ChatMessage";
+import type { Chat } from "../chat/Chat";
+import type { DataLink, DataObject } from "../data/DataObject";
+import type { IngestRequest } from "../rest/IngestRequest";
+import type { UserLoginRequest } from "../rest/UserLoginRequest";
+import type { AppMessage } from "./AppMessage";
+import type { AppCharacter } from "../app-character/AppCharacter";
 
 export type MessageChunk = {
   id: string;
@@ -87,6 +87,10 @@ export type AppMessageMap = {
     model?: string;
     contextSize?: number;
     message: Partial<ChatMessage>;
+  };
+  "chat:reInferMessage": {
+    chatId: string;
+    messageId: string | undefined;
   };
   "chat:insertMessage": {
     chatId: string;

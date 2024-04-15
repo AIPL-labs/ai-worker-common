@@ -1,5 +1,5 @@
 import { isUndefined } from "@mjtdev/engine";
-import { VonageAsr } from "./VongageTypes";
+import type { VonageAsr } from "./VongageTypes";
 
 export const vonageAsrToText = (asr: VonageAsr | undefined) => {
   if (isUndefined(asr)) {

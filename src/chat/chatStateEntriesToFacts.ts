@@ -1,5 +1,5 @@
 import { Objects } from "@mjtdev/engine";
-import { ChatStateEntry } from "../type/chat-message/ChatMessage";
+import type { ChatStateEntry } from "../type/chat-message/ChatMessage";
 import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
 
 export const chatStateEntriesToFacts = (

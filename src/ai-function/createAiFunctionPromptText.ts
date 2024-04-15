@@ -1,7 +1,7 @@
 import { Objects, isDefined } from "@mjtdev/engine";
 import { renderTemplateText } from "../ai/prompt/renderTemplateText";
-import { ChatMessageTemplate } from "chat/ChatMessageTemplate";
-import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
+import type { ChatMessageTemplate } from "chat/ChatMessageTemplate";
+import type { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 

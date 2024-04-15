@@ -1,4 +1,4 @@
-import { AsrSegment, AsrResult, AsrWhisperSegment } from "./AsrTypes";
+import type { AsrSegment, AsrResult, AsrWhisperSegment } from "./AsrTypes";
 import { toAsrWhisperSegment } from "./toAsrWhisperSegment";
 
 

@@ -1,4 +1,4 @@
 
 export type DataSearchResponse = {
-  idToObject: Record<string, any>;
+  idToObject: Record<string, unknown>;
 };

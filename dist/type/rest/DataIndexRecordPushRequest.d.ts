@@ -1,4 +1,4 @@
-import { DataObject } from "../data/DataObject";
+import type { DataObject } from "../data/DataObject";
 export type DataIndexRecordPushRequest<T extends DataObject = DataObject> = {
     indexId: string;
     record: T;

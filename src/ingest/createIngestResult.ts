@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { IngestResult } from "../type/rest/IngestRequest";
+import type { IngestResult } from "../type/rest/IngestRequest";
 
 export const createIngestResult = (
   draft: Partial<IngestResult>

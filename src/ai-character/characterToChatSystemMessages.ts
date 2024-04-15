@@ -2,17 +2,17 @@ import { isDefined } from "@mjtdev/engine";
 import { DEFAULT_MES_EXAMPLE } from "../ai/prompt/DEFAULT_MES_EXAMPLE";
 import { Prompts } from "../ai/prompt/Prompts";
 import { textToChatMessageExampleText } from "../ai/prompt/textToChatMessageExampleText";
-import { AiFunctionDescription } from "../type/ai-function/AiFunctions";
-import {
+import type { AiFunctionDescription } from "../type/ai-function/AiFunctions";
+import type {
   AppCharacter,
   AppCharacterFieldName,
 } from "../type/app-character/AppCharacter";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
 import { createCardSystemMessage } from "./createCardSystemMessage";
 import { AI_FUNCTION_PREFIX } from "../ai-function/AI_FUNCTION_TOKEN";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
-import { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
-import { AiplContext } from "../aipl/runtime/AiplContext";
+import type { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
+import type { AiplContext } from "../aipl/runtime/AiplContext";
 
 const trimSmallTextToUndefined = (text: string | undefined) => {
   if (!text) {

@@ -1,30 +1,31 @@
-export type TavernCardV2<E extends Record<string, any> = Record<string, any>> =
-  {
-    spec: "chara_card_v2";
-    spec_version: "2.0"; // May 8th addition
-    data: Partial<{
-      name: string;
-      description: string;
-      personality: string;
-      scenario: string;
-      first_mes: string;
-      mes_example: string;
+export type TavernCardV2<
+  E extends Record<string, unknown> = Record<string, unknown>
+> = {
+  spec: "chara_card_v2";
+  spec_version: "2.0"; // May 8th addition
+  data: Partial<{
+    name: string;
+    description: string;
+    personality: string;
+    scenario: string;
+    first_mes: string;
+    mes_example: string;
 
-      // New fields start here
-      creator_notes: string;
-      system_prompt: string;
-      post_history_instructions: string;
-      alternate_greetings: Array<string>;
-      character_book?: CharacterBook;
+    // New fields start here
+    creator_notes: string;
+    system_prompt: string;
+    post_history_instructions: string;
+    alternate_greetings: Array<string>;
+    character_book?: CharacterBook;
 
-      // May 8th additions
-      tags: Array<string>;
-      creator: string;
-      character_version: string;
-      // extensions: Record<string, any>; // see details for explanation
-      extensions: E; // see details for explanation
-    }>;
-  };
+    // May 8th additions
+    tags: Array<string>;
+    creator: string;
+    character_version: string;
+    // extensions: Record<string, any>; // see details for explanation
+    extensions: E; // see details for explanation
+  }>;
+};
 
 /**
  * ? as in `name?: string` means the `name` property may be absent from the JSON
@@ -44,11 +45,11 @@ export type CharacterBook = {
   scan_depth?: number; // agnai: "Memory: Chat History Depth"
   token_budget?: number; // agnai: "Memory: Context Limit"
   recursive_scanning?: boolean; // no agnai equivalent. whether entry content can trigger other entries
-  extensions: Record<string, any>;
+  extensions: Record<string, unknown>;
   entries: Array<{
     keys: Array<string>;
     content: string;
-    extensions: Record<string, any>;
+    extensions: Record<string, unknown>;
     enabled: boolean;
     insertion_order: number; // if two entries inserted, lower "insertion order" = inserted higher
     case_sensitive?: boolean;

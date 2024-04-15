@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AiFunctionCall } from "../type/ai-function/AiFunctions";
+import type { AiFunctionCall } from "../type/ai-function/AiFunctions";
 
 export const createAiFunctionCall = (
   draft: Partial<AiFunctionCall> = {}

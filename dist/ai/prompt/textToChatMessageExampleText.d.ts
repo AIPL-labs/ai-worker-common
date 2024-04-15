@@ -1,5 +1,5 @@
 export declare const textToChatMessageExampleText: ({ text, startChatLinePrefix, afterCharPostfix, endChatLinePostfix, }: {
-    text?: string | undefined;
+    text?: string;
     startChatLinePrefix: string;
     afterCharPostfix: string;
     endChatLinePostfix: string;

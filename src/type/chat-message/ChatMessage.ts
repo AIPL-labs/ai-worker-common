@@ -1,8 +1,8 @@
-import { AiplNode } from "../../aipl/AiplAstSpec";
-import { AiFunctionCall } from "../ai-function/AiFunctions";
-import { ChatContent } from "../chat/ChatContent";
-import { DataObject } from "../data/DataObject";
-import { ChatRole } from "./ChatRole";
+import type { AiplNode } from "../../aipl/AiplAstSpec";
+import type { AiFunctionCall } from "../ai-function/AiFunctions";
+import type { ChatContent } from "../chat/ChatContent";
+import type { DataObject } from "../data/DataObject";
+import type { ChatRole } from "./ChatRole";
 
 export type ChatMessage = DataObject & {
   // chatId?: string;

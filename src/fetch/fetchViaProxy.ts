@@ -1,5 +1,5 @@
 import { fetchWithAuth } from "./fetchWithAuth";
-import { HomeAuth } from "./data/HomeAuth";
+import type { HomeAuth } from "./data/HomeAuth";
 
 export const fetchViaProxy = async ({
   url,

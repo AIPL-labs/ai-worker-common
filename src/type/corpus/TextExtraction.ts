@@ -1,5 +1,5 @@
-import { DataObject } from "../data/DataObject";
-import { IngestRequest, IngestResult } from "../rest/IngestRequest";
+import type { DataObject } from "../data/DataObject";
+import type { IngestRequest, IngestResult } from "../rest/IngestRequest";
 
 
 export type TextExtraction = DataObject & {

@@ -4,7 +4,7 @@ import { addChatMessage } from "./addChatMessage";
 import { addChatMessageAtTop } from "./addChatMessageAtTop";
 import { setChatMessage } from "./setChatMessage";
 export const createChatBuilder = (params = {}) => {
-    let { chat: curChat = AppObjects.create("chat"), messages: curMessages = {}, } = params;
+    const { chat: curChat = AppObjects.create("chat"), messages: curMessages = {}, } = params;
     const dirty = new Set();
     const deletes = new Set();
     const builder = {
@@ -89,6 +89,7 @@ export const createChatBuilder = (params = {}) => {
         get: () => ({ chat: curChat, messages: curMessages }),
         getDirty: () => Array.from(dirty.values()),
         getDeletes: () => Array.from(deletes.values()),
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         getCurrentMessage: () => curMessages[curChat.currentMessageId],
     };
     return builder;

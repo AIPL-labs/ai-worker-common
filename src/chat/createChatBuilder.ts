@@ -1,8 +1,8 @@
 import { Objects } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { Chat } from "../type/chat/Chat";
-import { ChatUpdater } from "./ChatUpdater";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { Chat } from "../type/chat/Chat";
+import type { ChatUpdater } from "./ChatUpdater";
 import { addChatMessage } from "./addChatMessage";
 import { addChatMessageAtTop } from "./addChatMessageAtTop";
 import { setChatMessage } from "./setChatMessage";
@@ -13,7 +13,7 @@ export const createChatBuilder = (
     messages?: Record<string, ChatMessage>;
   } = {}
 ) => {
-  let {
+  const {
     chat: curChat = AppObjects.create("chat"),
     messages: curMessages = {},
   } = params;
@@ -123,6 +123,7 @@ export const createChatBuilder = (
     get: () => ({ chat: curChat, messages: curMessages } as const),
     getDirty: () => Array.from(dirty.values()),
     getDeletes: () => Array.from(deletes.values()),
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     getCurrentMessage: () => curMessages[curChat.currentMessageId!],
   };
   return builder;

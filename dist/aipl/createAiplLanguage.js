@@ -82,7 +82,10 @@ export const createAiplLanguage = () => {
             url: value[0],
             args: value[2],
         }))),
-        url: () => addLoc(P.seq(P.alt(P.string("https"), P.string("http")), P.string("://"), P.regex(/[a-zA-Z0-9.-]+/), P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)), P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))).map((value) => ({
+        url: () => addLoc(P.seq(P.alt(P.string("https"), P.string("http")), P.string("://"), P.regex(/[a-zA-Z0-9.-]+/), P.alt(P.regex(/\/[a-zA-Z0-9/j._-]*/), P.succeed(undefined)), P.alt(P.regex(/\?[a-zA-Z0-9%&=_.\-+]*/), P.succeed(undefined))
+        // P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)),
+        // P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))
+        ).map((value) => ({
             type: "url",
             scheme: value[0],
             host: value[2],

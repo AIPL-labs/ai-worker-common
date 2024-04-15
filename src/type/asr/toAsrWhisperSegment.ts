@@ -1,4 +1,4 @@
-import { AsrSegment, AsrWhisperSegment } from "./AsrTypes";
+import type { AsrSegment, AsrWhisperSegment } from "./AsrTypes";
 
 
 export const toAsrWhisperSegment = (value: AsrSegment): AsrWhisperSegment => {

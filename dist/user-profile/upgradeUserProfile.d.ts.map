@@ -1,1 +1,1 @@
-{"version":3,"file":"upgradeUserProfile.d.ts","sourceRoot":"","sources":["../../src/user-profile/upgradeUserProfile.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,gCAAgC,CAAC;AAElE,eAAO,MAAM,uBAAuB,eACvB,QAAQ,gBAAgB,CAAC,KACnC,gBA4BF,CAAC"}
+{"version":3,"file":"upgradeUserProfile.d.ts","sourceRoot":"","sources":["../../src/user-profile/upgradeUserProfile.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,gCAAgC,CAAC;AAEvE,eAAO,MAAM,uBAAuB,eACvB,QAAQ,gBAAgB,CAAC,KACnC,gBA4BF,CAAC"}

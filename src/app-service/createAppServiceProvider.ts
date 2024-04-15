@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AppServiceProvider } from "../type/app-service/AppService";
+import type { AppServiceProvider } from "../type/app-service/AppService";
 
 export const createAppServiceProvider = (
   draft: Partial<AppServiceProvider> = {}

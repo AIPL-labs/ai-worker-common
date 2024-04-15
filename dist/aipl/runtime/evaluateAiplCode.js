@@ -3,7 +3,7 @@ import { evaluateAiplProgram } from "./evaluateAiplProgram";
 import { evaluateNodeToBoolean } from "./evaluateNodeToBoolean";
 export const evaluateAiplCode = (context) => (node) => {
     context.logger("evaluateAiplCode", { node });
-    let result = produce(context, () => { });
+    const result = produce(context, () => { });
     const { body, condition } = node;
     const conditionEvaluation = evaluateNodeToBoolean(context)(condition);
     context.logger("evaluateAiplCode condition", {

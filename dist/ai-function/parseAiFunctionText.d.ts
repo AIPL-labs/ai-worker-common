@@ -2,7 +2,7 @@ export declare const parseAiFunctionText: (text: string, options?: Partial<{
     aiFunctionPrefix: string;
 }>) => {
     readonly calls: {
-        readonly match: RegExpMatchArray;
+        readonly match: RegExpExecArray;
         readonly matchesTextLength: number;
         readonly before: string;
         readonly name: string;

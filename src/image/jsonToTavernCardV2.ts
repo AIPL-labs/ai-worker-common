@@ -1,7 +1,7 @@
 import { isUndefined } from "@mjtdev/engine";
-import { AppTavernCard } from "../type/app-character/AppCharacter";
-import { TavernCardV1 } from "../type/app-character/TavernCardV1";
-import { TavernCardV2 } from "../type/app-character/TavernCardV2";
+import type { AppTavernCard } from "../type/app-character/AppCharacter";
+import type { TavernCardV1 } from "../type/app-character/TavernCardV1";
+import type { TavernCardV2 } from "../type/app-character/TavernCardV2";
 
 export const jsonToTavernCardV2 = (
   json: Partial<AppTavernCard>

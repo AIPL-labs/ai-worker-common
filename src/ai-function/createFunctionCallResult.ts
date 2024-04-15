@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { FunctionCallResult } from "../type/chat-message/ChatMessage";
+import type { FunctionCallResult } from "../type/chat-message/ChatMessage";
 
 
 export const createFunctionCallResult = (

@@ -1,5 +1,5 @@
-import { AccessUser } from "../access/AccessUser";
-import { ServiceProviders } from "../app-service/AppService";
+import type { AccessUser } from "../access/AccessUser";
+import type { ServiceProviders } from "../app-service/AppService";
 export type AsrConfig = {
     pauseToListenMs: number;
 };

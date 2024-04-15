@@ -1,5 +1,6 @@
 import { isUndefined } from "@mjtdev/engine";
-const PARM_REGEX = /{+[\s]*([a-zA-Z0-9\$\-\.]+)[\s]*}+\[?([\-0-9]*)/gim;
+// const PARM_REGEX = /{+[\s]*([a-zA-Z0-9\$\-\.]+)[\s]*}+\[?([\-0-9]*)/gim;
+const PARM_REGEX = /{+[\s]*([a-zA-Z0-9$\-.]+)[\s]*}+\[?([-0-9]*)/gim;
 export const renderTemplateText = (template, facts, options = {}) => {
     if (!template) {
         return "";

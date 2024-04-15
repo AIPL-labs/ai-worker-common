@@ -1,7 +1,7 @@
 import { Objects, isUndefined } from "@mjtdev/engine";
 import { AppObjects } from "../app-object/AppObjects";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { ChatBuilder } from "./ChatBuilder";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatBuilder } from "./ChatBuilder";
 import { setChatMessage } from "./setChatMessage";
 import { addChatMessage } from "./addChatMessage";
 

@@ -16,7 +16,7 @@ export const looseParse = (text) => {
         return [objMaybe];
     }
     const regexes = [`{(.*?)}`, `"(.*?)"`];
-    for (let regex of regexes) {
+    for (const regex of regexes) {
         const decoded = decodeRegex(text, regex);
         if (decoded.length > 0) {
             return decoded.map((p) => looseParse(p));

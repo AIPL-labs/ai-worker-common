@@ -1,4 +1,4 @@
-import { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
 
 export const chatMessageToText = (message: ChatMessage): string => {
   const type = message.content.type;

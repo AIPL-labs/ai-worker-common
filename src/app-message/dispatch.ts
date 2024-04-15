@@ -1,5 +1,5 @@
-import { AppMessage } from "../type/app-message/AppMessage";
-import { AppMessageType } from "type/app-message/AppMessageType";
+import type { AppMessage } from "../type/app-message/AppMessage";
+import type { AppMessageType } from "type/app-message/AppMessageType";
 
 export const dispatch = async <T extends AppMessageType = AppMessageType>(
   ws: WebSocket,

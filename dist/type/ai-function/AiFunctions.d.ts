@@ -1,4 +1,4 @@
-import { DataObject } from "../data/DataObject";
+import type { DataObject } from "../data/DataObject";
 export type AiFunctionParam = {
     name: string;
     description: string;

@@ -8,7 +8,7 @@
 // import { DataIndexesStates } from "../backend/index/state/DataIndexesStates";
 
 import { uniqueId } from "../id/uniqueId";
-import { Chat } from "../type/chat/Chat";
+import type { Chat } from "../type/chat/Chat";
 import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
 
 export const createChat = (draft: Partial<Chat> = {}): Chat => {

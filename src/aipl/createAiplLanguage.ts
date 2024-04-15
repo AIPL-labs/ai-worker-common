@@ -1,5 +1,5 @@
 import P from "parsimmon";
-import { AiplAstSpec } from "./AiplAstSpec";
+import type { AiplAstSpec } from "./AiplAstSpec";
 import { isDefined } from "@mjtdev/engine";
 
 const addLoc = <T>(parser: P.Parser<T>) => {
@@ -192,8 +192,10 @@ export const createAiplLanguage = () => {
           P.alt(P.string("https"), P.string("http")),
           P.string("://"),
           P.regex(/[a-zA-Z0-9.-]+/),
-          P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)),
-          P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))
+          P.alt(P.regex(/\/[a-zA-Z0-9/j._-]*/), P.succeed(undefined)),
+          P.alt(P.regex(/\?[a-zA-Z0-9%&=_.\-+]*/), P.succeed(undefined))
+          // P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)),
+          // P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))
         ).map(
           (value) =>
             ({

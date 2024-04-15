@@ -1,6 +1,6 @@
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { Chat } from "../type/chat/Chat";
-import { ChatUpdater } from "./ChatUpdater";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { Chat } from "../type/chat/Chat";
+import type { ChatUpdater } from "./ChatUpdater";
 export declare const createChatBuilder: (params?: {
     chat?: Chat;
     messages?: Record<string, ChatMessage>;

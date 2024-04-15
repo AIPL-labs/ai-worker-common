@@ -1,3 +1,3 @@
-import { AppMessageMap } from "./AppMessageMap";
+import type { AppMessageMap } from "./AppMessageMap";
 
 export type AppMessageType = keyof AppMessageMap;

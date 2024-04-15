@@ -1,5 +1,5 @@
-import { AppObjectType } from "../type/app/AppObject";
-import { AppObjectCreator } from "./createAppObject";
+import type { AppObjectType } from "../type/app/AppObject";
+import type { AppObjectCreator } from "./createAppObject";
 export declare const APP_OBJECT_CREATORS: Partial<{
     [K in AppObjectType]: AppObjectCreator<K>;
 }>;

@@ -1,5 +1,5 @@
 import { isUndefined, safe } from "@mjtdev/engine";
-import { VonageAsr } from "./VongageTypes";
+import type { VonageAsr } from "./VongageTypes";
 
 export const decodeVonageAsr = (data: string) => {
   return safe(() => {

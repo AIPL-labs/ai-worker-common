@@ -1,5 +1,6 @@
-import { AiplLoc, AiplNode, AiplNodeType } from "../AiplAstSpec";
-import { AiplContext } from "./AiplContext";
+import type { AiplLoc, AiplNode} from "../AiplAstSpec";
+import { AiplNodeType } from "../AiplAstSpec";
+import type { AiplContext } from "./AiplContext";
 
 export type AiplError = {
   cause?: unknown;

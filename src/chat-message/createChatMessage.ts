@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
 
 export const createChatMessage = (draft: Partial<ChatMessage>): ChatMessage => {
   const {

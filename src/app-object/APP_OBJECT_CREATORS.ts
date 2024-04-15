@@ -19,9 +19,9 @@ import { createPhoneCall } from "../phone/createPhoneCall";
 import { createTextExtraction } from "../text-extraction/createTextExtraction";
 import { createAccessPointTheme } from "../theme/createAccessPointTheme";
 import { createThought } from "../thought/createThought";
-import { AppObjectType } from "../type/app/AppObject";
+import type { AppObjectType } from "../type/app/AppObject";
 import { createUserProfile } from "../user-profile/createUserProfile";
-import { AppObjectCreator } from "./createAppObject";
+import type { AppObjectCreator } from "./createAppObject";
 
 export const APP_OBJECT_CREATORS: Partial<{
   [K in AppObjectType]: AppObjectCreator<K>;

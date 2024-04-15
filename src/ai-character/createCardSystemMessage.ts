@@ -1,6 +1,6 @@
 import { isDefined } from "@mjtdev/engine";
 import { Aipls } from "../aipl/Aipls";
-import { AiplContext } from "../aipl/runtime/AiplContext";
+import type { AiplContext } from "../aipl/runtime/AiplContext";
 import { AppObjects } from "../app-object/AppObjects";
 
 export const createCardSystemMessage = ({

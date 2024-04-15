@@ -1,4 +1,4 @@
-import { ServiceInstanceInfo } from "./ServiceInstanceInfo";
+import type { ServiceInstanceInfo } from "./ServiceInstanceInfo";
 export type ServiceQueryResponse = {
     instances: ServiceInstanceInfo[];
 };

@@ -1,5 +1,5 @@
-import { AiplError } from "./AiplError";
-import { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
+import type { AiplError } from "./AiplError";
+import type { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
 import { evaluateNodeToNumber } from "./evaluateNodeToNumber";
 import { evaluateNodeToString } from "./evaluateNodeToString";
 
@@ -12,7 +12,7 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
   | "stringLiteral",
   boolean
 > = (context) => (node) => {
-  const trace = (message: string, extra?: any) => {
+  const trace = (message: string, extra?: unknown) => {
     context.logger(
       `evaluateNodeToBoolean ${node.loc.start.offset} ${node.type} ${message}`,
       extra
@@ -99,6 +99,7 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
           return !evaluateNodeToBoolean(context)(node.operand);
         }
       }
+      throw new Error(`unaryExpr: unexpected op: ${node}`);
     }
     case "number": {
       trace("number");

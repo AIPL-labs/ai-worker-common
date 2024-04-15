@@ -1,4 +1,4 @@
-import { AppMessageMap } from "./AppMessageMap";
+import type { AppMessageMap } from "./AppMessageMap";
 export type AppMessage<T extends keyof AppMessageMap = keyof AppMessageMap> = {
     type: T;
     detail: AppMessageMap[T];

@@ -3,7 +3,7 @@ import { decodeQuoatedStrings } from "./decodeQuoatedStrings";
 import { decodeRegex } from "./decodeRegex";
 import { safeJsonParse } from "./safeJsonParse";
 
-export const looseParse = (text: string): any[] => {
+export const looseParse = (text: string): unknown[] => {
   if (!text || isEmpty(text)) {
     return [];
   }
@@ -21,7 +21,7 @@ export const looseParse = (text: string): any[] => {
   }
   const regexes = [`{(.*?)}`, `"(.*?)"`];
 
-  for (let regex of regexes) {
+  for (const regex of regexes) {
     const decoded = decodeRegex(text, regex);
     if (decoded.length > 0) {
       return decoded.map((p) => looseParse(p));

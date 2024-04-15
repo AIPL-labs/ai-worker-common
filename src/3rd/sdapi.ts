@@ -25,12 +25,12 @@ export type SdApiTxt2ImgRequest = {
   s_tmax: number;
   s_tmin: number;
   s_noise: number;
-  override_settings: {};
+  override_settings: object;
   override_settings_restore_afterwards: boolean;
   refiner_checkpoint: string;
   refiner_switch_at: number;
   disable_extra_networks: boolean;
-  comments: {};
+  comments: object;
   enable_hr: boolean;
   firstphase_width: number;
   firstphase_height: number;
@@ -45,14 +45,14 @@ export type SdApiTxt2ImgRequest = {
   hr_negative_prompt: string;
   sampler_index: string;
   script_name: string;
-  script_args: Array<any>;
+  script_args: Array<unknown>;
   send_images: boolean;
   save_images: boolean;
-  alwayson_scripts: {};
+  alwayson_scripts: object;
 };
 
 export type SdApiTxt2ImgResponse = {
   images: Array<string>;
-  parameters: {};
+  parameters: object;
   info: string;
 };

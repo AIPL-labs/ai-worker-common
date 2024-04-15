@@ -9,7 +9,7 @@ export declare const AiFunctions: {
         aiFunctionPrefix: string;
     }>) => {
         readonly calls: {
-            readonly match: RegExpMatchArray;
+            readonly match: RegExpExecArray;
             readonly matchesTextLength: number;
             readonly before: string;
             readonly name: string;

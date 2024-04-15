@@ -1,6 +1,8 @@
-import { IPngMetadataTextualData, decodePng } from "@lunapaint/png-codec";
-import { ByteLike, Bytes, isDefined, safe } from "@mjtdev/engine";
-import { TavernCardV2 } from "../type/app-character/TavernCardV2";
+import type { IPngMetadataTextualData} from "@lunapaint/png-codec";
+import { decodePng } from "@lunapaint/png-codec";
+import type { ByteLike} from "@mjtdev/engine";
+import { Bytes, isDefined, safe } from "@mjtdev/engine";
+import type { TavernCardV2 } from "../type/app-character/TavernCardV2";
 import { PNG_KEYWORD_TAVERNCARD } from "./PNG_KEYWORDS";
 import { jsonToTavernCardV2 } from "./jsonToTavernCardV2";
 

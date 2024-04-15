@@ -1,4 +1,4 @@
-import { HomeAuth } from "./data/HomeAuth";
+import type { HomeAuth } from "./data/HomeAuth";
 export declare const fetchViaProxy: ({ url, homeBaseUrl, authToken, }: HomeAuth & {
     url: string;
 }) => Promise<Response>;

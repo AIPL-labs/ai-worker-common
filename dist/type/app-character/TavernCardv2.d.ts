@@ -1,4 +1,4 @@
-export type TavernCardV2<E extends Record<string, any> = Record<string, any>> = {
+export type TavernCardV2<E extends Record<string, unknown> = Record<string, unknown>> = {
     spec: "chara_card_v2";
     spec_version: "2.0";
     data: Partial<{
@@ -37,11 +37,11 @@ export type CharacterBook = {
     scan_depth?: number;
     token_budget?: number;
     recursive_scanning?: boolean;
-    extensions: Record<string, any>;
+    extensions: Record<string, unknown>;
     entries: Array<{
         keys: Array<string>;
         content: string;
-        extensions: Record<string, any>;
+        extensions: Record<string, unknown>;
         enabled: boolean;
         insertion_order: number;
         case_sensitive?: boolean;

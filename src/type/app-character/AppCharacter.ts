@@ -1,7 +1,7 @@
-import { ByteLike } from "@mjtdev/engine";
-import { AppReportQuestionnaire } from "../app-report/AppReport";
-import { CustomVoiceStyle } from "../voice/AppVoice";
-import { TavernCardV2 } from "./TavernCardV2";
+import type { ByteLike } from "@mjtdev/engine";
+import type { AppReportQuestionnaire } from "../app-report/AppReport";
+import type { CustomVoiceStyle } from "../voice/AppVoice";
+import type { TavernCardV2 } from "./TavernCardV2";
 
 export type AppCharacterVoice = Partial<{
   elevenLabsVoiceId: string;

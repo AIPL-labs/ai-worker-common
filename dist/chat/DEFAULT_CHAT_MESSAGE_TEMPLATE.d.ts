@@ -1,4 +1,4 @@
-import { ChatMessageTemplate } from "./ChatMessageTemplate";
+import type { ChatMessageTemplate } from "./ChatMessageTemplate";
 export declare const CHAT_ML_TEMPLATE: ChatMessageTemplate;
 export declare const OPENCHAT_TEMPLATE: ChatMessageTemplate;
 export declare const PLAY_TEMPLATE: ChatMessageTemplate;

@@ -1,10 +1,10 @@
 import { isDefined } from "@mjtdev/engine";
 import { AiplContext } from "../aipl/runtime/AiplContext";
-import { AppCharacter } from "../type/app-character/AppCharacter";
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { ChatMessageTemplate } from "./ChatMessageTemplate";
+import type { AppCharacter } from "../type/app-character/AppCharacter";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatMessageTemplate } from "./ChatMessageTemplate";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "./DEFAULT_CHAT_MESSAGE_TEMPLATE";
-import { PromptText } from "./PromptText";
+import type { PromptText } from "./PromptText";
 import { chatMessageToText } from "./chatMessageToText";
 import { renderAiplProgramText } from "../aipl/runtime/renderAiplProgramText";
 

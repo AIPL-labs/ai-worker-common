@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AppWebsocket } from "../type/app-websocket/AppWebsocket";
+import type { AppWebsocket } from "../type/app-websocket/AppWebsocket";
 
 export const createAppWebsocket = (
   draft: Partial<AppWebsocket> = {}

@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AppInterface } from "../type/app-interface/AppInterface";
+import type { AppInterface } from "../type/app-interface/AppInterface";
 
 export const createAppInterface = (
   draft: Partial<AppInterface> = {}

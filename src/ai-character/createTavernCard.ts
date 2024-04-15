@@ -1,4 +1,4 @@
-import { AppTavernCard } from "../type/app-character/AppCharacter";
+import type { AppTavernCard } from "../type/app-character/AppCharacter";
 
 export const createTavernCard = (
   draft: Partial<AppTavernCard> = {}

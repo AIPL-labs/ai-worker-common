@@ -1,15 +1,15 @@
 import { isDefined } from "@mjtdev/engine";
 import { produce } from "immer";
-import {
+import type {
   AiplNodeEvaluator,
   AiplNodePrimitiveEvaluator,
 } from "./AiplNodeEvaluator";
 import { evaluateAiplCode } from "./evaluateAiplCode";
-import { AiplError } from "./AiplError";
+import type { AiplError } from "./AiplError";
 import { evaluateNodeToBoolean } from "./evaluateNodeToBoolean";
 import { evaluateNodeToString } from "./evaluateNodeToString";
 import { DebugBlock } from "babylonjs";
-import { AiplAstSpec } from "../AiplAstSpec";
+import type { AiplAstSpec } from "../AiplAstSpec";
 
 export const evaluateListNodeToOperatorObjects: AiplNodePrimitiveEvaluator<
   "list",

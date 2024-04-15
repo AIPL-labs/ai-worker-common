@@ -1,5 +1,5 @@
 export type VonageEvent = {
-    headers: {};
+    headers: object;
     from: string;
     to: string;
     uuid: string;
@@ -26,7 +26,7 @@ export interface VonageAsrResult {
     text: string;
 }
 export interface Dtmf {
-    digits: any;
+    digits: unknown;
     timed_out: boolean;
 }
 export type VonageAnswerPayload = {

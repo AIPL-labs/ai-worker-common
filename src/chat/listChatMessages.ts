@@ -1,6 +1,6 @@
 // get a historical list of nodes
 
-import { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
 
 export const listChatMessages = ({
   messages,

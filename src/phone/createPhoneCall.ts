@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { PhoneCall } from "../type/phone/PhoneCall";
+import type { PhoneCall } from "../type/phone/PhoneCall";
 
 export const createPhoneCall = (draft: Partial<PhoneCall>): PhoneCall => {
   const {

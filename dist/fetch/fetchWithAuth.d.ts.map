@@ -1,1 +1,1 @@
-{"version":3,"file":"fetchWithAuth.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchWithAuth.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,eAAO,MAAM,aAAa;;SAOnB,MAAM;;;uBA8CZ,CAAC"}
+{"version":3,"file":"fetchWithAuth.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchWithAuth.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAEnD,eAAO,MAAM,aAAa,sEAKvB;IACD,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,GAAG,EAAE,MAAM,CAAC;IACZ,IAAI,CAAC,EAAE,CAAC,GAAG,MAAM,CAAC;IAClB,OAAO,CAAC,EAAE,YAAY,CAAC;CACxB,sBA2CA,CAAC"}

@@ -1,5 +1,5 @@
-import { ApiShape } from "../app-service/AppService";
-import { DataObject } from "../data/DataObject";
+import type { ApiShape } from "../app-service/AppService";
+import type { DataObject } from "../data/DataObject";
 
 export type CustomVoiceStyle = {
   alpha: number;

@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { TextExtraction } from "type/corpus/TextExtraction";
+import type { TextExtraction } from "type/corpus/TextExtraction";
 
 export const createTextExtraction = (
   draft: Partial<TextExtraction>

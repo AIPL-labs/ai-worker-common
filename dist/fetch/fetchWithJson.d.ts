@@ -1,8 +1,8 @@
-import { FetchOptions } from "./FetchOptions";
+import type { FetchOptions } from "./FetchOptions";
 export declare const fetchWithJson: <T extends object = object>({ authToken, url, data, options, }: {
-    authToken?: string | undefined;
+    authToken?: string;
     url: string;
-    data?: string | T | undefined;
-    options?: Partial<Partial<RequestInit>> | undefined;
+    data?: T | string;
+    options?: Partial<FetchOptions>;
 }) => Promise<Response>;
 //# sourceMappingURL=fetchWithJson.d.ts.map

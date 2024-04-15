@@ -1,5 +1,5 @@
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { Chat } from "../type/chat/Chat";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { Chat } from "../type/chat/Chat";
 
 export type ChatUpdater = (
   chat: Chat,

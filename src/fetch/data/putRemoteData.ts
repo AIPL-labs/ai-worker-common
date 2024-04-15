@@ -1,7 +1,7 @@
 import { assertValue } from "@mjtdev/engine";
-import { HttpHeaderMap } from "../HttpHeaderMap";
+import type { HttpHeaderMap } from "../HttpHeaderMap";
 import { fetchWithAuth } from "../fetchWithAuth";
-import { HomeAuth } from "./HomeAuth";
+import type { HomeAuth } from "./HomeAuth";
 
 export const putRemoteData = async ({
   authToken,

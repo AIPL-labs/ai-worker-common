@@ -1,4 +1,4 @@
-import { AppObjectType } from "../type/app/AppObject";
+import type { AppObjectType } from "../type/app/AppObject";
 
 export const getChildIndexId = (
   parentId: string,

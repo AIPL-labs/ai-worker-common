@@ -1,4 +1,4 @@
-import { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
+import type { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
 import { evaluateNodeToString } from "./evaluateNodeToString";
 
 export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<

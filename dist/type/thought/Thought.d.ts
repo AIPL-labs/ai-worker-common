@@ -1,5 +1,5 @@
-import { DataObject } from "../data/DataObject";
-import { VectorSearchResultItem } from "../vector/VectorSearchResultItem";
+import type { DataObject } from "../data/DataObject";
+import type { VectorSearchResultItem } from "../vector/VectorSearchResultItem";
 export type Thought = DataObject & {
     texts: string[];
     score: number;

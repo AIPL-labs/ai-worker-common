@@ -1,5 +1,5 @@
-import { AiplAstSpec, AiplNode } from "../AiplAstSpec";
-import { AiplState } from "aipl/AiplState";
+import type { AiplAstSpec, AiplNode } from "../AiplAstSpec";
+import type { AiplState } from "aipl/AiplState";
 export type AiplDecoratedValue<T> = {
     value: T;
     node?: AiplNode;
@@ -23,7 +23,7 @@ export type AiplContext = {
     softFunctionToNumber: (value: string, node: AiplNode) => number;
     stringToBoolean: (value: string, node: AiplNode) => boolean;
     stringToNumber: (value: string, node: AiplNode) => number;
-    logger: (message: string, ...extra: any[]) => void;
+    logger: (message: string, ...extra: unknown[]) => void;
     error: (error: unknown) => void;
 };
 //# sourceMappingURL=AiplContext.d.ts.map

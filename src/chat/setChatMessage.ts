@@ -1,5 +1,5 @@
-import { ChatMessage } from "../type/chat-message/ChatMessage";
-import { ChatBuilder } from "./ChatBuilder";
+import type { ChatMessage } from "../type/chat-message/ChatMessage";
+import type { ChatBuilder } from "./ChatBuilder";
 
 export const setChatMessage = ({
   message,

@@ -78,6 +78,7 @@ export const evaluateNodeToBoolean = (context) => (node) => {
                     return !evaluateNodeToBoolean(context)(node.operand);
                 }
             }
+            throw new Error(`unaryExpr: unexpected op: ${node}`);
         }
         case "number": {
             trace("number");

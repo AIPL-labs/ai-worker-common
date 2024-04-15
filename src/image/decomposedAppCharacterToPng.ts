@@ -1,5 +1,6 @@
+import type {
+  IPngMetadataTextualData} from "@lunapaint/png-codec";
 import {
-  IPngMetadataTextualData,
   decodePng,
   encodePng,
 } from "@lunapaint/png-codec";
@@ -9,7 +10,7 @@ import {
   PNG_KEYWORD_TAVERNCARD,
   PNG_KEYWORD_VOICE_SAMPLE,
 } from "./PNG_KEYWORDS";
-import { DecomposedAppCharacter } from "../type/app-character/AppCharacter";
+import type { DecomposedAppCharacter } from "../type/app-character/AppCharacter";
 
 export const decomposedAppCharacterToPng = async ({
   character,

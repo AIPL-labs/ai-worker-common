@@ -1,6 +1,7 @@
-import {
+import type {
   CloudflareAiChunkResponse,
-  OpenAiTextResponse,
+  OpenAiTextResponse} from "@mjtdev/engine";
+import {
   isCloudflareAiResponse,
   isOpenAiTextResponse,
 } from "@mjtdev/engine";

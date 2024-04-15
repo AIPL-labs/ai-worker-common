@@ -1,7 +1,7 @@
 import { isDefined } from "@mjtdev/engine";
 import { authTokenToAuthHeader } from "../common/authTokenToAuthHeader";
 import { orError } from "../common/orError";
-import { FetchOptions } from "./FetchOptions";
+import type { FetchOptions } from "./FetchOptions";
 
 export const fetchWithAuth = async <T extends BodyInit = BodyInit>({
   url,

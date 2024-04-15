@@ -1,6 +1,6 @@
 import { Prompts } from "../../ai/prompt/Prompts";
 import { Aipls } from "../Aipls";
-import { AiplContext } from "./AiplContext";
+import type { AiplContext } from "./AiplContext";
 
 export const renderAiplProgramText = (
   programText: string,

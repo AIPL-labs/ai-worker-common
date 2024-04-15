@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { Thought } from "../type/thought/Thought";
+import type { Thought } from "../type/thought/Thought";
 
 export const createThought = (draft: Partial<Thought>): Thought => {
   const {

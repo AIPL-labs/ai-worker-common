@@ -1,1 +1,1 @@
-{"version":3,"file":"dispatch.d.ts","sourceRoot":"","sources":["../../src/app-message/dispatch.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,gCAAgC,CAAC;AAG5D,eAAO,MAAM,QAAQ,sFACf,SAAS,0CAQd,CAAC"}
+{"version":3,"file":"dispatch.d.ts","sourceRoot":"","sources":["../../src/app-message/dispatch.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,gCAAgC,CAAC;AAGjE,eAAO,MAAM,QAAQ,sFACf,SAAS,WACJ,WAAW,CAAC,CAAC,kBAOvB,CAAC"}

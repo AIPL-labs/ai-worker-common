@@ -1,6 +1,6 @@
 import { isDefined } from "@mjtdev/engine";
-import { AiplDecoratedValue } from "../aipl/runtime/AiplContext";
-import { ChatStateEntry } from "../type/chat-message/ChatMessage";
+import type { AiplDecoratedValue } from "../aipl/runtime/AiplContext";
+import type { ChatStateEntry } from "../type/chat-message/ChatMessage";
 
 
 export const chatStateEntriesToDecoratedFacts = (

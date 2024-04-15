@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AppCharacter } from "../type/app-character/AppCharacter";
+import type { AppCharacter } from "../type/app-character/AppCharacter";
 import { createTavernCard } from "./createTavernCard";
 
 export const createAppCharacter = (

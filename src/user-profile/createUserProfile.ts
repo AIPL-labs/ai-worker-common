@@ -1,5 +1,5 @@
 import { uniqueId } from "../id/uniqueId";
-import { AppUserProfile } from "../type/user/AppUser";
+import type { AppUserProfile } from "../type/user/AppUser";
 import { upgradeServiceProviders } from "./upgradeUserProfile";
 
 export const createUserProfile = (

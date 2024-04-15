@@ -1,4 +1,4 @@
-import { HomeAuth } from "./HomeAuth";
+import type { HomeAuth } from "./HomeAuth";
 export declare const deleteRemoteData: ({ id, homeBaseUrl, authToken, }: Partial<HomeAuth> & {
     id: string;
 }) => Promise<Response>;

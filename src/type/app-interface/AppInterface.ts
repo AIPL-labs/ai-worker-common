@@ -1,3 +1,3 @@
-import { DataObject } from "../data/DataObject";
+import type { DataObject } from "../data/DataObject";
 
-export type AppInterface = DataObject & {};
+export type AppInterface = DataObject;

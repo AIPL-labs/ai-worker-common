@@ -8,7 +8,7 @@ export declare const useWaitState: import("@mjtdev/engine").State<{
     actives: string[];
     logger: (message: string, name: string) => void;
 }>;
-export declare const waitFor: <T extends string | boolean | void | object>(functionOrValue: T | (() => T | Promise<T>), options?: Partial<{
+export declare const waitFor: <T extends string | boolean | void | object>(functionOrValue: T | (() => Promise<T> | T), options?: Partial<{
     name: string;
     message: string;
 }>) => Promise<T>;

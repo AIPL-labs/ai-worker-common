@@ -1,5 +1,5 @@
-import { AccessInfo } from "../access/AccessInfo";
-import { AppObjectType } from "../app/AppObject";
+import type { AccessInfo } from "../access/AccessInfo";
+import type { AppObjectType } from "../app/AppObject";
 
 export type DataObject = {
   id: string;
