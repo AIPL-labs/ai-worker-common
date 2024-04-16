@@ -3,7 +3,7 @@ import type { AccessPoint } from "../access/AccessPoint";
 import type { AiFunctionCall } from "../ai-function/AiFunctions";
 import type { AppCharacter } from "../app-character/AppCharacter";
 import type { AppInterface } from "../app-interface/AppInterface";
-import type { ChatMessage, ChatStateEntry, FunctionCallResult } from "../chat-message/ChatMessage";
+import type { ChatMessage, ChatStarter, ChatStateEntry, FunctionCallResult } from "../chat-message/ChatMessage";
 import type { Chat } from "../chat/Chat";
 import type { Corpus, CorpusDocument } from "../corpus/Corpus";
 import type { DataIndex } from "../data-index/DataIndex";
@@ -41,6 +41,7 @@ export type AppObjectTypeMap = {
     "app-service": AppService;
     "app-service-node": AppServiceNode;
     "app-service-provider": AppServiceProvider;
+    "chat-starter": ChatStarter;
 };
 export type AppObjectType = keyof AppObjectTypeMap;
 export type AppObject<T extends AppObjectType = AppObjectType> = AppObjectTypeMap[T];

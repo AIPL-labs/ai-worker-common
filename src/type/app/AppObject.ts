@@ -5,6 +5,7 @@ import type { AppCharacter } from "../app-character/AppCharacter";
 import type { AppInterface } from "../app-interface/AppInterface";
 import type {
   ChatMessage,
+  ChatStarter,
   ChatStateEntry,
   FunctionCallResult,
 } from "../chat-message/ChatMessage";
@@ -51,6 +52,7 @@ export type AppObjectTypeMap = {
   "app-service": AppService;
   "app-service-node": AppServiceNode;
   "app-service-provider": AppServiceProvider;
+  "chat-starter": ChatStarter;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;

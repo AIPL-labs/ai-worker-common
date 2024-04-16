@@ -17,6 +17,10 @@ export type ChatMessage = DataObject & {
     }>;
     status: string;
 };
+export type ChatStarter = DataObject & {
+    position?: number;
+    text?: string;
+};
 export type ChatStateEntry = DataObject & {
     type?: string;
     namespace?: string;

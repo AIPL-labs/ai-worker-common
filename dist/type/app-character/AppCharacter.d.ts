@@ -14,6 +14,7 @@ export type DecomposedAppCharacter = {
 export type AppTavernCard = TavernCardV2<Partial<{
     direction: string;
     reports: AppReportQuestionnaire[];
+    starters: string[];
     physicalDescription: string;
     genInfo: Partial<{
         imagePrompt: string;

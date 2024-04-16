@@ -10,6 +10,7 @@ import { createAppServiceProvider } from "../app-service/createAppServiceProvide
 import { createAppVoice } from "../app-voice/createAppVoice";
 import { createAppWebsocket } from "../app-websocket/createAppWebsocket";
 import { createChatMessage } from "../chat-message/createChatMessage";
+import { createChatStarter } from "../chat/crateChatStarter";
 import { createChat } from "../chat/createChat";
 import { createChatStateEntry } from "../chat/createChatStateEntry";
 import { Corproa } from "../corpus/Corpora";
@@ -49,4 +50,5 @@ export const APP_OBJECT_CREATORS: Partial<{
   "app-service": createAppService,
   "app-service-node": createAppServiceNode,
   "app-service-provider": createAppServiceProvider,
+  "chat-starter": createChatStarter,
 };
