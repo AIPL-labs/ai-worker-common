@@ -49,17 +49,20 @@ export const evaluateNodeToBoolean = (context) => (node) => {
                     const leftValue = evaluateNodeToNumber(context)(left);
                     return leftValue < evaluateNodeToNumber(context)(right);
                 }
+                case "<=": {
+                    trace("<=");
+                    const leftValue = evaluateNodeToNumber(context)(left);
+                    return leftValue <= evaluateNodeToNumber(context)(right);
+                }
                 case ">": {
                     trace(">");
                     const leftValue = evaluateNodeToNumber(context)(left);
-                    const rightValue = evaluateNodeToNumber(context)(right);
-                    const result = leftValue > rightValue;
-                    trace("evaluateNodeToBoolean >", {
-                        leftValue,
-                        rightValue,
-                        result,
-                    });
-                    return result;
+                    return leftValue > evaluateNodeToNumber(context)(right);
+                }
+                case ">=": {
+                    trace(">=");
+                    const leftValue = evaluateNodeToNumber(context)(left);
+                    return leftValue >= evaluateNodeToNumber(context)(right);
                 }
             }
             trace(`finished switching compoundExpr with op value: '${op.value}'`);
@@ -83,6 +86,10 @@ export const evaluateNodeToBoolean = (context) => (node) => {
         case "number": {
             trace("number");
             return node.value !== 0;
+        }
+        case "boolean": {
+            trace("boolean");
+            return node.value;
         }
         case "identifier": {
             trace("identifier");

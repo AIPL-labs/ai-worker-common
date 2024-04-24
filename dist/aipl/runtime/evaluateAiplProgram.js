@@ -49,11 +49,6 @@ export const evaluateAiplProgram = (context) => (node) => {
                     const rendered = isDefined(stateValue)
                         ? stateValue
                         : childNode.defaultValue;
-                    // context.logger(`templateVariable : ${childNode.loc.start.offset}`, {
-                    //   childNode,
-                    //   rendered,
-                    //   stateValue,
-                    // });
                     if (isDefined(rendered)) {
                         result = produce(result, (r) => {
                             r.texts.push(rendered);

@@ -13,7 +13,7 @@ export type AiplLoc = {
     end: Index;
 };
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
-export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
+export type AiplComparisonOp = ">" | ">=" | "<" | "<=" | "=" | "==" | "!=" | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
 export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
 export type AiplAstSpec = {
@@ -71,6 +71,11 @@ export type AiplAstSpec = {
     number: {
         type: "number";
         value: number;
+        loc: AiplLoc;
+    };
+    boolean: {
+        type: "boolean";
+        value: boolean;
         loc: AiplLoc;
     };
     identifier: {

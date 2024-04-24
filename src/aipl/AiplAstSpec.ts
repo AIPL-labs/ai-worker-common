@@ -18,7 +18,15 @@ export type AiplLoc = {
 };
 
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
-export type AiplComparisonOp = ">" | "<" | "=" | "==" | "!=" | "!==";
+export type AiplComparisonOp =
+  | ">"
+  | ">="
+  | "<"
+  | "<="
+  | "="
+  | "=="
+  | "!="
+  | "!==";
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
 
 export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
@@ -85,12 +93,14 @@ export type AiplAstSpec = {
     loc: AiplLoc;
   };
   number: { type: "number"; value: number; loc: AiplLoc };
+  boolean: { type: "boolean"; value: boolean; loc: AiplLoc };
   identifier: { type: "identifier"; value: string; loc: AiplLoc };
   operator: { type: "operator"; value: AiplOp; loc: AiplLoc };
   comment: { type: "comment"; value: string; loc: AiplLoc };
   assignment: {
     type: "assignment";
     question: AiplAstSpec["stringLiteral" | "urlFunction"];
+    // question: AiplAstSpec["template" | "urlFunction"];
     identifier: AiplAstSpec["identifier"];
     loc: AiplLoc;
   };

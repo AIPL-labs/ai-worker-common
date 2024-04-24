@@ -5,6 +5,7 @@ export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<
   | "expr"
   | "identifier"
   | "number"
+  | "boolean"
   | "unaryExpr"
   | "binaryExpr"
   | "stringLiteral",
@@ -84,6 +85,9 @@ export const evaluateNodeToNumber: AiplNodePrimitiveEvaluator<
     }
     case "number": {
       return node.value;
+    }
+    case "boolean": {
+      return node.value ? 1 : 0;
     }
     case "identifier": {
       const stateValue = context.state[node.value];

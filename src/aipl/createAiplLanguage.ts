@@ -25,12 +25,14 @@ const operatorParser = P.alt(
   P.string("||"),
   P.string("|"),
 
+  P.string(">="),
   P.string(">"),
+  P.string("<="),
   P.string("<"),
-  P.string("="),
   P.string("=="),
-  P.string("!="),
-  P.string("!==")
+  P.string("="),
+  P.string("!=="),
+  P.string("!=")
 ).map(
   (value) =>
     ({
@@ -52,6 +54,14 @@ const textParser = P.regexp(/[^{}()\\]+/).map(
 const numberParser = P.regexp(/[0-9]+/)
   .map((value) => Number(value))
   .map((value) => ({ type: "number", value } as const));
+
+const booleanParser0 = P.regexp(/(true|false)/i)
+  .map((value) => Boolean(value.toLowerCase()))
+  .map((value) => ({ type: "boolean", value } as const));
+
+const booleanParser = P.alt(P.string("true"), P.string("false"))
+  .map((value) => Boolean(value.toLowerCase()))
+  .map((value) => ({ type: "boolean", value } as const));
 
 const innerTemplateVariable = addLoc(identifierParser).chain((identifier) =>
   P.alt(
@@ -208,6 +218,7 @@ export const createAiplLanguage = () => {
         )
       ),
     number: () => addLoc(numberParser),
+    boolean: () => addLoc(booleanParser),
     template: (r) =>
       addLoc(
         P.alt(r.templateVariable, P.regex(/[^{}"]+/))
@@ -249,11 +260,11 @@ export const createAiplLanguage = () => {
           // P.string("("),
           r.leftParen,
           P.optWhitespace,
-          P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
+          P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
           P.optWhitespace,
           r.operator,
           P.optWhitespace,
-          P.alt(r.expr, r.identifier, r.number, r.unaryExpr),
+          P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
           P.optWhitespace,
           // P.string(")")
           r.rightParen
@@ -274,8 +285,9 @@ export const createAiplLanguage = () => {
           r.binaryExpr,
           r.stringLiteral,
           r.unaryExpr,
-          r.identifier,
-          r.number
+          r.number,
+          r.boolean,
+          r.identifier
         ).map((value) => ({
           type: "expr",
           value,

@@ -4,6 +4,6 @@ export declare const Ids: {
         timestamp: string;
         uuid: string;
     } | undefined;
-    uniqueId: (type: keyof import("..").AppObjectTypeMap | "data", nonce?: string) => string;
+    uniqueId: (type: "data" | keyof import("..").AppObjectTypeMap, nonce?: string) => string;
 };
 //# sourceMappingURL=Ids.d.ts.map

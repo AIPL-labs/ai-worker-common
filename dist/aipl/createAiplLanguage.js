@@ -8,7 +8,7 @@ const identifierParser = P.regexp(/[a-zA-Z_][a-zA-Z0-9_.]+/).map((value) => ({
     type: "identifier",
     value,
 }));
-const operatorParser = P.alt(P.string("&&"), P.string("&"), P.string("||"), P.string("|"), P.string(">"), P.string("<"), P.string("="), P.string("=="), P.string("!="), P.string("!==")).map((value) => ({
+const operatorParser = P.alt(P.string("&&"), P.string("&"), P.string("||"), P.string("|"), P.string(">="), P.string(">"), P.string("<="), P.string("<"), P.string("=="), P.string("="), P.string("!=="), P.string("!=")).map((value) => ({
     type: "operator",
     value,
 }));
@@ -22,6 +22,12 @@ const textParser = P.regexp(/[^{}()\\]+/).map(
 const numberParser = P.regexp(/[0-9]+/)
     .map((value) => Number(value))
     .map((value) => ({ type: "number", value }));
+const booleanParser0 = P.regexp(/(true|false)/i)
+    .map((value) => Boolean(value.toLowerCase()))
+    .map((value) => ({ type: "boolean", value }));
+const booleanParser = P.alt(P.string("true"), P.string("false"))
+    .map((value) => Boolean(value.toLowerCase()))
+    .map((value) => ({ type: "boolean", value }));
 const innerTemplateVariable = addLoc(identifierParser).chain((identifier) => P.alt(P.string(":")
     .then(P.regexp(/[^}]+/))
     .map((defaultValue) => ({
@@ -93,6 +99,7 @@ export const createAiplLanguage = () => {
             query: value[4],
         }))),
         number: () => addLoc(numberParser),
+        boolean: () => addLoc(booleanParser),
         template: (r) => addLoc(P.alt(r.templateVariable, P.regex(/[^{}"]+/))
             .many()
             .map((value) => ({ type: "template", value }))),
@@ -111,7 +118,7 @@ export const createAiplLanguage = () => {
         }))),
         binaryExpr: (r) => addLoc(P.seq(
         // P.string("("),
-        r.leftParen, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, r.operator, P.optWhitespace, P.alt(r.expr, r.identifier, r.number, r.unaryExpr), P.optWhitespace, 
+        r.leftParen, P.optWhitespace, P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier), P.optWhitespace, r.operator, P.optWhitespace, P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier), P.optWhitespace, 
         // P.string(")")
         r.rightParen).map((result) => ({
             type: "binaryExpr",
@@ -119,7 +126,7 @@ export const createAiplLanguage = () => {
             op: result[4],
             right: result[6],
         }))),
-        expr: (r) => addLoc(P.alt(r.binaryExpr, r.stringLiteral, r.unaryExpr, r.identifier, r.number).map((value) => ({
+        expr: (r) => addLoc(P.alt(r.binaryExpr, r.stringLiteral, r.unaryExpr, r.number, r.boolean, r.identifier).map((value) => ({
             type: "expr",
             value,
         }))),

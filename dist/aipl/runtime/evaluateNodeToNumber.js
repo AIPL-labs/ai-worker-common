@@ -63,6 +63,9 @@ export const evaluateNodeToNumber = (context) => (node) => {
         case "number": {
             return node.value;
         }
+        case "boolean": {
+            return node.value ? 1 : 0;
+        }
         case "identifier": {
             const stateValue = context.state[node.value];
             trace(`stateValue: ${stateValue}`);
