@@ -18,6 +18,7 @@ export * from "./type/chat/Chat";
 export * from "./type/chat/ChatContent";
 export * from "./type/chat/ChatImageContent";
 export * from "./type/chat/ChatTextContent";
+export * from "./type/chat/ChatStatus";
 export * from "./chat/PromptText";
 export * from "./type/chat-message/ChatMessage";
 export * from "./type/chat-message/ChatRole";

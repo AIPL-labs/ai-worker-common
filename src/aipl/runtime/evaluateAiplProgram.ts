@@ -17,6 +17,7 @@ export const evaluateListNodeToOperatorObjects: AiplNodePrimitiveEvaluator<
 > = (context) => (node) => {
   const colonOpObj: Record<string, string> = {};
   const equalOpObj: Record<string, string> = {};
+  const doubleEqualOpObj: Record<string, string> = {};
   for (const entry of node.values) {
     const { key, op, value } = entry;
     const stringValue = evaluateNodeToString(context)(value);
@@ -25,9 +26,13 @@ export const evaluateListNodeToOperatorObjects: AiplNodePrimitiveEvaluator<
         colonOpObj[key] = stringValue;
         continue;
       }
-      case "=":
+      case "=": {
+        equalOpObj[key] = stringValue;
+        continue;
+      }
+      case "==":
         {
-          equalOpObj[key] = stringValue;
+          doubleEqualOpObj[key] = stringValue;
           continue;
         }
         throw new Error(
@@ -39,6 +44,7 @@ export const evaluateListNodeToOperatorObjects: AiplNodePrimitiveEvaluator<
   return {
     ":": colonOpObj,
     "=": equalOpObj,
+    "==": doubleEqualOpObj,
   };
 };
 
@@ -81,6 +87,19 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             // no-op for comments
             continue;
           }
+
+          case "directAssignment": {
+            switch (childNode.question.type) {
+              case "stringLiteral": {
+                context.assignValueStringToIdentifier({
+                  value: evaluateNodeToString(context)(childNode.question),
+                  identifier: childNode.identifier,
+                });
+                continue;
+              }
+            }
+            continue;
+          }
           case "assignment": {
             switch (childNode.question.type) {
               case "stringLiteral": {
@@ -101,25 +120,13 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                   identifier: childNode.identifier,
                   data: operatorObjects?.[":"],
                   headers: operatorObjects?.["="],
+                  specials: operatorObjects?.["=="],
                 });
                 continue;
               }
             }
-            // context.assignAnswerToIdentifier({
-            //   question: evaluateNodeToString(context)(childNode.question),
-            //   identifier: childNode.identifier,
-            // });
             continue;
           }
-          // case "conditionalAssignment": {
-          //   if (evaluateNodeToBoolean(context)(childNode.condition)) {
-          //     context.assignAnswerToIdentifier({
-          //       question: evaluateNodeToString(context)(childNode.question),
-          //       identifier: childNode.identifier,
-          //     });
-          //   }
-          //   // TODO conditional assignment
-          // }
         }
       } catch (error) {
         throw {

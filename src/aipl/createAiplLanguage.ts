@@ -42,8 +42,6 @@ const operatorParser = P.alt(
 );
 
 const textParser = P.regexp(/[^{}()\\]+/).map(
-  // const textParser = P.regexp(/[^{})]+/).map(
-  // const textParser = P.regexp(/[^{}]+/).map(
   (value) =>
     ({
       type: "text",
@@ -55,38 +53,39 @@ const numberParser = P.regexp(/[0-9]+/)
   .map((value) => Number(value))
   .map((value) => ({ type: "number", value } as const));
 
-const booleanParser0 = P.regexp(/(true|false)/i)
-  .map((value) => Boolean(value.toLowerCase()))
-  .map((value) => ({ type: "boolean", value } as const));
-
 const booleanParser = P.alt(P.string("true"), P.string("false"))
   .map((value) => Boolean(value.toLowerCase()))
   .map((value) => ({ type: "boolean", value } as const));
 
-const innerTemplateVariable = addLoc(identifierParser).chain((identifier) =>
-  P.alt(
-    P.string(":")
-      .then(P.regexp(/[^}]+/))
-      .map(
-        (defaultValue) =>
-          ({
-            type: "templateVariable",
-            identifier,
-            defaultValue,
-          } as const)
-      ),
-    P.succeed({
-      type: "templateVariable",
-      identifier,
-      defaultText: undefined,
-    } as const)
-  )
-);
+const innerTemplateVariable = addLoc(identifierParser)
+  // .map(
+  //   (identifier) =>
+  //     ({
+  //       type: "templateVariable",
+  //       identifier,
+  //       defaultText: undefined,
+  //     } as const)
+  // );
 
-const templateVariableParser = P.alt(
-  P.seq(P.string("{"), innerTemplateVariable, P.string("}")),
-  P.seq(P.string("{{"), innerTemplateVariable, P.string("}}"))
-).map((value) => value[1]);
+  .chain((identifier) =>
+    P.alt(
+      P.string(":")
+        .then(P.regexp(/[^}]+/))
+        .map(
+          (defaultValue) =>
+            ({
+              type: "templateVariable",
+              identifier,
+              defaultValue,
+            } as const)
+        ),
+      P.succeed({
+        type: "templateVariable",
+        identifier,
+        defaultText: undefined,
+      } as const)
+    )
+  );
 
 const commentParser = P.string("(#").then(
   P.regex(/[^)]+/)
@@ -109,30 +108,31 @@ export const createAiplLanguage = () => {
             ({
               type: "escapedSymbol",
               value: value[1].value,
-              // value: ")",
             } as const)
         )
       ),
 
     leftParen: () =>
       addLoc(
-        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string("("))
-        // P.seq(P.string("(")).map(
         P.string("(").map(() => ({ type: "symbol", value: "(" } as const))
       ),
     rightParen: () =>
       addLoc(
-        // P.seq(P.lookahead(P.regex(/^[\\]/)), P.string(")"))
-        // P.seq(P.string(")"))
         P.string(")").map(() => ({ type: "symbol", value: ")" } as const))
       ),
+
     text: () => addLoc(textParser),
-    stringLiteral: (r) =>
+
+    singleQuoteStringLiteral: (r) =>
+      P.alt(
+        r.singleQuoteStringLiteral3,
+        r.singleQuoteStringLiteral2,
+        r.singleQuoteStringLiteral1
+      ),
+
+    singleQuoteStringLiteral1: (r) =>
       addLoc(
-        P.alt(
-          P.seq(P.string('"'), r.template, P.string('"')),
-          P.seq(P.string("'"), r.template, P.string("'"))
-        ).map(
+        P.alt(P.seq(P.string("'"), r.templateSingle1, P.string("'"))).map(
           (value) =>
             ({
               type: "stringLiteral",
@@ -140,12 +140,48 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+    singleQuoteStringLiteral2: (r) =>
+      addLoc(
+        P.alt(P.seq(P.string("''"), r.templateSingle2, P.string("''"))).map(
+          (value) =>
+            ({
+              type: "stringLiteral",
+              value: value[1],
+            } as const)
+        )
+      ),
+    singleQuoteStringLiteral3: (r) =>
+      addLoc(
+        P.alt(P.seq(P.string("'''"), r.templateSingle3, P.string("'''"))).map(
+          (value) =>
+            ({
+              type: "stringLiteral",
+              value: value[1],
+            } as const)
+        )
+      ),
+
+    // TODO / HACK figure out why parsimon 'locks on' to {{{ rather than alting to {{
+    doubleQuoteStringLiteral: (r) =>
+      addLoc(
+        P.alt(P.seq(P.string('"'), r.templateDouble1, P.string('"'))).map(
+          (value) =>
+            ({
+              type: "stringLiteral",
+              value: value[1],
+            } as const)
+        )
+      ),
+
+    stringLiteral: (r) =>
+      addLoc(P.alt(r.doubleQuoteStringLiteral, r.singleQuoteStringLiteral)),
+
     entry: (r) =>
       addLoc(
         P.seq(
           P.regex(/[a-zA-Z0-9-_.]+/),
           P.optWhitespace,
-          P.alt(P.string(":"), P.string("=")),
+          P.alt(P.string(":"), P.string("=="), P.string("=")),
           P.optWhitespace,
           r.stringLiteral
         ).map(
@@ -158,10 +194,10 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+
     list: (r) =>
       addLoc(
         P.seq(
-          // P.string("("),
           r.leftParen,
           P.optWhitespace,
           P.seq(
@@ -182,9 +218,9 @@ export const createAiplLanguage = () => {
             ),
           P.optWhitespace,
           r.rightParen
-          // P.string(")")
         ).map((value) => value[2])
       ),
+
     urlFunction: (r) =>
       addLoc(
         P.seq(r.url, P.optWhitespace, P.alt(r.list, P.succeed(undefined))).map(
@@ -196,6 +232,7 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+
     url: () =>
       addLoc(
         P.seq(
@@ -204,8 +241,6 @@ export const createAiplLanguage = () => {
           P.regex(/[a-zA-Z0-9.-]+/),
           P.alt(P.regex(/\/[a-zA-Z0-9/j._-]*/), P.succeed(undefined)),
           P.alt(P.regex(/\?[a-zA-Z0-9%&=_.\-+]*/), P.succeed(undefined))
-          // P.alt(P.regex(/\/[a-zA-Z0-9\/j._-]*/), P.succeed(undefined)),
-          // P.alt(P.regex(/\?[a-zA-Z0-9%&=_\.\-\+]*/), P.succeed(undefined))
         ).map(
           (value) =>
             ({
@@ -217,22 +252,128 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+
     number: () => addLoc(numberParser),
     boolean: () => addLoc(booleanParser),
-    template: (r) =>
+
+    template: (r) => addLoc(P.alt(r.templateDouble, r.templateSingle)),
+    templateSingle: (r) =>
+      addLoc(P.alt(r.templateSingle3, r.templateSingle2, r.templateSingle1)),
+    templateSingle1: (r) =>
       addLoc(
-        P.alt(r.templateVariable, P.regex(/[^{}"]+/))
+        P.alt(
+          r.templateVariable1,
+          P.noneOf("'")
+
+          // P.regex(/[^']+/)
+        )
           .many()
           .map((value) => ({ type: "template", value }))
       ),
+    templateSingle2: (r) =>
+      addLoc(
+        P.alt(r.templateVariable2, P.noneOf("'"))
+          .many()
+          .map((value) => ({ type: "template", value }))
+      ),
+    templateSingle3: (r) =>
+      addLoc(
+        P.alt(
+          r.templateVariable3,
+          // P.regex(/[^']+/)
+
+          P.noneOf("'")
+        )
+          .many()
+          .map((value) => ({ type: "template", value }))
+      ),
+    templateDouble: (r) =>
+      addLoc(P.alt(r.templateDouble3, r.templateDouble2, r.templateDouble1)),
+    templateDouble1: (r) =>
+      addLoc(
+        P.alt(
+          r.templateVariable1,
+          P.noneOf('"')
+          // P.regex(/[^{}"]+/)
+        )
+          .many()
+          .map((value) => ({ type: "template", value }))
+      ),
+    templateDouble2: (r) =>
+      addLoc(
+        P.alt(
+          r.templateVariable2,
+
+          P.noneOf('"')
+          // P.regex(/[^{}"]+/)
+        )
+          .many()
+          .map((value) => ({ type: "template", value }))
+      ),
+    templateDouble3: (r) =>
+      addLoc(
+        P.alt(
+          r.templateVariable3,
+          // P.regex(/[^{}"]+/)
+
+          P.noneOf('"')
+        )
+          .many()
+          .map((value) => ({ type: "template", value }))
+      ),
+
     identifier: () => addLoc(identifierParser),
     operator: () => addLoc(operatorParser),
     comment: () => addLoc(commentParser),
-    templateVariable: () => addLoc(templateVariableParser),
+
+    templateVariable: (r) =>
+      addLoc(
+        P.alt(r.templateVariable3, r.templateVariable2, r.templateVariable1)
+      ),
+    templateVariable1: () =>
+      addLoc(
+        P.seq(P.string("{"), innerTemplateVariable, P.string("}")).map(
+          (value) => value[1]
+        )
+      ),
+    templateVariable2: () =>
+      addLoc(
+        P.seq(P.string("{{"), innerTemplateVariable, P.string("}}")).map(
+          (value) => value[1]
+        )
+      ),
+    templateVariable3: () =>
+      addLoc(
+        P.seq(P.string("{{{"), innerTemplateVariable, P.string("}}}")).map(
+          (value) => value[1]
+        )
+      ),
+
+    directAssignment: (r) =>
+      addLoc(
+        P.seq(
+          r.leftParen,
+          P.optWhitespace,
+          P.alt(r.stringLiteral),
+          P.optWhitespace,
+          P.string("-->"),
+          P.optWhitespace,
+          r.identifier,
+          P.optWhitespace,
+          r.rightParen
+        ).map(
+          (value) =>
+            ({
+              type: "directAssignment",
+              question: value[2],
+              identifier: value[6],
+            } as const)
+        )
+      ),
+
     assignment: (r) =>
       addLoc(
         P.seq(
-          // P.string("("),
           r.leftParen,
           P.optWhitespace,
           P.alt(r.stringLiteral, r.urlFunction),
@@ -241,8 +382,6 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           r.identifier,
           P.optWhitespace,
-
-          // P.string(")")
           r.rightParen
         ).map(
           (value) =>
@@ -257,7 +396,6 @@ export const createAiplLanguage = () => {
     binaryExpr: (r) =>
       addLoc(
         P.seq(
-          // P.string("("),
           r.leftParen,
           P.optWhitespace,
           P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
@@ -266,7 +404,6 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
           P.optWhitespace,
-          // P.string(")")
           r.rightParen
         ).map(
           (result) =>
@@ -293,6 +430,7 @@ export const createAiplLanguage = () => {
           value,
         }))
       ),
+
     unaryExpr: (r) =>
       addLoc(
         P.seq(P.string("!"), r.expr).map(
@@ -303,16 +441,7 @@ export const createAiplLanguage = () => {
 
     code: (r) =>
       addLoc(
-        P.seq(
-          // P.string("("),
-          r.leftParen,
-
-          P.alt(r.expr),
-          r.program,
-          r.rightParen
-
-          // P.string(")")
-        ).map(
+        P.seq(r.leftParen, P.alt(r.expr), r.program, r.rightParen).map(
           (value) =>
             ({
               type: "code",
@@ -321,11 +450,13 @@ export const createAiplLanguage = () => {
             } as const)
         )
       ),
+
     program: (r) =>
       addLoc(
         P.alt(
           r.escapedSymbol,
           r.comment,
+          r.directAssignment,
           r.assignment,
           // r.conditionalAssignment,
 

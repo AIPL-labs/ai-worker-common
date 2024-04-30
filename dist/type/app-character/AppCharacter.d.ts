@@ -15,14 +15,13 @@ export type AppTavernCard = TavernCardV2<Partial<{
     direction: string;
     reports: AppReportQuestionnaire[];
     starters: string[];
+    chatEnd: string;
     physicalDescription: string;
     genInfo: Partial<{
         imagePrompt: string;
     }>;
     functions: string[];
     voice: AppCharacterVoice;
-    /** @deprecated */
-    elevenLabsVoiceId: string;
 }>>;
 export type AppCharacterFieldName = keyof AppCharacter["card"]["data"];
 export type AppCharacter = {

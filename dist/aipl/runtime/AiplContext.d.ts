@@ -9,15 +9,20 @@ export type AiplContext = {
     name?: string;
     state: AiplState;
     texts: string[];
+    assignValueStringToIdentifier: ({ value, identifier, }: {
+        value: string;
+        identifier: AiplAstSpec["identifier"];
+    }) => void;
     assignQuestionStringToIdentifier: ({ question, identifier, }: {
         question: string;
         identifier: AiplAstSpec["identifier"];
     }) => void;
-    assignUrlFunctionToIdentifier: ({ urlFunction, identifier, data, headers, }: {
+    assignUrlFunctionToIdentifier: ({ urlFunction, identifier, data, headers, specials, }: {
         urlFunction: AiplAstSpec["urlFunction"];
         identifier: AiplAstSpec["identifier"];
         data?: Record<string, string>;
         headers?: Record<string, string>;
+        specials?: Record<string, string>;
     }) => void;
     softFunctionToBoolean: (value: string, node: AiplNode) => boolean;
     softFunctionToNumber: (value: string, node: AiplNode) => number;

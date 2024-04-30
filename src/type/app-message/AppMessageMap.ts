@@ -76,6 +76,7 @@ export type AppMessageMap = {
   "chat:debug": { prompt: string; facts: Record<string, string | undefined> };
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
+  "chat:end": string;
   "chat:startPublicAgent": {
     accessPointId: string;
     params: Record<string, string>;
@@ -170,4 +171,5 @@ export type AppMessageMap = {
     key: string;
   }>;
   "app:upgrade": unknown;
+  "app:setAlarm": number;
 };

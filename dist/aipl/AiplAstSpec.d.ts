@@ -42,10 +42,35 @@ export type AiplAstSpec = {
         value: AiplAstSpec["template"];
         loc: AiplLoc;
     };
+    doubleQuoteStringLiteral: {
+        type: "stringLiteral";
+        value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
+    singleQuoteStringLiteral: {
+        type: "stringLiteral";
+        value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
+    singleQuoteStringLiteral1: {
+        type: "stringLiteral";
+        value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
+    singleQuoteStringLiteral2: {
+        type: "stringLiteral";
+        value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
+    singleQuoteStringLiteral3: {
+        type: "stringLiteral";
+        value: AiplAstSpec["template"];
+        loc: AiplLoc;
+    };
     entry: {
         type: "entry";
         key: string;
-        op: ":" | "=";
+        op: ":" | "=" | "==";
         value: AiplAstSpec["stringLiteral"];
         loc: AiplLoc;
     };
@@ -99,7 +124,31 @@ export type AiplAstSpec = {
         identifier: AiplAstSpec["identifier"];
         loc: AiplLoc;
     };
+    directAssignment: {
+        type: "directAssignment";
+        question: AiplAstSpec["stringLiteral" | "urlFunction"];
+        identifier: AiplAstSpec["identifier"];
+        loc: AiplLoc;
+    };
     templateVariable: {
+        type: "templateVariable";
+        identifier: AiplAstSpec["identifier"];
+        defaultValue?: string;
+        loc: AiplLoc;
+    };
+    templateVariable1: {
+        type: "templateVariable";
+        identifier: AiplAstSpec["identifier"];
+        defaultValue?: string;
+        loc: AiplLoc;
+    };
+    templateVariable2: {
+        type: "templateVariable";
+        identifier: AiplAstSpec["identifier"];
+        defaultValue?: string;
+        loc: AiplLoc;
+    };
+    templateVariable3: {
         type: "templateVariable";
         identifier: AiplAstSpec["identifier"];
         defaultValue?: string;
@@ -134,9 +183,49 @@ export type AiplAstSpec = {
         value: (AiplAstSpec["templateVariable"] | string)[];
         loc: AiplLoc;
     };
+    templateSingle: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateSingle1: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateSingle2: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateSingle3: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateDouble: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateDouble1: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateDouble2: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
+    templateDouble3: {
+        type: "template";
+        value: (AiplAstSpec["templateVariable"] | string)[];
+        loc: AiplLoc;
+    };
     program: {
         type: "program";
-        value: AiplAstSpec["escapedSymbol" | "comment" | "assignment" | "text" | "templateVariable" | "code"][];
+        value: AiplAstSpec["escapedSymbol" | "comment" | "assignment" | "directAssignment" | "text" | "templateVariable" | "code"][];
         loc: AiplLoc;
     };
 };

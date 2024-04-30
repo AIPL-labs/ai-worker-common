@@ -11,6 +11,13 @@ export type AiplContext = {
   name?: string;
   state: AiplState;
   texts: string[];
+  assignValueStringToIdentifier: ({
+    value,
+    identifier,
+  }: {
+    value: string;
+    identifier: AiplAstSpec["identifier"];
+  }) => void;
   assignQuestionStringToIdentifier: ({
     question,
     identifier,
@@ -23,11 +30,13 @@ export type AiplContext = {
     identifier,
     data,
     headers,
+    specials,
   }: {
     urlFunction: AiplAstSpec["urlFunction"];
     identifier: AiplAstSpec["identifier"];
     data?: Record<string, string>;
     headers?: Record<string, string>;
+    specials?: Record<string, string>;
   }) => void;
 
   softFunctionToBoolean: (value: string, node: AiplNode) => boolean;

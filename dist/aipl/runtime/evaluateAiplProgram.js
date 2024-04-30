@@ -5,6 +5,7 @@ import { evaluateNodeToString } from "./evaluateNodeToString";
 export const evaluateListNodeToOperatorObjects = (context) => (node) => {
     const colonOpObj = {};
     const equalOpObj = {};
+    const doubleEqualOpObj = {};
     for (const entry of node.values) {
         const { key, op, value } = entry;
         const stringValue = evaluateNodeToString(context)(value);
@@ -13,9 +14,13 @@ export const evaluateListNodeToOperatorObjects = (context) => (node) => {
                 colonOpObj[key] = stringValue;
                 continue;
             }
-            case "=":
+            case "=": {
+                equalOpObj[key] = stringValue;
+                continue;
+            }
+            case "==":
                 {
-                    equalOpObj[key] = stringValue;
+                    doubleEqualOpObj[key] = stringValue;
                     continue;
                 }
                 throw new Error(`evaluateListNodeToOperatorObjects unexpected op: '${op}'`);
@@ -24,6 +29,7 @@ export const evaluateListNodeToOperatorObjects = (context) => (node) => {
     return {
         ":": colonOpObj,
         "=": equalOpObj,
+        "==": doubleEqualOpObj,
     };
 };
 export const evaluateAiplProgram = (context) => (node) => {
@@ -64,6 +70,18 @@ export const evaluateAiplProgram = (context) => (node) => {
                     // no-op for comments
                     continue;
                 }
+                case "directAssignment": {
+                    switch (childNode.question.type) {
+                        case "stringLiteral": {
+                            context.assignValueStringToIdentifier({
+                                value: evaluateNodeToString(context)(childNode.question),
+                                identifier: childNode.identifier,
+                            });
+                            continue;
+                        }
+                    }
+                    continue;
+                }
                 case "assignment": {
                     switch (childNode.question.type) {
                         case "stringLiteral": {
@@ -82,25 +100,13 @@ export const evaluateAiplProgram = (context) => (node) => {
                                 identifier: childNode.identifier,
                                 data: operatorObjects?.[":"],
                                 headers: operatorObjects?.["="],
+                                specials: operatorObjects?.["=="],
                             });
                             continue;
                         }
                     }
-                    // context.assignAnswerToIdentifier({
-                    //   question: evaluateNodeToString(context)(childNode.question),
-                    //   identifier: childNode.identifier,
-                    // });
                     continue;
                 }
-                // case "conditionalAssignment": {
-                //   if (evaluateNodeToBoolean(context)(childNode.condition)) {
-                //     context.assignAnswerToIdentifier({
-                //       question: evaluateNodeToString(context)(childNode.question),
-                //       identifier: childNode.identifier,
-                //     });
-                //   }
-                //   // TODO conditional assignment
-                // }
             }
         }
         catch (error) {

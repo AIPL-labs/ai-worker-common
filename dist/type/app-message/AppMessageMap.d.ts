@@ -62,6 +62,7 @@ export type AppMessageMap = {
         chat: Partial<Chat>;
     };
     "chat:start": Partial<Chat>;
+    "chat:end": string;
     "chat:startPublicAgent": {
         accessPointId: string;
         params: Record<string, string>;
@@ -155,5 +156,6 @@ export type AppMessageMap = {
         key: string;
     }>;
     "app:upgrade": unknown;
+    "app:setAlarm": number;
 };
 //# sourceMappingURL=AppMessageMap.d.ts.map

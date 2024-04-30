@@ -5,7 +5,6 @@ import type { TavernCardV2 } from "./TavernCardV2";
 
 export type AppCharacterVoice = Partial<{
   elevenLabsVoiceId: string;
-  // sampleB64: string;
   style: Partial<CustomVoiceStyle>;
 }>;
 
@@ -18,17 +17,15 @@ export type DecomposedAppCharacter = {
 export type AppTavernCard = TavernCardV2<
   Partial<{
     direction: string;
-    // voiceId: string;
     reports: AppReportQuestionnaire[];
     starters: string[];
+    chatEnd: string;
     physicalDescription: string;
     genInfo: Partial<{
       imagePrompt: string;
     }>;
     functions: string[];
     voice: AppCharacterVoice;
-    /** @deprecated */
-    elevenLabsVoiceId: string;
   }>
 >;
 
