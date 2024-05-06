@@ -1,1 +1,0 @@
-{"version":3,"file":"tavernCardToPng.d.ts","sourceRoot":"","sources":["../../src/image/tavernCardToPng.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,QAAQ,EAAoB,MAAM,gBAAgB,CAAC;AAC5D,OAAO,EAAE,YAAY,EAAE,MAAM,oCAAoC,CAAC;AAMlE,eAAO,MAAM,2BAA2B;UAKhC,YAAY;WACX,QAAQ;YACP,QAAQ,GAAG,IAAI,GAAG,SAAS;mBA+BpC,CAAC"}

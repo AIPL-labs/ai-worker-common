@@ -3,12 +3,9 @@ import type { HttpHeaderMap } from "../HttpHeaderMap";
 import { fetchWithAuth } from "../fetchWithAuth";
 import type { HomeAuth } from "./HomeAuth";
 
-export const putRemoteData = async ({
-  authToken,
-  homeBaseUrl = "",
-  data,
-  id,
-  options = {},
+
+export const putRemoteDataAccess = async ({
+  authToken, homeBaseUrl = "", data, id, options = {},
 }: Partial<HomeAuth> & {
   id: string;
   data: BodyInit;
@@ -20,8 +17,8 @@ export const putRemoteData = async ({
   const { mediaType } = options;
   const headers: HttpHeaderMap | undefined = mediaType
     ? {
-        "Content-Type": mediaType,
-      }
+      "Content-Type": mediaType,
+    }
     : {};
   return await fetchWithAuth({
     authToken,
@@ -33,5 +30,3 @@ export const putRemoteData = async ({
     },
   });
 };
-
-

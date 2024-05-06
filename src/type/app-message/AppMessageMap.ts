@@ -11,6 +11,7 @@ import type { IngestRequest } from "../rest/IngestRequest";
 import type { UserLoginRequest } from "../rest/UserLoginRequest";
 import type { AppMessage } from "./AppMessage";
 import type { AppCharacter } from "../app-character/AppCharacter";
+import type { AccessInfo } from "../access/AccessInfo";
 
 export type MessageChunk = {
   id: string;
@@ -132,6 +133,9 @@ export type AppMessageMap = {
   "dataObject:unsub": string | string[];
 
   "dataObject:update": DataObject | DataObject[];
+  "dataObject:update:accessInfo":
+    | (DataObject & AccessInfo)
+    | (DataObject & AccessInfo)[];
   "dataObject:murmur": DataObject | DataObject[];
   "dataObject:delete": string | string[];
   "dataObject:find": string | string[];

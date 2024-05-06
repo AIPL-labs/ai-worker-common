@@ -1,5 +1,5 @@
 import { calcOctalPermissions } from "./calculateOctalPermissions";
-import type { AccessInfo} from "../type/access/AccessInfo";
+import type { AccessInfo } from "../type/access/AccessInfo";
 import { PermissionLevel } from "../type/access/AccessInfo";
 
 export const createAccessInfo = (

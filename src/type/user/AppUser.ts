@@ -1,12 +1,12 @@
 import type { AccessUser } from "../access/AccessUser";
 import type { ServiceProviders } from "../app-service/AppService";
+import type { DataObject } from "../data/DataObject";
 
 export type AsrConfig = {
   pauseToListenMs: number;
 };
 
-export type AppUserProfile = {
-  id: string;
+export type AppUserProfile = DataObject & {
   name: string;
   userCharacterId?: string;
   aiCharacterId?: string;

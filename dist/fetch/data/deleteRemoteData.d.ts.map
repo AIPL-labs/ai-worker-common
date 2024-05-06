@@ -1,1 +1,0 @@
-{"version":3,"file":"deleteRemoteData.d.ts","sourceRoot":"","sources":["../../../src/fetch/data/deleteRemoteData.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,YAAY,CAAC;AAE3C,eAAO,MAAM,gBAAgB,oCAI1B,QAAQ,QAAQ,CAAC,GAAG;IAAE,EAAE,EAAE,MAAM,CAAA;CAAE,sBASpC,CAAC"}

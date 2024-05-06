@@ -1,1 +1,0 @@
-{"version":3,"file":"fetchWithAuth.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchWithAuth.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAEnD,eAAO,MAAM,aAAa,sEAKvB;IACD,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,GAAG,EAAE,MAAM,CAAC;IACZ,IAAI,CAAC,EAAE,CAAC,GAAG,MAAM,CAAC;IAClB,OAAO,CAAC,EAAE,YAAY,CAAC;CACxB,sBA2CA,CAAC"}

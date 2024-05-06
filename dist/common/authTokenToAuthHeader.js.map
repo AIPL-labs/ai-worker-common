@@ -1,1 +1,0 @@
-{"version":3,"file":"authTokenToAuthHeader.js","sourceRoot":"","sources":["../../src/common/authTokenToAuthHeader.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,MAAM,qBAAqB,GAAG,CAAC,SAAiB,EAAE,EAAE;IACzD,OAAO,EAAE,aAAa,EAAE,UAAU,SAAS,EAAE,EAAE,CAAC;AAClD,CAAC,CAAC"}

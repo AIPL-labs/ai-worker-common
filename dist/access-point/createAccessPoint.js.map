@@ -1,1 +1,0 @@
-{"version":3,"file":"createAccessPoint.js","sourceRoot":"","sources":["../../src/access-point/createAccessPoint.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAG1C,MAAM,CAAC,MAAM,iBAAiB,GAAG,CAAC,KAA2B,EAAe,EAAE;IAC5E,MAAM,EAAE,EAAE,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,IAAI,GAAG,cAAc,EAAE,GAAG,KAAK,CAAC;IACvE,OAAO;QACL,EAAE;QACF,IAAI;KACL,CAAC;AACJ,CAAC,CAAC"}

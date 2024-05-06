@@ -1,8 +1,9 @@
 import { PermissionLevel } from "../type/access/AccessInfo";
 
-
 export function calcOctalPermissions({
-  user: user, group: group, world: world,
+  user: user,
+  group: group,
+  world: world,
 }: {
   user: PermissionLevel;
   group: PermissionLevel;
@@ -15,6 +16,7 @@ export function calcOctalPermissions({
   // Combine the octal values for user, group, and world permissions
   return (userOctal << 6) | (groupOctal << 3) | worldOctal;
 }
+
 function permissionLevelToOctal(permissionLevel: PermissionLevel): number {
   switch (permissionLevel) {
     case PermissionLevel.READ:
