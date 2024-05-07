@@ -2,6 +2,7 @@ import type { ByteLike } from "@mjtdev/engine";
 import type { AppReportQuestionnaire } from "../app-report/AppReport";
 import type { CustomVoiceStyle } from "../voice/AppVoice";
 import type { TavernCardV2 } from "./TavernCardV2";
+import type { AccessInfo } from "../access/AccessInfo";
 
 export type AppCharacterVoice = Partial<{
   elevenLabsVoiceId: string;
@@ -12,6 +13,7 @@ export type DecomposedAppCharacter = {
   character: AppCharacter;
   image?: ByteLike;
   voiceSample?: ByteLike;
+  accessPublic?: boolean;
 };
 
 export type AppTavernCard = TavernCardV2<

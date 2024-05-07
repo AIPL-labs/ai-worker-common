@@ -68,6 +68,12 @@ export type AppMessageMap = {
     cause?: unknown;
     level?: "info" | "debug" | "error" | "trace";
   };
+  "app:performance": {
+    message?: string;
+    location: string;
+    start: number;
+    end: number;
+  };
   "appInterface:update": Partial<{
     ttsEnabled: boolean;
     gisClientId: string;

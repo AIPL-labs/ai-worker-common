@@ -30,3 +30,4 @@ function permissionLevelToOctal(permissionLevel: PermissionLevel): number {
       return 0;
   }
 }
+
