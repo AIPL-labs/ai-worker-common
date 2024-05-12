@@ -4,6 +4,6 @@ import type { AppInterface } from "../type/app-interface/AppInterface";
 export const createAppInterface = (
   draft: Partial<AppInterface> = {}
 ): AppInterface => {
-  const { id = uniqueId("app-interface") } = draft;
-  return { id };
+  const { id = uniqueId("app-interface"), ...rest } = draft;
+  return { id, ...rest };
 };

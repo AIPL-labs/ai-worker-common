@@ -13,7 +13,8 @@ export type DecomposedAppCharacter = {
   character: AppCharacter;
   image?: ByteLike;
   voiceSample?: ByteLike;
-  accessPublic?: boolean;
+  activeGroupId?: string;
+  // accessPublic?: boolean;
 };
 
 export type AppTavernCard = TavernCardV2<

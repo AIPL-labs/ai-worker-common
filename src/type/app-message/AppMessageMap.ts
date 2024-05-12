@@ -12,6 +12,7 @@ import type { UserLoginRequest } from "../rest/UserLoginRequest";
 import type { AppMessage } from "./AppMessage";
 import type { AppCharacter } from "../app-character/AppCharacter";
 import type { AccessInfo } from "../access/AccessInfo";
+import type { AppGroup } from "../group/AppGroup";
 
 export type MessageChunk = {
   id: string;
@@ -75,11 +76,13 @@ export type AppMessageMap = {
     end: number;
   };
   "appInterface:update": Partial<{
+    appInterfaceId: string;
     ttsEnabled: boolean;
     gisClientId: string;
   }>;
   "appInterface:ready": unknown;
   "return:dataObject": DataObject;
+  return: { returnId: string; data: unknown };
   "chat:debug": { prompt: string; facts: Record<string, string | undefined> };
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
@@ -145,6 +148,21 @@ export type AppMessageMap = {
   "dataObject:murmur": DataObject | DataObject[];
   "dataObject:delete": string | string[];
   "dataObject:find": string | string[];
+  "dataObject:get": ReturnableMessageDetail & { id: string | string[] };
+  "dataObject:getChildren": ReturnableMessageDetail & {
+    parentId: string;
+    objectType: AppObjectType;
+    key?: string;
+  };
+  "dataObject:updateChildren": {
+    parentId: string;
+    objectType: AppObjectType;
+    key: string;
+    children: DataObject[];
+  };
+  "dataObject:getByType": ReturnableMessageDetail & {
+    objectType: AppObjectType | AppObjectType[];
+  };
   "dataObject:findAllByObjectType": AppObjectType | AppObjectType[];
 
   "dataLink:find": {
@@ -170,8 +188,8 @@ export type AppMessageMap = {
     publicName?: string;
   };
   "user:delete": string | string[];
-  "user:groupAdd": string | string[];
-  "user:groupRemove": string | string[];
+  // "user:groupAdd": string | string[];
+  // "user:groupRemove": string | string[];
   "user:changePassword": { userId: string; password: string };
 
   "function:call": AiFunctionCall;
@@ -182,4 +200,5 @@ export type AppMessageMap = {
   }>;
   "app:upgrade": unknown;
   "app:setAlarm": number;
+  "app:group:create": Partial<AppGroup>;
 };

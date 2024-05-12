@@ -11,7 +11,7 @@ export const createAccessInfo = (
     group = owner,
     permissions = calcOctalPermissions({
       user: PermissionLevel.WRITE,
-      group: PermissionLevel.READ,
+      group: PermissionLevel.WRITE,
       world: PermissionLevel.NONE,
     }),
   } = draft;
