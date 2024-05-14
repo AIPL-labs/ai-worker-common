@@ -13,6 +13,8 @@ import type { AppMessage } from "./AppMessage";
 import type { AppCharacter } from "../app-character/AppCharacter";
 import type { AccessInfo } from "../access/AccessInfo";
 import type { AppGroup } from "../group/AppGroup";
+import type { SwrQueryObject } from "../../swr/SwrKeys";
+import type { OpenRouterMessage } from "../../3rd/open-router/OpenRouterTextgenRequest";
 
 export type MessageChunk = {
   id: string;
@@ -69,6 +71,8 @@ export type AppMessageMap = {
     cause?: unknown;
     level?: "info" | "debug" | "error" | "trace";
   };
+  "app:invalidateCaches": void;
+
   "app:performance": {
     message?: string;
     location: string;
@@ -83,7 +87,11 @@ export type AppMessageMap = {
   "appInterface:ready": unknown;
   "return:dataObject": DataObject;
   return: { returnId: string; data: unknown };
-  "chat:debug": { prompt: string; facts: Record<string, string | undefined> };
+  "chat:debug": {
+    prompt?: string;
+    messages?: OpenRouterMessage[];
+    facts: Record<string, string | undefined>;
+  };
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
   "chat:end": string;
@@ -154,6 +162,14 @@ export type AppMessageMap = {
     objectType: AppObjectType;
     key?: string;
   };
+  "dataObject:query": ReturnableMessageDetail & { query: string };
+  "dataObject:query:getKeys": void;
+  "dataObject:query:setKeys": string[];
+  "dataObject:swr:setDataForKey": {
+    swrKey: string;
+    data: DataObject[];
+  };
+
   "dataObject:updateChildren": {
     parentId: string;
     objectType: AppObjectType;

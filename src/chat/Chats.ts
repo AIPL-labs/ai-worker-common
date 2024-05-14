@@ -1,8 +1,9 @@
 import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
-import { chatStateEntriesToFacts } from "./chatStateEntriesToFacts";
-import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
 import { chatMessageToText } from "./chatMessageToText";
+import { chatMessagesToOpenRouterMessages } from "./chatMessagesToOpenRouterMessages";
 import { chatMessagesToPromptTextsChatML } from "./chatMessagesToPromptTextsChatML";
+import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
+import { chatStateEntriesToFacts } from "./chatStateEntriesToFacts";
 import { createChat } from "./createChat";
 import { createChatBuilder } from "./createChatBuilder";
 import { listChatMessages } from "./listChatMessages";
@@ -14,6 +15,7 @@ export const Chats = {
   DEFAULT_STOP,
   DEFAULT_STOP_AFTER,
   chatMessagesToPromptTextsChatML,
+  chatMessagesToOpenRouterMessages,
   chatMessageToText,
   chatStateEntriesToFacts,
   chatStateEntriesToDecoratedFacts,

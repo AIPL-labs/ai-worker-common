@@ -1,12 +1,12 @@
-import { isDefined } from "@mjtdev/engine";
+import { isDefined, isEmpty } from "@mjtdev/engine";
+import type { OpenRouterMessage } from "../3rd/open-router/OpenRouterTextgenRequest";
 import type { AppCharacter } from "../type/app-character/AppCharacter";
 import type { ChatMessage } from "../type/chat-message/ChatMessage";
 import type { ChatMessageTemplate } from "./ChatMessageTemplate";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "./DEFAULT_CHAT_MESSAGE_TEMPLATE";
-import type { PromptText } from "./PromptText";
 import { chatMessageToText } from "./chatMessageToText";
 
-export const chatMessagesToPromptTextsChatML = ({
+export const chatMessagesToOpenRouterMessages = ({
   messages,
   characters,
   messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE,
@@ -14,7 +14,7 @@ export const chatMessagesToPromptTextsChatML = ({
   characters: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
   messageTemplate?: ChatMessageTemplate;
-}): PromptText[] => {
+}): OpenRouterMessage[] => {
   const { messageStart, afterCharPostfix, messageEnd } = messageTemplate;
   return messages
     .map((message, i) => {
@@ -25,14 +25,19 @@ export const chatMessagesToPromptTextsChatML = ({
       const renderedText = rawText;
 
       if (i === messages.length - 1) {
+        if (isEmpty(renderedText)) {
+          return undefined;
+        }
         return {
           role: message.role,
-          text: `${messageStart}${author}${afterCharPostfix}${renderedText}`,
+          name: author,
+          content: renderedText,
         };
       }
       return {
         role: message.role,
-        text: `${messageStart}${author}${afterCharPostfix}${renderedText}${messageEnd}`,
+        name: author,
+        content: renderedText,
       };
     })
     .filter(isDefined);

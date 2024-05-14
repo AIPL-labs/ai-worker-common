@@ -40,6 +40,7 @@ const isServiceProvider = (maybe: unknown): maybe is AppServiceProvider => {
 export type TextgenServiceProvider = CommonModelServiceProvider & {
   contextSize?: number;
   topP?: number;
+  messageMode?: boolean;
 };
 
 export const isTextgenServiceProvider = (
@@ -121,7 +122,7 @@ export type ApiShape = (typeof APP_SERVICE_API_SHAPES)[number];
 export const SERVICE_PROVIDER_EXTRA_KEYS: Partial<
   Record<ServiceProviderKind, (keyof AppServiceProvider)[]>
 > = {
-  textgen: ["contextSize", "topP"],
+  textgen: ["contextSize", "topP", "messageMode"],
   tts: [
     "stability",
     "similarityBoost",
