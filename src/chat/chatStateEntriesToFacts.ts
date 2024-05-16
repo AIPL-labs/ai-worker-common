@@ -3,8 +3,8 @@ import type { ChatStateEntry } from "../type/chat-message/ChatMessage";
 import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
 
 export const chatStateEntriesToFacts = (
-  chatDatas: ChatStateEntry[]
-): Record<string, string | undefined> => {
+  chatDatas: Readonly<ChatStateEntry[]>
+): Readonly<Record<string, string | undefined>> => {
   return Objects.fromEntries(
     Objects.entries(chatStateEntriesToDecoratedFacts(chatDatas)).map((e) => [
       e[0],
@@ -12,5 +12,3 @@ export const chatStateEntriesToFacts = (
     ])
   );
 };
-
-

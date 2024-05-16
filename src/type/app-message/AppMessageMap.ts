@@ -95,7 +95,7 @@ export type AppMessageMap = {
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
   "chat:start": Partial<Chat>;
   "chat:end": string;
-  "chat:startPublicAgent": {
+  "chat:startPublicAgent": ReturnableMessageDetail & {
     accessPointId: string;
     params: Record<string, string>;
   };
@@ -216,5 +216,15 @@ export type AppMessageMap = {
   }>;
   "app:upgrade": unknown;
   "app:setAlarm": number;
-  "app:group:create": Partial<AppGroup>;
+  "app:group:create": ReturnableMessageDetail & { draft: Partial<AppGroup> };
+  "app:group:activate": ReturnableMessageDetail & {
+    subjectId: string;
+    activeId: string;
+  };
+  "app:sessions:list": ReturnableMessageDetail & {
+    query?: unknown;
+  };
+  "app:sessions:reset": ReturnableMessageDetail & {
+    query?: unknown;
+  };
 };
