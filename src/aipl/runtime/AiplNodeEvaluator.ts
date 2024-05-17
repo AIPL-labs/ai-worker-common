@@ -1,5 +1,5 @@
 import type { AiplAstSpec, AiplNodeType } from "../AiplAstSpec";
-import type { AiplContext} from "./AiplContext";
+import type { AiplContext } from "./AiplContext";
 import { AiplDecoratedValue } from "./AiplContext";
 
 export type AiplNodeEvaluator<T extends AiplNodeType> = (
@@ -9,3 +9,11 @@ export type AiplNodeEvaluator<T extends AiplNodeType> = (
 export type AiplNodePrimitiveEvaluator<T extends AiplNodeType, V> = (
   context: Readonly<AiplContext>
 ) => (node: AiplAstSpec[T]) => V;
+
+export type AiplNodeBinaryPrimitiveEvaluator<T extends AiplNodeType, V> = (
+  context: Readonly<AiplContext>
+) => (
+  left: AiplAstSpec[T],
+  right: AiplAstSpec[T],
+  expr: AiplAstSpec["binaryExpr"]
+) => V;

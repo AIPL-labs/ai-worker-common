@@ -398,11 +398,25 @@ export const createAiplLanguage = () => {
         P.seq(
           r.leftParen,
           P.optWhitespace,
-          P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
+          P.alt(
+            r.stringLiteral,
+            r.number,
+            r.boolean,
+            r.identifier,
+            r.expr,
+            r.unaryExpr
+          ),
           P.optWhitespace,
           r.operator,
           P.optWhitespace,
-          P.alt(r.expr, r.number, r.boolean, r.unaryExpr, r.identifier),
+          P.alt(
+            r.stringLiteral,
+            r.number,
+            r.boolean,
+            r.identifier,
+            r.expr,
+            r.unaryExpr
+          ),
           P.optWhitespace,
           r.rightParen
         ).map(

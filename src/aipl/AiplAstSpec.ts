@@ -176,8 +176,18 @@ export type AiplAstSpec = {
   binaryExpr: {
     type: "binaryExpr";
     op: AiplAstSpec["operator"];
-    left: AiplAstSpec["expr" | "identifier" | "number" | "unaryExpr"];
-    right: AiplAstSpec["expr" | "identifier" | "number" | "unaryExpr"];
+    left: AiplAstSpec[
+      | "expr"
+      | "identifier"
+      | "number"
+      | "unaryExpr"
+      | "stringLiteral"];
+    right: AiplAstSpec[
+      | "expr"
+      | "identifier"
+      | "number"
+      | "unaryExpr"
+      | "stringLiteral"];
     loc: AiplLoc;
   };
   code: {

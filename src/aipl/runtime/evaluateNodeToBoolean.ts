@@ -1,5 +1,6 @@
 import type { AiplError } from "./AiplError";
 import type { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
+import { evaluateBinaryNodeToNumber } from "./evaluateBinaryNodeNumber";
 import { evaluateNodeToNumber } from "./evaluateNodeToNumber";
 import { evaluateNodeToString } from "./evaluateNodeToString";
 
@@ -15,8 +16,9 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
 > = (context) => (node) => {
   const trace = (message: string, extra?: unknown) => {
     context.logger(
-      `evaluateNodeToBoolean ${node.loc.start.offset} ${node.type} ${message}`,
-      extra
+      `evaluateNodeToBoolean: ${node.loc.start.offset} ${node.type} ${message}`,
+      [node, extra]
+      // extra
     );
   };
   trace("start");
@@ -35,6 +37,19 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
     case "binaryExpr": {
       const { left, op, right } = node;
       trace(`switching compoundExpr with op value: '${op.value}'`);
+
+      if (
+        (left.type === "stringLiteral" || left.type === "identifier") &&
+        (right.type === "stringLiteral" || right.type === "identifier")
+      ) {
+        const result =
+          evaluateBinaryNodeToNumber(context)(left, right, node) !== 0;
+        trace(
+          `short circuit string comparision to allow LLM to perform, got result: ${result}`,
+          { left, right, node, result }
+        );
+        return result;
+      }
       switch (op.value) {
         // logical and
         case "&&":
@@ -53,9 +68,12 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
         }
 
         // comparision operators
+        // special case for string comparison
+        //   - have LLM evaluate both sides
         case "!==":
         case "!=": {
           trace("!=");
+
           const leftValue = evaluateNodeToNumber(context)(left);
           return leftValue !== evaluateNodeToNumber(context)(right);
         }

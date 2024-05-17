@@ -41,6 +41,11 @@ export type AiplContext = {
 
   softFunctionToBoolean: (value: string, node: AiplNode) => boolean;
   softFunctionToNumber: (value: string, node: AiplNode) => number;
+  softFunctionBinaryToNumber: (props: {
+    node: AiplAstSpec["binaryExpr"];
+    left: string;
+    right: string;
+  }) => number;
   stringToBoolean: (value: string, node: AiplNode) => boolean;
   stringToNumber: (value: string, node: AiplNode) => number;
   logger: (message: string, ...extra: unknown[]) => void;

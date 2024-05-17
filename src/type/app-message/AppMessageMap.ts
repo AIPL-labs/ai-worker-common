@@ -163,11 +163,12 @@ export type AppMessageMap = {
     key?: string;
   };
   "dataObject:query": ReturnableMessageDetail & { query: string };
-  "dataObject:query:getKeys": void;
+  "dataObject:query:getKeys": ReturnableMessageDetail;
+  "dataObject:query:invalidate": string;
   "dataObject:query:setKeys": string[];
   "dataObject:swr:setDataForKey": {
     swrKey: string;
-    data: DataObject[];
+    data?: DataObject[];
   };
 
   "dataObject:updateChildren": {

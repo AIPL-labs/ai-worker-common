@@ -1,7 +1,7 @@
 import type { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
 
 export const evaluateNodeToString: AiplNodePrimitiveEvaluator<
-  "template" | "templateVariable" | "stringLiteral",
+  "template" | "templateVariable" | "stringLiteral" | "identifier",
   string
 > = (context) => (node) => {
   // context.logger("evaluateNodeToString", { node });
@@ -24,6 +24,9 @@ export const evaluateNodeToString: AiplNodePrimitiveEvaluator<
     }
     case "templateVariable": {
       return context.state[node.identifier.value] ?? node.defaultValue ?? "";
+    }
+    case "identifier": {
+      return context.state[node.value] ?? "";
     }
   }
 };
