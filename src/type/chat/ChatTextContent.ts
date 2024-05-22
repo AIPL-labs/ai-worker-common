@@ -6,6 +6,7 @@ export type ChatTextContent = {
 export type ChatAudioContent = {
   type: "audio";
   b64?: string;
+  bytes?: ArrayBuffer;
   mediaType: string;
   asrText?: string;
 };

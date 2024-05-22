@@ -1,20 +1,19 @@
 import type { PhoneCall } from "type/phone/PhoneCall";
 import type { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
+import type { OpenRouterMessage } from "../../3rd/open-router/OpenRouterTextgenRequest";
 import type { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
 import type { CrawlParams } from "../../crawl/CrawlParams";
+import type { AccessInfo } from "../access/AccessInfo";
 import type { AiFunctionCall } from "../ai-function/AiFunctions";
+import type { AppCharacter } from "../app-character/AppCharacter";
 import type { AppObjectType } from "../app/AppObject";
 import type { ChatMessage } from "../chat-message/ChatMessage";
 import type { Chat } from "../chat/Chat";
 import type { DataLink, DataObject } from "../data/DataObject";
+import type { AppGroup } from "../group/AppGroup";
 import type { IngestRequest } from "../rest/IngestRequest";
 import type { UserLoginRequest } from "../rest/UserLoginRequest";
 import type { AppMessage } from "./AppMessage";
-import type { AppCharacter } from "../app-character/AppCharacter";
-import type { AccessInfo } from "../access/AccessInfo";
-import type { AppGroup } from "../group/AppGroup";
-import type { SwrQueryObject } from "../../swr/SwrKeys";
-import type { OpenRouterMessage } from "../../3rd/open-router/OpenRouterTextgenRequest";
 
 export type MessageChunk = {
   id: string;
@@ -76,9 +75,25 @@ export type AppMessageMap = {
   "app:performance": {
     message?: string;
     location: string;
+    scope?: string;
     start: number;
     end: number;
+    delta: number;
+    cumulative: number;
+    timestamp: number;
+    parent?: string;
+    mark?: boolean;
   };
+  "app:debug:set": {
+    perfEnabled: boolean;
+    debugEnabled: boolean;
+  };
+  "app:time": Partial<ReturnableMessageDetail> & {
+    epoch: number;
+    perf: number;
+    localDiff?: number;
+  };
+
   "appInterface:update": Partial<{
     appInterfaceId: string;
     ttsEnabled: boolean;
