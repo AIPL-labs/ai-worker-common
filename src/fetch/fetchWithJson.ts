@@ -1,5 +1,5 @@
 import type { FetchOptions } from "./FetchOptions";
-import { HomeAuth } from "./data/HomeAuth";
+import type { FetchRetryOptions } from "./FetchRetryOptions";
 import { fetchWithAuth } from "./fetchWithAuth";
 
 export const fetchWithJson = async <T extends object = object>({
@@ -7,11 +7,13 @@ export const fetchWithJson = async <T extends object = object>({
   url,
   data,
   options = {},
+  retryOptions,
 }: {
   authToken?: string;
   url: string;
   data?: T | string;
   options?: Partial<FetchOptions>;
+  retryOptions?: FetchRetryOptions;
 }) => {
   const { method = "POST", headers = {} } = options;
 
@@ -21,6 +23,7 @@ export const fetchWithJson = async <T extends object = object>({
     authToken,
     url,
     data: body,
+    retryOptions,
     options: {
       ...options,
       headers: {

@@ -14,6 +14,7 @@ import type { AppGroup } from "../group/AppGroup";
 import type { IngestRequest } from "../rest/IngestRequest";
 import type { UserLoginRequest } from "../rest/UserLoginRequest";
 import type { AppMessage } from "./AppMessage";
+import type { AsrResult, AsrWhisperSegment } from "../asr/AsrTypes";
 
 export type MessageChunk = {
   id: string;
@@ -243,4 +244,9 @@ export type AppMessageMap = {
   "app:sessions:reset": ReturnableMessageDetail & {
     query?: unknown;
   };
+  "asr:audio2txt": ReturnableMessageDetail & {
+    audio: ArrayBuffer;
+    mediaType: string;
+  };
+  "asr:response": AsrResult<AsrWhisperSegment>;
 };

@@ -1,13 +1,20 @@
-import { fetchWithAuth } from "./fetchWithAuth";
+import type { FetchRetryOptions } from "./FetchRetryOptions";
 import type { HomeAuth } from "./data/HomeAuth";
+import { fetchWithAuth } from "./fetchWithAuth";
 
 export const fetchViaProxy = async ({
   url,
   homeBaseUrl,
   authToken,
-}: HomeAuth & { url: string }) => {
+  retryOptions,
+}: HomeAuth & {
+  url: string;
+
+  retryOptions?: FetchRetryOptions;
+}) => {
   return fetchWithAuth({
     authToken,
+    retryOptions,
     url: `${homeBaseUrl}/proxy`,
     options: {
       headers: {
