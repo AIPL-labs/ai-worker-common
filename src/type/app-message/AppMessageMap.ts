@@ -20,7 +20,7 @@ export type MessageChunk = {
   id: string;
   idx: number;
   total: number;
-  chunk: string;
+  chunk: ArrayBuffer;
 };
 
 export type AbortableMessageDetail = { abortId: string };
