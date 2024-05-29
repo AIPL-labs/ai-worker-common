@@ -12,6 +12,7 @@ export type AppCharacterVoice = Partial<{
 export type DecomposedAppCharacter = {
   character: AppCharacter;
   image?: ByteLike;
+  videos?: Record<string, ByteLike | undefined>;
   voiceSample?: ByteLike;
   activeGroupId?: string;
   // accessPublic?: boolean;

@@ -20,6 +20,8 @@ export const fetchWithAuth = async <T extends BodyInit = BodyInit>(props: {
       status: 499,
     });
   }
+  const { method = "GET" } = options;
+  const body = method === "GET" ? undefined : data;
   const resp = await orError(() =>
     fetch(url, {
       signal,
@@ -28,7 +30,7 @@ export const fetchWithAuth = async <T extends BodyInit = BodyInit>(props: {
         ...authHeaders,
         ...headers,
       },
-      body: data,
+      body,
     })
   );
   if (maxRetries > 0 && (await retryCondition(resp))) {

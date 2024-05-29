@@ -8,3 +8,5 @@ export const createChatStarter = (
 
   return { id, position, text };
 };
+
+

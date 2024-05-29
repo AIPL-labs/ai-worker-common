@@ -166,3 +166,7 @@ export * from "./3rd/open-router/OpenRouterTextgenResponse";
 export * from "./perf/Perfs";
 
 export * from "./common/ArrayBuffers";
+
+export * from "./fetch/FetchRetryOptions";
+
+export * from "./3rd/gate/CmdRequestResponseTypes";

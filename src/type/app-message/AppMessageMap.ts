@@ -1,7 +1,10 @@
 import type { PhoneCall } from "type/phone/PhoneCall";
 import type { ElevenLabsWebsocketResult } from "../../3rd/elevenlabs/ElevenLabsWebsocketResult";
 import type { OpenRouterMessage } from "../../3rd/open-router/OpenRouterTextgenRequest";
-import type { SdApiTxt2ImgRequest } from "../../3rd/sdapi";
+import type {
+  SdApiTxt2ImgRequest,
+  SdApiTxt2ImgResponse,
+} from "../../3rd/sdapi";
 import type { CrawlParams } from "../../crawl/CrawlParams";
 import type { AccessInfo } from "../access/AccessInfo";
 import type { AiFunctionCall } from "../ai-function/AiFunctions";
@@ -153,11 +156,16 @@ export type AppMessageMap = {
 
   "image:generate": Partial<AbortableMessageDetail> &
     ReturnableMessageDetail & { request: Partial<SdApiTxt2ImgRequest> };
+  "image:response": SdApiTxt2ImgResponse | undefined;
 
   tts: { text: string; voiceId?: string };
   "tts:elevenlabs:result": ElevenLabsWebsocketResult & { mediaType: string };
   "tts:finished": void;
   "tts:say": { text: string; character: AppCharacter };
+  "tts:txt2audio": ReturnableMessageDetail & {
+    text: string;
+    characterId: string;
+  };
   "corpusDocument:delete": string | string[];
 
   messages: AppMessage[];
@@ -249,4 +257,13 @@ export type AppMessageMap = {
     mediaType: string;
   };
   "asr:response": AsrResult<AsrWhisperSegment>;
+  "lipsync:request": ReturnableMessageDetail & {
+    audio: ArrayBuffer;
+    image: ArrayBuffer;
+  };
+  "lipsync:response": ReturnableMessageDetail & {
+    out?: string;
+    err?: string;
+    video?: ArrayBuffer;
+  };
 };

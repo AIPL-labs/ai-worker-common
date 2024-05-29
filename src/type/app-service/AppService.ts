@@ -13,6 +13,7 @@ export type AppService = DataObject & {
     | "vector"
     | "extract"
     | "imagegen"
+    | "lipsync"
     | "db";
   enabled: boolean;
   count: number;
@@ -113,6 +114,7 @@ export const SERVICE_TYPE_TO_API_SHAPES: Record<
   proxy: [],
   crawl: ["CustomWc"],
   unknown: [],
+  lipsync: [],
 };
 
 export const APP_SERVICE_TYPES = Objects.keys(SERVICE_TYPE_TO_API_SHAPES);

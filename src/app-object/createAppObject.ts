@@ -1,9 +1,11 @@
+import { isUndefined } from "@mjtdev/engine";
 import type {
-  AppObjectType,
   AppObject,
+  AppObjectType,
   AppObjectTypeMap,
 } from "../type/app/AppObject";
 import { APP_OBJECT_CREATORS } from "./APP_OBJECT_CREATORS";
+import { createDefaultAppObject } from "./createDefaultAppObject";
 
 export type AppObjectCreator<K extends AppObjectType> = (
   draft: Partial<AppObject<K>>
@@ -14,8 +16,8 @@ export const createAppObject = <T extends AppObjectType = AppObjectType>(
   draft: Partial<AppObject<T>> = {}
 ): AppObject<T> => {
   const creator = APP_OBJECT_CREATORS[type];
-  if (!creator) {
-    throw new Error(`no AppObject creator: ${type}`);
+  if (isUndefined(creator)) {
+    return createDefaultAppObject(type, draft);
   }
   return creator(draft);
 };
