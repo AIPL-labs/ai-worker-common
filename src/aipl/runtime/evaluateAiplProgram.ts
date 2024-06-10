@@ -1,4 +1,4 @@
-import { isDefined } from "@mjtdev/engine";
+import { isDefined, isUndefined } from "@mjtdev/engine";
 import { produce } from "immer";
 import type { AiplAstSpec } from "../AiplAstSpec";
 import type { AiplError } from "./AiplError";
@@ -113,7 +113,29 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                       childNode.question.args
                     )
                   : undefined;
+                const urlFunction = childNode.question;
+                const pathString =
+                  typeof urlFunction.url.path === "string"
+                    ? urlFunction.url.path
+                    : isUndefined(urlFunction.url.path)
+                    ? undefined
+                    : evaluateNodeToString(context)(urlFunction.url.path);
+
+                const url = [
+                  urlFunction.url.scheme,
+                  "://",
+                  urlFunction.url.host,
+                  isDefined(urlFunction.url?.port)
+                    ? `:${urlFunction.url.port}`
+                    : undefined,
+                  isDefined(pathString) ? `/${pathString}` : undefined,
+                  urlFunction.url.query,
+                ]
+                  .filter(isDefined)
+                  .join("");
+
                 context.assignUrlFunctionToIdentifier({
+                  url,
                   urlFunction: childNode.question,
                   identifier: childNode.identifier,
                   data: operatorObjects?.[":"],

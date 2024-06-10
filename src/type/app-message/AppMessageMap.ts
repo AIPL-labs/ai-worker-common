@@ -87,7 +87,14 @@ export type AppMessageMap = {
     timestamp: number;
     parent?: string;
     mark?: boolean;
+    count?: number;
   };
+  "app:metrics:get": ReturnableMessageDetail;
+  "app:metrics:reset": undefined;
+  "app:metrics:result": {
+    metrics: Record<string, { count: number }>;
+  };
+
   "app:debug:set": {
     perfEnabled: boolean;
     debugEnabled: boolean;
@@ -177,6 +184,7 @@ export type AppMessageMap = {
   "dataObject:update:accessInfo":
     | (DataObject & AccessInfo)
     | (DataObject & AccessInfo)[];
+  "dataObject:get:accessInfo": ReturnableMessageDetail & { objectId: string };
   "dataObject:murmur": DataObject | DataObject[];
   "dataObject:delete": string | string[];
   "dataObject:find": string | string[];
@@ -265,5 +273,8 @@ export type AppMessageMap = {
     out?: string;
     err?: string;
     video?: ArrayBuffer;
+  };
+  "app:su": {
+    userId: string;
   };
 };

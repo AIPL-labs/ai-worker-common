@@ -8,5 +8,8 @@ export const getRemoteData = async ({
   authToken,
 }: Partial<HomeAuth> & { id: string }) => {
   assertValue(id);
-  return fetchWithAuth({ url: homeBaseUrl + `/data/${id}`, authToken });
+  return fetchWithAuth({
+    url: homeBaseUrl + `/data/${id}`,
+    authToken,
+  });
 };

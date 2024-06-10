@@ -5,6 +5,7 @@ export type Perf = {
   startSpan: (span: string, options?: PerfOptions) => Perf;
   closeSpan: (message?: string, nextSpan?: string) => Perf;
   close: () => void;
+  addCount: (amount?: number) => Perf;
   end: (message?: string) => Perf;
 };
 export type PerfOptions = Partial<{
@@ -32,6 +33,7 @@ export const startPerf = ({
   let fired = false;
   const { once, mark } = options;
   const deltas: number[] = [];
+  let count = 0;
 
   const perf: Perf = {
     startSpan: (span: string, options: PerfOptions = {}) => {
@@ -50,6 +52,10 @@ export const startPerf = ({
       if (isDefined(nextSpan)) {
         return perf.startSpan(nextSpan);
       }
+      return perf;
+    },
+    addCount: (amount = 1) => {
+      count = count + amount;
       return perf;
     },
     close: onClose,
@@ -72,6 +78,7 @@ export const startPerf = ({
         start,
         delta,
         end,
+        count,
         timestamp: start,
       });
       return perf;

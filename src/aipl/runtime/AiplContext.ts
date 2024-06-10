@@ -27,11 +27,13 @@ export type AiplContext = {
   }) => void;
   assignUrlFunctionToIdentifier: ({
     urlFunction,
+    url,
     identifier,
     data,
     headers,
     specials,
   }: {
+    url: string;
     urlFunction: AiplAstSpec["urlFunction"];
     identifier: AiplAstSpec["identifier"];
     data?: Record<string, string>;

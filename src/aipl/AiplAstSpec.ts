@@ -50,6 +50,16 @@ export type AiplAstSpec = {
     value: ")";
     loc: AiplLoc;
   };
+  leftCurlyBrace: {
+    type: "symbol";
+    value: "{";
+    loc: AiplLoc;
+  };
+  rightCurlyBrace: {
+    type: "symbol";
+    value: "}";
+    loc: AiplLoc;
+  };
 
   text: { type: "text"; value: string; loc: AiplLoc };
 
@@ -110,7 +120,8 @@ export type AiplAstSpec = {
     type: "url";
     scheme: "http" | "https";
     host: string;
-    path?: string;
+    port?: string;
+    path?: string | AiplAstSpec["stringLiteral"];
     query?: string;
     loc: AiplLoc;
   };

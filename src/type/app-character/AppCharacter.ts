@@ -24,6 +24,7 @@ export type AppTavernCard = TavernCardV2<
     reports: AppReportQuestionnaire[];
     starters: string[];
     chatEnd: string;
+    preChat: string;
     physicalDescription: string;
     genInfo: Partial<{
       imagePrompt: string;

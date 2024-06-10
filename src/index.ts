@@ -170,3 +170,7 @@ export * from "./common/ArrayBuffers";
 export * from "./fetch/FetchRetryOptions";
 
 export * from "./3rd/gate/CmdRequestResponseTypes";
+
+export * from "./common/orTimeout";
+export * from "./common/orWatchdogBarks";
+export * from "./common/Watchdog";

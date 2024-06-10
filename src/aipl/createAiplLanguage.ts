@@ -1,6 +1,6 @@
 import P from "parsimmon";
 import type { AiplAstSpec } from "./AiplAstSpec";
-import { isDefined } from "@mjtdev/engine";
+import { isDefined, isNotEmpty } from "@mjtdev/engine";
 
 const addLoc = <T>(parser: P.Parser<T>) => {
   return parser
@@ -103,7 +103,10 @@ export const createAiplLanguage = () => {
   return P.createLanguage<AiplAstSpec>({
     escapedSymbol: (r) =>
       addLoc(
-        P.seq(P.string("\\"), P.alt(r.leftParen, r.rightParen)).map(
+        P.seq(
+          P.string("\\"),
+          P.alt(r.leftParen, r.rightParen, r.leftCurlyBrace, r.rightCurlyBrace)
+        ).map(
           (value) =>
             ({
               type: "escapedSymbol",
@@ -119,6 +122,14 @@ export const createAiplLanguage = () => {
     rightParen: () =>
       addLoc(
         P.string(")").map(() => ({ type: "symbol", value: ")" } as const))
+      ),
+    leftCurlyBrace: () =>
+      addLoc(
+        P.string("{").map(() => ({ type: "symbol", value: "{" } as const))
+      ),
+    rightCurlyBrace: () =>
+      addLoc(
+        P.string("}").map(() => ({ type: "symbol", value: "}" } as const))
       ),
 
     text: () => addLoc(textParser),
@@ -233,13 +244,19 @@ export const createAiplLanguage = () => {
         )
       ),
 
-    url: () =>
+    url: (r) =>
       addLoc(
         P.seq(
           P.alt(P.string("https"), P.string("http")),
           P.string("://"),
           P.regex(/[a-zA-Z0-9.-]+/),
-          P.alt(P.regex(/\/[a-zA-Z0-9/j._-]*/), P.succeed(undefined)),
+          P.alt(P.regex(/:[\d]*/), P.succeed(undefined)),
+          P.alt(
+            P.seq(P.string("/"), r.stringLiteral),
+            P.seq(P.string("/"), P.regex(/[a-zA-Z0-9/j._-]*/)),
+            // P.regex(/\/[a-zA-Z0-9/j._-]*/),
+            P.succeed(undefined)
+          ),
           P.alt(P.regex(/\?[a-zA-Z0-9%&=_.\-+]*/), P.succeed(undefined))
         ).map(
           (value) =>
@@ -247,8 +264,9 @@ export const createAiplLanguage = () => {
               type: "url",
               scheme: value[0],
               host: value[2],
-              path: value[3],
-              query: value[4],
+              port: value[3]?.replace(":", ""),
+              path: isDefined(value[4]?.[1]) ? value[4][1] : undefined,
+              query: value[5],
             } as const)
         )
       ),
