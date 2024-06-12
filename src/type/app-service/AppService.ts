@@ -98,19 +98,20 @@ export const APP_SERVICE_API_SHAPES = [
   "CustomImagegen",
   "ElevenlabsTts",
   "CustomAsr",
+  "GoogleVertex",
 ] as const;
 
 export const SERVICE_TYPE_TO_API_SHAPES: Record<
   AppService["type"],
   (typeof APP_SERVICE_API_SHAPES)[number][]
 > = {
-  textgen: ["OpenAi", "CustomOpenAi"],
+  textgen: ["OpenAi", "CustomOpenAi", "GoogleVertex"],
   tts: ["BrowserTts", "CustomTts", "ElevenlabsTts"],
   vector: [],
   extract: [],
   imagegen: ["Cloudflare", "CustomImagegen"],
   db: [],
-  asr: ["CustomAsr"],
+  asr: ["CustomAsr", "GoogleVertex"],
   proxy: [],
   crawl: ["CustomWc"],
   unknown: [],

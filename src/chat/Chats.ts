@@ -1,5 +1,6 @@
 import { DEFAULT_STOP, DEFAULT_STOP_AFTER } from "./DEFAULT_STOP";
 import { chatMessageToText } from "./chatMessageToText";
+import { chatMessagesToGoogleVertexMessages } from "./chatMessagesToGoogleVertexMessages";
 import { chatMessagesToOpenRouterMessages } from "./chatMessagesToOpenRouterMessages";
 import { chatMessagesToPromptTextsChatML } from "./chatMessagesToPromptTextsChatML";
 import { chatStateEntriesToDecoratedFacts } from "./chatStateEntriesToDecoratedFacts";
@@ -16,6 +17,7 @@ export const Chats = {
   DEFAULT_STOP_AFTER,
   chatMessagesToPromptTextsChatML,
   chatMessagesToOpenRouterMessages,
+  chatMessagesToGoogleVertexMessages,
   chatMessageToText,
   chatStateEntriesToFacts,
   chatStateEntriesToDecoratedFacts,

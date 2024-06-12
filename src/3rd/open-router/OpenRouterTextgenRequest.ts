@@ -1,5 +1,15 @@
 // modified for completion and better naming, see  https://openrouter.ai/docs#requests
 
+export const isOpenRouterTextgenRequest = (
+  maybe: unknown
+): maybe is OpenRouterTextgenRequest => {
+  const straw = maybe as OpenRouterTextgenRequest;
+  return (
+    typeof straw === "object" &&
+    (Array.isArray(straw.messages) || typeof straw.prompt === "string")
+  );
+};
+
 // Definitions of subtypes are below
 export type OpenRouterTextgenRequest = {
   // Either "messages" or "prompt" is required
@@ -97,6 +107,16 @@ type ImageContentPart = {
 };
 
 type ContentPart = TextContent | ImageContentPart;
+
+export const isOpenRouterMessage = (
+  maybe: unknown
+): maybe is OpenRouterMessage => {
+  const straw = maybe as OpenRouterMessage;
+  return (
+    (typeof straw === "object" && typeof straw.content === "string") ||
+    Array.isArray(straw.content)
+  );
+};
 
 export type OpenRouterMessage = {
   // role: "user" | "assistant" | "system" | "tool" | string;

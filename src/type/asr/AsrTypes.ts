@@ -26,10 +26,12 @@ export type AsrWhisperSegment = {
 
 export type AsrSegment = AsrFastWhisperSegment | AsrWhisperSegment;
 
-export type AsrResult<T extends AsrSegment> = {
+export const isAsrResult = (maybe: unknown): maybe is AsrResult => {
+  const straw = maybe as AsrResult;
+  return typeof straw === "object" && Array.isArray(straw.segments);
+};
+export type AsrResult<T extends AsrSegment = AsrSegment> = {
   text: string;
   segments: T[];
   language: string;
 };
-
-

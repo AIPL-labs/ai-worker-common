@@ -64,6 +64,7 @@ export type AppMessageMap = {
       };
   access: string;
   ping: string;
+  play: ReturnableMessageDetail & { data: unknown };
   abort: string; // abortId
   // error: string;
   toast: string;

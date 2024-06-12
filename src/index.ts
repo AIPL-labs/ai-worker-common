@@ -174,3 +174,6 @@ export * from "./3rd/gate/CmdRequestResponseTypes";
 export * from "./common/orTimeout";
 export * from "./common/orWatchdogBarks";
 export * from "./common/Watchdog";
+
+export * from "./3rd/gcp/GcpTypes";
+export * from "./3rd/gcp/GcpAsrTypes";
