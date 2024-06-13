@@ -278,4 +278,8 @@ export type AppMessageMap = {
   "app:su": {
     userId: string;
   };
+  "aipl:getAvailableTransforms": ReturnableMessageDetail;
+  "aipl:getAvailableTransforms:response": {
+    transforms: readonly string[];
+  };
 };

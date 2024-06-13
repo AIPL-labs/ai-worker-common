@@ -130,6 +130,7 @@ export * from "./type/app-report/AppReport";
 // AIPL
 export * from "./aipl/Aipls";
 export * from "./aipl/AiplAstSpec";
+export * from "./aipl/AiplLangageParams";
 
 // prompts
 export * from "./ai/prompt/Prompts";

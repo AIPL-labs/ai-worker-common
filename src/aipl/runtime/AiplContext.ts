@@ -1,5 +1,5 @@
-import type { AiplAstSpec, AiplNode } from "../AiplAstSpec";
 import type { AiplState } from "aipl/AiplState";
+import type { AiplAstSpec, AiplNode } from "../AiplAstSpec";
 
 export type AiplDecoratedValue<T> = {
   value: T;
@@ -11,34 +11,36 @@ export type AiplContext = {
   name?: string;
   state: AiplState;
   texts: string[];
-  assignValueStringToIdentifier: ({
-    value,
-    identifier,
-  }: {
+
+  getAvailableTransforms: () => readonly string[];
+
+  transform: (props: {
+    name?: string;
+    value: string;
+    argument?: string;
+  }) => string;
+
+  assignValueStringToIdentifier: (props: {
     value: string;
     identifier: AiplAstSpec["identifier"];
+    transformName?: string;
+    transformArgument?: string;
   }) => void;
-  assignQuestionStringToIdentifier: ({
-    question,
-    identifier,
-  }: {
+  assignQuestionStringToIdentifier: (props: {
     question: string;
     identifier: AiplAstSpec["identifier"];
+    transformName?: string;
+    transformArgument?: string;
   }) => void;
-  assignUrlFunctionToIdentifier: ({
-    urlFunction,
-    url,
-    identifier,
-    data,
-    headers,
-    specials,
-  }: {
+  assignUrlFunctionToIdentifier: (props: {
     url: string;
     urlFunction: AiplAstSpec["urlFunction"];
     identifier: AiplAstSpec["identifier"];
     data?: Record<string, string>;
     headers?: Record<string, string>;
     specials?: Record<string, string>;
+    transformName?: string;
+    transformArgument?: string;
   }) => void;
 
   softFunctionToBoolean: (value: string, node: AiplNode) => boolean;

@@ -11,7 +11,8 @@ export const renderAiplProgramText = (
       context,
       programText,
     });
-    const program = Aipls.tryParseAipl(programText);
+    const transforms = context.getAvailableTransforms();
+    const program = Aipls.tryParseAipl(programText, { transforms });
     context.logger("renderAiplProgramText: program", program);
     const updatedContext = Aipls.evaluateAiplProgram(context)(program);
     return updatedContext.texts.join("");

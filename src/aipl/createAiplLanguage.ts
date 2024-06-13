@@ -1,5 +1,5 @@
 import P from "parsimmon";
-import type { AiplAstSpec } from "./AiplAstSpec";
+import type { AiplAstSpec, AiplTransform } from "./AiplAstSpec";
 import { isDefined, isNotEmpty } from "@mjtdev/engine";
 
 const addLoc = <T>(parser: P.Parser<T>) => {
@@ -11,11 +11,25 @@ const addLoc = <T>(parser: P.Parser<T>) => {
     );
 };
 
-const identifierParser = P.regexp(/[a-zA-Z_][a-zA-Z0-9_.]+/).map(
+// const identifierParser = P.regexp(/[a-zA-Z_][a-zA-Z0-9_.]+/).map(
+//   (value) =>
+//     ({
+//       type: "identifier",
+//       value,
+//     } as const)
+// );
+const identifierParser = P.alt(
+  P.seq(
+    P.regexp(/[a-zA-Z_][a-zA-Z0-9_]+/),
+    P.string("."),
+    P.regexp(/[a-zA-Z_][a-zA-Z0-9_]+/)
+  ),
+  P.regexp(/[a-zA-Z_][a-zA-Z0-9_]+/)
+).map(
   (value) =>
     ({
       type: "identifier",
-      value,
+      value: Array.isArray(value) ? value.join("") : value,
     } as const)
 );
 
@@ -57,17 +71,9 @@ const booleanParser = P.alt(P.string("true"), P.string("false"))
   .map((value) => Boolean(value.toLowerCase()))
   .map((value) => ({ type: "boolean", value } as const));
 
-const innerTemplateVariable = addLoc(identifierParser)
-  // .map(
-  //   (identifier) =>
-  //     ({
-  //       type: "templateVariable",
-  //       identifier,
-  //       defaultText: undefined,
-  //     } as const)
-  // );
-
-  .chain((identifier) =>
+// const innerTemplateVariable = addLoc(identifierParser)
+const innerTemplateVariable = (r: P.TypedLanguage<AiplAstSpec>) =>
+  addLoc(r.transformExpr).chain((transformExpr) =>
     P.alt(
       P.string(":")
         .then(P.regexp(/[^}]+/))
@@ -75,13 +81,15 @@ const innerTemplateVariable = addLoc(identifierParser)
           (defaultValue) =>
             ({
               type: "templateVariable",
-              identifier,
+              transformExpr,
+              // identifier,
               defaultValue,
             } as const)
         ),
       P.succeed({
         type: "templateVariable",
-        identifier,
+        transformExpr,
+        // identifier,
         defaultText: undefined,
       } as const)
     )
@@ -99,7 +107,9 @@ const commentParser = P.string("(#").then(
     )
 );
 
-export const createAiplLanguage = () => {
+export const createAiplLanguage = ({
+  transforms = [],
+}: Partial<Readonly<{ transforms: readonly string[] }>> = {}) => {
   return P.createLanguage<AiplAstSpec>({
     escapedSymbol: (r) =>
       addLoc(
@@ -341,6 +351,40 @@ export const createAiplLanguage = () => {
       ),
 
     identifier: () => addLoc(identifierParser),
+    transformExpr: (r) =>
+      addLoc(
+        P.seq(
+          r.identifier,
+          P.alt(P.seq(P.string("."), r.transform), P.succeed(undefined))
+        ).map((value) => ({
+          type: "transformExpr",
+          identifier: value[0],
+          transform: isDefined(value[1]) ? value[1][1] : undefined,
+        }))
+      ),
+    transform: (r) =>
+      addLoc(
+        P.seq(
+          P.alt(...transforms.map((transform) => P.string(transform))),
+          P.alt(
+            P.seq(P.string("("), P.optWhitespace, P.string(")")).map(
+              () => undefined
+            ),
+            P.seq(
+              P.string("("),
+              P.optWhitespace,
+              r.stringLiteral,
+              P.optWhitespace,
+              P.string(")")
+            ).map((values) => values[2])
+          )
+        ).map((value) => ({
+          type: "transform",
+          name: value[0] as AiplTransform,
+          arg: value[1],
+        }))
+      ),
+
     operator: () => addLoc(operatorParser),
     comment: () => addLoc(commentParser),
 
@@ -348,21 +392,21 @@ export const createAiplLanguage = () => {
       addLoc(
         P.alt(r.templateVariable3, r.templateVariable2, r.templateVariable1)
       ),
-    templateVariable1: () =>
+    templateVariable1: (r) =>
       addLoc(
-        P.seq(P.string("{"), innerTemplateVariable, P.string("}")).map(
+        P.seq(P.string("{"), innerTemplateVariable(r), P.string("}")).map(
           (value) => value[1]
         )
       ),
-    templateVariable2: () =>
+    templateVariable2: (r) =>
       addLoc(
-        P.seq(P.string("{{"), innerTemplateVariable, P.string("}}")).map(
+        P.seq(P.string("{{"), innerTemplateVariable(r), P.string("}}")).map(
           (value) => value[1]
         )
       ),
-    templateVariable3: () =>
+    templateVariable3: (r) =>
       addLoc(
-        P.seq(P.string("{{{"), innerTemplateVariable, P.string("}}}")).map(
+        P.seq(P.string("{{{"), innerTemplateVariable(r), P.string("}}}")).map(
           (value) => value[1]
         )
       ),
@@ -376,7 +420,7 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           P.string("-->"),
           P.optWhitespace,
-          r.identifier,
+          r.transformExpr,
           P.optWhitespace,
           r.rightParen
         ).map(
@@ -384,7 +428,7 @@ export const createAiplLanguage = () => {
             ({
               type: "directAssignment",
               question: value[2],
-              identifier: value[6],
+              transformExpr: value[6],
             } as const)
         )
       ),
@@ -398,7 +442,9 @@ export const createAiplLanguage = () => {
           P.optWhitespace,
           P.string("->"),
           P.optWhitespace,
-          r.identifier,
+          // P.alt(r.transformExpr, r.identifier),
+          // r.identifier,
+          r.transformExpr,
           P.optWhitespace,
           r.rightParen
         ).map(
@@ -406,7 +452,8 @@ export const createAiplLanguage = () => {
             ({
               type: "assignment",
               question: value[2],
-              identifier: value[6],
+              // identifier: value[6],
+              transformExpr: value[6],
             } as const)
         )
       ),

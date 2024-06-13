@@ -17,6 +17,8 @@ export type AiplLoc = {
   end: Index;
 };
 
+export type AiplTransform = "trim" | "toUpper" | "toLower";
+
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
 export type AiplComparisonOp =
   | ">"
@@ -128,43 +130,59 @@ export type AiplAstSpec = {
   number: { type: "number"; value: number; loc: AiplLoc };
   boolean: { type: "boolean"; value: boolean; loc: AiplLoc };
   identifier: { type: "identifier"; value: string; loc: AiplLoc };
+  transform: {
+    type: "transform";
+    name: AiplTransform;
+    arg?: AiplAstSpec["stringLiteral"];
+    loc: AiplLoc;
+  };
+  transformExpr: {
+    type: "transformExpr";
+    identifier: AiplAstSpec["identifier"];
+    transform?: AiplAstSpec["transform"];
+    loc: AiplLoc;
+  };
+
   operator: { type: "operator"; value: AiplOp; loc: AiplLoc };
   comment: { type: "comment"; value: string; loc: AiplLoc };
   assignment: {
     type: "assignment";
     question: AiplAstSpec["stringLiteral" | "urlFunction"];
-    // question: AiplAstSpec["template" | "urlFunction"];
-    identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
+    // identifier: AiplAstSpec["identifier"];
     loc: AiplLoc;
   };
   directAssignment: {
     type: "directAssignment";
     question: AiplAstSpec["stringLiteral" | "urlFunction"];
-    // question: AiplAstSpec["template" | "urlFunction"];
-    identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
     loc: AiplLoc;
   };
   templateVariable: {
     type: "templateVariable";
-    identifier: AiplAstSpec["identifier"];
+    // identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
     defaultValue?: string;
     loc: AiplLoc;
   };
   templateVariable1: {
     type: "templateVariable";
-    identifier: AiplAstSpec["identifier"];
+    // identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
     defaultValue?: string;
     loc: AiplLoc;
   };
   templateVariable2: {
     type: "templateVariable";
-    identifier: AiplAstSpec["identifier"];
+    // identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
     defaultValue?: string;
     loc: AiplLoc;
   };
   templateVariable3: {
     type: "templateVariable";
-    identifier: AiplAstSpec["identifier"];
+    // identifier: AiplAstSpec["identifier"];
+    transformExpr: AiplAstSpec["transformExpr"];
     defaultValue?: string;
     loc: AiplLoc;
   };

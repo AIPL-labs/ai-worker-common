@@ -1,50 +1,10 @@
 import { isDefined, isUndefined } from "@mjtdev/engine";
 import { produce } from "immer";
-import type { AiplAstSpec } from "../AiplAstSpec";
 import type { AiplError } from "./AiplError";
-import type {
-  AiplNodeEvaluator,
-  AiplNodePrimitiveEvaluator,
-} from "./AiplNodeEvaluator";
+import type { AiplNodeEvaluator } from "./AiplNodeEvaluator";
 import { evaluateAiplCode } from "./evaluateAiplCode";
+import { evaluateListNodeToOperatorObjects } from "./evaluateListNodeToOperatorObjects";
 import { evaluateNodeToString } from "./evaluateNodeToString";
-
-export const evaluateListNodeToOperatorObjects: AiplNodePrimitiveEvaluator<
-  "list",
-  Record<AiplAstSpec["entry"]["op"], Record<string, string>>
-> = (context) => (node) => {
-  const colonOpObj: Record<string, string> = {};
-  const equalOpObj: Record<string, string> = {};
-  const doubleEqualOpObj: Record<string, string> = {};
-  for (const entry of node.values) {
-    const { key, op, value } = entry;
-    const stringValue = evaluateNodeToString(context)(value);
-    switch (op) {
-      case ":": {
-        colonOpObj[key] = stringValue;
-        continue;
-      }
-      case "=": {
-        equalOpObj[key] = stringValue;
-        continue;
-      }
-      case "==":
-        {
-          doubleEqualOpObj[key] = stringValue;
-          continue;
-        }
-        throw new Error(
-          `evaluateListNodeToOperatorObjects unexpected op: '${op}'`
-        );
-    }
-  }
-
-  return {
-    ":": colonOpObj,
-    "=": equalOpObj,
-    "==": doubleEqualOpObj,
-  };
-};
 
 export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
   (context) => (node) => {
@@ -66,13 +26,26 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             continue;
           }
           case "templateVariable": {
-            const stateValue = context.state[childNode.identifier.value];
+            const { transformExpr, defaultValue } = childNode;
+
+            const transformArgument = isDefined(transformExpr.transform?.arg)
+              ? evaluateNodeToString(context)(transformExpr.transform.arg)
+              : undefined;
+
+            const stateValue = context.state[transformExpr.identifier.value];
             const rendered = isDefined(stateValue)
               ? stateValue
               : childNode.defaultValue;
             if (isDefined(rendered)) {
+              const transformed = isDefined(transformExpr.transform)
+                ? context.transform({
+                    name: transformExpr.transform?.name,
+                    value: rendered,
+                    argument: transformArgument,
+                  })
+                : rendered;
               result = produce(result, (r) => {
-                r.texts.push(rendered);
+                r.texts.push(transformed);
               });
             }
             continue;
@@ -89,9 +62,16 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
           case "directAssignment": {
             switch (childNode.question.type) {
               case "stringLiteral": {
+                const { identifier, transform } = childNode.transformExpr;
+                const transformArgument = isDefined(transform?.arg)
+                  ? evaluateNodeToString(context)(transform.arg)
+                  : undefined;
+                const value = evaluateNodeToString(context)(childNode.question);
                 context.assignValueStringToIdentifier({
-                  value: evaluateNodeToString(context)(childNode.question),
-                  identifier: childNode.identifier,
+                  value,
+                  identifier,
+                  transformArgument,
+                  transformName: transform?.name,
                 });
                 continue;
               }
@@ -101,9 +81,17 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
           case "assignment": {
             switch (childNode.question.type) {
               case "stringLiteral": {
+                const { transformExpr } = childNode;
+                const transformArgument = isDefined(
+                  transformExpr.transform?.arg
+                )
+                  ? evaluateNodeToString(context)(transformExpr.transform.arg)
+                  : undefined;
                 context.assignQuestionStringToIdentifier({
                   question: evaluateNodeToString(context)(childNode.question),
-                  identifier: childNode.identifier,
+                  identifier: transformExpr.identifier,
+                  transformName: transformExpr.transform?.name,
+                  transformArgument,
                 });
                 continue;
               }
@@ -133,14 +121,22 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                 ]
                   .filter(isDefined)
                   .join("");
+                const { transformExpr } = childNode;
 
+                const transformArgument = isDefined(
+                  transformExpr.transform?.arg
+                )
+                  ? evaluateNodeToString(context)(transformExpr.transform.arg)
+                  : undefined;
                 context.assignUrlFunctionToIdentifier({
                   url,
                   urlFunction: childNode.question,
-                  identifier: childNode.identifier,
+                  identifier: transformExpr.identifier,
                   data: operatorObjects?.[":"],
                   headers: operatorObjects?.["="],
                   specials: operatorObjects?.["=="],
+                  transformArgument,
+                  transformName: transformExpr.transform?.name,
                 });
                 continue;
               }
