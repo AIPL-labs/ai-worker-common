@@ -1,4 +1,4 @@
-import { isDefined, isEmpty } from "@mjtdev/engine";
+import { Objects, isDefined, isEmpty, isUndefined } from "@mjtdev/engine";
 import type { Content } from "../3rd/gcp/GcpTypes";
 import type { AppCharacter } from "../type/app-character/AppCharacter";
 import type { ChatMessage } from "../type/chat-message/ChatMessage";
@@ -18,11 +18,15 @@ export const chatMessagesToGoogleVertexMessages = ({
   characters: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
 }): Content[] => {
+  const roleToName: Record<string, string> = {};
   const result = messages
     .map((message, i) => {
       const characterName =
         characters[message.characterId ?? ""]?.card.data.name;
       const author = characterName ?? message.role;
+      if (author.trim().toLocaleLowerCase() !== "user") {
+        roleToName[message.role] = author;
+      }
       const rawText = chatMessageToText(message);
       const renderedText = rawText;
       const gcpRole = message.role === "assistant" ? "model" : message.role;
@@ -51,6 +55,16 @@ export const chatMessagesToGoogleVertexMessages = ({
       parts: [{ text: " " }],
     });
   }
-  // return result;
+  const characterNamesSystemMessage = Objects.entries(roleToName)
+    .map((entry) => {
+      const [role, name] = entry;
+      return `the ${role}'s name is ${name}`;
+    })
+    .join("\n");
+
+  result.unshift({
+    role: "system",
+    parts: [{ text: characterNamesSystemMessage }],
+  });
   return messagesToStrictUserModelGoogleVertexOrdering(result);
 };
