@@ -5,6 +5,7 @@ import type { AiplNodeEvaluator } from "./AiplNodeEvaluator";
 import { evaluateAiplCode } from "./evaluateAiplCode";
 import { evaluateListNodeToOperatorObjects } from "./evaluateListNodeToOperatorObjects";
 import { evaluateNodeToString } from "./evaluateNodeToString";
+import type { TransfromArgument } from "./AiplContext";
 
 export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
   (context) => (node) => {
@@ -28,9 +29,11 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
           case "templateVariable": {
             const { transformExpr, defaultValue } = childNode;
 
-            const transformArgument = isDefined(transformExpr.transform?.arg)
-              ? evaluateNodeToString(context)(transformExpr.transform.arg)
-              : undefined;
+            const transformArgument =
+              isDefined(transformExpr.transform?.arg) &&
+              transformExpr.transform?.arg.type === "stringLiteral"
+                ? evaluateNodeToString(context)(transformExpr.transform.arg)
+                : undefined;
 
             const stateValue = context.state[transformExpr.identifier.value];
             const rendered = isDefined(stateValue)
@@ -58,20 +61,38 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             // no-op for comments
             continue;
           }
+          case "multilineComment": {
+            // no-op for comments
+            continue;
+          }
 
           case "directAssignment": {
             switch (childNode.question.type) {
               case "stringLiteral": {
                 const { identifier, transform } = childNode.transformExpr;
-                const transformArgument = isDefined(transform?.arg)
-                  ? evaluateNodeToString(context)(transform.arg)
-                  : undefined;
+                let transformArgument: TransfromArgument | undefined =
+                  undefined;
+                if (
+                  isDefined(transform?.arg) &&
+                  transform?.arg.type === "stringLiteral"
+                ) {
+                  transformArgument = evaluateNodeToString(context)(
+                    transform.arg
+                  );
+                }
+                if (
+                  isDefined(transform?.arg) &&
+                  transform?.arg.type === "program"
+                ) {
+                  transformArgument = transform.arg;
+                }
                 const value = evaluateNodeToString(context)(childNode.question);
                 context.assignValueStringToIdentifier({
                   value,
                   identifier,
                   transformArgument,
                   transformName: transform?.name,
+                  context,
                 });
                 continue;
               }
@@ -82,16 +103,17 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             switch (childNode.question.type) {
               case "stringLiteral": {
                 const { transformExpr } = childNode;
-                const transformArgument = isDefined(
-                  transformExpr.transform?.arg
-                )
-                  ? evaluateNodeToString(context)(transformExpr.transform.arg)
-                  : undefined;
+                const transformArgument =
+                  isDefined(transformExpr.transform?.arg) &&
+                  transformExpr.transform?.arg.type === "stringLiteral"
+                    ? evaluateNodeToString(context)(transformExpr.transform.arg)
+                    : undefined;
                 context.assignQuestionStringToIdentifier({
                   question: evaluateNodeToString(context)(childNode.question),
                   identifier: transformExpr.identifier,
                   transformName: transformExpr.transform?.name,
                   transformArgument,
+                  context,
                 });
                 continue;
               }
@@ -123,11 +145,31 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                   .join("");
                 const { transformExpr } = childNode;
 
-                const transformArgument = isDefined(
-                  transformExpr.transform?.arg
-                )
-                  ? evaluateNodeToString(context)(transformExpr.transform.arg)
-                  : undefined;
+                // const transformArgument =
+                //   isDefined(transformExpr.transform?.arg) &&
+                //   transformExpr.transform?.arg.type === "stringLiteral"
+                //     ? evaluateNodeToString(context)(transformExpr.transform.arg)
+                //     : undefined;
+
+                const { transform } = transformExpr;
+
+                let transformArgument: TransfromArgument | undefined =
+                  undefined;
+                if (
+                  isDefined(transform?.arg) &&
+                  transform?.arg.type === "stringLiteral"
+                ) {
+                  transformArgument = evaluateNodeToString(context)(
+                    transform.arg
+                  );
+                }
+                if (
+                  isDefined(transform?.arg) &&
+                  transform?.arg.type === "program"
+                ) {
+                  transformArgument = transform.arg;
+                }
+
                 context.assignUrlFunctionToIdentifier({
                   url,
                   urlFunction: childNode.question,
@@ -137,6 +179,7 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                   specials: operatorObjects?.["=="],
                   transformArgument,
                   transformName: transformExpr.transform?.name,
+                  context,
                 });
                 continue;
               }
@@ -145,13 +188,16 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
           }
         }
       } catch (error) {
-        throw {
+        throw new Error("evaluateAiplProgram: Unexpected program error", {
           cause: error,
-          context,
-          message: "Unexpected program error",
-          loc: childNode.loc,
-          node: childNode,
-        } satisfies AiplError;
+        });
+        // throw {
+        //   cause: error,
+        //   context,
+        //   message: "evaluateAiplProgram: Unexpected program error",
+        //   loc: childNode.loc,
+        //   node: childNode,
+        // } satisfies AiplError;
       }
     }
     return result;

@@ -1,6 +1,6 @@
+import { isDefined } from "@mjtdev/engine";
 import P from "parsimmon";
-import type { AiplAstSpec, AiplTransform } from "./AiplAstSpec";
-import { isDefined, isNotEmpty } from "@mjtdev/engine";
+import type { AiplAstSpec } from "./AiplAstSpec";
 
 const addLoc = <T>(parser: P.Parser<T>) => {
   return parser
@@ -106,7 +106,30 @@ const commentParser = P.string("(#").then(
         } as const)
     )
 );
-
+// const multilineCommentParser = P.seq(
+//   P.string("(%%"),
+//   P.regex(/.*?(?=%\))/),
+//   P.string("%)")
+// ).map(
+//   (value) =>
+//     ({
+//       type: "multilineComment",
+//       value: value[1],
+//     } as const)
+// );
+const multilineCommentParser = P.string("(##").then(
+  // P.regex(/[^)]+/)
+  // P.regex(/.*?(?=%\))/mg)
+  P.regex(/[\s\S]*?(?=#\))/)
+    .skip(P.string("#)"))
+    .map(
+      (value) =>
+        ({
+          type: "multilineComment",
+          value,
+        } as const)
+    )
+);
 export const createAiplLanguage = ({
   transforms = [],
 }: Partial<Readonly<{ transforms: readonly string[] }>> = {}) => {
@@ -373,20 +396,21 @@ export const createAiplLanguage = ({
             P.seq(
               P.string("("),
               P.optWhitespace,
-              r.stringLiteral,
+              P.alt(r.stringLiteral, r.program),
               P.optWhitespace,
               P.string(")")
             ).map((values) => values[2])
           )
         ).map((value) => ({
           type: "transform",
-          name: value[0] as AiplTransform,
+          name: value[0],
           arg: value[1],
         }))
       ),
 
     operator: () => addLoc(operatorParser),
     comment: () => addLoc(commentParser),
+    multilineComment: () => addLoc(multilineCommentParser),
 
     templateVariable: (r) =>
       addLoc(
@@ -534,16 +558,14 @@ export const createAiplLanguage = ({
       addLoc(
         P.alt(
           r.escapedSymbol,
+          r.multilineComment,
           r.comment,
           r.directAssignment,
           r.assignment,
-          // r.conditionalAssignment,
 
-          // r.template,
           r.code,
           r.templateVariable,
           r.text
-          // r.anyText
         )
           .many()
           .map((value) => ({ type: "program", value } as const))

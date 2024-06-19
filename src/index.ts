@@ -131,6 +131,7 @@ export * from "./type/app-report/AppReport";
 export * from "./aipl/Aipls";
 export * from "./aipl/AiplAstSpec";
 export * from "./aipl/AiplLangageParams";
+export * from "./aipl/runtime/AiplContext";
 
 // prompts
 export * from "./ai/prompt/Prompts";
@@ -178,3 +179,5 @@ export * from "./common/Watchdog";
 
 export * from "./3rd/gcp/GcpTypes";
 export * from "./3rd/gcp/GcpAsrTypes";
+
+export * from "./type/app-secret-store/AppSecretStore";

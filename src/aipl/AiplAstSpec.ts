@@ -17,8 +17,6 @@ export type AiplLoc = {
   end: Index;
 };
 
-export type AiplTransform = "trim" | "toUpper" | "toLower";
-
 export type AiplBooleanOp = "&" | "&&" | "|" | "||";
 export type AiplComparisonOp =
   | ">"
@@ -32,6 +30,13 @@ export type AiplComparisonOp =
 export type AiplOp = AiplBooleanOp | AiplComparisonOp;
 
 export type AiplNodeValueType = AiplAstSpec[keyof AiplAstSpec]["type"];
+
+export const isAiplProgramAstNode = (
+  maybe: unknown
+): maybe is AiplAstSpec["program"] => {
+  const straw = maybe as AiplAstSpec["program"];
+  return typeof straw === "object" && straw.type === "program";
+};
 
 export type AiplAstSpec = {
   escapedSymbol: {
@@ -132,8 +137,8 @@ export type AiplAstSpec = {
   identifier: { type: "identifier"; value: string; loc: AiplLoc };
   transform: {
     type: "transform";
-    name: AiplTransform;
-    arg?: AiplAstSpec["stringLiteral"];
+    name: string;
+    arg?: AiplAstSpec["stringLiteral"] | AiplAstSpec["program"];
     loc: AiplLoc;
   };
   transformExpr: {
@@ -145,6 +150,7 @@ export type AiplAstSpec = {
 
   operator: { type: "operator"; value: AiplOp; loc: AiplLoc };
   comment: { type: "comment"; value: string; loc: AiplLoc };
+  multilineComment: { type: "multilineComment"; value: string; loc: AiplLoc };
   assignment: {
     type: "assignment";
     question: AiplAstSpec["stringLiteral" | "urlFunction"];
@@ -278,6 +284,7 @@ export type AiplAstSpec = {
     value: AiplAstSpec[
       | "escapedSymbol"
       | "comment"
+      | "multilineComment"
       | "assignment"
       | "directAssignment"
       | "text"

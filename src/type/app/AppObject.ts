@@ -26,6 +26,7 @@ import type {
   AppServiceProvider,
 } from "../app-service/AppService";
 import type { AppVideo } from "../app-video/AppVideo";
+import type { AppSecretStore } from "../app-secret-store/AppSecretStore";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -55,6 +56,7 @@ export type AppObjectTypeMap = {
   "app-service-provider": AppServiceProvider;
   "chat-starter": ChatStarter;
   "app-video": AppVideo;
+  "app-secret-store": AppSecretStore;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;
