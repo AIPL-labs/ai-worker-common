@@ -282,4 +282,26 @@ export type AppMessageMap = {
   "aipl:getAvailableTransforms:response": {
     transforms: readonly string[];
   };
+  "playground:createAssistant": ReturnableMessageDetail;
+  "playground:createAssistant:result": {
+    assistantCharacterId: string;
+    userCharacterId: string;
+    trueName: string;
+  };
+
+  "playground:suAssistant": ReturnableMessageDetail & {
+    characterId: string;
+    trueName: string;
+  };
+  "playground:updateAssistant": ReturnableMessageDetail & {
+    trueName: string;
+    draft: Partial<AppCharacter>;
+  };
+  "playground:deleteAssistant": ReturnableMessageDetail & {
+    trueName: string;
+    characterId: string;
+  };
+  "playground:search": ReturnableMessageDetail & {
+    query: string;
+  };
 };

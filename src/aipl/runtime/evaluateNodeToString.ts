@@ -1,5 +1,6 @@
 import { isDefined, isUndefined } from "@mjtdev/engine";
 import type { AiplNodePrimitiveEvaluator } from "./AiplNodeEvaluator";
+import type { TransfromArgument } from "./AiplContext";
 
 export const evaluateNodeToString: AiplNodePrimitiveEvaluator<
   | "template"
@@ -34,11 +35,21 @@ export const evaluateNodeToString: AiplNodePrimitiveEvaluator<
       if (isUndefined(transform)) {
         return value;
       }
+
+      let transformArgument: TransfromArgument | undefined = undefined;
+      if (
+        isDefined(transform?.arg) &&
+        transform?.arg.type === "stringLiteral"
+      ) {
+        transformArgument = evaluateNodeToString(context)(transform.arg);
+      }
+
       return context.transform({
         name: transform.name,
         value,
-        // TODO transform argument
-        // argument: transform.arg,
+        argument: transformArgument,
+        context,
+        identifier,
       });
     }
     case "identifier": {

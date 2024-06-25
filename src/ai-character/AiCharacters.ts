@@ -3,6 +3,7 @@ import { DEFAULT_MES_EXAMPLE } from "../ai/prompt/DEFAULT_MES_EXAMPLE";
 import { createCardSystemMessage } from "./createCardSystemMessage";
 import { createTavernCard } from "./createTavernCard";
 import { renderTemplateText } from "../ai/prompt/renderTemplateText";
+import { characterFieldToAiplText } from "./characterFieldToAiplText";
 
 export const AiCharacters = {
   characterToChatSystemMessages,
@@ -11,4 +12,5 @@ export const AiCharacters = {
   createCardSystemMessage,
   createTavernCard,
   DEFAULT_MES_EXAMPLE,
+  characterFieldToAiplText,
 };

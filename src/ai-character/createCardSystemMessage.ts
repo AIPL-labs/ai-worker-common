@@ -2,6 +2,7 @@ import { isDefined } from "@mjtdev/engine";
 import { Aipls } from "../aipl/Aipls";
 import type { AiplContext } from "../aipl/runtime/AiplContext";
 import { AppObjects } from "../app-object/AppObjects";
+import { characterFieldToAiplText } from "./characterFieldToAiplText";
 
 export const createCardSystemMessage = ({
   systemName,
@@ -17,9 +18,8 @@ export const createCardSystemMessage = ({
   if (text.trim().length === 0) {
     return undefined;
   }
-  const fullText = [title ? `# ${title}:` : undefined, text]
-    .filter(isDefined)
-    .join("\n");
+
+  const fullText = characterFieldToAiplText({ fieldName: title, text });
 
   const renderedText = Aipls.renderAiplProgramText(fullText, aiplContext);
 

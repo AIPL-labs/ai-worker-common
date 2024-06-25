@@ -145,12 +145,6 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
                   .join("");
                 const { transformExpr } = childNode;
 
-                // const transformArgument =
-                //   isDefined(transformExpr.transform?.arg) &&
-                //   transformExpr.transform?.arg.type === "stringLiteral"
-                //     ? evaluateNodeToString(context)(transformExpr.transform.arg)
-                //     : undefined;
-
                 const { transform } = transformExpr;
 
                 let transformArgument: TransfromArgument | undefined =

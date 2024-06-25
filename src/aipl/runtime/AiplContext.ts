@@ -35,7 +35,7 @@ export type AiplContext = {
   state: AiplState;
   texts: string[];
   addStateUpdater: (updater: AiplStateUpdater) => void;
-  updateCurrentState: (key: string, value: string) => void;
+  // updateCurrentState: (key: string, value: string) => void;
   getAvailableTransforms: () => readonly string[];
   transform: TransformFunction;
 
