@@ -2,7 +2,6 @@ import { isDefined } from "@mjtdev/engine";
 import { Aipls } from "../aipl/Aipls";
 import type { AiplContext } from "../aipl/runtime/AiplContext";
 import { AppObjects } from "../app-object/AppObjects";
-import { characterFieldToAiplText } from "./characterFieldToAiplText";
 
 export const createCardSystemMessage = ({
   systemName,
@@ -19,16 +18,17 @@ export const createCardSystemMessage = ({
     return undefined;
   }
 
-  const fullText = characterFieldToAiplText({ fieldName: title, text });
+  const renderedText = Aipls.renderAiplProgramText(text, aiplContext);
 
-  const renderedText = Aipls.renderAiplProgramText(fullText, aiplContext);
-
+  const content = [title ? `# ${title}:` : undefined, renderedText]
+    .filter(isDefined)
+    .join("\n");
   const ms = AppObjects.create("chat-message", {
     role: "system",
     name: systemName,
     content: {
       type: "text",
-      parts: [renderedText].filter(isDefined),
+      parts: [content].filter(isDefined),
     },
   });
   return ms;

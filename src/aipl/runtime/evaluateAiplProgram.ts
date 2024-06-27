@@ -1,15 +1,14 @@
 import { isDefined, isUndefined } from "@mjtdev/engine";
 import { produce } from "immer";
-import type { AiplError } from "./AiplError";
+import type { TransfromArgument } from "./AiplContext";
 import type { AiplNodeEvaluator } from "./AiplNodeEvaluator";
 import { evaluateAiplCode } from "./evaluateAiplCode";
 import { evaluateListNodeToOperatorObjects } from "./evaluateListNodeToOperatorObjects";
 import { evaluateNodeToString } from "./evaluateNodeToString";
-import type { TransfromArgument } from "./AiplContext";
 
 export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
   (context) => (node) => {
-    // context.logger("evaluateAiplProgram", { node, context });
+    context.logger("evaluateAiplProgram", { node, context });
     let result = produce(context, () => {});
     for (const childNode of node.value) {
       try {
