@@ -16,7 +16,7 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
 > = (context) => (node) => {
   const trace = (message: string, extra?: unknown) => {
     context.logger(
-      `evaluateNodeToBoolean: ${node.loc.start.offset} ${node.type} ${message}`,
+      `evaluateNodeToBoolean: ${node.type} ${message}`,
       [node, extra]
       // extra
     );
@@ -56,7 +56,17 @@ export const evaluateNodeToBoolean: AiplNodePrimitiveEvaluator<
         case "&": {
           trace("&&");
           const leftValue = evaluateNodeToBoolean(context)(left);
-          return leftValue && evaluateNodeToBoolean(context)(right);
+          const rightValue = evaluateNodeToBoolean(context)(right);
+          const result = leftValue && rightValue;
+          trace(`&& result: ${result}`, {
+            left,
+            right,
+            node,
+            result,
+            leftValue,
+            rightValue,
+          });
+          return result;
         }
 
         // logical or

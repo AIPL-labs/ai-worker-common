@@ -68,7 +68,7 @@ const numberParser = P.regexp(/[0-9]+/)
   .map((value) => ({ type: "number", value } as const));
 
 const booleanParser = P.alt(P.string("true"), P.string("false"))
-  .map((value) => Boolean(value.toLowerCase()))
+  .map((value) => value.toLowerCase() === "true")
   .map((value) => ({ type: "boolean", value } as const));
 
 // const innerTemplateVariable = addLoc(identifierParser)

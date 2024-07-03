@@ -1,10 +1,10 @@
 import { isDefined, isUndefined } from "@mjtdev/engine";
 import { produce } from "immer";
-import type { TransfromArgument } from "./AiplContext";
 import type { AiplNodeEvaluator } from "./AiplNodeEvaluator";
 import { evaluateAiplCode } from "./evaluateAiplCode";
 import { evaluateListNodeToOperatorObjects } from "./evaluateListNodeToOperatorObjects";
 import { evaluateNodeToString } from "./evaluateNodeToString";
+import { transformToTransformArg } from "./transformToTransformArg";
 
 export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
   (context) => (node) => {
@@ -28,11 +28,11 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
           case "templateVariable": {
             const { transformExpr, defaultValue } = childNode;
 
-            const transformArgument =
-              isDefined(transformExpr.transform?.arg) &&
-              transformExpr.transform?.arg.type === "stringLiteral"
-                ? evaluateNodeToString(context)(transformExpr.transform.arg)
-                : undefined;
+            const { transform } = transformExpr;
+            const transformArgument = transformToTransformArg({
+              transform,
+              context,
+            });
 
             const stateValue = context.state[transformExpr.identifier.value];
             const rendered = isDefined(stateValue)
@@ -69,22 +69,12 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             switch (childNode.question.type) {
               case "stringLiteral": {
                 const { identifier, transform } = childNode.transformExpr;
-                let transformArgument: TransfromArgument | undefined =
-                  undefined;
-                if (
-                  isDefined(transform?.arg) &&
-                  transform?.arg.type === "stringLiteral"
-                ) {
-                  transformArgument = evaluateNodeToString(context)(
-                    transform.arg
-                  );
-                }
-                if (
-                  isDefined(transform?.arg) &&
-                  transform?.arg.type === "program"
-                ) {
-                  transformArgument = transform.arg;
-                }
+
+                const transformArgument = transformToTransformArg({
+                  transform,
+                  context,
+                });
+
                 const value = evaluateNodeToString(context)(childNode.question);
                 context.assignValueStringToIdentifier({
                   value,
@@ -102,11 +92,14 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             switch (childNode.question.type) {
               case "stringLiteral": {
                 const { transformExpr } = childNode;
-                const transformArgument =
-                  isDefined(transformExpr.transform?.arg) &&
-                  transformExpr.transform?.arg.type === "stringLiteral"
-                    ? evaluateNodeToString(context)(transformExpr.transform.arg)
-                    : undefined;
+
+                const { transform } = transformExpr;
+
+                const transformArgument = transformToTransformArg({
+                  transform,
+                  context,
+                });
+
                 context.assignQuestionStringToIdentifier({
                   question: evaluateNodeToString(context)(childNode.question),
                   identifier: transformExpr.identifier,
@@ -146,22 +139,10 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
 
                 const { transform } = transformExpr;
 
-                let transformArgument: TransfromArgument | undefined =
-                  undefined;
-                if (
-                  isDefined(transform?.arg) &&
-                  transform?.arg.type === "stringLiteral"
-                ) {
-                  transformArgument = evaluateNodeToString(context)(
-                    transform.arg
-                  );
-                }
-                if (
-                  isDefined(transform?.arg) &&
-                  transform?.arg.type === "program"
-                ) {
-                  transformArgument = transform.arg;
-                }
+                const transformArgument = transformToTransformArg({
+                  transform,
+                  context,
+                });
 
                 context.assignUrlFunctionToIdentifier({
                   url,
