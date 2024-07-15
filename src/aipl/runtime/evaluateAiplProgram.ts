@@ -65,6 +65,16 @@ export const evaluateAiplProgram: AiplNodeEvaluator<"program"> =
             continue;
           }
 
+          case "apply": {
+            const { identifier, param } = childNode;
+            const paramString = evaluateNodeToString(context)(param);
+            context.applyParamToIdentifier({
+              context,
+              identifier,
+              param: paramString,
+            });
+            continue;
+          }
           case "directAssignment": {
             switch (childNode.question.type) {
               case "stringLiteral": {

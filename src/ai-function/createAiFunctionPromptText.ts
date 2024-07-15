@@ -5,6 +5,7 @@ import type { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 import { AI_FUNCTION_PREFIX } from "./AI_FUNCTION_TOKEN";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 
+/** @deprecated this whole line of thought/code needs to be rewritten */
 export const createAiFunctionPromptText = ({
   aiName,
   userName,
@@ -17,14 +18,6 @@ export const createAiFunctionPromptText = ({
 
   messageTemplate?: ChatMessageTemplate;
 }) => {
-  //   const messageExample = `<|im_start|>${userName}
-  // open the garage door named bay one<|im_end|>
-  // <|im_start|>${aiName}
-  // ${AI_FUNCTION_PREFIX}openGarageDoor(name:"bay one");
-  // garage door bay one opened.
-  // <|im_end|>
-  // `;
-
   const { messageStart, afterCharPostfix, messageEnd } = messageTemplate;
 
   const messageExample = `${messageStart}${userName}${afterCharPostfix}open the garage door named bay one${messageEnd}

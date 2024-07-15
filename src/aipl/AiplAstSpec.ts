@@ -151,11 +151,17 @@ export type AiplAstSpec = {
   operator: { type: "operator"; value: AiplOp; loc: AiplLoc };
   comment: { type: "comment"; value: string; loc: AiplLoc };
   multilineComment: { type: "multilineComment"; value: string; loc: AiplLoc };
+
+  apply: {
+    type: "apply";
+    param: AiplAstSpec["stringLiteral"];
+    identifier: AiplAstSpec["identifier"];
+    loc: AiplLoc;
+  };
   assignment: {
     type: "assignment";
     question: AiplAstSpec["stringLiteral" | "urlFunction"];
     transformExpr: AiplAstSpec["transformExpr"];
-    // identifier: AiplAstSpec["identifier"];
     loc: AiplLoc;
   };
   directAssignment: {
@@ -164,6 +170,7 @@ export type AiplAstSpec = {
     transformExpr: AiplAstSpec["transformExpr"];
     loc: AiplLoc;
   };
+
   templateVariable: {
     type: "templateVariable";
     // identifier: AiplAstSpec["identifier"];
@@ -285,6 +292,7 @@ export type AiplAstSpec = {
       | "escapedSymbol"
       | "comment"
       | "multilineComment"
+      | "apply"
       | "assignment"
       | "directAssignment"
       | "text"

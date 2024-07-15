@@ -16,6 +16,13 @@ export type TransformFunction = (props: {
   identifier?: AiplAstSpec["identifier"];
 }) => string;
 
+export type AiplFunction<T = unknown> = (props: {
+  name: string;
+  param?: string;
+  context: AiplContext;
+  environment: T;
+}) => void;
+
 export type AiplUpdateEntry = {
   namespace?: string;
   key: string;
@@ -35,16 +42,16 @@ export type AiplContext = {
   state: AiplState;
   texts: string[];
   addStateUpdater: (updater: AiplStateUpdater) => void;
-  // updateCurrentState: (key: string, value: string) => void;
   getAvailableTransforms: () => readonly string[];
+  getAvailableFunctions: () => readonly string[];
   transform: TransformFunction;
+  apply: AiplFunction;
 
-  // transform: (props: {
-  //   name?: string;
-  //   value: string;
-  //   argument?: TransfromArgument;
-  // }) => string;
-
+  applyParamToIdentifier: (props: {
+    param: string;
+    identifier: AiplAstSpec["identifier"];
+    context: AiplContext;
+  }) => void;
   assignValueStringToIdentifier: (props: {
     value: string;
     identifier: AiplAstSpec["identifier"];

@@ -466,8 +466,6 @@ export const createAiplLanguage = ({
           P.optWhitespace,
           P.string("->"),
           P.optWhitespace,
-          // P.alt(r.transformExpr, r.identifier),
-          // r.identifier,
           r.transformExpr,
           P.optWhitespace,
           r.rightParen
@@ -476,12 +474,32 @@ export const createAiplLanguage = ({
             ({
               type: "assignment",
               question: value[2],
-              // identifier: value[6],
               transformExpr: value[6],
             } as const)
         )
       ),
 
+    apply: (r) =>
+      addLoc(
+        P.seq(
+          r.leftParen,
+          P.optWhitespace,
+          r.stringLiteral,
+          P.optWhitespace,
+          P.string("=>"),
+          P.optWhitespace,
+          r.identifier,
+          P.optWhitespace,
+          r.rightParen
+        ).map(
+          (value) =>
+            ({
+              type: "apply",
+              param: value[2],
+              identifier: value[6],
+            } as const)
+        )
+      ),
     binaryExpr: (r) =>
       addLoc(
         P.seq(
@@ -562,6 +580,7 @@ export const createAiplLanguage = ({
           r.comment,
           r.directAssignment,
           r.assignment,
+          r.apply,
 
           r.code,
           r.templateVariable,
