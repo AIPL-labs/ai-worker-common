@@ -132,6 +132,7 @@ export * from "./aipl/Aipls";
 export * from "./aipl/AiplAstSpec";
 export * from "./aipl/AiplLangageParams";
 export * from "./aipl/runtime/AiplContext";
+export * from "./aipl/session/AiplSession";
 
 // prompts
 export * from "./ai/prompt/Prompts";

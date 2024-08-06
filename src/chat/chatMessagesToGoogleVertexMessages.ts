@@ -13,9 +13,9 @@ import { messagesToStrictUserModelGoogleVertexOrdering } from "./messagesToStric
  */
 export const chatMessagesToGoogleVertexMessages = ({
   messages,
-  characters,
+  characters = {},
 }: {
-  characters: Record<string, AppCharacter | undefined>;
+  characters?: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
 }): Content[] => {
   const roleToName: Record<string, string> = {};

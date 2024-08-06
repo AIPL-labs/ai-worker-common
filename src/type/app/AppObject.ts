@@ -27,6 +27,7 @@ import type {
 } from "../app-service/AppService";
 import type { AppVideo } from "../app-video/AppVideo";
 import type { AppSecretStore } from "../app-secret-store/AppSecretStore";
+import type { AiplSession } from "../../aipl/session/AiplSession";
 
 export type AppObjectTypeMap = {
   chat: Chat;
@@ -57,6 +58,7 @@ export type AppObjectTypeMap = {
   "chat-starter": ChatStarter;
   "app-video": AppVideo;
   "app-secret-store": AppSecretStore;
+  "aipl-session": AiplSession;
 };
 
 export type AppObjectType = keyof AppObjectTypeMap;

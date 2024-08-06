@@ -8,10 +8,10 @@ import { chatMessageToText } from "./chatMessageToText";
 
 export const chatMessagesToPromptTextsChatML = ({
   messages,
-  characters,
+  characters = {},
   messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE,
 }: {
-  characters: Record<string, AppCharacter | undefined>;
+  characters?: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
   messageTemplate?: ChatMessageTemplate;
 }): PromptText[] => {

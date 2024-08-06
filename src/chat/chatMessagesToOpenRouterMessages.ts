@@ -6,9 +6,9 @@ import { chatMessageToText } from "./chatMessageToText";
 
 export const chatMessagesToOpenRouterMessages = ({
   messages,
-  characters,
+  characters = {},
 }: {
-  characters: Record<string, AppCharacter | undefined>;
+  characters?: Record<string, AppCharacter | undefined>;
   messages: ChatMessage[];
 }): OpenRouterMessage[] => {
   return messages

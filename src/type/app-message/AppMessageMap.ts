@@ -57,17 +57,22 @@ export type InteractiveMessageDetail = AbortableMessageDetail &
 export type AppMessageMap = {
   auth:
     | string
-    | {
+    | (ReturnableMessageDetail & {
         userName?: string;
         password?: string;
         gisCredential?: string;
-      };
+      });
   access: string;
   ping: string;
   play: ReturnableMessageDetail & { data: unknown };
   abort: string; // abortId
   // error: string;
-  toast: string;
+  toast:
+    | string
+    | {
+        message: string;
+        type?: string;
+      };
   log: {
     message?: string;
     extra?: unknown;
@@ -120,7 +125,7 @@ export type AppMessageMap = {
     facts: Record<string, string | undefined>;
   };
   "chat:phone": { phoneCall: Partial<PhoneCall>; chat: Partial<Chat> };
-  "chat:start": Partial<Chat>;
+  "chat:start": Partial<ReturnableMessageDetail> & Partial<Chat>;
   "chat:end": string;
   "chat:startPublicAgent": ReturnableMessageDetail & {
     accessPointId: string;
@@ -282,6 +287,12 @@ export type AppMessageMap = {
   "aipl:getAvailableTransforms:response": {
     transforms: readonly string[];
   };
+  "aipl:exec": ReturnableMessageDetail &
+    StreamableMessageDetail & {
+      executionContextId?: string;
+      program: string;
+      params?: Record<string, string>;
+    };
   "playground:createAssistant": ReturnableMessageDetail;
   "playground:createAssistant:result": {
     assistantCharacterId: string;
@@ -303,5 +314,8 @@ export type AppMessageMap = {
   };
   "playground:search": ReturnableMessageDetail & {
     query: string;
+  };
+  "client:formUpdate": {
+    data: unknown;
   };
 };
