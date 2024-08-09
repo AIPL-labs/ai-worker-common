@@ -17,6 +17,20 @@ export type DecomposedAppCharacter = {
   // accessPublic?: boolean;
 };
 
+// export type FormSkillConfig = {
+//   formKeyToSelector: Record<string, string>;
+//   formKeyToValues: Record<string, string[]>;
+//   formKeyToInputValueType: Record<string, "single" | "multiple">;
+// };
+
+export type FormSkillConfig = Record<string, FormSkillConfigKeyValue>;
+
+export type FormSkillConfigKeyValue = {
+  selector: string;
+  values: string[];
+  inputValueType: "single" | "multiple";
+};
+
 export type AppTavernCard = TavernCardV2<
   Partial<{
     direction: string;
@@ -31,6 +45,7 @@ export type AppTavernCard = TavernCardV2<
     functions: string[];
     voice: AppCharacterVoice;
     trueName: string;
+    formSkillConfigs: Record<string, FormSkillConfig>;
   }>
 >;
 

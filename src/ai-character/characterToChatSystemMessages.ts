@@ -1,4 +1,4 @@
-import { isDefined } from "@mjtdev/engine";
+import { isDefined, Objects } from "@mjtdev/engine";
 import { DEFAULT_MES_EXAMPLE } from "../ai/prompt/DEFAULT_MES_EXAMPLE";
 import { Prompts } from "../ai/prompt/Prompts";
 import { textToChatMessageExampleText } from "../ai/prompt/textToChatMessageExampleText";
@@ -6,6 +6,7 @@ import type { AiFunctionDescription } from "../type/ai-function/AiFunctions";
 import type {
   AppCharacter,
   AppCharacterFieldName,
+  FormSkillConfig,
 } from "../type/app-character/AppCharacter";
 import type { ChatMessage } from "../type/chat-message/ChatMessage";
 import { createCardSystemMessage } from "./createCardSystemMessage";
@@ -13,6 +14,8 @@ import { AI_FUNCTION_PREFIX } from "../ai-function/AI_FUNCTION_TOKEN";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 import type { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
 import type { AiplContext } from "../aipl/runtime/AiplContext";
+import { formConfigToSystemMessage } from "./formConfigToSystemMessage";
+import { AppObjects } from "../app-object/AppObjects";
 
 const trimSmallTextToUndefined = (text: string | undefined) => {
   if (!text) {
@@ -40,7 +43,6 @@ export const characterToChatSystemMessages = ({
   const cardMessageExample = trimSmallTextToUndefined(
     character.card.data.mes_example
   );
-  // ??  DEFAULT_MES_EXAMPLE;
   const functionMessageExample = aiFunctions
     .map((func) =>
       Prompts.renderTemplateText(
@@ -58,7 +60,28 @@ export const characterToChatSystemMessages = ({
     .filter(isDefined)
     .join("\n");
 
+  const formSkillConfigEntries = Objects.entries(
+    character.card.data.extensions?.formSkillConfigs ?? {}
+  );
+
   return [
+    formSkillConfigEntries.length > 0
+      ? AppObjects.create("chat-message", {
+          role: "system",
+          name: systemName,
+          content: {
+            type: "text",
+            parts: [
+              formSkillConfigEntries
+                .map(([key, value]) => {
+                  return formConfigToSystemMessage(key, value);
+                })
+                .join("\n"),
+            ].filter(isDefined),
+          },
+        })
+      : undefined,
+
     createCardSystemMessage({
       systemName,
       title: "{char} Description",
