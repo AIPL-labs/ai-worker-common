@@ -8,7 +8,11 @@ import type {
 import type { CrawlParams } from "../../crawl/CrawlParams";
 import type { AccessInfo } from "../access/AccessInfo";
 import type { AiFunctionCall } from "../ai-function/AiFunctions";
-import type { AppCharacter } from "../app-character/AppCharacter";
+import type {
+  AppCharacter,
+  FormSkillConfig,
+  FormSkillConfigKeyValue,
+} from "../app-character/AppCharacter";
 import type { AppObjectType } from "../app/AppObject";
 import type { ChatMessage } from "../chat-message/ChatMessage";
 import type { Chat } from "../chat/Chat";
@@ -317,5 +321,6 @@ export type AppMessageMap = {
   };
   "client:formUpdate": {
     data: unknown;
+    config: FormSkillConfig;
   };
 };
