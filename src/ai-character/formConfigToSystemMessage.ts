@@ -1,3 +1,4 @@
+import { isNotEmpty } from "@mjtdev/engine";
 import type { FormSkillConfig } from "../type/app-character/AppCharacter";
 
 export const formConfigToSystemMessage = (
@@ -5,10 +6,20 @@ export const formConfigToSystemMessage = (
   formConfig: FormSkillConfig
 ) => {
   const typeDescriptions: Record<string, string> = {};
+  const valueComments: Record<string, string> = {};
   for (const key in formConfig) {
     const value = formConfig[key];
-    const { inputValueType, selector, values } = value;
+    const { inputValueType, selector, values, description } = value;
+    valueComments[`${key}`] = isNotEmpty(description)
+      ? ` // ${description}`
+      : "";
+    if (inputValueType === "text") {
+      typeDescriptions[`${key}`] = "string";
+    }
     if (inputValueType === "single") {
+      typeDescriptions[`${key}`] = values.map((v) => `"${v}"`).join(" | ");
+    }
+    if (inputValueType === "video") {
       typeDescriptions[`${key}`] = values.map((v) => `"${v}"`).join(" | ");
     }
     if (inputValueType === "multiple") {
@@ -19,7 +30,9 @@ export const formConfigToSystemMessage = (
   }
   const typeDefBuffer = ["export type " + typeName + " = {"];
   for (const key in typeDescriptions) {
-    typeDefBuffer.push(`  ${key}: ${typeDescriptions[key]};`);
+    typeDefBuffer.push(
+      `  ${key}: ${typeDescriptions[key]};${valueComments[key]}`
+    );
   }
   typeDefBuffer.push("};");
 
@@ -35,6 +48,12 @@ export const formConfigToSystemMessage = (
     }
     if (
       formConfigValue.inputValueType === "single" &&
+      formConfigValue.values.length > 0
+    ) {
+      exampleBuffer.push(`  ${key}: "${formConfigValue.values[0]}"`);
+    }
+    if (
+      formConfigValue.inputValueType === "video" &&
       formConfigValue.values.length > 0
     ) {
       exampleBuffer.push(`  ${key}: "${formConfigValue.values[0]}"`);

@@ -14,21 +14,15 @@ export type DecomposedAppCharacter = {
   videos?: Record<string, ByteLike | undefined>;
   voiceSample?: ByteLike;
   activeGroupId?: string;
-  // accessPublic?: boolean;
 };
-
-// export type FormSkillConfig = {
-//   formKeyToSelector: Record<string, string>;
-//   formKeyToValues: Record<string, string[]>;
-//   formKeyToInputValueType: Record<string, "single" | "multiple">;
-// };
 
 export type FormSkillConfig = Record<string, FormSkillConfigKeyValue>;
 
 export type FormSkillConfigKeyValue = {
   selector: string;
   values: string[];
-  inputValueType: "single" | "multiple";
+  inputValueType: "single" | "multiple" | "text" | "video";
+  description: string;
 };
 
 export type AppTavernCard = TavernCardV2<

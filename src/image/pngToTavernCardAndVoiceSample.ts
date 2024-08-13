@@ -1,17 +1,24 @@
-import type { IPngMetadataTextualData} from "@lunapaint/png-codec";
+import type { IPngMetadataTextualData } from "@lunapaint/png-codec";
 import { decodePng } from "@lunapaint/png-codec";
-import type { ByteLike} from "@mjtdev/engine";
+import type { ByteLike } from "@mjtdev/engine";
 import { Bytes, safe } from "@mjtdev/engine";
 import type { TavernCardV2 } from "../type/app-character/TavernCardV2";
 import {
   PNG_KEYWORD_TAVERNCARD,
+  PNG_KEYWORD_VIDEOS,
   PNG_KEYWORD_VOICE_SAMPLE,
 } from "./PNG_KEYWORDS";
 import { jsonToTavernCardV2 } from "./jsonToTavernCardV2";
 
 export const pngToTavernCardAndVoiceSample = async (
   bytes: ByteLike | undefined
-): Promise<Partial<{ card: TavernCardV2; voiceSample: ArrayBuffer }>> => {
+): Promise<
+  Partial<{
+    card: TavernCardV2;
+    voiceSample: ArrayBuffer;
+    videoPack: ArrayBuffer;
+  }>
+> => {
   if (!bytes) {
     return {};
   }
@@ -23,7 +30,11 @@ export const pngToTavernCardAndVoiceSample = async (
     (e) => e.type === "tEXt"
   ) as IPngMetadataTextualData[];
 
-  const result: Partial<{ card: TavernCardV2; voiceSample: ArrayBuffer }> = {};
+  const result: Partial<{
+    card: TavernCardV2;
+    voiceSample: ArrayBuffer;
+    videoPack: ArrayBuffer;
+  }> = {};
 
   {
     const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_TAVERNCARD);
@@ -43,6 +54,14 @@ export const pngToTavernCardAndVoiceSample = async (
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
 
       result.voiceSample = ab;
+    }
+  }
+  {
+    const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_VIDEOS);
+    if (chunk) {
+      const ab = Bytes.base64ToArrayBuffer(chunk.text);
+
+      result.videoPack = ab;
     }
   }
 

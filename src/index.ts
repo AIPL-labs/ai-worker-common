@@ -182,3 +182,5 @@ export * from "./3rd/gcp/GcpTypes";
 export * from "./3rd/gcp/GcpAsrTypes";
 
 export * from "./type/app-secret-store/AppSecretStore";
+
+export * from './video/AppVideos';
