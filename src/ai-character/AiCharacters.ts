@@ -4,6 +4,7 @@ import { createCardSystemMessage } from "./createCardSystemMessage";
 import { createTavernCard } from "./createTavernCard";
 import { renderTemplateText } from "../ai/prompt/renderTemplateText";
 import { formConfigToSystemMessage } from "./formConfigToSystemMessage";
+import { toolConfigToSystemMessage } from "./toolConfigToSystemMessage";
 
 export const AiCharacters = {
   characterToChatSystemMessages,
@@ -13,4 +14,5 @@ export const AiCharacters = {
   createTavernCard,
   DEFAULT_MES_EXAMPLE,
   formConfigToSystemMessage,
+  toolConfigToSystemMessage,
 };

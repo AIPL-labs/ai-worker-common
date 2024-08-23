@@ -12,6 +12,7 @@ import type {
   AppCharacter,
   FormSkillConfig,
   FormSkillConfigKeyValue,
+  ToolConfig,
 } from "../app-character/AppCharacter";
 import type { AppObjectType } from "../app/AppObject";
 import type { ChatMessage } from "../chat-message/ChatMessage";
@@ -123,6 +124,7 @@ export type AppMessageMap = {
   "appInterface:ready": unknown;
   "return:dataObject": DataObject;
   return: { returnId: string; data: unknown };
+  stream: { streamId: string; data: unknown };
   "chat:debug": {
     prompt?: string;
     messages?: OpenRouterMessage[];
@@ -165,6 +167,7 @@ export type AppMessageMap = {
       systemMessage?: string;
       userMessage?: string;
       assistantMessage?: string;
+      toolConfig?: ToolConfig;
     }
   >;
 
@@ -322,5 +325,9 @@ export type AppMessageMap = {
   "client:formUpdate": {
     data: unknown;
     config: FormSkillConfig;
+  };
+  "pap:auth": ReturnableMessageDetail & {
+    accessPointId: string;
+    params: Record<string, string>;
   };
 };

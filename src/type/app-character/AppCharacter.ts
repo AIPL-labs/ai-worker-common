@@ -2,6 +2,7 @@ import type { ByteLike } from "@mjtdev/engine";
 import type { AppReportQuestionnaire } from "../app-report/AppReport";
 import type { CustomVoiceStyle } from "../voice/AppVoice";
 import type { TavernCardV2 } from "./TavernCardV2";
+import type { TypeInfoSchema } from "@mjtdev/engine/packages/mjtdev-object";
 
 export type AppCharacterVoice = Partial<{
   elevenLabsVoiceId: string;
@@ -14,6 +15,11 @@ export type DecomposedAppCharacter = {
   videos?: Record<string, ByteLike | undefined>;
   voiceSample?: ByteLike;
   activeGroupId?: string;
+};
+
+export type ToolConfig = {
+  schema: TypeInfoSchema;
+  current?: Record<string, string | string[]>;
 };
 
 export type FormSkillConfig = Record<string, FormSkillConfigKeyValue>;
