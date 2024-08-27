@@ -261,6 +261,7 @@ export type AppMessageMap = {
     key: string;
   }>;
   "app:upgrade": unknown;
+  "app:reset": unknown;
   "app:setAlarm": number;
   "app:group:create": ReturnableMessageDetail & { draft: Partial<AppGroup> };
   "app:group:activate": ReturnableMessageDetail & {
