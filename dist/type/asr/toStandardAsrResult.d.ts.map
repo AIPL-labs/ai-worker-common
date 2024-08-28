@@ -1,0 +1,1 @@
+{"version":3,"file":"toStandardAsrResult.d.ts","sourceRoot":"","sources":["../../../src/type/asr/toStandardAsrResult.ts"],"names":[],"mappings":"AACA,OAAO,EAEL,KAAK,iBAAiB,EACvB,MAAM,2BAA2B,CAAC;AACnC,OAAO,EAAe,KAAK,SAAS,EAAE,KAAK,UAAU,EAAE,MAAM,YAAY,CAAC;AAI1E,eAAO,MAAM,mBAAmB,GAAI,CAAC,SAAS,UAAU,SAC/C,SAAS,CAAC,CAAC,CAAC,GAAG,iBAAiB,KACtC,SAwBF,CAAC"}

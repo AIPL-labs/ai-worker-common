@@ -1,0 +1,1 @@
+{"version":3,"file":"getRemoteData.d.ts","sourceRoot":"","sources":["../../../src/fetch/data/getRemoteData.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,YAAY,CAAC;AAE3C,eAAO,MAAM,aAAa,oCAIvB,OAAO,CAAC,QAAQ,CAAC,GAAG;IAAE,EAAE,EAAE,MAAM,CAAA;CAAE,sBAMpC,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"fetchViaProxy.d.ts","sourceRoot":"","sources":["../../src/fetch/fetchViaProxy.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AAC7D,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,iBAAiB,CAAC;AAGhD,eAAO,MAAM,aAAa,mDAKvB,QAAQ,GAAG;IACZ,GAAG,EAAE,MAAM,CAAC;IAEZ,YAAY,CAAC,EAAE,iBAAiB,CAAC;CAClC,sBAYA,CAAC"}
