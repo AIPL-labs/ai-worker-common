@@ -1,1 +1,0 @@
-{"version":3,"file":"listChatMessages.d.ts","sourceRoot":"","sources":["../../src/chat/listChatMessages.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,kCAAkC,CAAC;AAEpE,eAAO,MAAM,gBAAgB,kCAI1B;IACD,QAAQ,EAAE,WAAW,EAAE,CAAC;IACxB,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;IAC9B,GAAG,CAAC,EAAE,WAAW,EAAE,CAAC;CACrB,KAAG,WAAW,EAcd,CAAC"}

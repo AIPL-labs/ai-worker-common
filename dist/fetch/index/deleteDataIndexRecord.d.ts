@@ -1,1 +1,0 @@
-//# sourceMappingURL=deleteDataIndexRecord.d.ts.map

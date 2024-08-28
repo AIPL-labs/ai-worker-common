@@ -1,1 +1,0 @@
-{"version":3,"file":"CrawlWebsiteRequest.d.ts","sourceRoot":"","sources":["../../../src/type/rest/CrawlWebsiteRequest.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,mBAAmB,GAAG;IAChC,GAAG,EAAE,MAAM,CAAC;IACZ,aAAa,EAAE,MAAM,CAAC;IACtB,aAAa,EAAE,MAAM,CAAC;IACtB,QAAQ,CAAC,EAAE,MAAM,CAAC;CACnB,CAAC"}

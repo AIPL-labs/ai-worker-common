@@ -1,1 +1,0 @@
-{"version":3,"file":"createAppGroup.js","sourceRoot":"","sources":["../../src/app-group/createAppGroup.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAG1C,MAAM,CAAC,MAAM,cAAc,GAAG,CAAC,KAAwB,EAAY,EAAE;IACnE,MAAM,EAAE,EAAE,GAAG,QAAQ,CAAC,WAAW,CAAC,EAAE,IAAI,EAAE,GAAG,KAAK,CAAC;IAEnD,OAAO,EAAE,EAAE,EAAE,IAAI,EAAE,CAAC;AACtB,CAAC,CAAC"}
