@@ -1,0 +1,1 @@
+{"version":3,"file":"checkAccessPermissions.d.ts","sourceRoot":"","sources":["../../src/access/checkAccessPermissions.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,EAAC,MAAM,2BAA2B,CAAC;AAC3D,OAAO,EAAE,eAAe,EAAE,MAAM,2BAA2B,CAAC;AAC5D,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,2BAA2B,CAAC;AAE5D,wBAAgB,kBAAkB,CAChC,UAAU,EAAE,UAAU,EACtB,IAAI,EAAE,UAAU,GACf,eAAe,CAiCjB"}

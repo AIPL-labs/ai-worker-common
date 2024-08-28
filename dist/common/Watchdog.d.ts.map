@@ -1,0 +1,1 @@
+{"version":3,"file":"Watchdog.d.ts","sourceRoot":"","sources":["../../src/common/Watchdog.ts"],"names":[],"mappings":"AAAA,qBAAa,QAAQ;IACnB,OAAO,CAAC,SAAS,CAAsC;IACvD,OAAO,CAAC,SAAS,CAAS;IAC1B,OAAO,CAAC,SAAS,CAAiB;gBACtB,SAAS,EAAE,MAAM;IAM7B,KAAK;IAGL,WAAW,CAAC,EAAE,EAAE,MAAM,IAAI;IAG1B,KAAK;IASL,IAAI;CAML"}

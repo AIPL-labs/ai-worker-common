@@ -1,0 +1,1 @@
+{"version":3,"file":"VectorSearchResultItem.d.ts","sourceRoot":"","sources":["../../../src/type/vector/VectorSearchResultItem.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,kBAAkB,GAAG;IAC/B,KAAK,EAAE,MAAM,CAAC;IACd,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,MAAM,MAAM,sBAAsB,GAAG;IACnC,EAAE,EAAE,MAAM,CAAC;IACX,QAAQ,EAAE,MAAM,CAAC;IACjB,QAAQ,EAAE,kBAAkB,GAAG,MAAM,CAAC;CACvC,CAAC"}

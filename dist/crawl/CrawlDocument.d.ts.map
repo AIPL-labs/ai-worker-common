@@ -1,0 +1,1 @@
+{"version":3,"file":"CrawlDocument.d.ts","sourceRoot":"","sources":["../../src/crawl/CrawlDocument.ts"],"names":[],"mappings":"AACA,MAAM,MAAM,aAAa,GAAG;IAC1B,GAAG,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;IACd,GAAG,EAAE,MAAM,CAAC;IACZ,OAAO,EAAE,MAAM,CAAC;IAChB,WAAW,EAAE,MAAM,CAAC;CACrB,CAAC"}

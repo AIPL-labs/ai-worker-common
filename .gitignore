@@ -2,7 +2,7 @@
 assets
 certs
 .parcel-cache
-dist
+# dist
 
 lib-cov
 *.seed

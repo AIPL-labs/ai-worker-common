@@ -1,0 +1,1 @@
+{"version":3,"file":"AppInterface.d.ts","sourceRoot":"","sources":["../../../src/type/app-interface/AppInterface.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,oBAAoB,CAAC;AAErD,MAAM,MAAM,YAAY,GAAG,UAAU,GAAG;IACtC,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,EAAE,CAAC,EAAE,MAAM,CAAC;IACZ,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"DataIndex.js","sourceRoot":"","sources":["../../../src/type/data-index/DataIndex.ts"],"names":[],"mappings":"AAMA,MAAM,CAAC,MAAM,WAAW,GAAG,CAAC,KAAc,EAAsB,EAAE;IAChE,MAAM,KAAK,GAAG,KAAkB,CAAC;IACjC,OAAO,CACL,OAAO,KAAK,KAAK,QAAQ;QACzB,OAAO,KAAK,CAAC,EAAE,KAAK,QAAQ;QAC5B,OAAO,KAAK,CAAC,OAAO,KAAK,QAAQ,CAClC,CAAC;AACJ,CAAC,CAAC"}

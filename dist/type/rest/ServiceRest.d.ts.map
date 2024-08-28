@@ -1,0 +1,1 @@
+{"version":3,"file":"ServiceRest.d.ts","sourceRoot":"","sources":["../../../src/type/rest/ServiceRest.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAEjE,MAAM,MAAM,oBAAoB,GAAG;IACjC,SAAS,EAAE,mBAAmB,EAAE,CAAC;CAClC,CAAC"}
