@@ -4,6 +4,7 @@
   "sideEffects": false,
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start-npm": "npm run watch",
     "start": "bun run watch",
