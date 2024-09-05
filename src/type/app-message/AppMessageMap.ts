@@ -144,6 +144,7 @@ export type AppMessageMap = {
     model?: string;
     contextSize?: number;
     message: Partial<ChatMessage>;
+    toolConfig?: ToolConfig;
   };
   "chat:reInferMessage": {
     chatId: string;
@@ -326,6 +327,9 @@ export type AppMessageMap = {
   "client:formUpdate": {
     data: unknown;
     config: FormSkillConfig;
+  };
+  "client:aiplComponentUpdate": {
+    data: object;
   };
   "pap:auth": ReturnableMessageDetail & {
     accessPointId: string;
