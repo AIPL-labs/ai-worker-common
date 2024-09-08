@@ -3,6 +3,6 @@ export declare const createCardSystemMessage: ({ systemName, title, text, aiplCo
     systemName: string;
     title?: string;
     text?: string;
-    aiplContext: AiplContext;
+    aiplContext?: AiplContext;
 }) => import("..").ChatMessage | undefined;
 //# sourceMappingURL=createCardSystemMessage.d.ts.map

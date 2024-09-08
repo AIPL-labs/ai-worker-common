@@ -1,4 +1,7 @@
-export declare const useWaitState: UseBoundStore<StoreApi<T>>, updateWaitState: import("@mjtdev/engine").StateUpdater<{
+export declare const useWaitState: import("@mjtdev/engine").State<{
+    actives: string[];
+    logger: (message: string, name: string) => void;
+}>, updateWaitState: import("@mjtdev/engine").StateUpdater<{
     actives: string[];
     logger: (message: string, name: string) => void;
 }>, getWaitState: import("@mjtdev/engine").StateGetter<{

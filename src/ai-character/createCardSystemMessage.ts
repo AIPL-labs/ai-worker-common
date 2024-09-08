@@ -12,13 +12,15 @@ export const createCardSystemMessage = ({
   systemName: string;
   title?: string;
   text?: string;
-  aiplContext: AiplContext;
+  aiplContext?: AiplContext;
 }) => {
   if (text.trim().length === 0) {
     return undefined;
   }
 
-  const renderedText = Aipls.renderAiplProgramText(text, aiplContext);
+  const renderedText = isDefined(aiplContext)
+    ? Aipls.renderAiplProgramText(text, aiplContext)
+    : text;
 
   const content = [title ? `# ${title}:` : undefined, renderedText]
     .filter(isDefined)

@@ -6,13 +6,14 @@ import { AI_FUNCTION_PREFIX } from "../ai-function/AI_FUNCTION_TOKEN";
 import { DEFAULT_CHAT_MESSAGE_TEMPLATE } from "../chat/DEFAULT_CHAT_MESSAGE_TEMPLATE";
 import { formConfigToSystemMessage } from "./formConfigToSystemMessage";
 import { AppObjects } from "../app-object/AppObjects";
+import { toolConfigCurrentToSystemMessage } from "./toolConfigCurrentToSystemMessage";
 const trimSmallTextToUndefined = (text) => {
     if (!text) {
         return undefined;
     }
     return text.trim().length < 10 ? undefined : text;
 };
-export const characterToChatSystemMessages = ({ systemName, character, fieldNameToAiplContext, aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, }) => {
+export const characterToChatSystemMessages = ({ systemName, character, fieldNameToAiplContext, aiFunctions = [], messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE, toolConfigCurrent, typeName, }) => {
     const { messageStart, messageEnd, afterCharPostfix } = messageTemplate;
     const cardMessageExample = trimSmallTextToUndefined(character.card.data.mes_example);
     const functionMessageExample = aiFunctions
@@ -70,7 +71,7 @@ export const characterToChatSystemMessages = ({ systemName, character, fieldName
             aiplContext: fieldNameToAiplContext("mes_example"),
         }),
         createCardSystemMessage({
-            systemName,
+            systemName: systemName,
             text: character.card.data.system_prompt,
             aiplContext: fieldNameToAiplContext("system_prompt"),
         }),
@@ -79,6 +80,13 @@ export const characterToChatSystemMessages = ({ systemName, character, fieldName
             title: "Scenerio",
             text: character.card.data.scenario,
             aiplContext: fieldNameToAiplContext("scenario"),
+        }),
+        createCardSystemMessage({
+            systemName,
+            text: toolConfigCurrentToSystemMessage({
+                typeName,
+                currentObject: toolConfigCurrent,
+            }),
         }),
     ].filter(isDefined);
 };

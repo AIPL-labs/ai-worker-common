@@ -7,6 +7,7 @@ import type {
   AppCharacter,
   AppCharacterFieldName,
   FormSkillConfig,
+  ToolConfig,
 } from "../type/app-character/AppCharacter";
 import type { ChatMessage } from "../type/chat-message/ChatMessage";
 import { createCardSystemMessage } from "./createCardSystemMessage";
@@ -16,6 +17,7 @@ import type { ChatMessageTemplate } from "../chat/ChatMessageTemplate";
 import type { AiplContext } from "../aipl/runtime/AiplContext";
 import { formConfigToSystemMessage } from "./formConfigToSystemMessage";
 import { AppObjects } from "../app-object/AppObjects";
+import { toolConfigCurrentToSystemMessage } from "./toolConfigCurrentToSystemMessage";
 
 const trimSmallTextToUndefined = (text: string | undefined) => {
   if (!text) {
@@ -30,13 +32,16 @@ export const characterToChatSystemMessages = ({
   fieldNameToAiplContext,
   aiFunctions = [],
   messageTemplate = DEFAULT_CHAT_MESSAGE_TEMPLATE,
+  toolConfigCurrent,
+  typeName,
 }: {
   systemName: string;
   character: AppCharacter;
   aiFunctions: AiFunctionDescription[];
   fieldNameToAiplContext: (filedName: AppCharacterFieldName) => AiplContext;
-
   messageTemplate?: ChatMessageTemplate;
+  typeName?: string;
+  toolConfigCurrent?: ToolConfig["current"];
 }): ChatMessage[] => {
   const { messageStart, messageEnd, afterCharPostfix } = messageTemplate;
 
@@ -110,7 +115,7 @@ export const characterToChatSystemMessages = ({
       aiplContext: fieldNameToAiplContext("mes_example"),
     }),
     createCardSystemMessage({
-      systemName,
+      systemName: systemName,
       text: character.card.data.system_prompt,
       aiplContext: fieldNameToAiplContext("system_prompt"),
     }),
@@ -119,6 +124,13 @@ export const characterToChatSystemMessages = ({
       title: "Scenerio",
       text: character.card.data.scenario,
       aiplContext: fieldNameToAiplContext("scenario"),
+    }),
+    createCardSystemMessage({
+      systemName,
+      text: toolConfigCurrentToSystemMessage({
+        typeName,
+        currentObject: toolConfigCurrent,
+      }),
     }),
   ].filter(isDefined);
 };

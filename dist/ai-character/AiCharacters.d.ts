@@ -1,10 +1,12 @@
 export declare const AiCharacters: {
-    characterToChatSystemMessages: ({ systemName, character, fieldNameToAiplContext, aiFunctions, messageTemplate, }: {
+    characterToChatSystemMessages: ({ systemName, character, fieldNameToAiplContext, aiFunctions, messageTemplate, toolConfigCurrent, typeName, }: {
         systemName: string;
         character: import("..").AppCharacter;
         aiFunctions: import("..").AiFunctionDescription[];
         fieldNameToAiplContext: (filedName: import("..").AppCharacterFieldName) => import("..").AiplContext;
         messageTemplate?: import("../chat/ChatMessageTemplate").ChatMessageTemplate;
+        typeName?: string;
+        toolConfigCurrent?: import("..").ToolConfig["current"];
     }) => import("..").ChatMessage[];
     /** @deprecated @see Prompts */
     renderCardText: (template: string | undefined, facts: Record<string, string | undefined>, options?: Partial<{
@@ -14,7 +16,7 @@ export declare const AiCharacters: {
         systemName: string;
         title?: string;
         text?: string;
-        aiplContext: import("..").AiplContext;
+        aiplContext?: import("..").AiplContext;
     }) => import("..").ChatMessage | undefined;
     createTavernCard: (draft?: Partial<import("..").AppTavernCard>) => import("..").AppTavernCard;
     DEFAULT_MES_EXAMPLE: string;
