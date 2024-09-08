@@ -15,6 +15,7 @@ import type { IngestRequest } from "../rest/IngestRequest";
 import type { UserLoginRequest } from "../rest/UserLoginRequest";
 import type { AppMessage } from "./AppMessage";
 import type { AsrResult, AsrWhisperSegment } from "../asr/AsrTypes";
+import type { TypeInfo } from "@mjtdev/engine";
 export type MessageChunk = {
     id: string;
     idx: number;
@@ -116,6 +117,7 @@ export type AppMessageMap = {
     "chat:startPublicAgent": ReturnableMessageDetail & {
         accessPointId: string;
         params: Record<string, string>;
+        schema?: TypeInfo<unknown>["schema"];
     };
     "chat:addMessage": Partial<AbortableMessageDetail> & {
         chatId: string;
