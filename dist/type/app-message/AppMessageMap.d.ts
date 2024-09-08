@@ -313,6 +313,11 @@ export type AppMessageMap = {
     "client:aiplComponentUpdate": {
         data: object;
     };
+    "client:standbyNotice": {
+        state: "start" | "end";
+        progressRatio: number;
+        message?: string;
+    };
     "pap:auth": ReturnableMessageDetail & {
         accessPointId: string;
         params: Record<string, string>;
