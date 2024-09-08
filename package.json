@@ -1,6 +1,6 @@
 {
   "name": "ai-worker-common",
-  "version": "20240908.1819",
+  "version": "20240905.1505",
   "sideEffects": false,
   "description": "",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
-    "@mjtdev/engine": "https://github.com/matthewjosephtaylor/mjtdev-engine#20240908.1811"
+    "@mjtdev/engine": "https://github.com/matthewjosephtaylor/mjtdev-engine#20240908.1830"
   },
   "dependencies": {
     "@lunapaint/png-codec": "^0.2.0",
