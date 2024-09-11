@@ -138,6 +138,7 @@ export type AppMessageMap = {
     accessPointId: string;
     params: Record<string, string>;
     schema?: TypeInfo<unknown>["schema"];
+    systemMessage?: string;
   };
   "chat:addMessage": Partial<AbortableMessageDetail> & {
     chatId: string;
