@@ -11,6 +11,8 @@
     "start": "bun run watch",
     "build": "tsc -b",
     "watch": "tsc -b -w",
+    "install:local": "cp package-local.json package.json && bun install",
+    "install:remote": "cp package-remote.json package.json && bun install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

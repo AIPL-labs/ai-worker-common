@@ -11,6 +11,8 @@
     "start": "bun run watch",
     "build": "tsc -b",
     "watch": "tsc -b -w",
+    "install:local": "cp package-local.json package.json && bun install",
+    "install:remote": "cp package-remote.json package.json && bun install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -28,10 +30,11 @@
     "openapi-typescript": "^7.0.0-next.5",
     "typescript": "^5.4.4"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@mjtdev/engine": "https://github.com/matthewjosephtaylor/mjtdev-engine#20240908.1830"
+  },
   "dependencies": {
     "@lunapaint/png-codec": "^0.2.0",
-    "@mjtdev/engine": "/Users/mtaylor/MJT/mjtdev-engine/",
     "immer": "^10.0.3",
     "json-stable-stringify": "^1.1.1",
     "parsimmon": "^1.18.1"
