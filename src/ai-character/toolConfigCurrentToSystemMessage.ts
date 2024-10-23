@@ -14,6 +14,8 @@ export const toolConfigCurrentToSystemMessage = ({
 
   return [
     `Current ${typeName} object:`,
+    "```json",
     JSON.stringify(currentObject, null, 2),
+    "```",
   ].join("\n");
 };

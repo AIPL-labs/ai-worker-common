@@ -5,7 +5,9 @@ export const toolConfigCurrentToSystemMessage = ({ typeName = "", currentObject,
     }
     return [
         `Current ${typeName} object:`,
+        "```json",
         JSON.stringify(currentObject, null, 2),
+        "```",
     ].join("\n");
 };
 //# sourceMappingURL=toolConfigCurrentToSystemMessage.js.map

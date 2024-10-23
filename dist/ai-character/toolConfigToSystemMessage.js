@@ -5,12 +5,14 @@ export const toolConfigToSystemMessage = (toolConfig) => {
     const typeName = toolConfig.schema.$id;
     const currentObject = toolConfig.current ?? {};
     return [
-        `JSON ${typeName} object TypeScript description`,
-        "",
+        "```typescript",
         typeDeclaration,
+        "```",
         "",
         `Example Error object:`,
+        "```json",
         ` {error: "No such key in object: '${typeName}'"}`,
+        "```",
         "",
         Object.keys(currentObject).length > 0
             ? toolConfigCurrentToSystemMessage({
