@@ -240,6 +240,9 @@ export type AppMessageMap = {
   "dataLink:upsert": DataLink;
 
   "dataLink:delete": Partial<DataLink>;
+  "data:put": ReturnableMessageDetail & {
+    data: ArrayBuffer;
+  };
   "service:state": {
     service: "llm" | "tts" | "vector" | "extract" | "imagegen";
     state: "busy" | "ready";
