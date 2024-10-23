@@ -3,6 +3,7 @@ import { decodePng, encodePng } from "@lunapaint/png-codec";
 import { ByteLike, Bytes, isDefined } from "@mjtdev/engine";
 import { TavernCardV2 } from "../type/app-character/TavernCardV2";
 import {
+  PNG_KEYWORD_AVATAR_3D,
   PNG_KEYWORD_TAVERNCARD,
   PNG_KEYWORD_VIDEOS,
   PNG_KEYWORD_VOICE_SAMPLE,
@@ -15,6 +16,7 @@ export const decomposedAppCharacterToPng = async ({
   image,
   voiceSample,
   videos,
+  avatar3d,
 }: DecomposedAppCharacter) => {
   if (!image) {
     throw new Error("decomposedAppCharacterToPng: No image");
@@ -32,6 +34,13 @@ export const decomposedAppCharacterToPng = async ({
 
   const voiceText = voiceBytes
     ? Bytes.arrayBufferToBase64(voiceBytes)
+    : undefined;
+
+  const avatar3dBytes = avatar3d
+    ? await Bytes.toArrayBuffer(avatar3d)
+    : undefined;
+  const avatar3dText = avatar3dBytes
+    ? Bytes.arrayBufferToBase64(avatar3dBytes)
     : undefined;
 
   const videosText = videos
@@ -53,6 +62,15 @@ export const decomposedAppCharacterToPng = async ({
         text: videosText,
       }
     : undefined;
+
+  const avatar3dChunk: IPngMetadataTextualData | undefined = avatar3dText
+    ? {
+        type: "tEXt",
+        keyword: PNG_KEYWORD_AVATAR_3D,
+        text: avatar3dText,
+      }
+    : undefined;
+
   const encoded = await encodePng(decoded.image, {
     ancillaryChunks: [
       {
@@ -62,6 +80,7 @@ export const decomposedAppCharacterToPng = async ({
       } as const,
       voiceChunk,
       videosChunk,
+      avatar3dChunk,
     ].filter(isDefined),
   });
   return new Blob([encoded.data], { type: "image/png" });

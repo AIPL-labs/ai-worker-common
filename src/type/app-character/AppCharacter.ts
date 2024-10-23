@@ -14,6 +14,7 @@ export type DecomposedAppCharacter = {
   image?: ByteLike;
   videos?: Record<string, ByteLike | undefined>;
   voiceSample?: ByteLike;
+  avatar3d?: ByteLike;
   activeGroupId?: string;
 };
 

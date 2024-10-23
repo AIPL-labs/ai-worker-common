@@ -4,5 +4,6 @@ export declare const pngToTavernCardAndVoiceSample: (bytes: ByteLike | undefined
     card: TavernCardV2;
     voiceSample: ArrayBuffer;
     videoPack: ArrayBuffer;
+    avatar3d: ArrayBuffer;
 }>>;
 //# sourceMappingURL=pngToTavernCardAndVoiceSample.d.ts.map

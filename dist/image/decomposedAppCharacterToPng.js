@@ -1,8 +1,8 @@
 import { decodePng, encodePng } from "@lunapaint/png-codec";
 import { Bytes, isDefined } from "@mjtdev/engine";
-import { PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
+import { PNG_KEYWORD_AVATAR_3D, PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
 import { AppVideos } from "../video/AppVideos";
-export const decomposedAppCharacterToPng = async ({ character, image, voiceSample, videos, }) => {
+export const decomposedAppCharacterToPng = async ({ character, image, voiceSample, videos, avatar3d, }) => {
     if (!image) {
         throw new Error("decomposedAppCharacterToPng: No image");
     }
@@ -16,6 +16,12 @@ export const decomposedAppCharacterToPng = async ({ character, image, voiceSampl
         : undefined;
     const voiceText = voiceBytes
         ? Bytes.arrayBufferToBase64(voiceBytes)
+        : undefined;
+    const avatar3dBytes = avatar3d
+        ? await Bytes.toArrayBuffer(avatar3d)
+        : undefined;
+    const avatar3dText = avatar3dBytes
+        ? Bytes.arrayBufferToBase64(avatar3dBytes)
         : undefined;
     const videosText = videos
         ? Bytes.arrayBufferToBase64(AppVideos.videoRecordsToVideoPack(videos))
@@ -34,6 +40,13 @@ export const decomposedAppCharacterToPng = async ({ character, image, voiceSampl
             text: videosText,
         }
         : undefined;
+    const avatar3dChunk = avatar3dText
+        ? {
+            type: "tEXt",
+            keyword: PNG_KEYWORD_AVATAR_3D,
+            text: avatar3dText,
+        }
+        : undefined;
     const encoded = await encodePng(decoded.image, {
         ancillaryChunks: [
             {
@@ -43,6 +56,7 @@ export const decomposedAppCharacterToPng = async ({ character, image, voiceSampl
             },
             voiceChunk,
             videosChunk,
+            avatar3dChunk,
         ].filter(isDefined),
     });
     return new Blob([encoded.data], { type: "image/png" });

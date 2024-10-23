@@ -1,6 +1,6 @@
 import { decodePng } from "@lunapaint/png-codec";
 import { Bytes, safe } from "@mjtdev/engine";
-import { PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
+import { PNG_KEYWORD_AVATAR_3D, PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
 import { jsonToTavernCardV2 } from "./jsonToTavernCardV2";
 export const pngToTavernCardAndVoiceSample = async (bytes) => {
     if (!bytes) {
@@ -33,6 +33,13 @@ export const pngToTavernCardAndVoiceSample = async (bytes) => {
         if (chunk) {
             const ab = Bytes.base64ToArrayBuffer(chunk.text);
             result.videoPack = ab;
+        }
+    }
+    {
+        const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_AVATAR_3D);
+        if (chunk) {
+            const ab = Bytes.base64ToArrayBuffer(chunk.text);
+            result.avatar3d = ab;
         }
     }
     return result;

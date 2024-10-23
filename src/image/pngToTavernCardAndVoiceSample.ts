@@ -4,6 +4,7 @@ import type { ByteLike } from "@mjtdev/engine";
 import { Bytes, safe } from "@mjtdev/engine";
 import type { TavernCardV2 } from "../type/app-character/TavernCardV2";
 import {
+  PNG_KEYWORD_AVATAR_3D,
   PNG_KEYWORD_TAVERNCARD,
   PNG_KEYWORD_VIDEOS,
   PNG_KEYWORD_VOICE_SAMPLE,
@@ -17,6 +18,7 @@ export const pngToTavernCardAndVoiceSample = async (
     card: TavernCardV2;
     voiceSample: ArrayBuffer;
     videoPack: ArrayBuffer;
+    avatar3d: ArrayBuffer;
   }>
 > => {
   if (!bytes) {
@@ -34,6 +36,7 @@ export const pngToTavernCardAndVoiceSample = async (
     card: TavernCardV2;
     voiceSample: ArrayBuffer;
     videoPack: ArrayBuffer;
+    avatar3d: ArrayBuffer;
   }> = {};
 
   {
@@ -62,6 +65,14 @@ export const pngToTavernCardAndVoiceSample = async (
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
 
       result.videoPack = ab;
+    }
+  }
+  {
+    const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_AVATAR_3D);
+    if (chunk) {
+      const ab = Bytes.base64ToArrayBuffer(chunk.text);
+
+      result.avatar3d = ab;
     }
   }
 
