@@ -241,7 +241,9 @@ export type AppMessageMap = {
 
   "dataLink:delete": Partial<DataLink>;
   "data:put": ReturnableMessageDetail & {
+    id: string;
     data: ArrayBuffer;
+    contentType?: string;
   };
   "service:state": {
     service: "llm" | "tts" | "vector" | "extract" | "imagegen";
