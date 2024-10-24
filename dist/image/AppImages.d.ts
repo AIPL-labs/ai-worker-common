@@ -1,5 +1,7 @@
 export declare const AppImages: {
-    pngToTavernCardAndVoiceSample: (bytes: import("@mjtdev/engine").ByteLike | undefined) => Promise<Partial<{
+    pngToTavernCardAndVoiceSample: (bytes: import("@mjtdev/engine").ByteLike | undefined, options?: Partial<{
+        extraExtractions: ("voiceSample" | "videoPack" | "avatar3d")[];
+    }>) => Promise<Partial<{
         card: import("..").TavernCardV2;
         voiceSample: ArrayBuffer;
         videoPack: ArrayBuffer;

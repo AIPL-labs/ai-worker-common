@@ -12,7 +12,10 @@ import {
 import { jsonToTavernCardV2 } from "./jsonToTavernCardV2";
 
 export const pngToTavernCardAndVoiceSample = async (
-  bytes: ByteLike | undefined
+  bytes: ByteLike | undefined,
+  options: Partial<{
+    extraExtractions: ("voiceSample" | "videoPack" | "avatar3d")[];
+  }> = {}
 ): Promise<
   Partial<{
     card: TavernCardV2;
@@ -24,6 +27,7 @@ export const pngToTavernCardAndVoiceSample = async (
   if (!bytes) {
     return {};
   }
+  const { extraExtractions = [] } = options;
   const fileAb = await Bytes.toArrayBuffer(bytes);
   const decoded = await decodePng(new Uint8Array(fileAb), {
     parseChunkTypes: "*",
@@ -49,7 +53,7 @@ export const pngToTavernCardAndVoiceSample = async (
     }
   }
 
-  {
+  if (extraExtractions.includes("voiceSample")) {
     const chunk = textChunks.find(
       (c) => c.keyword === PNG_KEYWORD_VOICE_SAMPLE
     );
@@ -59,7 +63,8 @@ export const pngToTavernCardAndVoiceSample = async (
       result.voiceSample = ab;
     }
   }
-  {
+
+  if (extraExtractions.includes("videoPack")) {
     const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_VIDEOS);
     if (chunk) {
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
@@ -67,7 +72,8 @@ export const pngToTavernCardAndVoiceSample = async (
       result.videoPack = ab;
     }
   }
-  {
+
+  if (extraExtractions.includes("avatar3d")) {
     const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_AVATAR_3D);
     if (chunk) {
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
