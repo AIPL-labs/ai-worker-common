@@ -226,6 +226,9 @@ export type AppMessageMap = {
         data: ArrayBuffer;
         contentType?: string;
     };
+    "data:get": ReturnableMessageDetail & {
+        id: string;
+    };
     "service:state": {
         service: "llm" | "tts" | "vector" | "extract" | "imagegen";
         state: "busy" | "ready";
