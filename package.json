@@ -13,7 +13,8 @@
     "watch": "tsc -b -w",
     "install:local": "cp package-local.json package.json && bun install",
     "install:remote": "cp package-remote.json package.json && bun install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-release": "bun run build && scripts/version.sh"
   },
   "keywords": [],
   "author": "Matt Taylor @mjtdev",
