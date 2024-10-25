@@ -11,6 +11,16 @@ import {
 import type { DecomposedAppCharacter } from "../type/app-character/AppCharacter";
 import { AppVideos } from "../video/AppVideos";
 
+const AVATAR_3D_CHUNK_SIZE = 8 * 1024 * 1024; // 8MB chunks
+
+const splitIntoChunks = (data: ArrayBuffer, chunkSize: number) => {
+  const chunks: ArrayBuffer[] = [];
+  for (let i = 0; i < data.byteLength; i += chunkSize) {
+    chunks.push(data.slice(i, i + chunkSize));
+  }
+  return chunks;
+};
+
 export const decomposedAppCharacterToPng = async ({
   character,
   image,
@@ -39,9 +49,16 @@ export const decomposedAppCharacterToPng = async ({
   const avatar3dBytes = avatar3d
     ? await Bytes.toArrayBuffer(avatar3d)
     : undefined;
-  const avatar3dText = avatar3dBytes
-    ? Bytes.arrayBufferToBase64(avatar3dBytes)
-    : undefined;
+
+  const avatar3dChunks: IPngMetadataTextualData[] = avatar3dBytes
+    ? splitIntoChunks(avatar3dBytes, AVATAR_3D_CHUNK_SIZE).map(
+        (chunk, index) => ({
+          type: "tEXt",
+          keyword: `chara.avatar3d.${index}`,
+          text: Bytes.arrayBufferToBase64(chunk),
+        })
+      )
+    : [];
 
   const videosText = videos
     ? Bytes.arrayBufferToBase64(AppVideos.videoRecordsToVideoPack(videos))
@@ -63,14 +80,6 @@ export const decomposedAppCharacterToPng = async ({
       }
     : undefined;
 
-  const avatar3dChunk: IPngMetadataTextualData | undefined = avatar3dText
-    ? {
-        type: "tEXt",
-        keyword: PNG_KEYWORD_AVATAR_3D,
-        text: avatar3dText,
-      }
-    : undefined;
-
   const encoded = await encodePng(decoded.image, {
     ancillaryChunks: [
       {
@@ -80,7 +89,7 @@ export const decomposedAppCharacterToPng = async ({
       } as const,
       voiceChunk,
       videosChunk,
-      avatar3dChunk,
+      ...avatar3dChunks, // Spread the avatar3d chunks
     ].filter(isDefined),
   });
   return new Blob([encoded.data], { type: "image/png" });

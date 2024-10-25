@@ -11,6 +11,22 @@ import {
 } from "./PNG_KEYWORDS";
 import { jsonToTavernCardV2 } from "./jsonToTavernCardV2";
 
+const reassembleChunks = (chunks: IPngMetadataTextualData[]): ArrayBuffer => {
+  const buffers: ArrayBuffer[] = chunks.map((chunk) =>
+    Bytes.base64ToArrayBuffer(chunk.text)
+  );
+  const totalSize = buffers.reduce((acc, buf) => acc + buf.byteLength, 0);
+  const result = new Uint8Array(totalSize);
+
+  let offset = 0;
+  buffers.forEach((buffer) => {
+    result.set(new Uint8Array(buffer), offset);
+    offset += buffer.byteLength;
+  });
+
+  return result.buffer;
+};
+
 export const pngToTavernCardAndVoiceSample = async (
   bytes: ByteLike | undefined,
   options: Partial<{
@@ -43,6 +59,7 @@ export const pngToTavernCardAndVoiceSample = async (
     avatar3d: ArrayBuffer;
   }> = {};
 
+  // Extract Tavern Card
   {
     const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_TAVERNCARD);
     if (chunk) {
@@ -53,32 +70,40 @@ export const pngToTavernCardAndVoiceSample = async (
     }
   }
 
+  // Extract Voice Sample
   if (extraExtractions.includes("voiceSample")) {
     const chunk = textChunks.find(
       (c) => c.keyword === PNG_KEYWORD_VOICE_SAMPLE
     );
     if (chunk) {
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
-
       result.voiceSample = ab;
     }
   }
 
+  // Extract Video Pack
   if (extraExtractions.includes("videoPack")) {
     const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_VIDEOS);
     if (chunk) {
       const ab = Bytes.base64ToArrayBuffer(chunk.text);
-
       result.videoPack = ab;
     }
   }
 
+  // Extract Avatar3D (Handle chunked data)
   if (extraExtractions.includes("avatar3d")) {
-    const chunk = textChunks.find((c) => c.keyword === PNG_KEYWORD_AVATAR_3D);
-    if (chunk) {
-      const ab = Bytes.base64ToArrayBuffer(chunk.text);
+    // Gather all avatar3d chunks based on the index in the keyword (e.g., chara.avatar3d.0, chara.avatar3d.1, etc.)
+    const avatar3dChunks = textChunks
+      .filter((chunk) => chunk.keyword.startsWith("chara.avatar3d."))
+      .sort((a, b) => {
+        const indexA = parseInt(a.keyword.split(".").pop() || "0", 10);
+        const indexB = parseInt(b.keyword.split(".").pop() || "0", 10);
+        return indexA - indexB;
+      });
 
-      result.avatar3d = ab;
+    if (avatar3dChunks.length > 0) {
+      const reassembledAvatar3d = reassembleChunks(avatar3dChunks);
+      result.avatar3d = reassembledAvatar3d;
     }
   }
 

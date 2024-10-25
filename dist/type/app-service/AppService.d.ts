@@ -45,7 +45,7 @@ export type ServiceProviders = Record<AppService["type"], AppServiceProvider> & 
 export type ServiceProviderKind = keyof ServiceProviders;
 export declare const APP_SERVICE_API_SHAPES: readonly ["CustomWc", "OpenAi", "CustomProxy", "Cloudflare", "CustomOpenAi", "BrowserTts", "CustomTts", "CustomImagegen", "ElevenlabsTts", "CustomAsr", "GoogleVertex"];
 export declare const SERVICE_TYPE_TO_API_SHAPES: Record<AppService["type"], (typeof APP_SERVICE_API_SHAPES)[number][]>;
-export declare const APP_SERVICE_TYPES: ("unknown" | "proxy" | "crawl" | "asr" | "textgen" | "tts" | "vector" | "extract" | "imagegen" | "lipsync" | "db")[];
+export declare const APP_SERVICE_TYPES: ("tts" | "unknown" | "proxy" | "crawl" | "asr" | "textgen" | "vector" | "extract" | "imagegen" | "lipsync" | "db")[];
 export type ApiShape = (typeof APP_SERVICE_API_SHAPES)[number];
 export declare const SERVICE_PROVIDER_EXTRA_KEYS: Partial<Record<ServiceProviderKind, (keyof AppServiceProvider)[]>>;
 //# sourceMappingURL=AppService.d.ts.map
