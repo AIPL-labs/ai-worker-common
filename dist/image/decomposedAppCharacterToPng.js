@@ -1,15 +1,7 @@
 import { decodePng, encodePng } from "@lunapaint/png-codec";
 import { Bytes, isDefined } from "@mjtdev/engine";
-import { PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
 import { AppVideos } from "../video/AppVideos";
-const AVATAR_3D_CHUNK_SIZE = 8 * 1024 * 1024; // 8MB chunks
-const splitIntoChunks = (data, chunkSize) => {
-    const chunks = [];
-    for (let i = 0; i < data.byteLength; i += chunkSize) {
-        chunks.push(data.slice(i, i + chunkSize));
-    }
-    return chunks;
-};
+import { PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
 export const decomposedAppCharacterToPng = async ({ character, image, voiceSample, videos, avatar3d, }) => {
     if (!image) {
         throw new Error("decomposedAppCharacterToPng: No image");
@@ -25,16 +17,6 @@ export const decomposedAppCharacterToPng = async ({ character, image, voiceSampl
     const voiceText = voiceBytes
         ? Bytes.arrayBufferToBase64(voiceBytes)
         : undefined;
-    const avatar3dBytes = avatar3d
-        ? await Bytes.toArrayBuffer(avatar3d)
-        : undefined;
-    const avatar3dChunks = avatar3dBytes
-        ? splitIntoChunks(avatar3dBytes, AVATAR_3D_CHUNK_SIZE).map((chunk, index) => ({
-            type: "tEXt",
-            keyword: `chara.avatar3d.${index}`,
-            text: Bytes.arrayBufferToBase64(chunk),
-        }))
-        : [];
     const videosText = videos
         ? Bytes.arrayBufferToBase64(AppVideos.videoRecordsToVideoPack(videos))
         : undefined;
@@ -61,7 +43,6 @@ export const decomposedAppCharacterToPng = async ({ character, image, voiceSampl
             },
             voiceChunk,
             videosChunk,
-            ...avatar3dChunks, // Spread the avatar3d chunks
         ].filter(isDefined),
     });
     return new Blob([encoded.data], { type: "image/png" });

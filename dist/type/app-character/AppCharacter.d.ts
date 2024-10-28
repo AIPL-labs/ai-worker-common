@@ -40,6 +40,7 @@ export type AppTavernCard = TavernCardV2<Partial<{
     voice: AppCharacterVoice;
     trueName: string;
     formSkillConfigs: Record<string, FormSkillConfig>;
+    avatar3dUrl: string;
 }>>;
 export type AppCharacterFieldName = keyof AppCharacter["card"]["data"];
 export type AppCharacter = {
