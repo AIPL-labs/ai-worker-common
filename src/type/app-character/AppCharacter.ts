@@ -47,6 +47,7 @@ export type AppTavernCard = TavernCardV2<
     voice: AppCharacterVoice;
     trueName: string;
     formSkillConfigs: Record<string, FormSkillConfig>;
+    avatar3dUrl: string;
   }>
 >;
 

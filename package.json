@@ -34,7 +34,7 @@
   "peerDependencies": {},
   "dependencies": {
     "@lunapaint/png-codec": "^0.2.0",
-    "@mjtdev/engine": "https://github.com/matthewjosephtaylor/mjtdev-engine#2024.10.25-1350",
+    "@mjtdev/engine": "/Users/mtaylor/MJT/mjtdev-engine/",
     "immer": "^10.0.3",
     "json-stable-stringify": "^1.1.1",
     "parsimmon": "^1.18.1"
