@@ -14,7 +14,6 @@ export const decomposedAppCharacterToPng = async ({
   image,
   voiceSample,
   videos,
-  avatar3d,
 }: DecomposedAppCharacter) => {
   if (!image) {
     throw new Error("decomposedAppCharacterToPng: No image");
