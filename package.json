@@ -1,6 +1,6 @@
 {
   "name": "ai-worker-common",
-  "version": "2024.10.28-1200",
+  "version": "2024.10.28-1208",
   "sideEffects": false,
   "description": "",
   "main": "dist/index.js",
