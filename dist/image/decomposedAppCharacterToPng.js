@@ -2,7 +2,7 @@ import { decodePng, encodePng } from "@lunapaint/png-codec";
 import { Bytes, isDefined } from "@mjtdev/engine";
 import { AppVideos } from "../video/AppVideos";
 import { PNG_KEYWORD_TAVERNCARD, PNG_KEYWORD_VIDEOS, PNG_KEYWORD_VOICE_SAMPLE, } from "./PNG_KEYWORDS";
-export const decomposedAppCharacterToPng = async ({ character, image, voiceSample, videos, avatar3d, }) => {
+export const decomposedAppCharacterToPng = async ({ character, image, voiceSample, videos, }) => {
     if (!image) {
         throw new Error("decomposedAppCharacterToPng: No image");
     }

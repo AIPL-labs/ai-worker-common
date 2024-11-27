@@ -41,6 +41,7 @@ export type AppTavernCard = TavernCardV2<Partial<{
     trueName: string;
     formSkillConfigs: Record<string, FormSkillConfig>;
     avatar3dUrl: string;
+    avatar3dAnimationUrl: string;
 }>>;
 export type AppCharacterFieldName = keyof AppCharacter["card"]["data"];
 export type AppCharacter = {
